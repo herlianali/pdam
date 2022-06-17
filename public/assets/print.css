@@ -1,0 +1,8 @@
+header, footer, aside, nav, form, iframe, .menu, .hero, .adslot {
+    display: none;
+}
+
+article {
+    column-width: 17em;
+    column-gap: 3em;
+}
