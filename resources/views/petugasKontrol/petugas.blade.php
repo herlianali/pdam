@@ -11,37 +11,33 @@
                 <table id="example1" class="table table-bordered table-hover table table-bordered table-responsive-md table-condensed" style="width: 100%">
                     <thead>
                     <tr>
+                        <th>Kode Petugas</th>
                         <th>Nip</th>
                         <th>Nama Lengkap</th>
-                        <th>Jenis Pegawai</th>
-                        <th>Kedudukan Pegawai</th>
                         <th>Aksi</th>
                     </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>1.07.01460</td>
+                            <td>TK01</td>
+                            <td>17900203</td>
                             <td>Ema Nurmasanti, S.T</td>
-                            <td>PD</td>
-                            <td>01</td>
                             <td>
                                 <button class="btn btn-success btn-sm"><i class="far fa-check-circle"></i> Pilih</button>
                             </td>
                         </tr>
                         <tr>
-                            <td>1.83.00528</td>
+                            <td>TK02</td>
+                            <td>18200417</td>
                             <td>Mashud CH</td>
-                            <td>PD</td>
-                            <td>01</td>
                             <td>
                                 <button class="btn btn-success btn-sm"><i class="far fa-check-circle"></i> Pilih</button>
                             </td>
                         </tr>
                         <tr>
-                            <td>1.83.00583</td>
+                            <td>TK03</td>
+                            <td>510037084</td>
                             <td>Djauhar Busthom</td>
-                            <td>PD</td>
-                            <td>01</td>
                             <td>
                                 <button class="btn btn-success btn-sm"><i class="far fa-check-circle"></i> Pilih</button>
                             </td>
@@ -51,7 +47,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-success">Save changes</button>
             </div>
         </div>
     </div>
