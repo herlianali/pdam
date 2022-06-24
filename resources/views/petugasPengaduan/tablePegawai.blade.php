@@ -46,12 +46,48 @@
                                 <button class="btn btn-success btn-sm"><i class="far fa-check-circle"></i> Pilih</button>
                             </td>
                         </tr>
+                        <tr>
+                            <td>1.83.00583</td>
+                            <td>Djauhar Busthom</td>
+                            <td>PD</td>
+                            <td>01</td>
+                            <td>
+                                <button class="btn btn-success btn-sm"><i class="far fa-check-circle"></i> Pilih</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>1.83.00583</td>
+                            <td>Djauhar Busthom</td>
+                            <td>PD</td>
+                            <td>01</td>
+                            <td>
+                                <button class="btn btn-success btn-sm"><i class="far fa-check-circle"></i> Pilih</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>1.83.00583</td>
+                            <td>Djauhar Busthom</td>
+                            <td>PD</td>
+                            <td>01</td>
+                            <td>
+                                <button class="btn btn-success btn-sm"><i class="far fa-check-circle"></i> Pilih</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>1.83.00583</td>
+                            <td>Djauhar Busthom</td>
+                            <td>PD</td>
+                            <td>01</td>
+                            <td>
+                                <button class="btn btn-success btn-sm"><i class="far fa-check-circle"></i> Pilih</button>
+                            </td>
+                        </tr>
                     </tbody>
                   </table>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-success btn-sm"><i class="far fa-save"></i> Save changes</button>
+                <p class="mr-auto">Klik tombol pilih untuk memasukkan data ke table</p>
+                <button type="button" class="btn btn-danger float-right btn-sm" data-dismiss="modal"><i class="far fa-times-circle"></i> Close</button>
               </div>
         </div>
     </div>
