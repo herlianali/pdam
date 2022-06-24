@@ -27,7 +27,7 @@
                         <h3 class="card-title">Jenis Pelanggan</h3>
                     </div>
                     <div class="card-body">
-                        <div class="row">
+                        <div class="row mb-4">
                             <div class="col-md-9">
                                 <form class="form-horizontal">
                                     <div class="form-group row">
@@ -43,16 +43,15 @@
                                         </div>
                                     </div>
 
-                                    <button type="submit" class="btn btn-info btn-sm" id="baru"><i class="fas fa-undo"></i> Baru</button>
+                                    <button type="submit" class="btn btn-info btn-sm" id="baru"><i class="fas fa-print"></i> Cetak</button>
                                     <button type="submit" class="btn btn-success btn-sm" id="simpan" disabled><i class="far fa-save"></i> Simpan</button>
                                     <button type="submit" class="btn btn-danger btn-sm" id="batal" disabled><i class="far fa-times-circle"></i> Batal</button>
                                 </form>
                             </div>
                             <div class="col-md-2">
-                                <img src="{{ asset('assets/img/logo.png') }}" class="mx-auto d-block mt-3" alt="" style="width: 90%">
+                                <img src="{{ asset('assets/img/logo.png') }}" class="mx-auto d-block" alt="" style="width: 90%">
                             </div>
                         </div>
-                        <button type="button" class="btn btn-info btn-sm mb-2" data-toggle="modal" data-target="#tambah"><i class="fas fa-plus-circle"></i> Tambah Jenis Pelanggan</button>
                         <table id="table" class="table table-bordered table-responsive-md table-condensed" style="width: 100%">
                             <thead>
                                 <tr>
@@ -84,8 +83,7 @@
         </div>
     </div>
 </section>
-@include('jenisPelanggan.create')
-@include('jenisPelanggan.edit')
+@include('jenisPelanggan.form')
 @endsection
 
 @push('js')
