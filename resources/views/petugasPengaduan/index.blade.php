@@ -53,7 +53,7 @@
 
                                         <button type="submit" class="btn btn-info btn-sm" id="baru"><i class="fas fa-undo"></i> Baru</button>
                                         <button type="submit" class="btn btn-success btn-sm" id="simpan" disabled><i class="far fa-save"></i> Simpan</button>
-                                        <button type="submit" class="btn btn-danger btn-sm" id="batal" disabled><i class="far fa-times-circle"></i> Batal</button>
+                                    <button type="reset" class="btn btn-danger btn-sm" id="batal" disabled><i class="far fa-times-circle"></i> Batal</button>
                                     </form>
                                 </div>
                                 <div class="col-md-2">

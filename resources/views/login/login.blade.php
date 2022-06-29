@@ -20,7 +20,7 @@
     <div class="card-body login-card-body">
       <p class="login-box-msg">Masuk Langganan Wilayah Timur</p>
 
-      <form action="" method="post">
+      <form action="{{ route('dashboard') }}" method="get">
         <div class="input-group mb-3">
           <input type="text" class="form-control" placeholder="Username">
           <div class="input-group-append">

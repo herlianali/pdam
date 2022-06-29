@@ -16,7 +16,7 @@
 @endsection
 
 @section('content')
-<section class="container">
+<section class="content">
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
@@ -25,8 +25,40 @@
                         <h3 class="card-title">Petugas Kontrol</h3>
                     </div>
                     <div class="card-body">
-                        <button type="button" class="btn btn-info btn-sm mb-2" data-toggle="modal" data-target="#tambah"><i class="fas fa-plus-circle"></i> Tambah Petugas Kontrol</button>
-                        <button class="btn btn-default btn-sm mb-2" type="button" data-toggle="modal" data-target="#pegawai"><i class="fas fa-search fa-fw"></i> Cari Pegawai</button>
+                        <div class="row">
+                            <div class="col-md-9">
+                                <form class="form-horizontal">
+                                    <div class="form-group row">
+                                        <label for="kdptg" class="col-md-2 col-form-label">Kode Petugas</label>
+                                        <div class="col-md-6">
+                                            <input type="kdptg" class="form-control" id="kdptg" onkeyup="valueing()">
+                                        </div>
+                                        <div class="col-md-2">
+                                            <button class="btn btn-default btn-sm" type="button" data-toggle="modal" data-target="#pegawai"><i class="fas fa-search fa-fw"></i> Pilih Pegawai</button>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="nip" class="col-md-2 col-form-label">NIP Pegawai</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" id="nip" onkeyup="valueing()">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="nama" class="col-md-2 col-form-label">Nama Pegawai</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" id="nama" onkeyup="valueing()">
+                                        </div>
+                                    </div>
+
+                                    <a class="btn btn-info btn-sm" id="baru"><i class="fas fa-print"></i> Cetak</a>
+                                    <button type="submit" class="btn btn-success btn-sm" id="simpan" disabled><i class="far fa-save"></i> Simpan</button>
+                                    <button type="reset" class="btn btn-danger btn-sm" id="batal" disabled><i class="far fa-times-circle"></i> Batal</button>
+                                </form>
+                            </div>
+                            <div class="col-md-2">
+                                <img src="{{ asset('assets/img/logo.png') }}" class="mx-auto d-block mt-3" alt="" style="width: 90%">
+                            </div>
+                        </div>
                         <table id="table" class="table table-bordered table-responsive-md table-condensed" style="width: 100%">
                             <thead>
                                 <tr>
@@ -100,5 +132,15 @@
                 "responsive": true,
             });
         });
+
+        function valueing() {
+            if(document.getElementById('kdptg').value==="" || document.getElementById('nip').value==="" || document.getElementById('nama').value==="") {
+                document.getElementById('batal').disabled = true
+                document.getElementById('simpan').disabled = true
+            }else{
+                document.getElementById('batal').disabled = false
+                document.getElementById('simpan').disabled = false
+            }
+        }
     </script>
 @endpush
