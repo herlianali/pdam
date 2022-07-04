@@ -11,7 +11,7 @@ class JenisPelangganController extends Controller
     {
         $jenisPelanggans = JenisPelanggan::all();
 
-        return view('jenisPelanggan.index', compact('jenisPelanggans'))->with('i');
+        return view('master.jenisPelanggan.index', compact('jenisPelanggans'))->with('i');
     }
 
     public function store(Request $request)

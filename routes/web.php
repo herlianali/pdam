@@ -11,6 +11,11 @@ use App\Http\Controllers\PetugasKhususController;
 use App\Http\Controllers\PetugasKontrolController;
 use App\Http\Controllers\PetugasKorektorController;
 use App\Http\Controllers\petugasPengaduanController;
+use App\Http\Controllers\RetribusiController;
+use App\Http\Controllers\StatusAirController;
+use App\Http\Controllers\StatusMeterController;
+use App\Http\Controllers\StatusTanahController;
+use App\Http\Controllers\WilayahDistribusiController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -42,7 +47,19 @@ Route::prefix('master')->group(function () {
 
     Route::get('/petugasKorektor', [PetugasKorektorController::class, 'index'])->name('petugasKorektor');
 
+    Route::get('/petugasEntry', [PetugasEntryController::class, 'index'])->name('petugasEntry');
+
     Route::get('/kondisiTutupan', [KondisiTutupanController::class, 'index'])->name('kondisiTutupan');
+
+    Route::get('/retribusi', [RetribusiController::class, 'index'])->name('retribusi');
+
+    Route::get('/wilayahDistribusi', [WilayahDistribusiController::class, 'index'])->name('wilayahDistribusi');
+
+    Route::get('/statusTanah', [StatusTanahController::class, 'index'])->name('statusTanah');
+
+    Route::get('/statusAir', [StatusAirController::class, 'index'])->name('statusAir');
+
+    Route::get('/statusMeter', [StatusMeterController::class, 'index'])->name('statusMeter');
 
     Route::resource('jenisPelanggan', JenisPelangganController::class);
 });

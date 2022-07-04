@@ -78,7 +78,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="" class="nav-link">
+                <a href="{{ route('petugasEntry') }}" class="nav-link {{ Request::segment(2) == 'petugasEntry' ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <small>
                         <p>Petugas Entry</p>
@@ -86,7 +86,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="" class="nav-link">
+                <a href="{{ route('kondisiTutupan') }}" class="nav-link {{ Request::segment(2) == 'kondisiTutupan' ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <small>
                         <p>Kondisi Tutupan</p>
@@ -102,7 +102,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="" class="nav-link">
+                <a href="{{ route('retribusi') }}" class="nav-link {{ Request::segment(2) == 'retribusi' ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <small>
                         <p>Retribusi</p>
@@ -110,7 +110,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="" class="nav-link">
+                <a href="{{ route('wilayahDistribusi') }}" class="nav-link {{ Request::segment(2) == 'wilayahDistribusi' ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <small>
                         <p>Wilayah Distribusi</p>
@@ -118,7 +118,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="" class="nav-link">
+                <a href="{{ route('statusTanah') }}" class="nav-link {{ Request::segment(2) == 'statusTanah' ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <small>
                         <p>Status Tanah</p>
@@ -126,7 +126,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="" class="nav-link">
+                <a href="{{ route('statusAir') }}" class="nav-link {{ Request::segment(2) == 'statusAir' ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <small>
                         <p>Status Air</p>
@@ -134,7 +134,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="" class="nav-link">
+                <a href="{{ route('statusMeter') }}" class="nav-link {{ Request::segment(2) == 'StatusMeter' ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <small>
                         <p>Status Meter</p>

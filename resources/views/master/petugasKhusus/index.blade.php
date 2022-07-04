@@ -63,7 +63,7 @@
         </div>
     </div>
 </section>
-@include('petugasKhusus.petugas')
+@include('master.petugasKhusus.petugas')
 @endsection
 
 @push('js')

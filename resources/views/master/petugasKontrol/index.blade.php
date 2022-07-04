@@ -108,9 +108,9 @@
         </div>
     </div>
 </section>
-@include('petugasKontrol.create')
-@include('petugasKontrol.edit')
-@include('petugasKontrol.petugas')
+@include('master.petugasKontrol.create')
+@include('master.petugasKontrol.edit')
+@include('master.petugasKontrol.petugas')
 @endsection
 
 @push('js')

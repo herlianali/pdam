@@ -8,6 +8,6 @@ class PetugasKhususController extends Controller
 {
     public function index()
     {
-        return view('petugasKhusus.index');
+        return view('master.petugasKhusus.index');
     }
 }

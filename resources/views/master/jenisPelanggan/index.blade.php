@@ -83,7 +83,7 @@
         </div>
     </div>
 </section>
-@include('jenisPelanggan.form')
+@include('master.jenisPelanggan.form')
 @endsection
 
 @push('js')

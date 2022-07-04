@@ -11,7 +11,7 @@ class JenisPengaduanController extends Controller
     {
         $jenisPengaduans = JenisPengaduan::all();
 
-        return view('jenisPengaduan.index', compact('jenisPengaduans'))->with('i');
+        return view('master.jenisPengaduan.index', compact('jenisPengaduans'))->with('i');
     }
     // public function
 

@@ -8,6 +8,6 @@ class JenisPekerjaanController extends Controller
 {
     public function index()
     {
-        return view('jenisPekerjaan.index');
+        return view('master.jenisPekerjaan.index');
     }
 }

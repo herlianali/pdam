@@ -8,6 +8,6 @@ class PetugasKorektorController extends Controller
 {
     public function index()
     {
-        return view('petugasKorektor.index');
+        return view('master.petugasKorektor.index');
     }
 }

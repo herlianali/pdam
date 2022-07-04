@@ -65,9 +65,9 @@
         </div>
     </section>
     {{-- Tambah Form --}}
-    @include('jenisPengaduan.create')
+    @include('master.jenisPengaduan.create')
     {{-- Edit Form --}}
-    @include('jenisPengaduan.edit')
+    @include('master.jenisPengaduan.edit')
 @endsection
 
 @push('js')

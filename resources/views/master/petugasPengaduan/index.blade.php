@@ -173,7 +173,7 @@
                               </tbody>
                             </table>
                         </div>
-                        @include('petugasPengaduan.tablePegawai')
+                        @include('master.petugasPengaduan.tablePegawai')
 
                     </div>
                 </div>

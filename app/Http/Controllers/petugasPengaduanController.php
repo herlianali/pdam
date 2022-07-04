@@ -8,6 +8,6 @@ class petugasPengaduanController extends Controller
 {
     public function index()
     {
-        return view('petugasPengaduan.index');
+        return view('master.petugasPengaduan.index');
     }
 }
