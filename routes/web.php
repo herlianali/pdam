@@ -6,6 +6,9 @@ use App\Http\Controllers\JenisPelangganController;
 use App\Http\Controllers\JenisPengaduanController;
 use App\Http\Controllers\KondisiTutupanController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\MateraiController;
+use App\Http\Controllers\MerekMeterController;
+use App\Http\Controllers\PanggilanDinasController;
 use App\Http\Controllers\PetugasEntryController;
 use App\Http\Controllers\PetugasKhususController;
 use App\Http\Controllers\PetugasKontrolController;
@@ -60,6 +63,12 @@ Route::prefix('master')->group(function () {
     Route::get('/statusAir', [StatusAirController::class, 'index'])->name('statusAir');
 
     Route::get('/statusMeter', [StatusMeterController::class, 'index'])->name('statusMeter');
+
+    Route::get('/merekMeter', [MerekMeterController::class, 'index'])->name('merekMeter');
+
+    Route::get('/materai', [MateraiController::class, 'index'])->name('materai');
+
+    Route::get('/panggilanDinas', [PanggilanDinasController::class, 'index'])->name('panggilanDinas');
 
     Route::resource('jenisPelanggan', JenisPelangganController::class);
 });

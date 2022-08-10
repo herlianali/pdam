@@ -134,7 +134,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('statusMeter') }}" class="nav-link {{ Request::segment(2) == 'StatusMeter' ? 'active' : '' }}">
+                <a href="{{ route('statusMeter') }}" class="nav-link {{ Request::segment(2) == 'statusMeter' ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <small>
                         <p>Status Meter</p>
@@ -142,7 +142,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="" class="nav-link">
+                <a href="{{ route('merekMeter') }}" class="nav-link {{ Request::segment(2) == 'merekMeter' ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <small>
                         <p>Merk Meter</p>
@@ -150,7 +150,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="" class="nav-link">
+                <a href="{{ route('materai') }}" class="nav-link {{ Request::segment(2) == 'materai' ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <small>
                         <p>Materai</p>
