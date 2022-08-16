@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('cek_survey_tarifs', function (Blueprint $table) {
+        Schema::create('telpon_pelanggans', function (Blueprint $table) {
             $table->bigIncrements('no_pelanggan');
-            $table->String('njop');
-            $table->String('listrik');
-            $table->String('lebar_jalan');
+            $table->String('nama',25);
+            $table->text('alamat',100);
+            $table->String('no_telepon',15);
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cek_survey_tarifs');
+        Schema::dropIfExists('telpon_pelanggans');
     }
 };

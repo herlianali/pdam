@@ -15,12 +15,12 @@ return new class extends Migration
     {
         Schema::create('monitoring_pelanggans', function (Blueprint $table) {
             $table->bigIncrements('no_pelanggan');
-            $table->String('nama');
-            $table->String('jalan');
-            $table->String('gang');
+            $table->String('nama',25);
+            $table->String('jalan',25);
+            $table->String('gang',5);
             $table->Integer('nomor');
-            $table->String('no_tambahan');
-            $table->String('KD_Tarif',100);
+            $table->String('no_tambahan',10);
+            $table->String('KD_Tarif',15);
             $table->timestamps();
         });
     }

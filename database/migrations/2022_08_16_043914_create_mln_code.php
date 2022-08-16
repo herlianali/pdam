@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('panggilan_dinasis', function (Blueprint $table) {
-            $table->bigIncrements('jp_dinas');
-            $table->text('keterangan');
+        Schema::create('mln_code', function (Blueprint $table) {
+            $table->String('code',10)->unique();
+            $table->text('keterangan',50);
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('panggilan_dinasis');
+        Schema::dropIfExists('mln_code');
     }
 };

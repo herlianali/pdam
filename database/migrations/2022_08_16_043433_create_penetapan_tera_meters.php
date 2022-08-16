@@ -16,18 +16,18 @@ return new class extends Migration
         Schema::create('penetapan_tera_meters', function (Blueprint $table) {
             $table->bigIncrements('nomor_penetapan');
             $table->date('tanggal');
-            $table->String('no_bon');
-            $table->String('nopel');
-            $table->String('nama_pelanggan');
-            $table->text('alamat_pelanggan');
-            $table->String('tarif');
-            $table->String('uk_meter');
-            $table->String('biaya');
-            $table->String('ppn');
-            $table->String('total');
-            $table->String('nama_pengaju');
-            $table->text('alamat_pengaju');
-            $table->String('telepon_pengaju');
+            $table->String('no_bon',10);
+            $table->String('nopel',10);
+            $table->String('nama_pelanggan',25);
+            $table->text('alamat_pelanggan',50);
+            $table->String('tarif',20);
+            $table->String('uk_meter',20);
+            $table->String('biaya',20);
+            $table->String('ppn',10);
+            $table->String('total',20);
+            $table->String('nama_pengaju',25);
+            $table->text('alamat_pengaju',50);
+            $table->String('telepon_pengaju',15);
             $table->timestamps();
         });
     }

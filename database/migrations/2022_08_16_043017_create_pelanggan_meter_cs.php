@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('telpon_pelanggans', function (Blueprint $table) {
+        Schema::create('pelanggan_meter_cs', function (Blueprint $table) {
             $table->bigIncrements('no_pelanggan');
-            $table->String('nama');
-            $table->text('alamat');
-            $table->String('no_telepon');
+            $table->String('petugas_entri',20);
+            $table->DateTime('tanggal_entri');
+            $table->Integer('aktif');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('telpon_pelanggans');
+        Schema::dropIfExists('pelanggan_meter_cs');
     }
 };
