@@ -1,17 +1,11 @@
 @extends('layout.app')
-@section('title', 'Jenis Panggilan Dinas')
-
-@push('css')
-    <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
-@endpush
+@section('title', 'MLN Code')
 
 @section('namaHal', 'Master')
 @section('breadcrumb')
 <ol class="breadcrumb float-sm-right">
     <li class="breadcrumb-item"><a href="#">Master</a></li>
-    <li class="breadcrumb-item active">Jenis Panggilan Dinas</li>
+    <li class="breadcrumb-item active">MLN Code</li>
 </ol>
 @endsection
 
@@ -20,7 +14,7 @@
     <div class="container">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Jenis Panggilan Dinas</h3>
+                <h3 class="card-title">MLN Code</h3>
 
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -36,22 +30,45 @@
                 <div class="col-md-1"></div>
                 <div class="col-md-8">
                     <form class="form-horizontal">
+                        
                         <div class="form-group row mt-2">
-                            <label for="panggilan" class="col-md-3 col-form-label">Jenis Panggilan </label>
-                            <div class="col-md-7">
-                                <input type="text" class="form-control" id="jpanggilan" onkeyup="valueing()">
+                            
+                        <div class="form-group">
+                               
+                                <div class="form-check">
+                                    <input type="radio" class="form-check-input" id="L Code" name="code">
+                                    <label class="form-check-label">L Code</label>
+                                </div>
+                                <div class="form-check">
+                                <input type="radio" class="form-check-input" id="M Code" name="code">
+                                    <label class="form-check-label">M Code</label>
+                                </div>
+                                <div class="form-check">
+                                <input type="radio" class="form-check-input" id="N Code" name="code">
+                                    <label class="form-check-label">N Code</label>
+                                </div>
+                            </div>
+
+                            
+                        </div>
+
+                        <div class="form-group row mt-2">
+                            <label for="kode" class="col-md-2 col-form-label">Code </label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" id="kode" onkeyup="valueing()">
                             </div>
                         </div>
                         <div class="form-group row ">
-                            <label for="keterangan" class="col-md-3 col-form-label">Keterangan </label>
-                            <div class="col-md-7">
+                            <label for="keterangan" class="col-md-2 col-form-label">Keterangan </label>
+                            <div class="col-md-8">
                                 <textarea class="form-control" id="keterangan" onkeyup="valueing()"></textarea>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-info btn-sm mt-3" id="baru"><i class="fas fa-undo"></i> Baru</button>
-                        <button type="submit" class="btn btn-info btn-sm mt-3" id="cetak"><i class="fas fa-print"></i> Cetak</button>
-                        <button type="submit" class="btn btn-success btn-sm mt-3" id="simpan"><i class="far fa-save"></i> Simpan</button>
-                        <button type="reset" class="btn btn-danger btn-sm mt-3" id="batal"><i class="far fa-times-circle"></i> Batal</button>
+                       
+                        <button type="submit" class="btn btn-success btn-sm-mt-6 float-right" id="simpan"><i class="far fa-save"></i> Simpan</button>
+                            
+                       
+                      
                     </form>
                 </div>
                 <div class="col-md-2">
@@ -62,66 +79,49 @@
             <table id="example2" class="table table-bordered table-responsive-md table-condensed" style="width: 100%">
                 <thead>
                     <tr>
-                        <th>Jenis PDINAS</th>
+                        <th>Kode</th>
                         <th>Keterangan</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-
                     <tr>
-                        <td>01</td>
-                        <td>Tanpa Meter Air</td>
+                        <td>L</td>
+                        <td>Dupak Masigit 6/24</td>
                         <td>
-                            <button type="submit" class="btn btn-danger btn-sm" onclick="deletePanggilanDinas()"><i class="fas fa-trash-alt"></i> Hapus</button>
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="deletemlncode()"><i class="fas fa-trash-alt"></i> Hapus</button>
                             <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#form"><i class="fas fa-edit"></i> Edit</button>
                         </td>
                     </tr>
                     <tr>
-                        <td>02</td>
-                        <td>Pompa Langsung</td>
+                        <td>L1</td>
+                        <td>Rumah Kosong</td>
                         <td>
-                            <button type="submit" class="btn btn-danger btn-sm" onclick="deletePanggilanDinas()"><i class="fas fa-trash-alt"></i> Hapus</button>
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="deletemlncode()"><i class="fas fa-trash-alt"></i> Hapus</button>
                             <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#form"><i class="fas fa-edit"></i> Edit</button>
                         </td>
                     </tr>
                     <tr>
-                        <td>03</td>
-                        <td>Segel Meter Air Putus</td>
+                        <td>L2</td>
+                        <td>Pagar Kunci</td>
                         <td>
-                            <button type="submit" class="btn btn-danger btn-sm" onclick="deletePanggilanDinas()"><i class="fas fa-trash-alt"></i> Hapus</button>
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="deletemlncode()"><i class="fas fa-trash-alt"></i> Hapus</button>
                             <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#form"><i class="fas fa-edit"></i> Edit</button>
                         </td>
                     </tr>
                     <tr>
-                        <td>04</td>
-                        <td>Segel Kopling Putus</td>
+                        <td>L3</td>
+                        <td>Peruntukan Persil Tidak Sesuai/Rekategori</td>
                         <td>
-                            <button type="submit" class="btn btn-danger btn-sm" onclick="deletePanggilanDinas()"><i class="fas fa-trash-alt"></i> Hapus</button>
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="deletemlncode()"><i class="fas fa-trash-alt"></i> Hapus</button>
                             <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#form"><i class="fas fa-edit"></i> Edit</button>
                         </td>
                     </tr>
-                    <tr>
-                        <td>05</td>
-                        <td>Meter Air Hilang</td>
-                        <td>
-                            <button type="submit" class="btn btn-danger btn-sm" onclick="deletePanggilanDinas()"><i class="fas fa-trash-alt"></i> Hapus</button>
-                            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#form"><i class="fas fa-edit"></i> Edit</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>06</td>
-                        <td>Tutup Dinas Air Digunakan</td>
-                        <td>
-                            <button type="submit" class="btn btn-danger btn-sm" onclick="deletePanggilanDinas()"><i class="fas fa-trash-alt"></i> Hapus</button>
-                            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#form"><i class="fas fa-edit"></i> Edit</button>
-                        </td>
-                    </tr>
-
+                   
                 </tbody>
             </table>
         </div>
-        @include('master.panggilanDinas.form')
+        @include('master.mlnCode.form')
     </div>
 </div>
 </section>

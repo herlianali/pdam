@@ -13,8 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('panggilan_dinas', function (Blueprint $table) {
-            $table->id();
+        Schema::create('telpon_pelanggans', function (Blueprint $table) {
+            $table->bigIncrements('no_pelanggan');
+            $table->String('nama');
+            $table->text('alamat');
+            $table->String('no_telepon');
             $table->timestamps();
         });
     }
@@ -26,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('panggilan_dinas');
+        Schema::dropIfExists('telpon_pelanggans');
     }
 };
