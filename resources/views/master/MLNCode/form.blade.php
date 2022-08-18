@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Edit Jenis Panggilan</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Edit MLN Code</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -11,8 +11,8 @@
             <div class="modal-body">
                 <form action="">
                     <div class="form-group">
-                        <label for="panggilan">Jenis Panggilan</label>
-                        <input type="text" class="form-control" id="jpanggilan" name="kode">
+                        <label for="kode">Kode</label>
+                        <input type="text" class="form-control" id="kode" name="kode">
                     </div>
                     <div class="form-group">
                         <label for="keterangan">Keterangan</label>
