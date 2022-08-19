@@ -1,5 +1,4 @@
 @extends('layout.app')
-
 @section('title', 'Jenis Panggilan Dinas')
 
 @push('css')
@@ -23,44 +22,14 @@
             <div class="card-header">
                 <h3 class="card-title">Jenis Panggilan Dinas</h3>
 
-                <div class="card-tools">
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                        <i class="fas fa-minus"></i>
-                    </button>
-                    <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-            </div>
-        <div class="card-body">
-            <div class="row mb-4">
-                <div class="col-md-1"></div>
-                <div class="col-md-8">
-                    <form class="form-horizontal">
-                        <div class="form-group row mt-2">
-                            <label for="panggilan" class="col-md-3 col-form-label">Jenis Panggilan </label>
-                            <div class="col-md-7">
-                                <input type="text" class="form-control" id="jpanggilan" onkeyup="valueing()">
-                            </div>
-                        </div>
-                        <div class="form-group row ">
-                            <label for="keterangan" class="col-md-3 col-form-label">Keterangan </label>
-                            <div class="col-md-7">
-                                <textarea class="form-control" id="keterangan" onkeyup="valueing()"></textarea>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-info btn-sm mt-3" id="baru"><i class="fas fa-undo"></i> Baru</button>
-                        <button type="submit" class="btn btn-info btn-sm mt-3" id="cetak"><i class="fas fa-print"></i> Cetak</button>
-                    </form>
-                </div>
-                <div class="col-md-2">
-                    <img src="{{ asset('assets/img/logo.png') }}" class="mx-auto d-block mt-3" alt="" style="width: 90%">
-                </div>
-                <div class="col-md-1"></div>
-            </div>
-            <table id="example2" class="table table-bordered table-responsive-md table-condensed" style="width: 100%">
-                <thead>
-                    <tr>
+              </div>
+                        <div class="card-body">
+                            <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#tambah"><i class="fas fa-plus-circle"></i> Buat</button>
+                            <a href="{{ route('JenisPengaduan') }}" class="btn btn-success btn-sm"><i class="fas fa-print"></i> Cetak</a>
+                            <table id="table" class="table table-bordered table-responsive-md table-condensed" style="width: 100%">
+                                <thead>
+                                    <tr>
+                        <th>No </th>
                         <th>Jenis PDINAS</th>
                         <th>Keterangan</th>
                         <th>Aksi</th>
@@ -69,6 +38,7 @@
                 <tbody>
 
                     <tr>
+                        <td>1</td>
                         <td>01</td>
                         <td>Tanpa Meter Air</td>
                         <td>
@@ -77,6 +47,7 @@
                         </td>
                     </tr>
                     <tr>
+                        <td>2</td>
                         <td>02</td>
                         <td>Pompa Langsung</td>
                         <td>
@@ -85,6 +56,7 @@
                         </td>
                     </tr>
                     <tr>
+                        <td>3</td>
                         <td>03</td>
                         <td>Segel Meter Air Putus</td>
                         <td>
@@ -93,6 +65,7 @@
                         </td>
                     </tr>
                     <tr>
+                        <td>4</td>
                         <td>04</td>
                         <td>Segel Kopling Putus</td>
                         <td>
@@ -101,6 +74,7 @@
                         </td>
                     </tr>
                     <tr>
+                        <td>5</td>
                         <td>05</td>
                         <td>Meter Air Hilang</td>
                         <td>
@@ -109,6 +83,7 @@
                         </td>
                     </tr>
                     <tr>
+                        <td>6</td>
                         <td>06</td>
                         <td>Tutup Dinas Air Digunakan</td>
                         <td>
@@ -120,7 +95,13 @@
                 </tbody>
             </table>
         </div>
-        @include('master.panggilanDinas.form')
+        {{-- Tambah Form --}}
+    @include('master.panggilanDinas.create')
+    {{-- Edit Form --}}
+    @include('master.panggilanDinas.edit')
+    {{-- Print Form --}}
+    @include('master.panggilanDinas.print')
+
     </div>
 </div>
 </section>

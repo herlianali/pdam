@@ -14,7 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('penetapan_tera_meters', function (Blueprint $table) {
-            $table->bigIncrements('nomor_penetapan');
+            $table->id();
+            $table->bigInteger('nomor_penetapan');
             $table->date('tanggal');
             $table->String('no_bon',10);
             $table->String('nopel',10);

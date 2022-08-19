@@ -77,6 +77,9 @@ Route::prefix('master')->group(function () {
     Route::get('/materai', [MateraiController::class, 'index'])->name('materai');
 
     Route::get('/panggilanDinas', [PanggilanDinasController::class, 'index'])->name('panggilanDinas');
+    Route::get('/panggilanDinas', [PanggilanDinasController::class, 'print'])->name('printPanggilanDinas');
+    Route::get('/panggilanDinas.{id}.edit', [PanggilanDinasController::class,'edit']);
+    Route::resource('panggilanDinas', PanggilanDinasController::class);
  
     Route::get('/monitoringPelanggan', [MonitoringPelangganController::class, 'index'])->name('monitoringPelanggan');
 

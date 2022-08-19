@@ -13,14 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('monitoring_pelanggans', function (Blueprint $table) {
-            $table->bigIncrements('no_pelanggan');
-            $table->String('nama',25);
-            $table->String('jalan',25);
-            $table->String('gang',5);
-            $table->Integer('nomor');
-            $table->String('no_tambahan',10);
-            $table->String('KD_Tarif',15);
+        Schema::create('pelanggan_meter_cs', function (Blueprint $table) {
+            $table->id();
+            $table->bigInteger('no_pelanggan');
+            $table->String('petugas_entri',20);
+            $table->DateTime('tanggal_entri');
+            $table->Integer('aktif');
             $table->timestamps();
         });
     }
@@ -32,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('monitoring_pelanggans');
+        Schema::dropIfExists('pelanggan_meter_cs');
     }
 };

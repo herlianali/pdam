@@ -13,11 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('telpon_pelanggans', function (Blueprint $table) {
-            $table->bigIncrements('no_pelanggan');
+        Schema::create('monitoring_pelanggans', function (Blueprint $table) {
+            $table->id();
+            $table->bigInteger('no_pelanggan');
             $table->String('nama',25);
-            $table->text('alamat',100);
-            $table->String('no_telepon',15);
+            $table->String('jalan',25);
+            $table->String('gang',5);
+            $table->Integer('nomor');
+            $table->String('no_tambahan',10);
+            $table->String('KD_Tarif',15);
             $table->timestamps();
         });
     }
@@ -29,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('telpon_pelanggans');
+        Schema::dropIfExists('monitoring_pelanggans');
     }
 };

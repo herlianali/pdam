@@ -10,4 +10,7 @@ class CekSurveyTarifController extends Controller
     {
         return view('master.cekSurveyTarif.index');
     }
+
+    
+
 }

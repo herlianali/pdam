@@ -13,9 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('mln_code', function (Blueprint $table) {
-            $table->String('code',10)->unique();
-            $table->text('keterangan',50);
+        Schema::create('cek_survey_tarifs', function (Blueprint $table) {
+            $table->id();
+            $table->bigInteger('no_pelanggan');
+            $table->String('njop',20);
+            $table->String('listrik',20);
+            $table->String('lebar_jalan',15);
             $table->timestamps();
         });
     }
@@ -27,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mln_code');
+        Schema::dropIfExists('cek_survey_tarifs');
     }
 };
