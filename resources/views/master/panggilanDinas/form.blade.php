@@ -12,11 +12,11 @@
                 <form action="">
                     <div class="form-group">
                         <label for="panggilan">Jenis Panggilan</label>
-                        <input type="text" class="form-control" id="jpanggilan" name="kode">
+                        <input type="text" class="form-control" id="jpanggilan" name="jpanggilan">
                     </div>
                     <div class="form-group">
                         <label for="keterangan">Keterangan</label>
-                        <input type="text" class="form-control" id="keterangan" name="keterangan">
+                        <textarea class="form-control" id="keterangan"></textarea>
                     </div>
                     
                     <button class="btn btn-success btn-sm" type="submit"><i class="far fa-save"></i> Simpan</button>

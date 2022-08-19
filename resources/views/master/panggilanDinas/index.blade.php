@@ -1,4 +1,5 @@
 @extends('layout.app')
+
 @section('title', 'Jenis Panggilan Dinas')
 
 @push('css')
@@ -50,8 +51,6 @@
                         </div>
                         <button type="submit" class="btn btn-info btn-sm mt-3" id="baru"><i class="fas fa-undo"></i> Baru</button>
                         <button type="submit" class="btn btn-info btn-sm mt-3" id="cetak"><i class="fas fa-print"></i> Cetak</button>
-                        <button type="submit" class="btn btn-success btn-sm mt-3" id="simpan"><i class="far fa-save"></i> Simpan</button>
-                        <button type="reset" class="btn btn-danger btn-sm mt-3" id="batal"><i class="far fa-times-circle"></i> Batal</button>
                     </form>
                 </div>
                 <div class="col-md-2">

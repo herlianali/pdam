@@ -241,13 +241,25 @@
         </a>
         <ul class="nav nav-treeview">
             <li class="nav-item">
-                <a href="pages/layout/top-nav.html" class="nav-link">
+                <a href="pengaduan" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
-                    <p><small></small></p>
+                    <p><small>Pengaduan</small></p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="riwayatPemakaian.index" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p><small>Riwayat Pemakaian</small></p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="informasiPelunasanRekening" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p><small>Informasi Pelunasan Rekening</small></p>
                 </a>
             </li>
         </ul>
-      </li>
+     </li>
       <li class="nav-item">
         <a href="#" class="nav-link">
             <i class="nav-icon fas fa-exclamation-triangle"></i>
