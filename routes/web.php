@@ -19,6 +19,14 @@ use App\Http\Controllers\StatusAirController;
 use App\Http\Controllers\StatusMeterController;
 use App\Http\Controllers\StatusTanahController;
 use App\Http\Controllers\WilayahDistribusiController;
+use App\Http\Controllers\TelponPelangganController;
+use App\Http\Controllers\MLNCodeController;
+use App\Http\Controllers\PelangganMeterCController;
+use App\Http\Controllers\MonitoringPelangganController;
+use App\Http\Controllers\PenetapanTeraMeterController;
+use App\Http\Controllers\CekSurveyTarifController;
+use App\Http\Controllers\InsertPosisiMeterController;
+use App\Http\Controllers\SurveyTarifController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -69,6 +77,26 @@ Route::prefix('master')->group(function () {
     Route::get('/materai', [MateraiController::class, 'index'])->name('materai');
 
     Route::get('/panggilanDinas', [PanggilanDinasController::class, 'index'])->name('panggilanDinas');
+    Route::get('/panggilanDinas', [PanggilanDinasController::class, 'print'])->name('printPanggilanDinas');
+    Route::get('/panggilanDinas.{id}.edit', [PanggilanDinasController::class,'edit']);
+    Route::resource('panggilanDinas', PanggilanDinasController::class);
+ 
+    Route::get('/monitoringPelanggan', [MonitoringPelangganController::class, 'index'])->name('monitoringPelanggan');
 
+    Route::get('/penetapanTeraMeter', [PenetapanTeraMeterController::class, 'index'])->name('penetapanTeraMeter');
+
+    Route::get('/insertPosisiMeter', [InsertPosisiMeterController::class, 'index'])->name('insertPosisiMeter');
+
+    Route::get('/surveyTarif', [SurveyTarifController::class, 'index'])->name('surveyTarif');
+    
+    Route::resource('cekSurveyTarif',  CekSurveyTarifController::class);
+
+    Route::resource('telponPelanggan',  TelponPelangganController::class);
+   
     Route::resource('jenisPelanggan', JenisPelangganController::class);
+
+    Route::resource('mlnCode',  MLNCodeController::class);
+
+    Route::resource('pelangganMeterC',  PelangganMeterCController::class);
+
 });
