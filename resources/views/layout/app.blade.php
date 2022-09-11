@@ -174,7 +174,7 @@
                     <div class="col-md-6 col-sm-6">
                         <h1>@yield('namaHal')</h1>
                     </div>
-                    <div class="col-md-6 col-sm-6">
+                    <div class="col-md-6 col-sm-8">
                         @yield('breadcrumb')
                     </div>
                 </div>

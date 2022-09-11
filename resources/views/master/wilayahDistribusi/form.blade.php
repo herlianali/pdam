@@ -12,16 +12,15 @@
                     <div class="form-group row mt-2">
                         <label for="kode" class="col-md-2 col-form-label">Kode </label>
                         <div class="col-md-8">
-                            <input type="kode" class="form-control" id="kode" onkeyup="valueing()">
+                            <input type="text" class="form-control" id="kode" name="kode" onkeyup="valueing()">
                         </div>
                     </div>
                     <div class="form-group row mt-2">
-                        <label for="Nama" class="col-md-2 col-form-label">Nama </label>
+                        <label for="nama" class="col-md-2 col-form-label">Nama </label>
                         <div class="col-md-8">
-                            <input type="Nama" class="form-control" id="Nama" onkeyup="valueing()">
+                            <input type="text" class="form-control" id="nama" name="nama" onkeyup="valueing()">
                         </div>
                     </div>
-
                     <button class="btn btn-success btn-sm" type="submit"><i class="far fa-save"></i> Simpan</button>
                     <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-undo"></i> Batal</button>
                 </form>

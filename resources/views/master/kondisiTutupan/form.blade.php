@@ -11,11 +11,11 @@
                 <form action="">
                     <div class="form-group">
                         <label for="kode">Kode</label>
-                        <input type="text" class="form-control" id="kode" name="kode" value="TS">
+                        <input type="text" class="form-control" id="kode" name="kode" value="">
                     </div>
                     <div class="form-group">
                         <label for="keterangan">keterangan</label>
-                        <textarea class="form-control" id="keterangan" name="keterangan" value="Tutupan Sementara"></textarea>
+                        <textarea class="form-control" id="keterangan" name="keterangan" value=""></textarea>
                     </div>
                     <button class="btn btn-success btn-sm" type="submit"><i class="far fa-save"></i> Simpan</button>
                     <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-undo"></i> Batal</button>

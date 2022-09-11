@@ -10,13 +10,20 @@ class JenisPengaduanController extends Controller
     public function index()
     {
         $jenisPengaduans = JenisPengaduan::all();
-
         return view('master.jenisPengaduan.index', compact('jenisPengaduans'))->with('i');
     }
-    // public function
+
+    public function destroy($id)
+    {
+        $jenisPengaduan = JenisPengaduan::findOrFail($id)->delete();
+        return response()->json([
+            'success' => true,
+            'message' => 'Data Jenis Pengaduan Berhasil Dihapus',
+        ]);
+    }
 
     public function print()
     {
-        return view('jenisPengaduan.print');
+        return view('master.jenisPengaduan.print');
     }
 }

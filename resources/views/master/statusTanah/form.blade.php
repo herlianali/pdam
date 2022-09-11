@@ -12,13 +12,13 @@
                     <div class="form-group row mt-2">
                         <label for="kode" class="col-md-2 col-form-label">Kode </label>
                         <div class="col-md-8">
-                            <input type="kode" class="form-control" id="kode" onkeyup="valueing()">
+                            <input type="text" class="form-control" id="kode" name="kode" onkeyup="valueing()">
                         </div>
                     </div>
                     <div class="form-group row ">
                         <label for="keterangan" class="col-md-2 col-form-label">Keterangan </label>
                         <div class="col-md-8">
-                            <textarea class="form-control" id="keterangan" onkeyup="valueing()"></textarea>
+                            <textarea class="form-control" id="keterangan" name="keterangan" onkeyup="valueing()"></textarea>
                         </div>
                     </div>
 

@@ -10,9 +10,10 @@
             <div class="modal-body">
                 <form action="" class="form-horizontal">
                     <div class="form-group row mt-2">
-                        <label for="rp_retribusi" class="col-md-2 col-form-label">Retribusi Rp.</label>
+                        <label for="retribusi" class="col-md-2 col-form-label">Retribusi Rp.</label>
                         <div class="col-md-8">
-                            <input type="rp_retribusi" class="form-control" id="rp_retribusi" onkeyup="valueing()">
+                            <input type="text" class="form-control" name="retribusi" id="retribusi"
+                                onkeyup="valueing()">
                         </div>
                     </div>
                     <button class="btn btn-success btn-sm" type="submit"><i class="far fa-save"></i> Simpan</button>

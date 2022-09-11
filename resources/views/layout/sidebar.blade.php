@@ -30,7 +30,7 @@
                 </a>
             </li>
             <li class="nav-item ">
-                <a href="{{ route('jenisPengaduan.index') }}" class="nav-link {{ Request::segment(2) == 'jenisPengaduan' || Request::segment(2) == 'printPengaduan'  ? 'active' : '' }}">
+                <a href="{{ route('jenisPengaduan') }}" class="nav-link {{ Request::segment(2) == 'jenisPengaduan' || Request::segment(2) == 'printPengaduan'  ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <small>
                         <p>Jenis Pengaduan</p>
@@ -94,7 +94,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="" class="nav-link">
+                <a href="{{ route('gunaPersil') }}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <small>
                         <p>Guna Persil</p>
@@ -158,7 +158,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="" class="nav-link">
+                <a href="{{ route('panggilanDinas') }}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <small>
                         <p>Jenis Panggilan Dinas</p>
@@ -166,7 +166,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="" class="nav-link">
+                <a href="{{ route('telponPelanggan') }}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <small>
                         <p>Telp Pelanggan</p>
@@ -174,7 +174,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="" class="nav-link">
+                <a href="{{ route('mlnCode') }}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <small>
                         <p>MLN Code</p>
@@ -182,7 +182,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="" class="nav-link">
+                <a href="{{ route('pelangganMeterC') }}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <small>
                         <p>Pelanggan Meter C</p>
@@ -190,7 +190,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="" class="nav-link">
+            <a href="{{ route('monitoringPelanggan') }}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <small>
                         <p>Monitoring Pelanggan</p>
@@ -198,7 +198,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="" class="nav-link">
+                <a href="{{ route('penetapanTeraMeter') }}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <small>
                         <p>Penetapan Tera Meter</p>
@@ -206,7 +206,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="" class="nav-link">
+                <a href="{{ route('cekSurveyTarif') }}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <small>
                         <p>Cek Survey Tarif</p>
@@ -214,7 +214,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="" class="nav-link">
+                <a href="{{ route('surveyTarif') }}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <small>
                         <p>Survey Tarif</p>
@@ -222,7 +222,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="" class="nav-link">
+                <a href="{{ route('insertPosisiMeter') }}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <small>
                         <p>Insert Posisi Meter</p>
@@ -232,7 +232,7 @@
         </ul>
     </li>
     <li class="nav-item">
-        <a href="#" class="nav-link">
+        <a href="" class="nav-link">
             <i class="nav-icon fas fa-headset"></i>
             <p>
                 Pengaduan
