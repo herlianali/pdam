@@ -20,15 +20,13 @@ return new class extends Migration
             $table->String('no_bon',10);
             $table->String('nopel',10);
             $table->String('nama_pelanggan',25);
-            $table->text('alamat_pelanggan',50);
+            $table->Longtext('alamat_pelanggan',50);
             $table->String('tarif',20);
             $table->String('uk_meter',20);
             $table->String('biaya',20);
             $table->String('ppn',10);
             $table->String('total',20);
             $table->String('nama_pengaju',25);
-            $table->text('alamat_pengaju',50);
-            $table->String('telepon_pengaju',15);
             $table->timestamps();
         });
     }

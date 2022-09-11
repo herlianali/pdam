@@ -8,22 +8,29 @@
                 </button>
             </div>
             <div class="modal-body">
+
                 <form action="" class="form-horizontal">
                     <div class="form-group row mt-2">
-                        <label for="kode" class="col-md-2 col-form-label">Kode Merek</label>
-                        <div class="col-md-8">
-                            <input type="kode" class="form-control" id="kode" onkeyup="valueing()">
+                        <label for="nominal" class="col-md-2 col-form-label">Nominal</label>
+                        <div class="col-md-7">
+                            <input type="text" class="form-control" id="nominal" name="nominal" onkeyup="valueing()">
                         </div>
                     </div>
                     <div class="form-group row ">
-                        <label for="keterangan" class="col-md-2 col-form-label">Keterangan </label>
-                        <div class="col-md-8">
-                            <textarea class="form-control" id="keterangan" onkeyup="valueing()"></textarea>
+                        <label for="rp_materai" class="col-md-2 col-form-label">RP Materai </label>
+                        <div class="col-md-7">
+                            <input type="text" class="form-control" name="rp_materai" id="rp_materai" onkeyup="valueing()">
                         </div>
                     </div>
-
-                    <button class="btn btn-success btn-sm" type="submit"><i class="far fa-save"></i> Simpan</button>
-                    <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-undo"></i> Batal</button>
+                    <div class="form-group row ">
+                        <label for="" class="col-md-7 col-form-label"> </label>
+                        <div class="col-md-5">
+                            <button class="btn btn-success btn-sm" type="submit"><i class="far fa-save"></i>
+                                Simpan</button>
+                            <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-undo"></i>
+                                Batal</button>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>

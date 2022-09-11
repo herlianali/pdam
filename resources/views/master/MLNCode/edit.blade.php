@@ -1,4 +1,3 @@
-
 <div class="modal fade" id="edit" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -16,11 +15,10 @@
                     </div>
                     <div class="form-group">
                         <label for="keterangan">Keterangan</label>
-                        <input type="text" class="form-control" id="keterangan" name="keterangan">
+                        <textarea class="form-control" id="keterangan" name="keterangan" value=""></textarea>
                     </div>
-                    
                     <button class="btn btn-success btn-sm" type="submit"><i class="far fa-save"></i> Simpan</button>
-                 
+
                 </form>
             </div>
         </div>

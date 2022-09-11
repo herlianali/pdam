@@ -1,4 +1,3 @@
-
 <div class="modal fade" id="edit" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -11,8 +10,8 @@
             <div class="modal-body">
                 <form action="">
                     <div class="form-group">
-                        <label for="kode">Jenis Pelanggan</label>
-                        <input type="text" class="form-control" id="kode" name="kode">
+                        <label for="jns_pelanggan">Jenis Pelanggan</label>
+                        <input type="text" class="form-control" id="jns_pelanggan" name="jns_pelanggan">
                     </div>
                     <div class="form-group">
                         <label for="keterangan">Keterangan</label>

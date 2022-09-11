@@ -19,7 +19,10 @@
                     </div>
                     <div class="form-group">
                         <label for="sifat_pengaduan">Sifat Pengaduan</label>
-                        <input type="text" class="form-control" id="sifat_pengaduan" name="sifat_pengaduan">
+                        <select class="form-control" id="sifat_pengaduan" onkeyup="valueing()">
+                            <option value="T"> T- Teknis</option>
+                            <option value="A"> A- Administrasi </option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="reward">Reward</label>
