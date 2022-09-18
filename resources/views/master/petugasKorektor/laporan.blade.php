@@ -85,22 +85,22 @@
                                                 </div>
                                                 <div class="form-check">
                                                     <input type="radio" class="form-check-input" id="laporan_bulanan_per_pertugas"
-                                                        name="lapora_bulanan_per_petugas">
+                                                        name="pilih">
                                                     <label class="form-check-label">Laporan Bulanan per Petugas Korektor
                                                     </label>
                                                     <br>
                                                     <input type="radio" class="form-check-input" id="laporan_bulanan_semua_petugas"
-                                                        name="laporan_bulanan_semua-petugas">
+                                                        name="pilih">
                                                     <label class="form-check-label">Laporan Bulanan semua Petugas
                                                         Korektor</label>
                                                     <br>
                                                     <input type="radio" class="form-check-input" id="laporan_honorium_kelebihan_beban_petugas_korektor"
-                                                        name="laporan_honorium_kelebihan_beban_petugas_korektor">
+                                                        name="pilih">
                                                     <label class="form-check-label">Laporan Honorium Kelebihan Beban
                                                         Petugas Korektor</label>
                                                 </div>
                                                 <input type="radio" class="form-check-input" id="laporan_honorium_kelebihan_beban_petugas_korektor_direksi"
-                                                    name="laporan_honorium_kelebihan_beban_petugas_korektor_direksi">
+                                                    name="pilih">
                                                 <label class="form-check-label">Laporan Honorium Kelebihan Beban Petugas
                                                     Korektor(Direksi)</label>
                                                 </div>

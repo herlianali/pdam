@@ -54,13 +54,13 @@
                                 <label for="jabatan" class="col-md-2 col-form-label">Jabatan</label>
                                 <div class="col-md-4">
                                     <div class="form-check">
-                                        <input type="radio" class="form-check-input" id="konektor" name="konektor">
+                                        <input type="radio" class="form-check-input" id="konektor" name="jabatan">
                                         <label class="form-check-label">Konektor</label>
                                         <br>
-                                        <input type="radio" class="form-check-input" id="senior_staf " name="senior_staf">
+                                        <input type="radio" class="form-check-input" id="senior_staf " name="jabatan">
                                         <label class="form-check-label">Senior Staf</label>
                                         <br>
-                                        <input type="radio" class="form-check-input" id="supervisor " name="supervisor">
+                                        <input type="radio" class="form-check-input" id="supervisor " name="jabatan">
                                         <label class="form-check-label">Supervisor</label>
                                     </div>
                                 </div>
