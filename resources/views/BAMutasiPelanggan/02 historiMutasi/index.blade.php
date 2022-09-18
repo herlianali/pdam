@@ -1,5 +1,5 @@
 @extends('layout.app')
-@section('title', 'Jenis Panggilan Dinas')
+@section('title', 'BA Mutasi Pelanggan')
 
 @push('css')
     <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
@@ -10,11 +10,10 @@
 @section('namaHal', 'Master')
 @section('breadcrumb')
     <ol class="breadcrumb float-sm-right">
-        <li class="breadcrumb-item"><a href="#">Master</a></li>
-        <li class="breadcrumb-item active">Jenis Panggilan Dinas</li>
+        <li class="breadcrumb-item"><a href="#">BA Mutasi Pelanggan</a></li>
+        <li class="breadcrumb-item active">Histori Mutasi</li>
     </ol>
 @endsection
-
 
 @section('content')
     <section class="content">
@@ -23,66 +22,74 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Jenis Panggilan Dinas</h3>
-                            <a href="{{ route('settingPrintPanggilan') }}" class="btn btn-xs btn-success float-right"><i
-                                    class="fas fa-print"></i> Cetak</a>
+                            <h3 class="card-title">Histori Mutasi</h3>
                         </div>
                         <div class="card-body">
                             <div class="row mb-4">
                                 <div class="col-md-8">
-                                    <form class="form-horizontal" action="{{ url('/panggilanDinas') }}" method="post">
+                                    <form class="form-horizontal" action="" method="post">
                                         @csrf
                                         <div class="form-group row mt-2 ">
-                                            <label for="jp_dinas" class="col-md-4 col-form-label">Jenis Panggilan Dinas
-                                            </label>
+                                            <label for="no_pelanggan" class="col-md-3 col-form-label">No Pelanggan</label>
                                             <div class="col-md-6">
-                                                <input type="text" class="form-control" name="jp_dinas" id="jp_dinas" onkeyup="valueing()">
+                                                <input type="text" class="form-control" name="no_pelanggan" id="no_pelanggan" onkeyup="valueing()">
                                             </div>
                                         </div>
                                         <div class="form-group row mt-2 ">
-                                            <label for="keterangan" class="col-md-4 col-form-label">Keterangan </label>
+                                            <label for="nama" class="col-md-3 col-form-label">Nama</label>
                                             <div class="col-md-6">
-                                                <textarea class="form-control" id="keterangan" onkeyup="valueing()" name="keterangan"></textarea>
+                                                <input type="text" class="form-control" name="nama" id="nama" onkeyup="valueing()">
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group row mt-2 ">
+                                            <label for="alamat" class="col-md-3 col-form-label">Alamat </label>
+                                            <div class="col-md-6">
+                                                <textarea class="form-control" id="alamat" onkeyup="valueing()" name="alamat"></textarea>
                                             </div>
                                         </div>
                                         <div class="form-group row mt-2 ">
-                                            <label for="tombol" class="col-md-7 col-form-label"></label>
-                                            <div class="col-md-5">
-                                                <button class="btn btn-success btn-sm" type="submit"><i
-                                                        class="far fa-save"></i> Simpan</button>
-                                                <button type="submit" class="btn btn-danger btn-sm"><i
-                                                        class="fas fa-undo"></i> Reset</button>
+                                            <label for="tarif" class="col-md-3 col-form-label">Tarif</label>
+                                            <div class="col-md-2">
+                                                <input type="text" class="form-control" name="tarif" id="tarif" onkeyup="valueing()">
+                                            </div>
+                                            <label for="jns_pelanggan" class="col-form-label">Jenis Pelanggan</label>
+                                            <div class="col-md-2">
+                                                <input type="text" class="form-control" name="jns_pelanggan" id="jns_pelanggan" onkeyup="valueing()">
+                                            </div>
+                                            <label for="subzona" class="col-form-label">Subzona</label>
+                                            <div class="col-md-2">
+                                                <input type="text" class="form-control" name="subzona" id="subzona" onkeyup="valueing()">
                                             </div>
                                         </div>
-
                                     </form>
                                 </div>
                             </div>
-
-                            <table id="table" class="table table-bordered table-responsive-md table-condensed" >
+                            <table id="table" class="table table-bordered table-responsive-md table-condensed">
                                 <thead>
                                     <tr>
-                                        <th width="10%">No </th>
-                                        <th width="20%">Jenis PDINAS</th>
-                                        <th width="50%">Keterangan</th>
-                                        <th width="20%">Aksi</th>
+                                    <th>No Bamutasi</th>
+                                    <th>Tgl Bamutasi</th>
+                                    <th>Jns Mutasi</th>
+                                    <th>No BonC</th>
+                                    <th>No_Plg</th>
+                                    <th>Guna Persil</th>
+                                    <th>Zona</th>
+                                    <th>Ukuran Meter</th>
+                                    <th>Retribusi</th>
+                                    <th>Nama</th>
+                                    <th>Gang</th>
+                                    <th>Nomor</th>
+                                    <th>No Tmbhn</th>
+                                    <th>DA</th>
+                                    <th>No PA</th>
+                                    <th>Jns Plg</th>
+                                    <th>KD Retribusi</th>
+                                    <th>No Bundel</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($pDinass as $pDinas)
-                                        <tr>
-                                            <td>{{ ++$i }}</td>
-                                            <td>{{ $pDinas->jp_dinas }}</td>
-                                            <td>{{ $pDinas->keterangan }}</td>
-                                            <td>
-                                                <button type="submit" class="btn btn-xs btn-danger "
-                                                    onclick="deletePanggilanDinas({{ $pDinas->id }})"><i
-                                                        class="fas fa-trash-alt"></i> Hapus</button>
-                                                <button type="button" class="btn btn-xs btn-success " data-toggle="modal"
-                                                    data-target="#edit"><i class="fas fa-edit"></i> Edit</button>
-                                            </td>
-                                        </tr>
-                                    @endforeach
+                                  
                                 </tbody>
                             </table>
                         </div>
@@ -108,8 +115,9 @@
                 //  "lengthChange": false,
                 //   "autoWidth": false,
                 //   "responsive": true,
+                "scrollX":true,
                 "oLanguage": {
-                    "sSearch": "Keterangan : "
+                    "sSearch": "No Pelanggan : "
                 },
                 "pageLength": 5
             }).buttons().container().appendTo('#table_wrapper .col-md-6:eq(0)');
@@ -155,7 +163,7 @@
                                 swal.fire("Selesai!", resp.message, "success");
                                 location.reload();
                             } else {
-                                swal.fire("Gagal!", "Terjadi Kesalahan.", "error");
+                                swal.fire("Gagal!", "Terjadi Anjayy.", "error");
                             }
                         },
                         error: function(resp) {

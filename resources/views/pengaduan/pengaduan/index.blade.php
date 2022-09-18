@@ -23,6 +23,7 @@
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">Pengaduan</h3>
+                        <a href="{{ route('tambahpengaduan') }}" class="btn btn-xs btn-warning float-right"><i class="fas fa-plus"></i> Tambah Pengaduan</a>
                     </div>
                
             <div class="card-body">
@@ -32,64 +33,64 @@
                     <form class="form-horizontal">
                      
                         <div class="form-group row mt ">
-                            <label for="nopelanggan" class="col-md-2 col-form-label"> Petugas CS </label>
+                            <label for="ptgs_cs" class="col-md-2 col-form-label"> Petugas CS </label>
                             <div class="col-md-5">
-                            <select class="form-control" id="wilayah" onkeyup="valueing()">
+                            <select class="form-control" id="ptgs_cs"  name="ptgs_cs" onkeyup="valueing()">
                             
-                            <option value = "wilayah T"> A </option>
-                            <option value = "wilayah B"> B </option>
+                            <option value = "">  </option>
+                            <option value = "">  </option>
                             
                             </select>
                             </div>
-                            <a href="" class="btn btn-sm btn-success float-right"><i class="fas fa-search"></i> Cari Plg</a>
+                            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#pelanggan"><i class="fas fa-search"></i> Cari Pelanggan</button>
                             &nbsp;
-                            <a href="" class="btn btn-sm btn-success float-right"><i class="fas fa-search"></i> Cari Pengaduan</a>
+                            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#form"><i class="fas fa-search"></i> Cari Pengaduan</button>
                         </div>
                             <div class="form-group row">
-                            <label for="njop" class="col-md-2 col-form-label"> Jenis Pengadu </label>
+                            <label for="jns_pengadu" class="col-md-2 col-form-label"> Jenis Pengadu </label>
                             <div class="col-md-5">
-                            <select class="form-control" id="wilayah" onkeyup="valueing()">
+                            <select class="form-control" id="jns_pengadu" name="jns_pengadu" onkeyup="valueing()">
                             
-                            <option value = "wilayah T"> A </option>
-                            <option value = "wilayah B"> B </option>
+                            <option value = "">  </option>
+                            <option value = "">  </option>
                             
                             </select>
                             </div>
                         </div>
                         <div class="form-group row ">
-                            <label for="listrik" class="col-md-2 col-form-label">No Pelanggan</label>
+                            <label for="no_pelanggan" class="col-md-2 col-form-label">No Pelanggan</label>
                             <div class="col-md-3">
-                                <input type="text" class="form-control" id="listrik" onkeyup="valueing()">
+                                <input type="text" class="form-control" id="no_pelanggan" name="no_pelanggan" onkeyup="valueing()">
                             </div>
-                            <label for="listrik" class="col-form-label">Nopel Zamp</label>
+                            <label for="nopel_zamp" class="col-form-label">Nopel Zamp</label>
                             <div class="col-md-3">
-                                <input type="text" class="form-control" id="listrik" onkeyup="valueing()">
+                                <input type="text" class="form-control" id="nopel_zamp" name="nopel_zamp" onkeyup="valueing()">
                             </div>
                         </div>
                         <div class="form-group row mt-2">
-                            <label for="listrik" class="col-md-2 col-form-label">Nama</label>
+                            <label for="nama" class="col-md-2 col-form-label">Nama</label>
                             <div class="col-md-7">
-                                <input type="text" class="form-control" id="listrik" onkeyup="valueing()">
+                                <input type="text" class="form-control" id="nama" name="nama" onkeyup="valueing()">
                             </div>
                         </div>
                        
                        
                         <div class="form-group row ">
-                            <label for="lebarjalan" class="col-md-2 col-form-label">Alamat</label>
+                            <label for="alamat" class="col-md-2 col-form-label">Alamat</label>
                             <div class="col-md-2">
-                            <input type="text" class="form-control" id="lebarjln" placeholder="Jalan" onkeyup="valueing()">
+                            <input type="text" class="form-control" id="jln" placeholder="Jalan" onkeyup="valueing()">
                             </div>
-                            <label for="lebarjalan" class="col-form-label">Gang</label>
+                            <label for="gang" class="col-form-label">Gang</label>
                             <div class="col-md-1">
-                            <input type="text" class="form-control" id="lebarjln" onkeyup="valueing()">
+                            <input type="text" class="form-control" id="gang" name="gang" onkeyup="valueing()">
                             </div>
-                            <label for="lebarjalan" class="col-form-label">No</label>
+                            <label for="no" class="col-form-label">No</label>
                             <div class="col-md-1">
-                            <input type="text" class="form-control" id="lebarjln" onkeyup="valueing()">
+                            <input type="text" class="form-control" id="nomor" name="nomor" onkeyup="valueing()">
                             </div>
-                            <label for="lebarjalan" class="col-form-label">No Tambahan</label>
+                            <label for="no_tambahan" class="col-form-label">No Tambahan</label>
                             <div class="col-md-2">
-                            <input type="text" class="form-control" id="lebarjln" onkeyup="valueing()">
+                            <input type="text" class="form-control" id="no_tambahan" name="no_tambahan" onkeyup="valueing()">
                             </div>
                         </div>
                        
@@ -108,7 +109,6 @@
                     </tr>
                 </thead>
                 <tbody>
-
                     <tr>
                         <td>01</td>
                         <td>Tanpa Meter Air</td>
@@ -117,20 +117,9 @@
                         <td>01</td>
                         
                         <td>
-                            <button type="submit" class="btn btn-danger btn-sm" onclick="deletePanggilanDinas()"><i class="fas fa-trash-alt"></i> Hapus</button>
-                            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#form"><i class="fas fa-eye"></i> Info</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>01</td>
-                        <td>Tanpa Meter Air</td>
-                        <td>01</td>
-                        <td>Tanpa Meter Air</td>
-                        <td>01</td>
-                        
-                        <td>
-                            <button type="submit" class="btn btn-danger btn-sm" onclick="deletePanggilanDinas()"><i class="fas fa-trash-alt"></i> Hapus</button>
-                            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#form"><i class="fas fa-eye"></i> Info</button>
+                            <button type="submit" class="btn btn-danger btn-xs" onclick=""><i class="fas fa-trash-alt"></i> Hapus</button>
+                            <a href="{{ route('detailpengaduan') }}" class="btn btn-xs btn-success"><i class="fas fa-eye"></i> Info</a>
+                            <a href="{{ route('editpengaduan') }}" class="btn btn-xs btn-warning"><i class="fas fa-edit"></i> Edit</a>
                         </td>
                     </tr>
                 
@@ -139,7 +128,9 @@
                 </tbody>
             </table>
         </div>
+        @include('.pengaduan.pengaduan.pelanggan')
     </div>
+
     </div>
     </div>
 </div>

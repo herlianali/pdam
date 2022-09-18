@@ -28,6 +28,10 @@ use App\Http\Controllers\CekSurveyTarifController;
 use App\Http\Controllers\InsertPosisiMeterController;
 use App\Http\Controllers\SurveyTarifController;
 use App\Http\Controllers\GunaPersilController;
+use App\Http\Controllers\PengaduanController;
+use App\Http\Controllers\RiwayatPemakaianController;
+use App\Http\Controllers\InformasiPelunasanRekeningController;
+use App\Models\InformasiPelunasanRekening;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -152,5 +156,18 @@ Route::prefix('master')->group(function () {
     Route::get('/mlnCode', [ MLNCodeController::class,'index'])->name('mlnCode');
 
     Route::get('/pelangganMeterC', [ PelangganMeterCController::class, 'index'])->name('pelangganMeterC');
+
+});
+
+
+Route::prefix('pengaduan')->group(function () { 
+    Route::get('/pengaduan', [ PengaduanController::class, 'index'])->name('pengaduan');
+    Route::get('/detailpengaduan', [ PengaduanController::class, 'detail'])->name('detailpengaduan');
+    Route::get('/editpengaduan', [ PengaduanController::class, 'edit'])->name('editpengaduan');
+    Route::get('/tambahpengaduan', [ PengaduanController::class, 'create'])->name('tambahpengaduan');
+    Route::get('/pengaduan/setting',[ PengaduanController::class,'settingPrint'])->name('settingPengaduan');
+    Route::get('/informasiPelunasanRekening', [ InformasiPelunasanRekeningController::class, 'index'])->name('informasiPelunasanRekening');
+    Route::get('/printinformasiPelunasanRekening', [ InformasiPelunasanRekeningController::class, 'print'])->name('printinformasiPelunasanRekening');
+    Route::get('/riwayatPemakaian', [ RiwayatPemakaianController::class, 'index'])->name('riwayatPemakaian');
 
 });
