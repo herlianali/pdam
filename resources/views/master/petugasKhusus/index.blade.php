@@ -46,12 +46,12 @@
                                     <label for="keterangan" class="col-md-2 col-form-label">Tugas </label>
                                     &nbsp;
                                     <div class="form-check">
-                                        <input type="radio" class="form-check-input" id="korektor" name="korektor">
+                                        <input type="radio" class="form-check-input" id="korektor" name="tugas">
                                         <label class="form-check-label">Korektor</label>
                                     </div>
                                     &nbsp;
                                     <div class="form-check">
-                                        <input type="radio" class="form-check-input" id="pencatat_meter" name="pencatat_meter">
+                                        <input type="radio" class="form-check-input" id="pencatat_meter" name="tugas">
                                         <label class="form-check-label">Pencatat Meter</label>
                                     </div>
                                 </div>

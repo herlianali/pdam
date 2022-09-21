@@ -8,8 +8,8 @@
         }
 
         table thead tr {
-            border-bottom: 3px solid rgb(102, 102, 102);
-            border-top: 3px solid rgb(102, 102, 102);
+            border-bottom: 3px dotted rgb(102, 102, 102);
+            border-top: 3px dotted rgb(102, 102, 102);
         }
     </style>
 @endpush
@@ -127,37 +127,52 @@
                             </tr>
 
                         </table>
-                        <div class="row">
-                            <div class="col">
-                                <table class="table">
-                                    <thead class="text-center">
-                                        <td align="center">
-                                            PEMAKAIAN AIR
-                                        </td>
-                                        <tr>
-                                            <td>Tgl Catat</td>
-                                            <td>MT - Lalu</td>
-                                            <td>MT - Kini</td>
-                                            <td>M3 - Air</td>
-                                            <td rowspan="">Hasil Kontrol</td>
-                                        </tr>
-                                        <tr>
-                                            
-                                        </tr>
-                                        <tr></tr>
-                                        <tr></tr>
-                                        <tr></tr>
-                                    </thead>
-                                    <tbody class="text-center">
-                                        <td>30/08/2021</td>
-                                        <td>561</td>
-                                        <td>58</td>
-                                        <td>26</td>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="col">
+                        
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr align="center">
+                                    <td rowspan="2">Tanggal</td>
+                                    <td rowspan="2">Uraian Pekerjaan</td>
+                                    <td rowspan="2">Bahan Yang Digunakan</td>
+                                    <td rowspan="2">Jumlah</td>
+                                    <td colspan="2">Yang Mengerjakan</td>
+                                    
+                                </tr>
+                                <tr>
+                                    <td>Nama</td>
+                                    <td>T.Tangan</td>
+                                </tr>
+                              
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>2</td>
+                                    <td>4</td>
+                                    <td>3</td>
+                                    <td>5</td>
+                                    <td>6</td>
+                                </tr>
+                            </tbody>
+                        </table>
 
+                            
+                        <div class="container">
+                            <div class="row text-center">
+                                <div class="col justify-content-between">
+                                    <p>Petugas</p>
+                                    <p class="mb-5">Bagian Langganan</p>
+                                    <p class="mb-n3">Moch. Soejanto</p>
+                                    <hr style="width: 50%">
+                                    <p class="mt-n3">NIP: 1.96.01018</p>
+                                </div>
+                                <div class="col">
+                                    <p>Mengetahui</p>
+                                    <p class="mb-5">Kepala Bagian Langganan</p>
+                                    <p class="mb-n3">Nurlillah Satria Pratama</p>
+                                    <hr style="width: 50%">
+                                    <p class="mt-n3">NIP: 1.08.01499</p>
+                                </div>
                             </div>
                         </div>
                     </div>

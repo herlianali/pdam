@@ -1,5 +1,5 @@
 @extends('layout.app')
-@section('title', 'Jenis Panggilan Dinas')
+@section('title', 'BA Mutasi Pelanggan')
 
 @push('css')
     <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
@@ -7,14 +7,13 @@
     <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
 @endpush
 
-@section('namaHal', 'Master')
+@section('namaHal', 'BA Mutasi Pelanggan')
 @section('breadcrumb')
     <ol class="breadcrumb float-sm-right">
-        <li class="breadcrumb-item"><a href="#">Master</a></li>
-        <li class="breadcrumb-item active">Jenis Panggilan Dinas</li>
+        <li class="breadcrumb-item"><a href="#">BA Mutasi Pelanggan</a></li>
+        <li class="breadcrumb-item active">BA Mutasi Pelanggan</li>
     </ol>
 @endsection
-
 
 @section('content')
     <section class="content">
@@ -23,66 +22,67 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Jenis Panggilan Dinas</h3>
-                            <a href="{{ route('settingPrintPanggilan') }}" class="btn btn-xs btn-success float-right"><i
-                                    class="fas fa-print"></i> Cetak</a>
+                            <h3 class="card-title">Laporan Rekapitulasi Naik Turun</h3>
+                            <a href="" class="btn btn-xs btn-success float-right"><i class="fas fa-print"></i> Cetak</a>
                         </div>
                         <div class="card-body">
                             <div class="row mb-4">
                                 <div class="col-md-8">
-                                    <form class="form-horizontal" action="{{ url('/panggilanDinas') }}" method="post">
+                                    <form class="form-horizontal" action="" method="post">
                                         @csrf
                                         <div class="form-group row mt-2 ">
-                                            <label for="jp_dinas" class="col-md-4 col-form-label">Jenis Panggilan Dinas
+                                            <label for="periode" class="col-md-2 col-form-label">Periode
                                             </label>
-                                            <div class="col-md-6">
-                                                <input type="text" class="form-control" name="jp_dinas" id="jp_dinas" onkeyup="valueing()">
+                                            <div class="col-md-2">
+                                                <input type="date" class="form-control" name="periode" id="periode"onkeyup="valueing()">
+                                            </div>
+                                            <label for="sd" class="col-form-label">S.D </label>
+                                            <div class="col-md-2">
+                                                <input type="date" class="form-control" name="periode1" id="periode1"onkeyup="valueing()">
                                             </div>
                                         </div>
                                         <div class="form-group row mt-2 ">
-                                            <label for="keterangan" class="col-md-4 col-form-label">Keterangan </label>
-                                            <div class="col-md-6">
-                                                <textarea class="form-control" id="keterangan" onkeyup="valueing()" name="keterangan"></textarea>
+                                            <label for="Dasar" class="col-md-2 col-form-label">Dasar </label>
+                                            <div class="col-md-3">
+                                                <div class="form-check">
+                                                    <input type="radio" class="form-check-input" id="penerbitan" name="penerbitan">
+                                                    <label class="form-check-label">Penerbitan</label>
+                                                    <br>
+                                                    <input type="radio" class="form-check-input" id="pengesahan" name="pengesahan">
+                                                    <label class="form-check-label">Pengesahan</label>
+                                                   
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="form-group row mt-2 ">
-                                            <label for="tombol" class="col-md-7 col-form-label"></label>
-                                            <div class="col-md-5">
-                                                <button class="btn btn-success btn-sm" type="submit"><i
-                                                        class="far fa-save"></i> Simpan</button>
-                                                <button type="submit" class="btn btn-danger btn-sm"><i
-                                                        class="fas fa-undo"></i> Reset</button>
+                                            <label for="" class="col-md-2 col-form-label"></label>
+                                            <div class="col-md-3">
+                                                <div class="form-check">
+                                                    <input type="radio" class="form-check-input" id="naik" name="naik">
+                                                    <label class="form-check-label">Naik</label>
+                                                    <br>
+                                                    <input type="radio" class="form-check-input" id="turun" name="turun">
+                                                    <label class="form-check-label">Turun</label>
+                                                   
+                                                </div>
                                             </div>
                                         </div>
-
+                                        <button type="submit" class="btn btn-success float-right" id="search"><i
+                                            class=" fa-filter"></i>Filter</button>
                                     </form>
                                 </div>
                             </div>
-
-                            <table id="table" class="table table-bordered table-responsive-md table-condensed" >
+                            <table id="table" class="table table-bordered table-responsive-md table-condensed">
                                 <thead>
                                     <tr>
-                                        <th width="10%">No </th>
-                                        <th width="20%">Jenis PDINAS</th>
-                                        <th width="50%">Keterangan</th>
-                                        <th width="20%">Aksi</th>
+                                        <th width="20%">Kode Tarif L </th>
+                                        <th width="20%">Kode Tarif B</th>
+                                        <th width="30%">Jumlah</th>
+                                        
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($pDinass as $pDinas)
-                                        <tr>
-                                            <td>{{ ++$i }}</td>
-                                            <td>{{ $pDinas->jp_dinas }}</td>
-                                            <td>{{ $pDinas->keterangan }}</td>
-                                            <td>
-                                                <button type="submit" class="btn btn-xs btn-danger "
-                                                    onclick="deletePanggilanDinas({{ $pDinas->id }})"><i
-                                                        class="fas fa-trash-alt"></i> Hapus</button>
-                                                <button type="button" class="btn btn-xs btn-success " data-toggle="modal"
-                                                    data-target="#edit"><i class="fas fa-edit"></i> Edit</button>
-                                            </td>
-                                        </tr>
-                                    @endforeach
+                                  
                                 </tbody>
                             </table>
                         </div>
@@ -155,7 +155,7 @@
                                 swal.fire("Selesai!", resp.message, "success");
                                 location.reload();
                             } else {
-                                swal.fire("Gagal!", "Terjadi Kesalahan.", "error");
+                                swal.fire("Gagal!", "Terjadi Anjayy.", "error");
                             }
                         },
                         error: function(resp) {
