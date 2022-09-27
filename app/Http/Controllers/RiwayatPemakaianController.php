@@ -20,4 +20,19 @@ class RiwayatPemakaianController extends Controller
         return view('pengaduan.riwayatPemakaian.detail');
     }
 
+    public function pelanggaran()
+    {
+        return view('pengaduan.riwayatPemakaian.pelanggaran');
+    }
+
+    
+    public function infoPelanggaran()
+    {
+        return view('pengaduan.riwayatPemakaian.infoPelanggaran');
+    }
+    public function kartuPelanggan()
+    {
+        return view('pengaduan.riwayatPemakaian.kartuPelanggan');
+    }
+
 }

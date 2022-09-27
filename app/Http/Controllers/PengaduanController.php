@@ -25,15 +25,15 @@ class PengaduanController extends Controller
         return view('pengaduan.pengaduan.edit');
     }
 
-    public function cetakbonc()
+    public function printbonc()
     {
-        return view('pengaduan.pengaduan.setting-print-bonc');
+        return view('pengaduan.pengaduan.printbonc');
     }
 
 
-    public function cetakbonp()
+    public function printbonp()
     {
-        return view('pengaduan.pengaduan.setting-print-bonp');
+        return view('pengaduan.pengaduan.printbonp');
     }
 
     /**

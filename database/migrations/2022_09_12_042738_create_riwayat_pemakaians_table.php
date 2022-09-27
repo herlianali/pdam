@@ -14,7 +14,14 @@ return new class extends Migration
     public function up()
     {
         Schema::create('riwayat_pemakaians', function (Blueprint $table) {
-            $table->id();
+            $table->String('no_pelanggan',15);
+            $table->String('bamutasi',15);
+            $table->String('tgl_transaksi',15);
+            $table->String('no_ba_mutasi');
+            $table->String('no_bapakai',15);
+            $table->String('no_pengesahan',15);
+            $table->String('tgl_pengesahan',15);
+            $table->String('no_bon_bukaan',15);
             $table->timestamps();
         });
     }

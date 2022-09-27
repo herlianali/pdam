@@ -1,188 +1,260 @@
 @extends('layout.app')
+@section('title', 'Riwayat Pemakaian')
 
 @push('css')
-    <link href="http://fonts.cdnfonts.com/css/dot-matrix" rel="stylesheet">
-    <style>
-        .priview {
-            font-family: 'Dot Matrix', sans-serif;
-        }
-
-        table thead tr {
-            border-bottom: 3px solid rgb(102, 102, 102);
-            border-top: 3px solid rgb(102, 102, 102);
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
 @endpush
 
-@section('title', 'Print Informasi Pelunasan Rekening')
-
 @section('namaHal', 'Pengaduan')
-
 @section('breadcrumb')
     <ol class="breadcrumb float-sm-right">
         <li class="breadcrumb-item"><a href="#">Pengaduan</a></li>
-        <li class="breadcrumb-item active">Informasi Pelunasan Rekeninng</li>
-        <li class="breadcrumb-item active">Print Informasi Pelunasan Rekening</li>
+        <li class="breadcrumb-item active">Riwayat Pemakaian</li>
     </ol>
-    <br>
-    <br>
-    <a href="" class="btn btn-sm btn-success float-right"><i class="fas fa-download"></i>Download</a>
 @endsection
 
 @section('content')
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-sm-12">
+                <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Print preview Jenis Pekerjaan</h3>
+                            <h3 class="card-title">Riwayat Pemakaian</h3>
+                        
                         </div>
-                        <div class="card-body priview">
-                            <div class="row">
-                                <div class="col ml-5">
-                                    <div style="font-size:15px">PEMERINTAH KOTAMADYA DAERAH TK.II SURABAYA</div>
-                                    <div style="font-size:15px">PERUSAHAAN DAERAH AIR MINUM</div>
-                                    <div style="font-size:15px">Jl.Mayjen Prof.Moestopo No.2 Surabaya</div>
-                                    <div style="font-size:15px">Telp.(031)509</div>
-                                </div>
-                                <div class="col">
-                                    <div class="border pl-2 w-100">
-                                        <div class="row">
-                                            <div class="col">
-                                                <div class="row">
-                                                    <div class="col justify-content-between">
-                                                        BAGIAN LANGGANAN WILAYAH
-                                                    </div>
-                                                    <div class="col">
-                                                        TTMTTR
-                                                    </div>
-                                                </div>
+
+                        <div class="card-body">
+                            <div class="row mb-5">
+                                <div class="col-md-1"></div>
+                                <div class="col-md-9">
+                                    <form class="form-horizontal">
+                                    
+                                        <div class="form-group row mt-2 ">
+                                            <label for="nopelanggan" class="col-md-3 col-form-label"> Dari Periode </label>
+                                            <div class="col-md-2">
+                                                <input type="text" class="form-control" id="nopelanggan"
+                                                    onkeyup="valueing()">
+                                            </div>
+                                            <label for="nopelanggan" class="col-form-label"> s.d. </label>
+                                            <div class="col-md-2">
+                                                <input type="text" class="form-control" id="nopelanggan"
+                                                    onkeyup="valueing()">
                                             </div>
                                         </div>
-                                        <div class="container">
-                                            <div class="row">
-                                                NOMOR :
+                                   
+                                        <div class="form-group row">
+                                            <label for="njop" class="col-md-3 col-form-label"> No Pelanggan </label>
+                                            <div class="col-md-2">
+                                                <input type="text" class="form-control" id="njop"
+                                                    onkeyup="valueing()">
                                             </div>
-                                            <div class="row">
-                                                TANGGAL :
+                                        </div>
+                                        <div class="form-group row mt-2">
+                                            <label for="listrik" class="col-md-3 col-form-label">Nama</label>
+                                            <div class="col-md-7">
+                                                <input type="text" class="form-control" id="listrik"
+                                                    onkeyup="valueing()">
                                             </div>
+                                        </div>
+
+                                        <div class="form-group row ">
+                                            <label for="lebarjalan" class="col-md-3 col-form-label">Alamat</label>
+                                            <div class="col-md-2">
+                                                <input type="text" class="form-control" id="lebarjln"
+                                                    placeholder="Jalan" onkeyup="valueing()">
+                                            </div>
+                                            <label for="lebarjalan" class="col-form-label">Gang</label>
+                                            <div class="col-md-1">
+                                                <input type="text" class="form-control" id="lebarjln"
+                                                    onkeyup="valueing()">
+                                            </div>
+                                            <label for="lebarjalan" class="col-form-label">No</label>
+                                            <div class="col-md-1">
+                                                <input type="text" class="form-control" id="lebarjln"
+                                                    onkeyup="valueing()">
+                                            </div>
+                                            <label for="lebarjalan" class="col-form-label">No Tambahan</label>
+                                            <div class="col-md-2">
+                                                <input type="text" class="form-control" id="lebarjln"
+                                                    onkeyup="valueing()">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row ">
+                                            <label for="lebarjalan" class="col-md-3 col-form-label">Tarif</label>
+                                            <div class="col-md-3">
+                                                <input type="text" class="form-control" id="lebarjln"
+                                                    onkeyup="valueing()">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row ">
+                                            <label for="lebarjalan" class="col-md-3 col-form-label">Ukuran Meter</label>
+                                            <div class="col-md-2">
+                                                <input type="text" class="form-control" id="lebarjln"
+                                                    onkeyup="valueing()">
+                                            </div>
+                                            <label for="lebarjalan" class="col-form-label">No Meter</label>
+                                            <div class="col-md-2">
+                                                <input type="text" class="form-control" id="lebarjln"
+                                                    onkeyup="valueing()">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row ">
+                                            <label for="lebarjalan" class="col-md-3 col-form-label">No Bundel</label>
+                                            <div class="col-md-2">
+                                                <input type="text" class="form-control" id="lebarjln"
+                                                    onkeyup="valueing()">
+                                            </div>
+                                            <label for="lebarjalan" class="col-form-label">No Telepon</label>
+                                            <div class="col-md-3">
+                                                <input type="text" class="form-control" id="lebarjln"
+                                                    onkeyup="valueing()">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row ">
+                                            <label for="lebarjalan" class="col-md-3 col-form-label">Nopel</label>
+                                            <div class="col-md-2">
+                                                <input type="text" class="form-control" id="lebarjln"
+                                                    onkeyup="valueing()">
+                                            </div>
+                                        </div>
+
+                                    </form>
+                                    <div class="form-group row ">
+                                        <div class="col-md-2">
+                                            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+                                            data-target="#pelanggan"> Cari
+                                            Pelanggan</button>
                                         </div>
                                     </div>
+                                 
                                 </div>
                             </div>
-                        </div>
-                        <table>
-                            <p align="center">PERINTAH PEMERIKSAAN</p>
-                        </table>
+                            <table id="table" class="table table-bordered table-responsive-md table-condensed"
+                                width="100%">
+                                <thead>
+                                    <tr>
+                                        <th>No_Plgn</th>
+                                        <th>Tgl_Transaksi</th>
+                                        <th>NO_BAMUTASI</th>
+                                        <th>NO_BA_MUTASI</th>
+                                        <th>NO_BAPAKAI</th>
+                                        <th>NO_Pengesahan</th>
+                                        <th>Tgl_Pengesahan</th>
+                                        <th>NO_BONBUKAAN</th>
+                                        <th>Aksi</th>
 
-                        <table>
-                            <tr>
-                                <div class="container" style="margin-left: 10rem">
-                                    <div class="row justify-content-between">
-                                        <div class="col">
-                                            <p>Nomor Pelanggan : </p>
-                                        </div>
-                                        <div class="col">
-                                            <p>Kode Tarif : </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </tr>
-                            <tr>
-                                <div class="container" style="margin-left: 10rem">
-                                    <div class="row justify-content-between">
-                                        <div class="col">
-                                            <p>Nama Pelanggan : </p>
-                                        </div>
-                                        <div class="col">
-                                            <p>Nomor P.A : </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </tr>
-                            <tr>
-                                <div class="container" style="margin-left: 10rem">
-                                    <div class="row justify-content-between">
-                                        <div class="col">
-                                            <p>Alamat Pelanggan : </p>
-                                        </div>
-                                        <div class="col">
-                                            <p>Data Meter : </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </tr>
-                            <tr>
-                                <div class="container" style="margin-left: 10rem">
-                                    <div class="row justify-content-between">
-                                        <div class="col">
-                                            <p>Dengan Alamat : </p>
-                                        </div>
-                                        <div class="col">
-                                            <p>Permasalahan : </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </tr>
+                                    </tr>
+                                </thead>
+                                <tbody>
 
-                        </table>
-                        <div class="row">
-                            <div class="col">
-                                <table class="table">
-                                    <thead class="text-center">
-                                        <td align="center">
-                                            PEMAKAIAN AIR
+                                    <tr>
+                                        <td>01</td>
+                                        <td>Tanpa Meter Air</td>
+                                        <td>01</td>
+                                        <td>Tanpa Meter Air</td>
+                                        <td>01</td>
+                                        <td>Tanpa Meter Air</td>
+                                        <td>01</td>
+                                        <td>01</td>
+                                        <td>
+                                            <a href="{{ route('infoPelanggaran')}}" class="btn btn-sm btn-danger ">Info Pelanggaran</a>
+                                            <a href="{{ route('kartuPelanggan')}}" class="btn btn-sm btn-success "></i>Kartu Pelanggan</a>
                                         </td>
-                                        <tr>
-                                            <td>Tgl Catat</td>
-                                            <td>MT - Lalu</td>
-                                            <td>MT - Kini</td>
-                                            <td>M3 - Air</td>
-                                            <td rowspan="">Hasil Kontrol</td>
-                                        </tr>
-                                        <tr>
-                                            
-                                        </tr>
-                                        <tr></tr>
-                                        <tr></tr>
-                                        <tr></tr>
-                                    </thead>
-                                    <tbody class="text-center">
-                                        <td>30/08/2021</td>
-                                        <td>561</td>
-                                        <td>58</td>
-                                        <td>26</td>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="col">
 
-                            </div>
+
+                                    </tr>
+
+
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        </div>
     </section>
+
+
+
 @endsection
 
 @push('js')
-    <script type="text/javascript">
-        const box = document.getElementById('startEnd');
+    <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
+    <script>
+        $(function() {
+            $('#table').DataTable({
 
-        function clickRadio() {
-            if (document.getElementById('semuakd').checked) {
-                box.style.display = "none"
-            } else {
-                box.style.display = "block"
-            }
-        }
+                // "lengthChange": false,
+                //  "autoWidth": false,
+                //   "responsive": true,
+                "scrollX": true,
+                "oLanguage": {
+                    "sSearch": "Keterangan : "
+                },
+                //  "pageLength": 3
+            }).buttons().container().appendTo('#table_wrapper .col-md-1:eq(0)');
+            $('#table1').DataTable({
+                "paging": true,
+                //  "lengthChange": false,
+                "scrollX": true,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                //  "autoWidth": false,
+                // "responsive": true,
+                // "pageLength": 3
 
-        const radioButtons = document.querySelectorAll('input[name="filter"]');
-        radioButtons.forEach(radio => {
-            radio.addEventListener('click', clickRadio)
+            });
         });
+
+        function deletepDinas(id) {
+            swal.fire({
+                title: "Hapus Data?",
+                icon: 'question',
+                text: "Apakah Anda Yakin Ingin Menghapus",
+                type: "warning",
+                showCancelButton: !0,
+                confirmButtonColor: "#e74c3c",
+                confirmButtonText: "Iya",
+                cancelButtonText: "Tidak",
+                reverseButtons: !0
+            }).then(function(e) {
+                if (e.value === true) {
+                    let token = "{{ csrf_token() }}"
+                    let _url = `/panggilanDinas/${id}`
+                    console.log(_url)
+
+                    $.ajax({
+                        type: 'DELETE',
+                        url: _url,
+                        data: {
+                            _token: token
+                        },
+                        success: function(resp) {
+                            if (resp.success) {
+                                swal.fire("Selesai!", resp.message, "Berhasil");
+                                location.reload();
+                            } else {
+                                swal.fire("Gagal!", "Terjadi Kesalahan.", "error");
+                            }
+                        },
+                        error: function(resp) {
+                            swal.fire("Gagal!", "Terjadi Kesalahan.", "error")
+                        }
+                    })
+                } else {
+                    e.dismiss;
+                }
+            }, function(dismiss) {
+                return false;
+            });
+        }
     </script>
 @endpush

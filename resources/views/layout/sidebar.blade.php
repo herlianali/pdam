@@ -287,7 +287,7 @@
         </a>
         <ul class="nav nav-treeview">
           <li class="nav-item">
-            <a href="pages/UI/general.html" class="nav-link">
+            <a href="{{ route('monitoringGunaPersil')}}" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
               <p><small> Monitoring Guna Persil</small></p>
             </a>
@@ -295,7 +295,7 @@
         </ul>
         <ul class="nav nav-treeview">
           <li class="nav-item">
-            <a href="pages/UI/general.html" class="nav-link">
+            <a href="{{ route('historiMutasi')}}" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
               <p><small> Histori Mutasi</small></p>
             </a>
@@ -303,7 +303,7 @@
         </ul>
         <ul class="nav nav-treeview">
           <li class="nav-item">
-            <a href="pages/UI/general.html" class="nav-link">
+            <a href="{{ route('monitoringBAMutasiKolektif')}}" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
               <p><small> Monitoring BA Mutasi Kolektif</small></p>
             </a>
@@ -311,7 +311,7 @@
         </ul>
         <ul class="nav nav-treeview">
           <li class="nav-item">
-            <a href="pages/UI/general.html" class="nav-link">
+            <a href="{{ route('mutasiKolektif')}}" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
               <p><small> Entri BA Mutasi Jenis Pelanggan, Bundel, Sub Zona</small></p>
             </a>
@@ -319,7 +319,7 @@
         </ul>
         <ul class="nav nav-treeview">
           <li class="nav-item">
-            <a href="pages/UI/general.html" class="nav-link">
+            <a href="{{ route('monitoringBAMutasiPerorangan')}}" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
               <p><small> Monitoring BA Mutasi Perorangan</small></p>
             </a>
@@ -327,7 +327,7 @@
         </ul>
         <ul class="nav nav-treeview">
           <li class="nav-item">
-            <a href="pages/UI/general.html" class="nav-link">
+            <a href="{{ route('laporanRekapitulasiPerubahanTarif')}}" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
               <p><small> Laporan Rekapitulasi Perubahan Tarif</small></p>
             </a>
@@ -335,7 +335,7 @@
         </ul>
         <ul class="nav nav-treeview">
           <li class="nav-item">
-            <a href="pages/UI/general.html" class="nav-link">
+            <a href="{{ route('laporanPerubahanTNTperBulan')}}" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
               <p><small> Laporan Perubahan Tarif Naik/Turun per Bulan</small></p>
             </a>
@@ -343,7 +343,7 @@
         </ul>
         <ul class="nav nav-treeview">
           <li class="nav-item">
-            <a href="pages/UI/general.html" class="nav-link">
+            <a href="{{ route('laporanRekapitulasiNaikTurun')}}" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
               <p><small> Laporan Rekapitulasi Naik Turun</small></p>
             </a>
@@ -351,7 +351,7 @@
         </ul>
         <ul class="nav nav-treeview">
           <li class="nav-item">
-            <a href="pages/UI/general.html" class="nav-link">
+            <a href="{{ route('laporanTarifPerBendel')}}" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
               <p><small> Laporan Tarif Per Bendel</small></p>
             </a>
@@ -359,7 +359,7 @@
         </ul>
         <ul class="nav nav-treeview">
           <li class="nav-item">
-            <a href="pages/UI/general.html" class="nav-link">
+            <a href="{{ route('cetakBAPerorangan')}}" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
               <p><small> Cetak BA Perorangan</small></p>
             </a>
@@ -367,7 +367,7 @@
         </ul>
         <ul class="nav nav-treeview">
           <li class="nav-item">
-            <a href="pages/UI/general.html" class="nav-link">
+            <a href="{{ route('entriSurat')}}" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
               <p><small> Surat Pemberitahuan Rekategori Tarif</small></p>
             </a>

@@ -14,7 +14,17 @@ return new class extends Migration
     public function up()
     {
         Schema::create('informasi_pelunasan_rekenings', function (Blueprint $table) {
-            $table->id();
+            $table->string('total_tunggakan');
+            $table->String('biaya_adm_tutupan_tetap',10);
+            $table->String('grand_total',15);
+            $table->date('periode');
+            $table->String('status',15);
+            $table->date('tgl_lunas',25);
+            $table->String('jenis',15);
+            $table->String('rp_rekening',20);
+            $table->String('rp_restitusi',20);
+            $table->String('rp_denda',20);
+            $table->String('rp_bayar',20);
             $table->timestamps();
         });
     }
