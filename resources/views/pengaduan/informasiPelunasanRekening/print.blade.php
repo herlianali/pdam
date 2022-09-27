@@ -8,9 +8,10 @@
         }
 
         table thead tr {
-            border-bottom: 3px dotted rgb(102, 102, 102);
-            border-top: 3px dotted rgb(102, 102, 102);
+            border-bottom: 3px dashed rgb(102, 102, 102);
+            border-top: 3px dashed rgb(102, 102, 102);
         }
+        
     </style>
 @endpush
 
@@ -37,6 +38,8 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Print preview Jenis Pekerjaan</h3>
+                            <a href="{{ route('informasiPelunasanRekening') }}"
+                                class="btn btn-xs btn-warning float-right"><i class="fas fa-backward"></i> Kembali</a>
                         </div>
                         <div class="card-body priview">
                             <div style="margin-left: 5px">
@@ -54,24 +57,10 @@
                                     <div class="container">
                                         <div class="row">
                                             <div class="col">
-                                                <p>No Langganan  </p>
+                                                <p>No Langganan </p>
                                             </div>
                                             <div class="col">
-                                                <p>:</p>
-                                            </div>
-                                            <div class="col"></div>
-                                            <div class="col"></div>
-                                        </div>
-                                    </div>
-                                </tr>
-                                <tr>
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col">
-                                                <p>Nama  </p>
-                                            </div>
-                                            <div class="col">
-                                                <p>:</p>
+                                                <p>: 1011101</p>
                                             </div>
                                             <div class="col"></div>
                                             <div class="col"></div>
@@ -82,10 +71,10 @@
                                     <div class="container">
                                         <div class="row">
                                             <div class="col">
-                                                <p>Alamat  </p>
+                                                <p>Nama </p>
                                             </div>
                                             <div class="col">
-                                                <p>:</p>
+                                                <p>: Rahma</p>
                                             </div>
                                             <div class="col"></div>
                                             <div class="col"></div>
@@ -96,10 +85,26 @@
                                     <div class="container">
                                         <div class="row">
                                             <div class="col">
-                                                <p>Periode Tagih  </p>
+                                                <p>Alamat </p>
                                             </div>
                                             <div class="col">
-                                                <p>:</p>
+                                                <p>: Jl Kenangan 2/ 25</p>
+                                            </div>
+                                            <div class="col">
+                                                <p></p>
+                                            </div>
+                                            <div class="col"></div>
+                                        </div>
+                                    </div>
+                                </tr>
+                                <tr>
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col">
+                                                <p>Periode Tagih </p>
+                                            </div>
+                                            <div class="col">
+                                                <p>: 2</p>
                                             </div>
                                             <div class="col"></div>
                                             <div class="col"></div>
@@ -113,11 +118,11 @@
                                                 <p>Tanggal Tutu </p>
                                             </div>
                                             <div class="col">
-                                    <p>:</p>
+                                                <p>: 07-11-2020</p>
                                             </div>
                                             <div class="col"></div>
                                             <div class="col">
-                                                <p>Tanggal Cetak : </p>
+                                                <p>Tanggal Cetak : 17 September 2022 </p>
                                             </div>
                                         </div>
                                     </div>
