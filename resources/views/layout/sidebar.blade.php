@@ -376,7 +376,7 @@
        
       </li>
       <li class="nav-item">
-        <a href="#" class="nav-link">
+        <a href="" class="nav-link">
           <i class="nav-icon fas fa-edit"></i>
           <p>
             Mutasi Pemakaian
@@ -385,9 +385,9 @@
         </a>
         <ul class="nav nav-treeview">
           <li class="nav-item">
-            <a href="pages/forms/general.html" class="nav-link">
+            <a href="{{ route('usulanMutasiTarif')}}" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
-              <p><small></small></p>
+              <p><small>Usulan Mutasi Tarif</small></p>
             </a>
           </li>
         </ul>

@@ -11,4 +11,8 @@ class SuratPemberitahuanController extends Controller
     {
         return view('BAMutasiPelanggan.SuratPemberitahuan.entriSurat');
     }
+    public function entriSuratAwal()
+    {
+        return view('BAMutasiPelanggan.SuratPemberitahuan.entriSuratAwal');
+    }
 }

@@ -22,9 +22,8 @@
 @section('namaHal', 'BA Mutasi Pelanggan')
 @section('breadcrumb')
     <ol class="breadcrumb float-sm-right">
-        <li class="breadcrumb-item"><a href="#">BA Mutasi Pelanggan</a></li>
         <li class="breadcrumb-item">Monitoring Surat Pemberitahuan</li>
-        <li class="breadcrumb-item active">Entri Surat Pemberitahuan</li>
+        <li class="breadcrumb-item active">Entri Surat Pemberitahuan Awal</li>
     </ol>
 @endsection
 
@@ -43,10 +42,10 @@
                                     <label for="periode" class="col-md-3 col-form-label">Asal Surat Pemberitahuan</label>
                                     <div class="col-md-2">
                                         <div class="form-check">
-                                            <input type="radio" id="pemberitahuan_awal"name="pemberitahuan_awal">
+                                            <input type="radio" id="pemberitahuan_awal"name="pemberitahuan_awal" checked>
                                             <label class="form-check-label">Pemberitahuan Awal</label>
                                             <br>
-                                            <input type="radio"id="dari_berita_acara"name="dari_berita_acara">
+                                            <input type="radio"id="dari_berita_acara"name="dari_berita_acara" disabled>
                                             <label class="form-check-label">Dari Berita Acara</label>
                                         </div>
                                     </div>

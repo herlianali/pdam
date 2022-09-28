@@ -42,6 +42,7 @@ use App\Http\Controllers\LaporanPerubahanTNTperBulanController;
 use App\Http\Controllers\monitoringBAMutasiPeroranganController;
 use App\Http\Controllers\mutasiKolektifController;
 use App\Http\Controllers\SuratPemberitahuanController;
+use App\Http\Controllers\usulanMutasiTarifController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -235,5 +236,12 @@ Route::prefix('BAMutasiPelanggan')->group(function () {
 
     
     Route::get('/entriSurat', [ SuratPemberitahuanController::class, 'entriSurat'])->name('entriSurat');
+    Route::get('/entriSuratAwal', [ SuratPemberitahuanController::class, 'entriSuratAwal'])->name('entriSuratAwal');
 
+});
+
+
+Route::prefix('mutasiPemakaian')->group(function () { 
+    Route::get('/usulanMutasiTarif', [ usulanMutasiTarifController::class, 'index'])->name('usulanMutasiTarif');
+   
 });
