@@ -3,32 +3,35 @@
 
 @section('namaHal', 'Master')
 @section('breadcrumb')
-    <ol class="breadcrumb float-sm-right">
-        <li class="breadcrumb-item"><a href="{{ route('petugasKorektor') }}">Master Petugas</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('laporanpetugasKorektor') }}">Laporan</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('randompetugasKorektor') }}">Random Penugasan</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('viewsisapetugasKorektor') }}">View Sisa Random Penugasan</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('viewptspetugasKorektor') }}">View Penugasan</a></li>
-        <li class="breadcrumb-item active">Monitoring Petugas</li>
-        <li class="breadcrumb-item"><a href="{{ route('koreksipetugasKorektor') }}">Koreksi Penugasan</a></li>
-    </ol>
 @endsection
 
 @section('content')
     <section class="content">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link " href="{{ route('petugasKorektor') }}">Master Petugas</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('laporanpetugasKorektor') }}">Laporan</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('randompetugasKorektor') }}">Random Penugasan</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('viewptspetugasKorektor') }}">View Penugasan</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="{{ route('monitoringpetugasKorektor') }}">Monitoring Petugas</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('koreksipetugasKorektor') }}">Koreksi Penugasan</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('viewsisapetugasKorektor') }}">View Sisa Random Penugasan</a>
+            </li>
+        </ul>
         <div class="card">
-            <div class="card-header">
-                <h3 class="card-title">Monitoring Petugas</h3>
 
-                <div class="card-tools">
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                        <i class="fas fa-minus"></i>
-                    </button>
-                    <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-            </div>
             <div class="card-body">
                 <div class="row mb-4">
                     <div class="col-md-1"></div>
@@ -37,19 +40,22 @@
                             <div class="form-group row mt-2">
                                 <label for="periode" class="col-md-2 col-form-label">Periode</label>
                                 <div class="col-md-3">
-                                    <input type="text" class="form-control" id="periode" name="periode" onkeyup="valueing()"placeholder="/">
+                                    <input type="text" class="form-control" id="periode" name="periode"
+                                        onkeyup="valueing()"placeholder="/">
                                 </div>
                             </div>
                             <div class="form-group row ">
                                 <label for="zona" class="col-md-2 col-form-label">Zona</label>
                                 <div class="col-md-3">
-                                    <input type="text" class="form-control" id="zona" name="zona" onkeyup="valueing()">
+                                    <input type="text" class="form-control" id="zona" name="zona"
+                                        onkeyup="valueing()">
                                 </div>
                             </div>
                             <div class="form-group row ">
                                 <label for="no_bundel" class="col-md-2 col-form-label">No Bundel</label>
                                 <div class="col-md-3">
-                                    <input type="text" class="form-control" id="no_bundel" name="no_bundel" onkeyup="valueing()">
+                                    <input type="text" class="form-control" id="no_bundel" name="no_bundel"
+                                        onkeyup="valueing()">
                                 </div>
                             </div>
                             <div class="form-group row ">

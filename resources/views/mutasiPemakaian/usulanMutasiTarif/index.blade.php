@@ -40,24 +40,30 @@
                                         <div class="form-group row ">
                                             <label for="no_usulan" class="col-md-3 col-form-label">No Usulan</label>
                                             <div class="col-md-2">
-                                                <input type="text" class="form-control" name="no_usulan" id="no_usulan" onkeyup="valueing()">
+                                                <input type="text" class="form-control" name="no_usulan" id="no_usulan"
+                                                    onkeyup="valueing()">
                                             </div>
                                             <div class="col-md-2">
-                                                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#pelanggan"><i class="fas fa-search"></i> Cari Pelanggan</button>
+                                                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+                                                    data-target="#pelanggan"><i class="fas fa-search"></i> Cari
+                                                    Pelanggan</button>
                                             </div>
                                             <label for="no_plg" class="col-form-label">No Pelanggan</label>
                                             <div class="col-md-2">
-                                                <input type="text" class="form-control" name="no_plg" id="no_plg"onkeyup="valueing()">
+                                                <input type="text" class="form-control" name="no_plg"
+                                                    id="no_plg"onkeyup="valueing()">
                                             </div>
                                         </div>
                                         <div class="form-group row ">
                                             <label for="tgl_usulan" class="col-md-3 col-form-label">Tanggal Usulan </label>
                                             <div class="col-md-2">
-                                                <input type="date" class="form-control" name="tgl_usulan" id="tgl_usulan"onkeyup="valueing()">
+                                                <input type="date" class="form-control" name="tgl_usulan"
+                                                    id="tgl_usulan"onkeyup="valueing()">
                                             </div>
                                             <label for="nama_plg" class="col-form-label">Nama Pelanggan </label>
                                             <div class="col-md-2">
-                                                <input type="text" class="form-control" name="nama_plg" id="nama_plg"onkeyup="valueing()">
+                                                <input type="text" class="form-control" name="nama_plg"
+                                                    id="nama_plg"onkeyup="valueing()">
                                             </div>
 
                                         </div>
@@ -65,27 +71,45 @@
                                             <label for="tgl_diterima" class="col-md-3 col-form-label">Tanggal Diterima Rek
                                             </label>
                                             <div class="col-md-2">
-                                                <input type="date" class="form-control" name="tgl_diterima" id="tgl_diterima" onkeyup="valueing()">
+                                                <input type="date" class="form-control" name="tgl_diterima"
+                                                    id="tgl_diterima" onkeyup="valueing()">
                                             </div>
                                             <div class="col"></div>
                                             <div class="col-md-3">
                                                 <p><b>Batas CutOff HUBUNGI TSI!</b></p>
                                             </div>
                                         </div>
+                                        <div class="form-group row mt-2 ">
+                                            <label for="tombol" class="col-md-6 col-form-label"></label>
+                                            <div class="col-md-6">
+                                                <button class="btn btn-success btn-xs float-right" type="submit"><i
+                                                        class="far fa-save"></i> Simpan </button>
+                                                <button type="submit" class="btn btn-danger btn-xs float-right"><i
+                                                        class="fas fa-undo"></i> Batal </button>
+                                            </div>
+                                        </div>
                                     </form>
                                     <br>
 
+                                    <div class="card-header">
+                                        <h3 class="card-title">Tambah Rek</h3>
+
+                                    </div>
+                                    <br>
                                     <form action="">
                                         <div class="form-group row ">
                                             <label for="periode" class="col-md-3 col-form-label"> Periode </label>
                                             <div class="col-md-2">
-                                                <input type="date" class="form-control" name="periode" id="periode" onkeyup="valueing()">
+                                                <input type="date" class="form-control" name="periode" id="periode"
+                                                    onkeyup="valueing()">
                                             </div>
                                             <label for="nota_restitusi" class="col-form-label"> No Nota Restitusi </label>
                                             <div class="col-md-2">
-                                                <input type="text" class="form-control" name="nota_restitusi" id="nota_restitusi" onkeyup="valueing()">
+                                                <input type="text" class="form-control" name="nota_restitusi"
+                                                    id="nota_restitusi" onkeyup="valueing()">
                                             </div>
                                         </div>
+
 
                                         <table style="width:100%">
                                             <tr>
@@ -110,16 +134,20 @@
                                                     </select>
                                                 </td>
                                                 <td>
-                                                    <input type="text" class="form-control" name="mtr_lalu"id="mtr_lalu" onkeyup="valueing()">
+                                                    <input type="text" class="form-control"
+                                                        name="mtr_lalu"id="mtr_lalu" onkeyup="valueing()">
                                                 </td>
                                                 <td>
-                                                    <input type="text" class="form-control" name="mtr_kini" id="mtr_kini" onkeyup="valueing()">
+                                                    <input type="text" class="form-control" name="mtr_kini"
+                                                        id="mtr_kini" onkeyup="valueing()">
                                                 </td>
                                                 <td>
-                                                    <input type="text" class="form-control" name="pakai"  id="pakai" onkeyup="valueing()">
+                                                    <input type="text" class="form-control" name="pakai"
+                                                        id="pakai" onkeyup="valueing()">
                                                 </td>
                                                 <td>
-                                                    <input type="text" class="form-control" name="rp_pakai" id="rp_pakai" onkeyup="valueing()">
+                                                    <input type="text" class="form-control" name="rp_pakai"
+                                                        id="rp_pakai" onkeyup="valueing()">
                                                 </td>
                                                 <td>
                                                     <select class="form-control" id="uk_meter" onkeyup="valueing()">
@@ -128,10 +156,12 @@
                                                     </select>
                                                 </td>
                                                 <td>
-                                                    <input type="text" class="form-control" name="sw_meter" id="sw_meter" onkeyup="valueing()">
+                                                    <input type="text" class="form-control" name="sw_meter"
+                                                        id="sw_meter" onkeyup="valueing()">
                                                 </td>
                                                 <td>
-                                                    <input type="text" class="form-control" name="ppn"id="ppn" onkeyup="valueing()">
+                                                    <input type="text" class="form-control"
+                                                        name="ppn"id="ppn" onkeyup="valueing()">
                                                 </td>
                                                 <td>
                                                     <select class="form-control" id="retribusi" onkeyup="valueing()">
@@ -140,49 +170,57 @@
                                                     </select>
                                                 </td>
                                                 <td>
-                                                    <input type="text" class="form-control" name="materai"id="materai" onkeyup="valueing()">
+                                                    <input type="text" class="form-control"
+                                                        name="materai"id="materai" onkeyup="valueing()">
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>Seharusnya</td>
                                                 <td> <select class="form-control" id="tarif" onkeyup="valueing()">
-                                                    <option value=""> </option>
-                                                    <option value=""> </option>
-                                                </select>
-                                            </td>
-                                            <td>
-                                                <input type="text" class="form-control" name="mtr_lalu"id="mtr_lalu" onkeyup="valueing()">
-                                            </td>
-                                            <td>
-                                                <input type="text" class="form-control" name="mtr_kini" id="mtr_kini" onkeyup="valueing()">
-                                            </td>
-                                            <td>
-                                                <input type="text" class="form-control" name="pakai"  id="pakai" onkeyup="valueing()">
-                                            </td>
-                                            <td>
-                                                <input type="text" class="form-control" name="rp_pakai" id="rp_pakai" onkeyup="valueing()">
-                                            </td>
-                                            <td>
-                                                <select class="form-control" id="uk_meter" onkeyup="valueing()">
-                                                    <option value=""> </option>
-                                                    <option value=""> </option>
-                                                </select>
-                                            </td>
-                                            <td>
-                                                <input type="text" class="form-control" name="sw_meter" id="sw_meter" onkeyup="valueing()">
-                                            </td>
-                                            <td>
-                                                <input type="text" class="form-control" name="ppn"id="ppn" onkeyup="valueing()">
-                                            </td>
-                                            <td>
-                                                <select class="form-control" id="retribusi" onkeyup="valueing()">
-                                                    <option value=""> </option>
-                                                    <option value=""> </option>
-                                                </select>
-                                            </td>
-                                            <td>
-                                                <input type="text" class="form-control" name="materai"id="materai" onkeyup="valueing()">
-                                            </td>
+                                                        <option value=""> </option>
+                                                        <option value=""> </option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control"
+                                                        name="mtr_lalu"id="mtr_lalu" onkeyup="valueing()">
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" name="mtr_kini"
+                                                        id="mtr_kini" onkeyup="valueing()">
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" name="pakai"
+                                                        id="pakai" onkeyup="valueing()">
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" name="rp_pakai"
+                                                        id="rp_pakai" onkeyup="valueing()">
+                                                </td>
+                                                <td>
+                                                    <select class="form-control" id="uk_meter" onkeyup="valueing()">
+                                                        <option value=""> </option>
+                                                        <option value=""> </option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" name="sw_meter"
+                                                        id="sw_meter" onkeyup="valueing()">
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control"
+                                                        name="ppn"id="ppn" onkeyup="valueing()">
+                                                </td>
+                                                <td>
+                                                    <select class="form-control" id="retribusi" onkeyup="valueing()">
+                                                        <option value=""> </option>
+                                                        <option value=""> </option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control"
+                                                        name="materai"id="materai" onkeyup="valueing()">
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td> Selisih </td>
@@ -190,23 +228,29 @@
                                                 <td></td>
                                                 <td></td>
                                                 <td>
-                                                    <input type="text" class="form-control" name="pakai" id="pakai" onkeyup="valueing()">
+                                                    <input type="text" class="form-control" name="pakai"
+                                                        id="pakai" onkeyup="valueing()">
                                                 </td>
                                                 <td>
-                                                    <input type="text" class="form-control" name="rp_pakai" id="rp_pakai" onkeyup="valueing()">
+                                                    <input type="text" class="form-control" name="rp_pakai"
+                                                        id="rp_pakai" onkeyup="valueing()">
                                                 </td>
                                                 <td></td>
                                                 <td>
-                                                    <input type="text" class="form-control" name="sw_meter" id="sw_meter" onkeyup="valueing()">
+                                                    <input type="text" class="form-control" name="sw_meter"
+                                                        id="sw_meter" onkeyup="valueing()">
                                                 </td>
                                                 <td>
-                                                    <input type="text" class="form-control" name="ppn" id="ppn" onkeyup="valueing()">
+                                                    <input type="text" class="form-control" name="ppn"
+                                                        id="ppn" onkeyup="valueing()">
                                                 </td>
                                                 <td>
-                                                    <input type="text" class="form-control" name="retribusi" id="retribusi" onkeyup="valueing()">
+                                                    <input type="text" class="form-control" name="retribusi"
+                                                        id="retribusi" onkeyup="valueing()">
                                                 </td>
                                                 <td>
-                                                    <input type="text" class="form-control" name="materai" id="materai" onkeyup="valueing()">
+                                                    <input type="text" class="form-control" name="materai"
+                                                        id="materai" onkeyup="valueing()">
                                                 </td>
                                             </tr>
                                         </table>
@@ -224,8 +268,11 @@
                                     </form>
                                 </div>
                             </div>
+
+
+
                             <table id="table" class="table table-bordered table-responsive-md table-condensed">
-                                <a href=""class="btn btn-sm btn-info float-right"><i class="fas fa-plus"></i> Tambah Rek</a>
+
                                 <thead>
                                     <tr>
                                         <th>Periode </th>
@@ -250,7 +297,8 @@
                                         <td>1</td>
                                         <td>1</td>
                                         <td>
-                                            <button class="btn btn-warning btn-xs float-right" type="submit"><i class="fas fa-trash"></i> hapus</button>
+                                            <button class="btn btn-warning btn-xs float-right" type="submit"><i
+                                                    class="fas fa-trash"></i> hapus</button>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -290,7 +338,8 @@
                                                 </div>
                                             </div>
                                             <div class="form-group row mt-2 ">
-                                                <label for="jns_pembayaran" class="col-md-2 col-form-label">Jenis Pembayaran</label>
+                                                <label for="jns_pembayaran" class="col-md-2 col-form-label">Jenis
+                                                    Pembayaran</label>
                                                 <div class="col-md-2">
                                                     <select class="form-control" id="jns_pembayaran"onkeyup="valueing()">
                                                         <option value=" "> </option>
@@ -299,28 +348,37 @@
                                                 </div>
                                                 <label for="no_pengesahan" class=" col-form-label">No Pengesahan</label>
                                                 <div class="col-md-2">
-                                                    <input type="date" class="form-control" name="no_pengesahan" id="no_pengesahan"onkeyup="valueing()">
+                                                    <input type="date" class="form-control" name="no_pengesahan"
+                                                        id="no_pengesahan"onkeyup="valueing()">
                                                 </div>
-                                                <button class="btn btn-info  btn-mt-2" type="button"data-toggle="modal"data-target="#pegawai"><i class="fa fa-search"></i>Cari BA</button>
+                                                <button class="btn btn-info  btn-mt-2"
+                                                    type="button"data-toggle="modal"data-target="#pegawai"><i
+                                                        class="fa fa-search"></i>Cari BA</button>
                                                 &nbsp;
                                             </div>
                                             <div class="form-group row mt-2 ">
-                                                <label for="tgl_kasie" class="col-md-2 col-form-label">TanggalKasie</label>
+                                                <label for="tgl_kasie" class="col-md-2 col-form-label">Tanggal
+                                                    Kasie</label>
                                                 <div class="col-md-2">
-                                                    <input type="date" class="form-control" name="tgl_kasie" id="tgl_kasie"onkeyup="valueing()">
+                                                    <input type="date" class="form-control" name="tgl_kasie"
+                                                        id="tgl_kasie"onkeyup="valueing()">
                                                 </div>
                                                 <label for="tgl_kabag" class="col-form-label">Tanggal Kabag </label>
                                                 <div class="col-md-2">
-                                                    <input type="date" class="form-control" name="tgl_kabag"id="tgl_kabag" onkeyup="valueing()">
+                                                    <input type="date" class="form-control"
+                                                        name="tgl_kabag"id="tgl_kabag" onkeyup="valueing()">
                                                     <label for="tombol" class="col-md-6 col-form-label"></label>
                                                 </div>
                                                 <label for="tgl_dirdis" class="col-form-label">Tanggal Sah Dirdis </label>
                                                 <div class="col-md-2">
-                                                    <input type="date" class="form-control" name="tgl_dirdis" id="tgl_dirdis" onkeyup="valueing()">
+                                                    <input type="date" class="form-control" name="tgl_dirdis"
+                                                        id="tgl_dirdis" onkeyup="valueing()">
                                                     <label for="tombol" class="col-md-6 col-form-label"></label>
                                                 </div>
                                                 <div class="col">
-                                                    <a href="{{ route('cetakBA') }}"class="btn btn-MD btn-info float-right"><i class="fas fa-print"></i> Cetak BA </a>
+                                                    <a
+                                                        href="{{ route('cetakBA') }}"class="btn btn-md btn-info float-right"><i
+                                                            class="fas fa-print"></i> Cetak BA </a>
                                                 </div>
                                             </div>
                                             <div class="form-group row mt-2 ">
@@ -334,6 +392,7 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
     </section>
 
 

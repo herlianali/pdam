@@ -3,33 +3,37 @@
 
 @section('namaHal', 'Master')
 @section('breadcrumb')
-    <ol class="breadcrumb float-sm-right">
-        <li class="breadcrumb-item"><a href="{{ route('petugasKorektor') }}">Master Petugas</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('laporanpetugasKorektor') }}">Laporan</a></li>
-        <li class="breadcrumb-item active">Random Penugasan</li>
-        <li class="breadcrumb-item"><a href="{{ route('viewsisapetugasKorektor') }}">View Sisa Random Penugasan</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('viewptspetugasKorektor') }}">View Penugasan</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('monitoringpetugasKorektor') }}">Monitoring Petugas</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('koreksipetugasKorektor') }}">Koreksi Penugasan</a></li>
-    </ol>
+
 @endsection
 
 @section('content')
 
     <section class="content">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('petugasKorektor') }}">Master Petugas</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('laporanpetugasKorektor') }}">Laporan</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="{{ route('randompetugasKorektor') }}">Random Penugasan</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('viewptspetugasKorektor') }}">View Penugasan</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('monitoringpetugasKorektor') }}">Monitoring Petugas</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('koreksipetugasKorektor') }}">Koreksi Penugasan</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('viewsisapetugasKorektor') }}">View Sisa Random Penugasan</a>
+            </li>
+        </ul>
         <div class="card">
-            <div class="card-header">
-                <h3 class="card-title">Random Penugasan</h3>
 
-                <div class="card-tools">
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                        <i class="fas fa-minus"></i>
-                    </button>
-                    <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-            </div>
             <div class="card-body">
                 <div class="row mb-4">
                     <div class="col-md-1"></div>
@@ -38,13 +42,15 @@
                             <div class="form-group row mt-2">
                                 <label for="thbl" class="col-md-2 col-form-label">THBL</label>
                                 <div class="col-md-3">
-                                    <input type="text" class="form-control" id="thbl" name="thbl" onkeyup="valueing()"  placeholder="/">
+                                    <input type="text" class="form-control" id="thbl" name="thbl"
+                                        onkeyup="valueing()" placeholder="/">
                                 </div>
                             </div>
                             <div class="form-group row ">
                                 <label for="tgl" class="col-md-2 col-form-label">Tgl.Penugasan</label>
                                 <div class="col-md-3">
-                                    <input type="date" class="form-control" id="tgl_penugasan" name="tgl_penugasan" onkeyup="valueing()">
+                                    <input type="date" class="form-control" id="tgl_penugasan" name="tgl_penugasan"
+                                        onkeyup="valueing()">
                                 </div>
                             </div>
                         </form>
@@ -68,15 +74,18 @@
                             <div class="form-group row mt-2">
                                 <label for="jml_ptgs_korektor" class="col-form-label">Jmlh Petugas Korektor</label>
                                 <div class="col-md-2">
-                                    <input type="text" class="form-control" id="jml_ptgs_korektor" name="jml_ptgs_korektor" onkeyup="valueing()">
+                                    <input type="text" class="form-control" id="jml_ptgs_korektor"
+                                        name="jml_ptgs_korektor" onkeyup="valueing()">
                                 </div>
                                 <label for="jml_ptgs_anomali" class="col-form-label">Jmlh Petugas Anomali</label>
                                 <div class="col-md-2">
-                                    <input type="text" class="form-control" id="jml_ptgs-anomali" name="jml_ptgs-anomali" onkeyup="valueing()">
+                                    <input type="text" class="form-control" id="jml_ptgs-anomali" name="jml_ptgs-anomali"
+                                        onkeyup="valueing()">
                                 </div>
                                 <label for="rt_pelanggan_petugas" class="col-form-label">Rata2 Pelangan Petugas</label>
                                 <div class="col-md-2">
-                                    <input type="text" class="form-control" id="rt_pelanggan_petugas" name="rt_pelanggan_petugas" onkeyup="valueing()">
+                                    <input type="text" class="form-control" id="rt_pelanggan_petugas"
+                                        name="rt_pelanggan_petugas" onkeyup="valueing()">
                                 </div>
                             </div>
                         </form>

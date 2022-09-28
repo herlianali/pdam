@@ -260,7 +260,7 @@
             </li>
         </ul>
      </li>
-      <li class="nav-item">
+      {{-- <li class="nav-item">
         <a href="#" class="nav-link">
             <i class="nav-icon fas fa-exclamation-triangle"></i>
             <p>
@@ -276,7 +276,7 @@
                 </a>
             </li>
         </ul>
-      </li>
+      </li> --}}
       <li class="nav-item">
         <a href="#" class="nav-link">
           <i class="nav-icon fas fa-file-prescription"></i>
@@ -311,7 +311,7 @@
         </ul>
         <ul class="nav nav-treeview">
           <li class="nav-item">
-            <a href="{{ route('mutasiKolektif')}}" class="nav-link">
+            <a href="{{ route('mutasiKolektif')}}" class="nav-link" data-toggle="tooltip" data-placement="top" title=" Entri BA Mutasi Jenis Pelanggan, Bundel, Sub Zona">
               <i class="far fa-circle nav-icon"></i>
               <p><small> Entri BA Mutasi Jenis Pelanggan, Bundel, Sub Zona</small></p>
             </a>
@@ -327,7 +327,7 @@
         </ul>
         <ul class="nav nav-treeview">
           <li class="nav-item">
-            <a href="{{ route('laporanRekapitulasiPerubahanTarif')}}" class="nav-link">
+            <a href="{{ route('laporanRekapitulasiPerubahanTarif')}}" class="nav-link" data-toggle="tooltip" data-placement="top" title="Laporan Rekapitulasi Perubahan Tarif">
               <i class="far fa-circle nav-icon"></i>
               <p><small> Laporan Rekapitulasi Perubahan Tarif</small></p>
             </a>
@@ -335,7 +335,7 @@
         </ul>
         <ul class="nav nav-treeview">
           <li class="nav-item">
-            <a href="{{ route('laporanPerubahanTNTperBulan')}}" class="nav-link">
+            <a href="{{ route('laporanPerubahanTNTperBulan')}}" class="nav-link" data-toggle="tooltip" data-placement="top" title="Laporan Perubahan Tarif Naik/Turun per Bulan">
               <i class="far fa-circle nav-icon"></i>
               <p><small> Laporan Perubahan Tarif Naik/Turun per Bulan</small></p>
             </a>
@@ -367,7 +367,7 @@
         </ul>
         <ul class="nav nav-treeview">
           <li class="nav-item">
-            <a href="{{ route('entriSurat')}}" class="nav-link">
+            <a href="{{ route('entriSurat')}}" class="nav-link" data-toggle="tooltip" data-placement="top" title="Surat Pemberitahuan Rekategori Tarif">
               <i class="far fa-circle nav-icon"></i>
               <p><small> Surat Pemberitahuan Rekategori Tarif</small></p>
             </a>
@@ -392,7 +392,7 @@
           </li>
         </ul>
       </li>
-      <li class="nav-item">
+      {{-- <li class="nav-item">
         <a href="#" class="nav-link">
           <i class="nav-icon fas fa-envelope"></i>
           <p>
@@ -493,6 +493,6 @@
             </a>
           </li>
         </ul>
-      </li>
+      </li> --}}
     </ul>
 </nav>
