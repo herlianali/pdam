@@ -55,19 +55,29 @@
                                         </div>
                                         <div class="form-group row">
                                             <label for="beban" class="col-md-2 col-form-label">Beban </label>
-                                            <div class="col-md-8">
-                                                <select class="form-control" id="beban" onkeyup="valueing()" name="beban">
-                                                    <option value=""> </option>
-                                                    <option value=""> </option>
-                                                </select>
+                                            <div class="col ml-3">
+                                            <div class="col">
+                                                <input type="radio" class="form-check-input" id="pilih" name="jabatan">
+                                                <label class="form-check-label">Ya</label>
                                             </div>
+                                            <div class="col">
+                                                <input type="radio" class="form-check-input" id="pilih" name="jabatan">
+                                                <label class="form-check-label">Tidak</label>
+                                            </div>
+                                        </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="kel_bonp" class="col-md-2 col-form-label">Kel. BON P </label>
                                             <div class="col-md-8">
                                                 <select class="form-control" id="kel_bonp" onkeyup="valueing()" name="kel_bonp">
-                                                    <option value=""> </option>
-                                                    <option value=""> </option>
+                                                    <option value="T">TDA </option>
+                                                    <option value="K">Kebocoran </option>
+                                                    <option value="M">Meter </option>
+                                                    <option value="S">Segel </option>
+                                                    <option value="A">Air Kotor </option>
+                                                    <option value="R">Stop Kran </option>
+                                                    <option value="L">Lain-Lain </option>
+                                                    <option value="B">Bukaan </option>
                                                 </select>
                                             </div>
                                         </div>
