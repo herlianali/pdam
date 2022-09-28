@@ -78,8 +78,6 @@
                                         <th>ID</th>
                                         <th>Kode Guna Pensil</th>
                                         <th>Keterangan</th>
-                                        <th>Induk</th>
-                                        <th>Kode Tarif</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -87,10 +85,8 @@
                                     @foreach ($gnPersil as $gunaPersil)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            <td>{{ $gunaPersil->kode }}</td>
+                                            <td>{{ $gunaPersil->kd_gunapersil }}</td>
                                             <td>{{ $gunaPersil->keterangan }}</td>
-                                            <td>{{ $gunaPersil->induk }}</td>
-                                            <td>{{ $gunaPersil->kode_tarif }}</td>
                                             <td>
                                                 <button type="submit" class="btn btn-xs btn-danger "
                                                     onclick="deletegunaPersil({{ $gunaPersil->id }})"><i

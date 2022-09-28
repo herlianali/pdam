@@ -70,11 +70,11 @@
                                     @foreach ($stTanah as $statusTanah)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            <td>{{ $statusTanah->kode_status_tanah }}</td>
+                                            <td>{{ $statusTanah->status_tanah }}</td>
                                             <td>{{ $statusTanah->keterangan }}</td>
                                             <td>
                                                 <button type="submit" class="btn btn-xs btn-danger "
-                                                    onclick="deleteStatusTanah({{ $statusTanah->id }})"><i
+                                                    onclick="deleteStatusTanah({{ $statusTanah->status_tanah }})"><i
                                                         class="fas fa-trash-alt"></i> Hapus</button>
                                                 <button type="button" class="btn btn-xs btn-success " data-toggle="modal"
                                                     data-target="#form"><i class="fas fa-edit"></i> Edit</button>

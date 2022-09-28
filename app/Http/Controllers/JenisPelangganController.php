@@ -10,25 +10,23 @@ class JenisPelangganController extends Controller
     public function index()
     {
         $jenisPelanggans = JenisPelanggan::all();
-
         return view('master.jenisPelanggan.index', compact('jenisPelanggans'))->with('i');
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'jenis_pelanggan' => 'required|max:255',
-            'keterangan'      => 'required',
-            'jns_rekswasta'   => 'required'
+            'jns_pelanggan' => 'required|max:255',
+            'keterangan'    => 'required'
         ]);
 
-        $jenisPelanggan = JenisPelanggan::updateOrCreate(['id' => $request->id], [
-            'jenis_pelanggan' => $request->jenis_pelanggan,
-            'keterangan'      => $request->keterangan,
-            'jns_rekswasta'   => $request->jns_rekswasta
+        JenisPelanggan::insert([
+            'jns_pelanggan' => $request->jns_pelanggan,
+            'keterangan'    => $request->keterangan,
+            'jns_rekswasta' => "S"
         ]);
 
-        return response()->json(['code'=>200, 'message'=>'Jenis Pelanggan Created Successfully', 'data' =>$jenisPelanggan], 200);
+        return redirect()->route('jenisPelanggan.index');
     }
 
     public function show($id)
@@ -38,9 +36,10 @@ class JenisPelangganController extends Controller
         return response()->json($jenisPelanggan);
     }
 
-    public function destroy($id)
+    public function destroy($jns_pelanggan)
     {
-        $jenisPelanggan = JenisPelanggan::find($id)->delete();
-        return response()->json(['success'=> 'Jenis Pelanggan Berhasil Dihapus']);
+        JenisPelanggan::where('jns_pelanggan', $jns_pelanggan)->delete();
+
+        return redirect()->route('jenisPelanggan.index');
     }
 }

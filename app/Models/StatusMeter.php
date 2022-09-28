@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class StatusMeter extends Model
 {
     use HasFactory;
+
+    protected $table = "STATUSMTR";
 }

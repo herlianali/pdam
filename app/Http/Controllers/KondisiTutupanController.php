@@ -13,21 +13,34 @@ class KondisiTutupanController extends Controller
         return view('master.kondisiTutupan.index', compact('kondTutupan'))->with('i');
     }
 
-    
-    public function show($id)
+    public function store(Request $request)
     {
-        $kondisiTutupan = KondisiTutupan::find($id);
+        // dd($request->post());
+        // $request->validate([
+
+        // ])
+        KondisiTutupan::insert($request->except('_token'));
+
+        return redirect()->route('kondisiTutupan.index');
+    }
+
+    public function update(Request $request, $kd_kondisi)
+    {
+
+    }
+
+    public function show($kd_kondisi)
+    {
+        $kondisiTutupan = KondisiTutupan::find($kd_kondisi);
         return response()->json($kondisiTutupan);
     }
 
 
-    public function destroy($id)
+    public function destroy($kd_kondisi)
     {
-        $kondisiTutupan = KondisiTutupan::findOrFail($id)->delete();
-        return response()->json([
-            'success' => true,
-            'message' => 'Data Kondisi Tutupan Berhasil Dihapus',
-        ]);
+        KondisiTutupan::where('kd_kondisi', $kd_kondisi)->delete();
+
+        return redirect()->route('kondisiTutupan.index');
     }
     public function print()
     {

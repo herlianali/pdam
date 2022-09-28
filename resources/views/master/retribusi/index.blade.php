@@ -67,8 +67,8 @@
                                     @foreach ($retribus as $retribusi)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            <td>{{ $retribusi->kode_retribusi }}</td>
-                                            <td>{{ $retribusi->retribusi }}</td>
+                                            <td>{{ $retribusi->kd_retribusi }}</td>
+                                            <td>{{ $retribusi->rp_retribusi }}</td>
                                             <td>
                                                 <button type="submit" class="btn btn-xs btn-danger "
                                                     onclick="deleteRetribusi({{ $retribusi->id }})"><i

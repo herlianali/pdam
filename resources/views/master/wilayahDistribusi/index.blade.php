@@ -70,7 +70,7 @@
                                     @foreach ($wilDist as $wilDistribusi)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            <td>{{ $wilDistribusi->kode_wilayah }}</td>
+                                            <td>{{ $wilDistribusi->kd_wilayah }}</td>
                                             <td>{{ $wilDistribusi->nama }}</td>
                                             <td>
                                                 <button type="submit" class="btn btn-xs btn-danger "

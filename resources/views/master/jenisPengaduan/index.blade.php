@@ -30,23 +30,24 @@
                             <div class="row mb-4">
                                 <div class="col-md-1"></div>
                                 <div class="col-md-12">
-                                    <form class="form-horizontal">
+                                    <form class="form-horizontal" action="{{ route('jenisPengaduan.store') }}" method="POST">
+                                        @csrf
                                         <div class="form-group row ">
                                             <label for="kode" class="col-md-3 col-form-label">Kode</label>
                                             <div class="col-md-4">
-                                                <input type="text" class="form-control" id="kode" name="kode" onkeyup="valueing()">
+                                                <input type="text" class="form-control" id="jns_pengaduan" name="jns_pengaduan" onkeyup="valueing()">
                                             </div>
                                         </div>
                                         <div class="form-group row ">
                                             <label for="jns_keterangan" class="col-md-3 col-form-label">Jenis Keterangan</label>
                                             <div class="col-md-4">
-                                                <input type="text" class="form-control" id="jns_keterangan" name="jns_keterangan" onkeyup="valueing()">
+                                                <input type="text" class="form-control" id="keterangan" name="keterangan" onkeyup="valueing()">
                                             </div>
                                         </div>
                                         <div class="form-group row ">
                                             <label for="sifat_pengaduan" class="col-md-3 col-form-label">Sifat Pengaduan</label>
                                             <div class="col-md-4">
-                                                <select class="form-control" id="sifat_pengaduan" name="sifat_pengaduan" onkeyup="valueing()">
+                                                <select class="form-control" id="sifat" name="sifat" onkeyup="valueing()">
                                                     <option value="T"> T- Teknis </option>
                                                     <option value="A"> A- Administrasi </option>
                                                 </select>
@@ -84,11 +85,11 @@
                                         <tbody>
                                             @foreach ($jenisPengaduans as $jenisPengaduan)
                                                 <tr>
-                                                    <td>{{ $jenisPengaduan->kode }}</td>
+                                                    <td>{{ $jenisPengaduan->jns_pengaduan }}</td>
                                                     <td>{{ $jenisPengaduan->keterangan }}</td>
-                                                    <td>{{ $jenisPengaduan->sifat_pengaduan }}</td>
+                                                    <td>{{ $jenisPengaduan->sifat }}</td>
                                                     <td>
-                                                        @if ($jenisPengaduan->reward === 'ya')
+                                                        @if ($jenisPengaduan->reward === 'Y')
                                                             <span class="badge badge-success"><i
                                                                     class="fas fa-check-circle"></i> Ya</span>
                                                         @else
@@ -97,12 +98,18 @@
                                                         @endif
                                                     </td>
                                                     <td>
-                                                        <button type="submit" class="btn btn-xs btn-danger"
-                                                            onclick="deletejenisPengaduan({{ $jenisPengaduan->id }})"><i
+                                                        {{-- <button type="submit" class="btn btn-xs btn-danger"
+                                                            onclick="deletejenisPengaduan({{ $jenisPengaduan->jns_pengaduan }})"><i
+                                                                class="fas fa-trash-alt"></i> Hapus</button> --}}
+                                                        <form action="{{ route('jenisPengaduan.destroy', $jenisPengaduan->jns_pengaduan) }}" method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-xs btn-danger"><i
                                                                 class="fas fa-trash-alt"></i> Hapus</button>
-                                                        <button type="button" class="btn btn-success btn-xs"
-                                                            data-toggle="modal" data-target="#edit"><i
-                                                                class="fas fa-edit"></i> Edit</button>
+                                                            <button type="button" class="btn btn-success btn-xs"
+                                                                data-toggle="modal" data-target="#edit{{ $jenisPengaduan->jns_pengaduan }}"><i
+                                                                    class="fas fa-edit"></i> Edit</button>
+                                                        </form>
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -151,49 +158,49 @@
             });
         });
 
-        function deletejenisPengaduan(id) {
-            console.log(id)
-            swal.fire({
-                title: "Hapus Data?",
-                icon: 'question',
-                text: "Apakah Anda Yakin Ingin Menghapus",
-                type: "warning",
-                showCancelButton: !0,
-                confirmButtonColor: "#e74c3c",
-                confirmButtonText: "Iya",
-                cancelButtonText: "Tidak",
-                reverseButtons: !0
-            }).then(function(e) {
-                if (e.value === true) {
-                    let token = "{{ csrf_token() }}"
-                    let _url = `/master/deletejenisPengaduan/${id}`
-                    console.log(_url)
+        // function deletejenisPengaduan(jns_pengaduan) {
+            // console.log(jns_pengaduan)
+            // swal.fire({
+            //     title: "Hapus Data?",
+            //     icon: 'question',
+            //     text: "Apakah Anda Yakin Ingin Menghapus",
+            //     type: "warning",
+            //     showCancelButton: !0,
+            //     confirmButtonColor: "#e74c3c",
+            //     confirmButtonText: "Iya",
+            //     cancelButtonText: "Tidak",
+            //     reverseButtons: !0
+            // }).then(function(e) {
+            //     if (e.value === true) {
+            //         let token = "{{ csrf_token() }}"
+            //         let _url = `/master/jenisPengaduan/${id}`
+            //         console.log(_url)
 
-                    $.ajax({
-                        type: 'DELETE',
-                        url: _url,
-                        data: {
-                            _token: token
-                        },
-                        success: function(resp) {
-                            if (resp.success) {
-                                swal.fire("Selesai!", resp.message, "success");
-                                location.reload();
-                            } else {
-                                swal.fire("Gagal!", "Terjadi Kesalahan.", "error");
-                            }
-                        },
-                        error: function(resp) {
-                            swal.fire("Gagal!", "Terjadi Kesalahan.", "error")
-                        }
-                    })
-                } else {
-                    e.dismiss;
-                }
-            }, function(dismiss) {
-                return false;
-            });
-        }
+            //         $.ajax({
+            //             type: 'DELETE',
+            //             url: _url,
+            //             data: {
+            //                 _token: token
+            //             },
+            //             success: function(resp) {
+            //                 if (resp.success) {
+            //                     swal.fire("Selesai!", resp.message, "success");
+            //                     location.reload();
+            //                 } else {
+            //                     swal.fire("Gagal!", "Terjadi Kesalahan.", "error");
+            //                 }
+            //             },
+            //             error: function(resp) {
+            //                 swal.fire("Gagal!", "Terjadi Kesalahan.", "error")
+            //             }
+            //         })
+            //     } else {
+            //         e.dismiss;
+            //     }
+            // }, function(dismiss) {
+            //     return false;
+            // });
+        // }
 
         // $(document).ready(function($) {
         //     $.ajaxSetup({

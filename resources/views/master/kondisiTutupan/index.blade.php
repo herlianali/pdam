@@ -28,11 +28,12 @@
                         <div class="card-body">
                             <div class="row mb-4">
                                 <div class="col-md-9">
-                                    <form class="form-horizontal">
+                                    <form class="form-horizontal" action="{{ route('kondisiTutupan.store') }}" method="POST">
+                                        @csrf
                                         <div class="form-group row">
                                             <label for="kode" class="col-md-2 col-form-label">Kode</label>
                                             <div class="col-md-7">
-                                                <input type="text" class="form-control" id="kode" name="kode" onkeyup="valueing()">
+                                                <input type="text" class="form-control" id="kode" name="kd_kondisi" onkeyup="valueing()">
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -66,11 +67,11 @@
                                     @foreach ($kondTutupan as $kondisiTutupan)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            <td>{{ $kondisiTutupan->kode }}</td>
+                                            <td>{{ $kondisiTutupan->kd_kondisi }}</td>
                                             <td>{{ $kondisiTutupan->keterangan }}</td>
                                             <td>
                                                 <button type="submit" class="btn btn-xs btn-danger "
-                                                    onclick="deletekondisiTutupan({{ $kondisiTutupan->id }})"><i
+                                                    onclick="deletekondisiTutupan({{ $kondisiTutupan->kd_kondisi }})"><i
                                                         class="fas fa-trash-alt"></i> Hapus</button>
                                                 <button type="button" class="btn btn-xs btn-success " data-toggle="modal"
                                                     data-target="#form"><i class="fas fa-edit"></i> Edit</button>

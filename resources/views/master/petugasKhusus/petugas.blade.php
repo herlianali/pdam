@@ -19,30 +19,20 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>T.01697</td>
-                            <td>Ema Nurmasanti, S.T</td>
-                            <td>
-                                <button class="btn btn-success btn-sm"><i class="far fa-check-circle"></i>
-                                    Pilih</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>T.01697</td>
-                            <td>Mashud CH</td>
-                            <td>
-                                <button class="btn btn-success btn-sm"><i class="far fa-check-circle"></i>
-                                    Pilih</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>T.01704</td>
-                            <td>Djauhar Busthom</td>
-                            <td>
-                                <button class="btn btn-success btn-sm"><i class="far fa-check-circle"></i>
-                                    Pilih</button>
-                            </td>
-                        </tr>
+                        @foreach ($c_pegawai as $cari)
+                            <tr>
+                                <td>{{ $cari->nip }}</td>
+                                <td>{{ $cari->nama }}</td>
+                                <td>
+                                    {{-- <input type="hidden" name="nip" value="{{ $cari->nip }}">
+                                    <input type="hidden" name="nama" value="{{ $cari->nama }}"> --}}
+                                    <button type="button" class="btn btn-success btn-sm pilih">
+                                        <i class="far fa-check-circle"></i>
+                                        Pilih
+                                    </button>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

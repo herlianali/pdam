@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class MerekMeter extends Model
 {
     use HasFactory;
+
+    protected $table = "MERK_METER";
 }

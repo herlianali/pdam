@@ -84,6 +84,7 @@
                                         style="width: 100%">
                                         <thead>
                                             <tr>
+                                                <th>No</th>
                                                 <th>Kode</th>
                                                 <th>Keterangan</th>
                                                 <th>Aksi</th>
@@ -93,7 +94,7 @@
                                             @foreach ($ml as $mln)
                                                 <tr>
                                                     <td>{{ ++$i }}</td>
-                                                    <td>{{ $mln->code }}</td>
+                                                    <td>{{ $mln->kode }}</td>
                                                     <td>{{ $mln->keterangan }}</td>
 
                                                     <td>

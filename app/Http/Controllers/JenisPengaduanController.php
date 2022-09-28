@@ -13,13 +13,41 @@ class JenisPengaduanController extends Controller
         return view('master.jenisPengaduan.index', compact('jenisPengaduans'))->with('i');
     }
 
-    public function destroy($id)
+    public function store(Request $request)
     {
-        $jenisPengaduan = JenisPengaduan::findOrFail($id)->delete();
-        return response()->json([
-            'success' => true,
-            'message' => 'Data Jenis Pengaduan Berhasil Dihapus',
+        $request->validate([
+            'jns_pengaduan' => 'required',
+            'keterangan'    => 'required',
+            'sifat'         => 'required',
+            'reward'        => 'required'
         ]);
+
+        JenisPengaduan::insert($request->except('_token'));
+
+        return redirect()->route('jenisPengaduan.index');
+    }
+
+    public function update(Request $request, $jns_pengaduan)
+    {
+        // $request->validate([
+        //     'jns_pengaduan' => 'required',
+        //     'keterangan' => 'required',
+        //     'sifat' => 'required',
+        //     'pelayanan' => 'required',
+        //     'reward' => 'required'
+        // ]);
+
+        JenisPengaduan::where('jns_pengaduan', $jns_pengaduan)
+                        ->update($request->except(['_token', '_method']));
+
+        return redirect()->route('jenisPengaduan.index');
+    }
+
+    public function destroy($jns_pengaduan)
+    {
+        JenisPengaduan::where('jns_pengaduan', $jns_pengaduan)->delete();
+
+        return redirect()->route('jenisPengaduan.index');
     }
 
     public function print()

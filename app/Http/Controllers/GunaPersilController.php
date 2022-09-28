@@ -14,12 +14,12 @@ class GunaPersilController extends Controller
      */
     public function index()
     {
-        $gnPersil = GunaPersil::all();
+        $gnPersil = GunaPersil::select('kd_gunapersil', 'keterangan');
         return view('master.gunaPersil.index', compact('gnPersil'))->with('i');
     }
 
- 
-      
+
+
     public function show($id)
     {
         $gunaPersil = GunaPersil::find($id);

@@ -28,22 +28,27 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-9">
-                                    <form class="form-horizontal">
+                                    <form class="form-horizontal" action="{{ route('petugasKontrol.store') }}" method="POST">
+                                        @csrf
                                         <div class="form-group row">
-                                            <label for="kode_ptgs" class="col-md-2 col-form-label">Kode Petugas</label>
+                                            <label for="kd_ptgktrl" class="col-md-2 col-form-label">Kode Petugas</label>
                                             <div class="col-md-6">
-                                                <input type="text" class="form-control" id="kode_ptgs" name="kode_ptgs" onkeyup="valueing()">
+                                                <input type="text" class="form-control" id="kd_ptgktrl" name="kd_ptgktrl" onkeyup="valueing()">
+                                            </div>
+                                            <div class="col-md-3">
+                                                <input type="checkbox" name="is_satgas">
+                                                <label class="col-form-label" for="is_satgas">Is Satgas</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="nip" class="col-md-2 col-form-label">NIP Pegawai</label>
+                                            <div class="col-md-6">
+                                                <input type="text" class="form-control" id="nip" name="nip" onkeyup="valueing()">
                                             </div>
                                             <div class="col-md-3">
                                                 <button class="btn btn-default btn-mt-2" type="button" data-toggle="modal"
                                                     data-target="#pegawai"><i class="fas fa-search fa-fw"></i> Pilih
                                                     Pegawai</button>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label for="nip" class="col-md-2 col-form-label">NIP Pegawai</label>
-                                            <div class="col-md-8">
-                                                <input type="text" class="form-control" id="nip" name="nip" onkeyup="valueing()">
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -73,19 +78,21 @@
                                         <th>Kode Petugas</th>
                                         <th>NIP</th>
                                         <th>Nama</th>
+                                        <th>Is Satgas</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($ptgsKontrol as $ptKontrol)
+                                    @foreach ($petugas as $ptKontrol)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            <td>{{ $ptKontrol->kode_petugas }}</td>
+                                            <td>{{ $ptKontrol->kd_ptgktrl }}</td>
                                             <td>{{ $ptKontrol->nip }}</td>
                                             <td>{{ $ptKontrol->nama }}</td>
+                                            <td>{{ $ptKontrol->is_satgas }}</td>
                                             <td>
                                                 <button type="submit" class="btn btn-xs btn-danger "
-                                                    onclick="deletePetugasKontrol({{ $ptKontrol->id }})"><i
+                                                    onclick="deletePetugasKontrol({{ $ptKontrol->kd_ptgktrl }})"><i
                                                         class="fas fa-trash-alt"></i> Hapus</button>
                                                 <button type="button" class="btn btn-xs btn-success " data-toggle="modal"
                                                     data-target="#edit"><i class="fas fa-edit"></i> Edit</button>

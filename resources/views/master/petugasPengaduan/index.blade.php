@@ -28,11 +28,12 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-9">
-                                    <form class="form-horizontal">
+                                    <form class="form-horizontal" action="{{ route('petugasPengaduan.store') }}" method="POST">
+                                        @csrf
                                         <div class="form-group row">
                                             <label for="kdptg" class="col-md-2 col-form-label">Kode Petugas</label>
                                             <div class="col-md-6">
-                                                <input type="text" class="form-control" id="kode_ptgs" name="kode_ptgs" onkeyup="valueing()">
+                                                <input type="text" class="form-control" id="kd_ptgcs" name="kd_ptgcs" onkeyup="valueing()">
                                             </div>
                                             <div class="col-md-3">
                                                 <button class="btn btn-default btn-mt-2" type="button" data-toggle="modal"data-target="#pegawai"><i class="fas fa-search fa-fw"></i> Pilih Pegawai</button>
@@ -50,6 +51,7 @@
                                                 <input type="text" class="form-control" id="nama" name="nama" onkeyup="valueing()">
                                             </div>
                                         </div>
+                                        <input type="hidden" name="aktif" value="1">
                                         <div class="form-group row mt-2 ">
                                             <label for="" class="col-md-7 col-form-label"></label>
                                             <div class="col-md-5">
@@ -65,11 +67,11 @@
                                 </div>
 
                             </div>
-                            <table id="example1" class="table table-bordered table-responsive-md table-condensed"
+                            <table id="example2" class="table table-bordered table-responsive-md table-condensed"
                                 style="width: 100%">
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
+                                        <th>No</th>
                                         <th>Kode Petugas</th>
                                         <th>Nama</th>
                                         <th>Nip</th>
@@ -81,10 +83,10 @@
                                     @foreach ($pPengaduan as $ptsPengaduan)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            <td>{{ $ptsPengaduan->kode_petugas }}</td>
+                                            <td>{{ $ptsPengaduan->kd_ptgcs }}</td>
                                             <td>{{ $ptsPengaduan->nama }}</td>
                                             <td>{{ $ptsPengaduan->nip }}</td>
-                                            <td>{{ $ptsPengaduan->status }}</td>
+                                            <td>{{ $ptsPengaduan->aktif }}</td>
                                             <td>{{ $ptsPengaduan->iscs }}</td>
 
                                         </tr>
@@ -110,16 +112,6 @@
     <script src="{{ asset('assets/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
     <script>
         $(function() {
-            $("#example1").DataTable({
-                //  "responsive": true,
-                //  "lengthChange": false,
-                //   "autoWidth": true,
-                //   "scrollX": false,
-                "oLanguage": {
-                    "sSearch": "Nama / Nip : "
-                },
-                "pageLength": 5
-            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
             $('#example2').DataTable({
                 "paging": true,
                 "lengthChange": false,
@@ -142,5 +134,14 @@
                 document.getElementById('simpan').disabled = false
             }
         }
+        jQuery(document).ready(function($){
+            jQuery('#btn-add').click(function () {
+                jQuery('#btn-save').val("add")
+                jQuery('#modalFormData').trigger("reset")
+                jQuery('#linkEditorModal').modal('show')
+            });
+
+
+        })
     </script>
 @endpush

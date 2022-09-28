@@ -28,11 +28,12 @@
                         <div class="card-body">
                             <div class="row mb-4">
                                 <div class="col-md-9">
-                                    <form class="form-horizontal">
+                                    <form class="form-horizontal" action="{{ route('jenisPelanggan.store') }}" method="POST">
+                                        @csrf
                                         <div class="form-group row">
-                                            <label for="jenis_pelanggan" class="col-md-2 col-form-label">Jenis Pelanggan</label>
+                                            <label for="jns_pelanggan" class="col-md-2 col-form-label">Jenis Pelanggan</label>
                                             <div class="col-md-8">
-                                                <input type="text" class="form-control" id="jenis_pelanggan" name="jenis_pelanggan" onkeyup="valueing()">
+                                                <input type="text" class="form-control" id="jns_pelanggan" name="jns_pelanggan" onkeyup="valueing()">
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -69,15 +70,19 @@
                                     @foreach ($jenisPelanggans as $jenisPelanggan)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            <td>{{ $jenisPelanggan->jenis_pelanggan }}</td>
+                                            <td>{{ $jenisPelanggan->jns_pelanggan }}</td>
                                             <td>{{ $jenisPelanggan->keterangan }}</td>
-                                            <td>S</td>
+                                            <td>{{ $jenisPelanggan->jns_rekswasta }}</td>
                                             <td>
-                                                <button type="submit" class="btn btn-danger btn-sm"
-                                                    onclick="deleteJenisPelanggan({{ $jenisPelanggan->id }})"><i
-                                                        class="fas fa-trash-alt"></i> Hapus</button>
-                                                <button type="button" class="btn btn-success btn-sm" data-toggle="modal"
-                                                    data-target="#edit"><i class="fas fa-edit"></i> Edit</button>
+                                                <form action="{{ route('jenisPelanggan.destroy', $jenisPelanggan->jns_pelanggan) }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-sm"
+                                                        onclick="deleteJenisPelanggan({{ $jenisPelanggan->jns_pelanggan }})"><i
+                                                            class="fas fa-trash-alt"></i> Hapus</button>
+                                                    <button type="button" class="btn btn-success btn-sm" data-toggle="modal"
+                                                        data-target="#edit"><i class="fas fa-edit"></i> Edit</button>
+                                                </form>
                                             </td>
                                         </tr>
                                     @endforeach

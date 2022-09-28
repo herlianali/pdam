@@ -22,7 +22,7 @@
 
         <ul class="nav nav-treeview">
             <li class="nav-item">
-                <a href="{{ route('petugasPengaduan') }}" class="nav-link {{ Request::segment(2) == 'petugasPengaduan' ? 'active' : '' }}">
+                <a href="{{ route('petugasPengaduan.index') }}" class="nav-link {{ Request::segment(2) == 'petugasPengaduan' ? 'active' : '' }}">
                     <i class="far fa-circle fa-10x nav-icon"></i>
                     <small>
                         <p>Petugas Entry Pengaduan</p>
@@ -30,7 +30,7 @@
                 </a>
             </li>
             <li class="nav-item ">
-                <a href="{{ route('jenisPengaduan') }}" class="nav-link {{ Request::segment(2) == 'jenisPengaduan' || Request::segment(2) == 'printPengaduan'  ? 'active' : '' }}">
+                <a href="{{ route('jenisPengaduan.index') }}" class="nav-link {{ Request::segment(2) == 'jenisPengaduan' || Request::segment(2) == 'printPengaduan'  ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <small>
                         <p>Jenis Pengaduan</p>
@@ -70,7 +70,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('petugasKontrol') }}" class="nav-link {{ Request::segment(2) == 'petugasKontrol' ? 'active' : '' }}">
+                <a href="{{ route('petugasKontrol.index') }}" class="nav-link {{ Request::segment(2) == 'petugasKontrol' ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <small>
                         <p>Petugas Kontrol</p>
@@ -86,7 +86,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('kondisiTutupan') }}" class="nav-link {{ Request::segment(2) == 'kondisiTutupan' ? 'active' : '' }}">
+                <a href="{{ route('kondisiTutupan.index') }}" class="nav-link {{ Request::segment(2) == 'kondisiTutupan' ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <small>
                         <p>Kondisi Tutupan</p>

@@ -48,8 +48,9 @@
                                             <label for="jenis_bonp" class="col-md-2 col-form-label">Jenis BON P </label>
                                             <div class="col-md-8">
                                                 <select class="form-control" id="jenis_bonp" onkeyup="valueing()" name="jenis_bonp">
-                                                    <option value=""> </option>
-                                                    <option value=""> </option>
+                                                    @foreach ($jnsBonp as $jb)
+                                                        <option value="{{ $jb->kode }}">{{ $jb->kode }} - {{ $jb->keterangan }}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>
@@ -101,11 +102,11 @@
                                     @foreach ($jnsPekerjaan as $jenisPekerjaan)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            <td>{{ $jenisPekerjaan->jenis_pekerjaan }}</td>
+                                            <td>{{ $jenisPekerjaan->jns_pekerjaan }}</td>
                                             <td>{{ $jenisPekerjaan->keterangan }}</td>
-                                            <td>{{ $jenisPekerjaan->jenis_bon_p }}</td>
-                                            <td>{{ $jenisPekerjaan->beban }}</td>
-                                            <td>{{ $jenisPekerjaan->kel_bon_p }}</td>
+                                            <td>{{ $jenisPekerjaan->jenis_bonp }}</td>
+                                            <td>{{ $jenisPekerjaan->beban_plg }}</td>
+                                            <td>{{ $jenisPekerjaan->kel_bonp }}</td>
                                             <td>
                                                 <button type="submit" class="btn btn-xs btn-danger "
                                                     onclick="deletejenisPekerjaan({{ $jenisPekerjaan->id }})"><i

@@ -72,7 +72,7 @@
                                     @foreach ($pDinass as $pDinas)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            <td>{{ $pDinas->jp_dinas }}</td>
+                                            <td>{{ $pDinas->jns_pdinas }}</td>
                                             <td>{{ $pDinas->keterangan }}</td>
                                             <td>
                                                 <button type="submit" class="btn btn-xs btn-danger "

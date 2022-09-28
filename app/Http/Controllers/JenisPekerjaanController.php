@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\JenisBonp;
 use Illuminate\Http\Request;
 use App\Models\JenisPekerjaan;
 
@@ -10,10 +11,11 @@ class JenisPekerjaanController extends Controller
     public function index()
     {
         $jnsPekerjaan = JenisPekerjaan::all();
-        return view('master.jenisPekerjaan.index', compact('jnsPekerjaan'))->with('i');
+        $jnsBonp      = JenisBonp::all();
+        return view('master.jenisPekerjaan.index', compact(['jnsPekerjaan', 'jnsBonp']))->with('i');
     }
 
-    
+
     public function show($id)
     {
         $jenisPekerjaan = JenisPekerjaan::find($id);

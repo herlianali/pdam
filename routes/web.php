@@ -13,7 +13,7 @@ use App\Http\Controllers\PetugasEntryController;
 use App\Http\Controllers\PetugasKhususController;
 use App\Http\Controllers\PetugasKontrolController;
 use App\Http\Controllers\PetugasKorektorController;
-use App\Http\Controllers\petugasPengaduanController;
+use App\Http\Controllers\PetugasPengaduanController;
 use App\Http\Controllers\RetribusiController;
 use App\Http\Controllers\StatusAirController;
 use App\Http\Controllers\StatusMeterController;
@@ -28,6 +28,7 @@ use App\Http\Controllers\CekSurveyTarifController;
 use App\Http\Controllers\InsertPosisiMeterController;
 use App\Http\Controllers\SurveyTarifController;
 use App\Http\Controllers\GunaPersilController;
+use App\Models\JenisPengaduan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -48,22 +49,25 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 
 Route::prefix('master')->group(function () {
 
-    Route::get('/petugasPengaduan', [petugasPengaduanController::class, 'index'])->name('petugasPengaduan');
-   
-    Route::get('/jenisPengaduan', [JenisPengaduanController::class, 'index'])->name('jenisPengaduan');
-    Route::get('/printPengaduan', [JenisPengaduanController::class, 'print'])->name('printPengaduan');
-    Route::delete('/deletejenisPengaduan/{id}',[JenisPengaduanController::class,'destroy']);
+    Route::resource('petugasPengaduan', PetugasPengaduanController::class)->parameters(['petugasPengaduan' => 'kd_ptgcs']);
 
+    Route::resource('jenisPengaduan', JenisPengaduanController::class)->parameters(['jenisPengaduan' => 'jns_pengaduan']);
+    Route::get('/printPengaduan', [JenisPengaduanController::class, 'print'])->name('printPengaduan');
+
+    Route::resource('jenisPelanggan', JenisPelangganController::class)->parameters(['jenisPelanggan' => 'jns_pelanggan']);
+    Route::get('/petugasKhusus', [PetugasKhususController::class, 'index'])->name('petugasKhusus');
+    Route::post('/petugasKhusus', [PetugasKhususController::class, 'store'])->name('petugasKhusus.store');
+
+    Route::resource('petugasKontrol', PetugasKontrolController::class)->parameters(['petugasKontrol' => 'kd_ptgktrl']);
+    Route::get('/printpetugasKontrol', [PetugasKontrolController::class, 'print'])->name('printpetugasKontrol');
+    // Route::delete('/deletePetugasKontrol/{id}', [PetugasKontrolController::class, 'destroy']);
 
     Route::get('/jenisPekerjaan', [JenisPekerjaanController::class, 'index'])->name('jenisPekerjaan');
     Route::get('/printjenisPekerjaan', [JenisPekerjaanController::class, 'print'])->name('printjenisPekerjaan');
     Route::delete('/deletejenisPekerjaan/{id}', [JenisPekerjaanController::class, 'destroy']);
 
-    Route::get('/petugasKhusus', [PetugasKhususController::class, 'index'])->name('petugasKhusus');
-
-    Route::get('/petugasKontrol', [PetugasKontrolController::class, 'index'])->name('petugasKontrol');
-    Route::get('/printpetugasKontrol', [PetugasKontrolController::class, 'print'])->name('printpetugasKontrol');
-    Route::delete('/deletePetugasKontrol/{id}', [PetugasKontrolController::class, 'destroy']);
+    Route::resource('kondisiTutupan', KondisiTutupanController::class)->parameters(['kondisiTutupan' => 'kd_kondisi']);
+    Route::get('/printkondisiTutupan', [KondisiTutupanController::class, 'print'])->name('printkondisiTutupan');
 
     Route::get('/petugasKorektor', [PetugasKorektorController::class, 'index'])->name('petugasKorektor');
     Route::get('/laporanpetugasKorektor',[PetugasKorektorController::class,'laporan'])->name('laporanpetugasKorektor');
@@ -72,19 +76,15 @@ Route::prefix('master')->group(function () {
     Route::get('/viewptspetugasKorektor', [PetugasKorektorController::class, 'viewpts'])->name('viewptspetugasKorektor');
     Route::get('/monitoringpetugasKorektor', [PetugasKorektorController::class, 'monitoring'])->name('monitoringpetugasKorektor');
     Route::get('/koreksipetugasKorektor', [PetugasKorektorController::class, 'koreksi'])->name('koreksipetugasKorektor');
-    
 
     Route::get('/petugasEntry', [PetugasEntryController::class, 'index'])->name('petugasEntry');
     Route::get('/printpetugasEntry', [PetugasEntryController::class, 'print'])->name('printpetugasEntry');
     Route::delete('/deletepetugasEntry/{id}', [PetugasEntryController::class, 'destroy']);
 
-    
     Route::get('/gunaPersil', [GunaPersilController::class, 'index'])->name('gunaPersil');
     Route::delete('/deletegunaPersil/{id}', [GunaPersilController::class, 'destroy']);
     Route::get('/printgunaPersil',[GunaPersilController::class,'print'])->name('printgunaPersil');
-    Route::get('/kondisiTutupan', [KondisiTutupanController::class, 'index'])->name('kondisiTutupan');
-    Route::get('/printkondisiTutupan', [KondisiTutupanController::class, 'print'])->name('printkondisiTutupan');
-    Route::delete('/deletekondisiTutupan/{id}',[KondisiTutupanController::class, 'destroy']);
+
 
     Route::get('/retribusi', [RetribusiController::class, 'index'])->name('retribusi');
     Route::get('/printretribusi', [RetribusiController::class, 'print'])->name('printretribusi');
@@ -110,7 +110,6 @@ Route::prefix('master')->group(function () {
     Route::get('/printmerekMeter', [MerekMeterController::class, 'print'])->name('printmerekMeter');
     Route::delete('/deleteMerekMeter/{id}', [MerekMeterController::class, 'destroy']);
 
-
     Route::get('/materai', [MateraiController::class, 'index'])->name('materai');
     Route::get('/printmaterai', [MateraiController::class, 'print'])->name('printmaterai');
     Route::delete('/deletematerai/{id}', [MateraiController::class, 'destroy']);
@@ -121,7 +120,7 @@ Route::prefix('master')->group(function () {
     Route::get('/printpanggilanDinas', [PanggilanDinasController::class, 'print'])->name('printpanggilanDinas');
     Route::put('/updatepanggilanDinas.{id}', [PanggilanDinasController::class, 'update']);
     Route::delete('/deletePanggilanDinas/{id}', [PanggilanDinasController::class, 'destroy']);
- 
+
     Route::get('/monitoringPelanggan', [MonitoringPelangganController::class, 'index'])->name('monitoringPelanggan');
     Route::get('/monitoringPelanggan.{id}', [MonitoringPelangganController::class, 'show']);
     Route::delete('/deletemonitoringPelanggan/{id}', [MonitoringPelangganController::class, 'destroy']);
@@ -129,7 +128,6 @@ Route::prefix('master')->group(function () {
 
     Route::get('/penetapanTeraMeter', [PenetapanTeraMeterController::class, 'index'])->name('penetapanTeraMeter');
     Route::get('/printpenetapanTeraMeter', [PenetapanTeraMeterController::class, 'print'])->name('printpenetapanTeraMeter');
-    
 
     Route::get('/insertPosisiMeter', [InsertPosisiMeterController::class, 'index'])->name('insertPosisiMeter');
 
@@ -142,12 +140,10 @@ Route::prefix('master')->group(function () {
 
     Route::get('/printsurveyTarif', [SurveyTarifController::class, 'print'])->name('printsurveyTarif');
     Route::get('/createsurveyTarif', [SurveyTarifController::class, 'create'])->name('createsurveyTarif');
-    
+
     Route::get('/cekSurveyTarif',  [CekSurveyTarifController::class,'index'])->name('cekSurveyTarif');
 
     Route::get('/telponPelanggan',  [TelponPelangganController::class,'index'])->name('telponPelanggan');
-   
-    Route::resource('jenisPelanggan', JenisPelangganController::class);
 
     Route::get('/mlnCode', [ MLNCodeController::class,'index'])->name('mlnCode');
 
