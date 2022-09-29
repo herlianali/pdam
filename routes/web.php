@@ -198,7 +198,7 @@ Route::prefix('BAMutasiPelanggan')->group(function () {
     Route::get('/monitoringBAMutasiKolektif', [ monitoringBAMutasiKolektifController::class, 'index'])->name('monitoringBAMutasiKolektif');
     Route::get('/previewmonitoringBAMutasiKolektif', [ monitoringBAMutasiKolektifController::class, 'preview'])->name('previewmonitoringBAMutasiKolektif');
     Route::get('/persetujuan', [ monitoringBAMutasiKolektifController::class, 'persetujuan'])->name('persetujuan');
-    Route::get('/pdinasmonitoringBAMutasiKolektif', [ monitoringBAMutasiKolektifController::class, 'pdinas'])->name('pdinasmonitoringBAMutasiKolektif');
+  //  Route::get('/pdinasmonitoringBAMutasiKolektif', [ monitoringBAMutasiKolektifController::class, 'pdinas'])->name('pdinasmonitoringBAMutasiKolektif');
     Route::get('/createmonitoringBAMutasiKolektif', [ monitoringBAMutasiKolektifController::class, 'create'])->name('createmonitoringBAMutasiKolektif');
     Route::get('/cetakUsulanmonitoringBAMutasiKolektif', [ monitoringBAMutasiKolektifController::class, 'cetakusulan'])->name('cetakUsulanmonitoringBAMutasiKolektif');
     Route::get('/cetakLampiranmonitoringBAMutasiKolektif', [ monitoringBAMutasiKolektifController::class, 'cetaklampiran'])->name('cetakLampiranmonitoringBAMutasiKolektif');
@@ -214,7 +214,7 @@ Route::prefix('BAMutasiPelanggan')->group(function () {
     Route::get('/editmonitoringBAMutasiPerorangan', [ monitoringBAMutasiPeroranganController::class, 'edit'])->name('editmonitoringBAMutasiPerorangan');
     Route::get('/persetujuanmonitoringBAMutasiPerorangan', [ monitoringBAMutasiPeroranganController::class, 'persetujuan'])->name('persetujuanmonitoringBAMutasiPerorangan');
     Route::get('/cetakBA', [ monitoringBAMutasiPeroranganController::class, 'cetakBA'])->name('cetakBA');
-    Route::get('/panggilanDinas', [ monitoringBAMutasiPeroranganController::class, 'panggilanDinas'])->name('panggilanDinas');
+    Route::get('/cetakpanggilanDinas', [ monitoringBAMutasiPeroranganController::class, 'cetakpanggilanDinas'])->name('cetakpanggilanDinas');
     Route::get('/cetakBATarif', [ monitoringBAMutasiPeroranganController::class, 'cetakBATarif'])->name('cetakBATarif');
     Route::get('/cetakUsulan', [ monitoringBAMutasiPeroranganController::class, 'cetakUsulan'])->name('cetakUsulan');
     Route::get('/cetakPenolakanUsulan', [ monitoringBAMutasiPeroranganController::class, 'cetakPenolakanUsulan'])->name('cetakPenolakanUsulan');

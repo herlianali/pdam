@@ -39,8 +39,8 @@ class monitoringBAMutasiPeroranganController extends Controller
     {
         return view('BAMutasiPelanggan.monitoringBAMutasiPerorangan.cetakBATarif');
     }
-    public function panggilanDinas()
+    public function cetakpanggilanDinas()
     {
-        return view('BAMutasiPelanggan.monitoringBAMutasiPerorangan.panggilanDinas');
+        return view('BAMutasiPelanggan.monitoringBAMutasiPerorangan.cetakpanggilanDinas');
     }
 }

@@ -5,11 +5,6 @@
     <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
-    <style>
-        p {
-            color: red;
-        }
-    </style>
 @endpush
 
 @section('namaHal', 'Mutasi Pemakaian')
@@ -76,7 +71,7 @@
                                             </div>
                                             <div class="col"></div>
                                             <div class="col-md-3">
-                                                <p><b>Batas CutOff HUBUNGI TSI!</b></p>
+                                                <p ><b>Batas CutOff HUBUNGI TSI!</b></p>
                                             </div>
                                         </div>
                                         <div class="form-group row mt-2 ">
