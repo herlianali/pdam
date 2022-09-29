@@ -4,8 +4,6 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\JenisPekerjaanController;
 use App\Http\Controllers\JenisPelangganController;
 use App\Http\Controllers\JenisPengaduanController;
-use App\Http\Controllers\KondisiTutupanController;
-use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MateraiController;
 use App\Http\Controllers\MerekMeterController;
 use App\Http\Controllers\PanggilanDinasController;
@@ -25,10 +23,24 @@ use App\Http\Controllers\PelangganMeterCController;
 use App\Http\Controllers\MonitoringPelangganController;
 use App\Http\Controllers\PenetapanTeraMeterController;
 use App\Http\Controllers\CekSurveyTarifController;
+use App\Http\Controllers\CetakBAPeroranganController;
 use App\Http\Controllers\InsertPosisiMeterController;
 use App\Http\Controllers\SurveyTarifController;
 use App\Http\Controllers\GunaPersilController;
-use App\Models\JenisPengaduan;
+use App\Http\Controllers\HistoriMutasiController;
+use App\Http\Controllers\InformasiPelunasanRekeningController;
+use App\Http\Controllers\LaporanRekapitulasiNaikTurunController;
+use App\Http\Controllers\KondisiTutupanController;
+use App\Http\Controllers\LaporanPerubahanTNTperBulanController;
+use App\Http\Controllers\LaporanRekapitulasiPerubahanTarifController;
+use App\Http\Controllers\LaporanTarifPerBendelController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\MonitoringBAMutasiKolektifController;
+use App\Http\Controllers\MonitoringBAMutasiPeroranganController;
+use App\Http\Controllers\MonitoringGunaPersilController;
+use App\Http\Controllers\MutasiKolektifController;
+use App\Http\Controllers\PengaduanController;
+use App\Http\Controllers\RiwayatPemakaianController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -49,24 +61,24 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 
 Route::prefix('master')->group(function () {
 
-    Route::resource('petugasPengaduan', PetugasPengaduanController::class)->parameters(['petugasPengaduan' => 'kd_ptgcs']);
+    Route::resource('petugasPengaduan', PetugasPengaduanController::class)->parameters(['petugasPengaduan' => 'kd_ptgcs'])->except(['create','edit']);
 
-    Route::resource('jenisPengaduan', JenisPengaduanController::class)->parameters(['jenisPengaduan' => 'jns_pengaduan']);
+    Route::resource('jenisPengaduan', JenisPengaduanController::class)->parameters(['jenisPengaduan' => 'jns_pengaduan'])->except(['create','edit']);
     Route::get('/printPengaduan', [JenisPengaduanController::class, 'print'])->name('printPengaduan');
 
-    Route::resource('jenisPelanggan', JenisPelangganController::class)->parameters(['jenisPelanggan' => 'jns_pelanggan']);
+    Route::resource('jenisPelanggan', JenisPelangganController::class)->parameters(['jenisPelanggan' => 'jns_pelanggan'])->except(['create','edit']);
     Route::get('/petugasKhusus', [PetugasKhususController::class, 'index'])->name('petugasKhusus');
     Route::post('/petugasKhusus', [PetugasKhususController::class, 'store'])->name('petugasKhusus.store');
 
-    Route::resource('petugasKontrol', PetugasKontrolController::class)->parameters(['petugasKontrol' => 'kd_ptgktrl']);
+    Route::resource('petugasKontrol', PetugasKontrolController::class)->parameters(['petugasKontrol' => 'kd_ptgktrl'])->except(['create','edit']);
     Route::get('/printpetugasKontrol', [PetugasKontrolController::class, 'print'])->name('printpetugasKontrol');
     // Route::delete('/deletePetugasKontrol/{id}', [PetugasKontrolController::class, 'destroy']);
 
-    Route::get('/jenisPekerjaan', [JenisPekerjaanController::class, 'index'])->name('jenisPekerjaan');
+    Route::resource('jenisPekerjaan', JenisPekerjaanController::class)->parameters(['jenisPekerjaan' => 'jns_pekerjaan'])->except(['create','edit']);
     Route::get('/printjenisPekerjaan', [JenisPekerjaanController::class, 'print'])->name('printjenisPekerjaan');
-    Route::delete('/deletejenisPekerjaan/{id}', [JenisPekerjaanController::class, 'destroy']);
+    // Route::delete('/deletejenisPekerjaan/{id}', [JenisPekerjaanController::class, 'destroy']);
 
-    Route::resource('kondisiTutupan', KondisiTutupanController::class)->parameters(['kondisiTutupan' => 'kd_kondisi']);
+    Route::resource('kondisiTutupan', KondisiTutupanController::class)->parameters(['kondisiTutupan' => 'kd_kondisi'])->except(['create','edit']);
     Route::get('/printkondisiTutupan', [KondisiTutupanController::class, 'print'])->name('printkondisiTutupan');
 
     Route::get('/petugasKorektor', [PetugasKorektorController::class, 'index'])->name('petugasKorektor');
@@ -77,9 +89,9 @@ Route::prefix('master')->group(function () {
     Route::get('/monitoringpetugasKorektor', [PetugasKorektorController::class, 'monitoring'])->name('monitoringpetugasKorektor');
     Route::get('/koreksipetugasKorektor', [PetugasKorektorController::class, 'koreksi'])->name('koreksipetugasKorektor');
 
-    Route::get('/petugasEntry', [PetugasEntryController::class, 'index'])->name('petugasEntry');
+    Route::resource('petugasEntry', PetugasEntryController::class)->parameters(['petugasEntry' => 'kd_ptgentry'])->except(['create','edit']);
     Route::get('/printpetugasEntry', [PetugasEntryController::class, 'print'])->name('printpetugasEntry');
-    Route::delete('/deletepetugasEntry/{id}', [PetugasEntryController::class, 'destroy']);
+    // Route::delete('/deletepetugasEntry/{id}', [PetugasEntryController::class, 'destroy']);
 
     Route::get('/gunaPersil', [GunaPersilController::class, 'index'])->name('gunaPersil');
     Route::delete('/deletegunaPersil/{id}', [GunaPersilController::class, 'destroy']);
@@ -149,4 +161,18 @@ Route::prefix('master')->group(function () {
 
     Route::get('/pelangganMeterC', [ PelangganMeterCController::class, 'index'])->name('pelangganMeterC');
 
+    Route::get('pengaduan', [PengaduanController::class, 'index'])->name('pengaduan');
+    Route::get('riwayatPemakaian', [RiwayatPemakaianController::class, 'index'])->name('riwayatPemakaian');
+    Route::get('informasiPelunasanRekening', [InformasiPelunasanRekeningController::class, 'index'])->name('informasiPelunasanRekening');
+    Route::get('monitoringGunaPersil', [MonitoringGunaPersilController::class, 'index'])->name('monitoringGunaPersil');
+    Route::get('historiMutasi', [HistoriMutasiController::class, 'index'])->name('historiMutasi');
+    Route::get('monitoringBAMutasiKolektif', [MonitoringBAMutasiKolektifController::class, 'index'])->name('monitoringBAMutasiKolektif');
+    Route::get('monitoringBAMutasiPerorangan', [MonitoringBAMutasiPeroranganController::class, 'index'])->name('monitoringBAMutasiPerorangan');
+    Route::get('mutasiKolektif', [MutasiKolektifController::class, 'index'])->name('mutasiKolektif');
+    Route::get('laporanRekapitulasiPerubahanTarif', [LaporanRekapitulasiPerubahanTarifController::class, 'index'])->name('laporanRekapitulasiPerubahanTarif');
+    Route::get('laporanPerubahanTNTperBulan', [LaporanPerubahanTNTperBulanController::class, 'index'])->name('laporanPerubahanTNTperBulan');
+    Route::get('laporanRekapitulasiNaikTurun', [LaporanRekapitulasiNaikTurunController::class, 'index'])->name('laporanRekapitulasiNaikTurun');
+    Route::get('laporanTarifPerBendel', [LaporanTarifPerBendelController::class, 'index'])->name('laporanTarifPerBendel');
+    Route::get('cetakBAPerorangan', [CetakBAPeroranganController::class, 'index'])->name('cetakBAPerorangan');
+    // Route::get('cetakBAPerorangan', [CetakBAPeroranganController::class, 'index'])->name('cetakBAPerorangan');
 });

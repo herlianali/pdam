@@ -30,7 +30,7 @@
                         <div class="card-body">
                             <div class="row mb-4">
                                 <div class="col-md-8">
-                                    <form class="form-horizontal" action="" method="post">
+                                    <form class="form-horizontal" action="{{ route('petugasEntry.store') }}" method="post">
                                         @csrf
                                         <div class="form-group row mt-2 ">
                                             <label for="kode_ptgs" class="col-md-4 col-form-label">Kode Petugas </label>

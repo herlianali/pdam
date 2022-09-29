@@ -15,6 +15,50 @@ class JenisPekerjaanController extends Controller
         return view('master.jenisPekerjaan.index', compact(['jnsPekerjaan', 'jnsBonp']))->with('i');
     }
 
+    public function store(Request $request)
+    {
+        $request->validate([
+            'jns_pekerjaan' => 'required',
+            'keterangan'    => 'required',
+            'jenis_bonp'    => 'required',
+            'beban_plg'     => 'required',
+            'kel_bonp'      => 'required'
+        ]);
+
+        // dd($request->post());
+        JenisPekerjaan::insert([
+            'jns_pekerjaan' => $request->jns_pekerjaan,
+            'keterangan'    => $request->keterangan,
+            'jenis_bonp'    => $request->jenis_bonp,
+            'beban_plg'     => $request->beban_plg,
+            'kel_bonp'      => $request->kel_bonp
+        ]);
+
+        return redirect()->route('jenisPekerjaan.index');
+    }
+
+    public function update(Request $request, $jns_pekerjaan)
+    {
+        $request->validate([
+            'jns_pekerjaan' => 'required',
+            'keterangan'    => 'required',
+            'jenis_bonp'    => 'required',
+            'beban_plg'     => 'required',
+            'kel_bonp'      => 'required'
+        ]);
+
+        // dd($request->post());
+        JenisPekerjaan::where('jns_pekerjaan', $jns_pekerjaan)->update([
+            'jns_pekerjaan' => $request->jns_pekerjaan,
+            'keterangan'    => $request->keterangan,
+            'jenis_bonp'    => $request->jenis_bonp,
+            'beban_plg'     => $request->beban_plg,
+            'kel_bonp'      => $request->kel_bonp
+        ]);
+
+        return redirect()->route('jenisPekerjaan.index');
+    }
+
 
     public function show($id)
     {
@@ -23,14 +67,12 @@ class JenisPekerjaanController extends Controller
     }
 
 
-    public function destroy($id)
+    public function destroy($jns_pekerjaan)
     {
-        $jenisPekerjaan = JenisPekerjaan::findOrFail($id)->delete();
-        return response()->json([
-            'success' => true,
-            'message' => 'Data Jenis Pekerjaan Berhasil Dihapus',
-        ]);
+        $jenisPekerjaan = JenisPekerjaan::findOrFail($jns_pekerjaan)->delete();
+        return redirect()->route('jenisPekerjaan.index');
     }
+
     public function print()
     {
         return view('master.jenisPekerjaan.print');

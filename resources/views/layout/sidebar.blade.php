@@ -38,7 +38,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('jenisPekerjaan') }}" class="nav-link {{ Request::segment(2) == 'jenisPekerjaan' ? 'active' : '' }}">
+                <a href="{{ route('jenisPekerjaan.index') }}" class="nav-link {{ Request::segment(2) == 'jenisPekerjaan' ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <small>
                         <p>Jenis Pekerjaan</p>
@@ -78,7 +78,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('petugasEntry') }}" class="nav-link {{ Request::segment(2) == 'petugasEntry' ? 'active' : '' }}">
+                <a href="{{ route('petugasEntry.index') }}" class="nav-link {{ Request::segment(2) == 'petugasEntry' ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <small>
                         <p>Petugas Entry</p>
@@ -241,19 +241,19 @@
         </a>
         <ul class="nav nav-treeview">
             <li class="nav-item">
-                <a href="pengaduan" class="nav-link">
+                <a href="{{ route('pengaduan')}}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p><small>Pengaduan</small></p>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="riwayatPemakaian.index" class="nav-link">
+                <a href="{{ route('riwayatPemakaian')}}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p><small>Riwayat Pemakaian</small></p>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="informasiPelunasanRekening" class="nav-link">
+                <a href="{{ route ('informasiPelunasanRekening')}}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p><small>Informasi Pelunasan Rekening</small></p>
                 </a>
@@ -281,21 +281,102 @@
         <a href="#" class="nav-link">
           <i class="nav-icon fas fa-file-prescription"></i>
           <p>
-            BA Mutasai Pelanggaran
+            BA Mutasi Pelanggan
             <i class="right fas fa-angle-left"></i>
           </p>
         </a>
         <ul class="nav nav-treeview">
           <li class="nav-item">
-            <a href="pages/UI/general.html" class="nav-link">
+            <a href="{{ route('monitoringGunaPersil')}}" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
-              <p><small>BA Mutasai Pelanggaran</small></p>
+              <p><small> Monitoring Guna Persil</small></p>
             </a>
           </li>
         </ul>
+        <ul class="nav nav-treeview">
+          <li class="nav-item">
+            <a href="{{ route('historiMutasi')}}" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p><small> Histori Mutasi</small></p>
+            </a>
+          </li>
+        </ul>
+        <ul class="nav nav-treeview">
+          <li class="nav-item">
+            <a href="{{ route('monitoringBAMutasiKolektif')}}" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p><small> Monitoring BA Mutasi Kolektif</small></p>
+            </a>
+          </li>
+        </ul>
+        <ul class="nav nav-treeview">
+          <li class="nav-item">
+            <a href="{{ route('mutasiKolektif')}}" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p><small> Entri BA Mutasi Jenis Pelanggan, Bundel, Sub Zona</small></p>
+            </a>
+          </li>
+        </ul>
+        <ul class="nav nav-treeview">
+          <li class="nav-item">
+            <a href="{{ route('monitoringBAMutasiPerorangan')}}" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p><small> Monitoring BA Mutasi Perorangan</small></p>
+            </a>
+          </li>
+        </ul>
+        <ul class="nav nav-treeview">
+          <li class="nav-item">
+            <a href="{{ route('laporanRekapitulasiPerubahanTarif')}}" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p><small> Laporan Rekapitulasi Perubahan Tarif</small></p>
+            </a>
+          </li>
+        </ul>
+        <ul class="nav nav-treeview">
+          <li class="nav-item">
+            <a href="{{ route('laporanPerubahanTNTperBulan')}}" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p><small> Laporan Perubahan Tarif Naik/Turun per Bulan</small></p>
+            </a>
+          </li>
+        </ul>
+        <ul class="nav nav-treeview">
+          <li class="nav-item">
+            <a href="{{ route('laporanRekapitulasiNaikTurun')}}" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p><small> Laporan Rekapitulasi Naik Turun</small></p>
+            </a>
+          </li>
+        </ul>
+        <ul class="nav nav-treeview">
+          <li class="nav-item">
+            <a href="{{ route('laporanTarifPerBendel')}}" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p><small> Laporan Tarif Per Bendel</small></p>
+            </a>
+          </li>
+        </ul>
+        <ul class="nav nav-treeview">
+          <li class="nav-item">
+            <a href="{{ route('cetakBAPerorangan')}}" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p><small> Cetak BA Perorangan</small></p>
+            </a>
+          </li>
+        </ul>
+        <ul class="nav nav-treeview">
+          <li class="nav-item">
+            {{-- <a href="{{ route('entriSurat')}}" class="nav-link"> --}}
+              <i class="far fa-circle nav-icon"></i>
+              <p><small> Surat Pemberitahuan Rekategori Tarif</small></p>
+            </a>
+          </li>
+        </ul>
+
       </li>
       <li class="nav-item">
-        <a href="#" class="nav-link">
+        <a href="" class="nav-link">
           <i class="nav-icon fas fa-edit"></i>
           <p>
             Mutasi Pemakaian
@@ -304,9 +385,9 @@
         </a>
         <ul class="nav nav-treeview">
           <li class="nav-item">
-            <a href="pages/forms/general.html" class="nav-link">
+            {{-- <a href="{{ route('usulanMutasiTarif')}}" class="nav-link"> --}}
               <i class="far fa-circle nav-icon"></i>
-              <p><small></small></p>
+              <p><small>Usulan Mutasi Tarif</small></p>
             </a>
           </li>
         </ul>

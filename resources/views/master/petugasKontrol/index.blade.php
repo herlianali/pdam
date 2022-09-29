@@ -89,7 +89,15 @@
                                             <td>{{ $ptKontrol->kd_ptgktrl }}</td>
                                             <td>{{ $ptKontrol->nip }}</td>
                                             <td>{{ $ptKontrol->nama }}</td>
-                                            <td>{{ $ptKontrol->is_satgas }}</td>
+                                            <td>
+                                                @if ($ptKontrol->is_satgas == 1)
+                                                    <span class="badge badge-success"><i
+                                                        class="fas fa-check-circle"></i> Ya</span>
+                                                @else
+                                                    <span class="badge badge-danger"><i
+                                                            class="fas fa-times-circle"></i> Tidak</span>
+                                                @endif
+                                            </td>
                                             <td>
                                                 <button type="submit" class="btn btn-xs btn-danger "
                                                     onclick="deletePetugasKontrol({{ $ptKontrol->kd_ptgktrl }})"><i

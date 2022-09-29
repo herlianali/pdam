@@ -29,6 +29,22 @@ class JenisPelangganController extends Controller
         return redirect()->route('jenisPelanggan.index');
     }
 
+    public function update(Request $request, $jns_pelanggan)
+    {
+        // $request->validate([
+        //     'jns_pelanggan' => 'required|max:255',
+        //     'keterangan'    => 'required'
+        // ]);
+
+        JenisPelanggan::where('jns_pelanggan', $jns_pelanggan)->update([
+            'jns_pelanggan' => $request->jns_pelanggan,
+            'keterangan'    => $request->keterangan,
+            'jns_rekswasta' => "S"
+        ]);
+
+        return redirect()->route('jenisPelanggan.index');
+    }
+
     public function show($id)
     {
         $jenisPelanggan = JenisPelanggan::find($id);

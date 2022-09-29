@@ -13,7 +13,11 @@ class PetugasEntryController extends Controller
         return view('master.petugasEntry.index', compact('pEntry'))->with('i');
     }
 
-    
+    public function store(Request $request)
+    {
+        dd($request->post());
+    }
+
     public function show($id)
     {
         $ptsEntry = PetugasEntry::find($id);
@@ -21,13 +25,10 @@ class PetugasEntryController extends Controller
     }
 
 
-    public function destroy($id)
+    public function destroy($kd_ptgentry)
     {
-        $ptsEntry = PetugasEntry::findOrFail($id)->delete();
-        return response()->json([
-            'success' => true,
-            'message' => 'Data Petugas Entry Berhasil Dihapus',
-        ]);
+        PetugasEntry::findOrFail($kd_ptgentry)->delete();
+        return redirect()->route('petugasEntry');
     }
     public function print()
     {

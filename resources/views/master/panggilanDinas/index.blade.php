@@ -59,7 +59,7 @@
                                 </div>
                             </div>
 
-                            <table id="table" class="table table-bordered table-responsive-md table-condensed">
+                            <table id="table" class="table table-bordered table-responsive-md table-condensed" >
                                 <thead>
                                     <tr>
                                         <th width="10%">No </th>
