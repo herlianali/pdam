@@ -10,105 +10,115 @@
 
 @section('namaHal', 'Master')
 @section('breadcrumb')
-    <ol class="breadcrumb float-sm-right">
-        <li class="breadcrumb-item"><a href="{{ route('petugasKorektor') }}">Master Petugas</a></li>
-        <li class="breadcrumb-item active">Laporan</li>
-        <li class="breadcrumb-item"><a href="{{ route('randompetugasKorektor') }}">Random Penugasan</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('viewsisapetugasKorektor') }}">View Sisa Random Penugasan</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('viewptspetugasKorektor') }}">View Penugasan</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('monitoringpetugasKorektor') }}">Monitoring Petugas</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('koreksipetugasKorektor') }}">Koreksi Penugasan</a></li>
 
-    </ol>
 @endsection
 
 @section('content')
     <section class="content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Laporan</h3>
-                         <a href="#" class="btn btn-xs btn-success float-right"><i class="fas fa-print"></i> Cetak Tabel</a>
-                        </div>
-                        <div class="card-body">
-                            <div class="row mb-4">
-                                <div class="col-md-12">
-                                    <form class="form-horizontal">
-                                        <div class="form-group row mt-2">
-                                            <label for="tgl" class="col-md-2 col-form-label">Tanggal </label>
-                                            <div class="col-md-2">
-                                                <input type="date" class="form-control" id="tgl" name="tgl"
-                                                    onkeyup="valueing()">
-                                            </div>
-                                            <label for="thbl" class="col-form-label">THBL </label>
-                                            <div class="col-md-2">
-                                                <input type="date" class="form-control" id="thbl" name="thbl"
-                                                    onkeyup="valueing()">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row mt-2">
-                                            <label for="nip" class="col-md-2 col-form-label">NIP </label>
-                                            <div class="col-md-2">
-                                                <select class="form-control"  name="nip" id="nip" onkeyup="valueing()">
-                                                    <option value="">  </option>
-                                                    <option value="">  </option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row mt-2">
-                                            <label for="periode_tagih" class="col-md-2 col-form-label">Periode Tagih </label>
-                                            <div class="col-md-2">
-                                                <select class="form-control" id="periode_tagih" name="periode_tagih" onkeyup="valueing()">
-                                                    <option value="">  </option>
-                                                    <option value="">  </option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row mt-2">
-                                            <label for="" class="col-md-2 col-form-label"></label>
-                                            <div class="col-md-10">
-                                                <input type="checkbox">
-                                                <label for="potensial" class="col-form-label">Potensial</label>
-                                                <br>
-                                                <input type="checkbox">
-                                                <label for="waktu" class=" col-form-label">Waktu</label>
-                                                <div class="form-group row">
-                                                    <label for="" class="col-md-3 col-form-label"></label>
-                                                    <div class="col-md-3">
-                                                        <button class="btn btn-success btn-sm" type="submit"><i
-                                                                class=""></i> Tampil</button>
-                                                        <button type="submit" class="btn btn-danger btn-sm"><i
-                                                                class=""></i> Pantau</button>
-                                                    </div>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input type="radio" class="form-check-input" id="laporan_bulanan_per_pertugas"
-                                                        name="pilih">
-                                                    <label class="form-check-label">Laporan Bulanan per Petugas Korektor
-                                                    </label>
-                                                    <br>
-                                                    <input type="radio" class="form-check-input" id="laporan_bulanan_semua_petugas"
-                                                        name="pilih">
-                                                    <label class="form-check-label">Laporan Bulanan semua Petugas
-                                                        Korektor</label>
-                                                    <br>
-                                                    <input type="radio" class="form-check-input" id="laporan_honorium_kelebihan_beban_petugas_korektor"
-                                                        name="pilih">
-                                                    <label class="form-check-label">Laporan Honorium Kelebihan Beban
-                                                        Petugas Korektor</label>
-                                                </div>
-                                                <input type="radio" class="form-check-input" id="laporan_honorium_kelebihan_beban_petugas_korektor_direksi"
-                                                    name="pilih">
-                                                <label class="form-check-label">Laporan Honorium Kelebihan Beban Petugas
-                                                    Korektor(Direksi)</label>
-                                                </div>
-                                        </div>
-                                    </form>
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('petugasKorektor') }}">Master Petugas</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="{{ route('laporanpetugasKorektor') }}">Laporan</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('randompetugasKorektor') }}">Random Penugasan</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('viewptspetugasKorektor') }}">View Penugasan</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('monitoringpetugasKorektor') }}">Monitoring Petugas</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('koreksipetugasKorektor') }}">Koreksi Penugasan</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('viewsisapetugasKorektor') }}">View Sisa Random Penugasan</a>
+            </li>
+        </ul>
+
+        <div class="card">
+
+            <div class="card-body">
+                <div class="row mb-4">
+                    <div class="col-md-12">
+                        <form class="form-horizontal">
+                            <div class="form-group row mt-2">
+                                <label for="tgl" class="col-md-2 col-form-label">Tanggal </label>
+                                <div class="col-md-2">
+                                    <input type="date" class="form-control" id="tgl" name="tgl"
+                                        onkeyup="valueing()">
+                                </div>
+                                <label for="thbl" class="col-form-label">THBL </label>
+                                <div class="col-md-2">
+                                    <input type="date" class="form-control" id="thbl" name="thbl"
+                                        onkeyup="valueing()">
                                 </div>
                             </div>
-                        </div>
+                            <div class="form-group row mt-2">
+                                <label for="nip" class="col-md-2 col-form-label">NIP </label>
+                                <div class="col-md-2">
+                                    <select class="form-control" name="nip" id="nip" onkeyup="valueing()">
+                                        <option value=""> </option>
+                                        <option value=""> </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row mt-2">
+                                <label for="periode_tagih" class="col-md-2 col-form-label">Periode Tagih </label>
+                                <div class="col-md-2">
+                                    <select class="form-control" id="periode_tagih" name="periode_tagih"
+                                        onkeyup="valueing()">
+                                        <option value=""> </option>
+                                        <option value=""> </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row mt-2">
+                                <label for="" class="col-md-2 col-form-label"></label>
+                                <div class="col-md-10">
+                                    <input type="checkbox">
+                                    <label for="potensial" class="col-form-label">Potensial</label>
+                                    <br>
+                                    <input type="checkbox">
+                                    <label for="waktu" class=" col-form-label">Waktu</label>
+                                    <div class="form-group row">
+                                        <label for="" class="col-md-3 col-form-label"></label>
+                                        <div class="col-md-3">
+                                            <button class="btn btn-success btn-sm" type="submit"><i class=""></i>
+                                                Tampil</button>
+                                            <button type="submit" class="btn btn-danger btn-sm"><i class=""></i>
+                                                Pantau</button>
+                                        </div>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="radio" class="form-check-input" id="laporan_bulanan_per_pertugas"
+                                            name="pilih">
+                                        <label class="form-check-label">Laporan Bulanan per Petugas Korektor
+                                        </label>
+                                        <br>
+                                        <input type="radio" class="form-check-input" id="laporan_bulanan_semua_petugas"
+                                            name="pilih">
+                                        <label class="form-check-label">Laporan Bulanan semua Petugas
+                                            Korektor</label>
+                                        <br>
+                                        <input type="radio" class="form-check-input"
+                                            id="laporan_honorium_kelebihan_beban_petugas_korektor" name="pilih">
+                                        <label class="form-check-label">Laporan Honorium Kelebihan Beban
+                                            Petugas Korektor</label>
+                                    </div>
+                                    <input type="radio" class="form-check-input"
+                                        id="laporan_honorium_kelebihan_beban_petugas_korektor_direksi" name="pilih">
+                                    <label class="form-check-label">Laporan Honorium Kelebihan Beban Petugas
+                                        Korektor(Direksi)</label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
     </section>
 @endsection
 
