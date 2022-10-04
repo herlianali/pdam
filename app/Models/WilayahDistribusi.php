@@ -9,5 +9,6 @@ class WilayahDistribusi extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
     protected $table = "WILAYAH_DIST";
 }

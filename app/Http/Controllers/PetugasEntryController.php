@@ -15,7 +15,16 @@ class PetugasEntryController extends Controller
 
     public function store(Request $request)
     {
-        dd($request->post());
+        // dd($request->post());
+
+        PetugasEntry::insert([
+            'kd_ptgentry' => $request->kd_ptgentry,
+            'nip'         => $request->nip,
+            'nama'        => $request->nama,
+            'aktif'       => "Y"
+        ]);
+
+        return redirect()->route('petugasEntry.index');
     }
 
     public function show($id)

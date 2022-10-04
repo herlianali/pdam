@@ -97,14 +97,13 @@ Route::prefix('master')->group(function () {
     Route::delete('/deletegunaPersil/{id}', [GunaPersilController::class, 'destroy']);
     Route::get('/printgunaPersil',[GunaPersilController::class,'print'])->name('printgunaPersil');
 
-
-    Route::get('/retribusi', [RetribusiController::class, 'index'])->name('retribusi');
+    Route::resource('retribusi', RetribusiController::class)->parameters(['retribusi' => 'kd_retribusi'])->except(['create', 'edit']);
     Route::get('/printretribusi', [RetribusiController::class, 'print'])->name('printretribusi');
-    Route::delete('/deleteRetribusi/{id}',[RetribusiController::class,'destroy']);
+    // Route::delete('/deleteRetribusi/{id}',[RetribusiController::class,'destroy']);
 
-    Route::get('/wilayahDistribusi', [WilayahDistribusiController::class, 'index'])->name('wilayahDistribusi');
+    Route::resource('/wilayahDistribusi', WilayahDistribusiController::class)->parameters(['wilayahDistribusi' => 'kd_wilayah'])->except(['create', 'edit']);
     Route::get('/printwilayahDistribusi', [WilayahDistribusiController::class, 'print'])->name('printwilayahDistribusi');
-    Route::delete('/deleteWilayahDistribusi/{id}',[WilayahDistribusiController::class,'destroy']);
+    // Route::delete('/deleteWilayahDistribusi/{id}',[WilayahDistribusiController::class,'destroy']);
 
     Route::get('/statusTanah', [StatusTanahController::class, 'index'])->name('statusTanah');
     Route::get('/printstatusTanah', [StatusTanahController::class, 'print'])->name('printstatusTanah');

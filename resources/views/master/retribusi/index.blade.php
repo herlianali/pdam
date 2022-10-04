@@ -31,11 +31,12 @@
                             <div class="row mb-4">
 
                                 <div class="col-md-8">
-                                    <form class="form-horizontal">
+                                    <form class="form-horizontal" action="{{ route('retribusi.store') }}" method="POST">
+                                        @csrf
                                         <div class="form-group row mt-2">
                                             <label for="rp_retribusi" class="col-md-2 col-form-label">Retribusi Rp. </label>
                                             <div class="col-md-7">
-                                                <input type="text" name="rp_retribusi" class="form-control" id="rp_retribusi" onkeyup="valueing()">
+                                                <input type="text" name="retribusi" class="form-control" onkeyup="valueing()">
                                             </div>
                                         </div>
 
@@ -70,16 +71,23 @@
                                             <td>{{ $retribusi->kd_retribusi }}</td>
                                             <td>{{ $retribusi->rp_retribusi }}</td>
                                             <td>
-                                                <button type="submit" class="btn btn-xs btn-danger "
-                                                    onclick="deleteRetribusi({{ $retribusi->id }})"><i
-                                                        class="fas fa-trash-alt"></i> Hapus</button>
-                                                <button type="button" class="btn btn-xs btn-success " data-toggle="modal"
-                                                    data-target="#form"><i class="fas fa-edit"></i> Edit</button>
+                                                <button type="submit"
+                                                        class="btn btn-xs btn-danger hapus"
+                                                        data-id="{{ $retribusi->kd_retribusi }}">
+                                                        <i class="fas fa-trash-alt"></i>
+                                                        Hapus
+                                                </button>
+                                                <button type="button"
+                                                        class="btn btn-xs btn-success edit"
+                                                        data-id="{{ $retribusi->kd_retribusi }}"
+                                                        data-toggle="modal"
+                                                        data-target="#form">
+                                                        <i class="fas fa-edit"></i>
+                                                        Edit
+                                                </button>
                                             </td>
                                         </tr>
                                     @endforeach
-
-
                                 </tbody>
                             </table>
                         </div>
@@ -121,52 +129,96 @@
             });
         });
 
-        function deleteRetribusi(id) {
-            console.log(id)
+        var showLoading = function() {
             swal.fire({
-                title: "Hapus Data?",
-                icon: 'question',
-                text: "Apakah Anda Yakin Ingin Menghapus",
-                type: "warning",
-                showCancelButton: !0,
-                confirmButtonColor: "#e74c3c",
-                confirmButtonText: "Iya",
-                cancelButtonText: "Tidak",
-                reverseButtons: !0
-            }).then(function(e) {
-                if (e.value === true) {
-                    let token = "{{ csrf_token() }}"
-                    let _url = `/master/deleteRetribusi/${id}`
-                    console.log(_url)
-
-                    $.ajax({
-                        type: 'DELETE',
-                        url: _url,
-                        data: {
-                            _token: token
-                        },
-                        success: function(resp) {
-                            if (resp.success) {
-                                swal.fire("Selesai!", resp.message, "success");
-                                location.reload();
-                            } else {
-                                swal.fire("Gagal!", "Terjadi Kesalahan.", "error");
-                            }
-                        },
-                        error: function(resp) {
-                            swal.fire("Gagal!", "Terjadi Kesalahan.", "error")
-                        }
-                    })
-                } else {
-                    e.dismiss;
-                }
-            }, function(dismiss) {
-                return false;
-            });
+                title: "Mohon Tunggu !",
+                html: "Sedang Memproses...",
+                allowOutsideClick: false,
+                showConfirmButton: false,
+                willOpen: () => {
+                    swal.showLoading()
+                },
+            })
         }
 
+        $(document).on('click', '.edit', function(e) {
+            e.preventDefault();
+            let kd_retribusi = $(this).data('id')
+            $.ajax({
+                type: "GET",
+                url: `{{ url('master/retribusi') }}/`+kd_retribusi,
+                data: {
+                    id: kd_retribusi,
+                    _token: '{{ csrf_token() }}'
+                },
+                beforeSend: function() {
+                    showLoading()
+                },
+                success: function(response) {
+                    $('#retribusi').val(response.rp_retribusi)
+                    $('#form-edit').attr('action', "{{ url('master/retribusi') }}/"+kd_retribusi)
+                    swal.close();
+                }
+            })
+        })
+
+        $('#edit-form').submit(function(e) {
+            e.preventDefault();
+            const fd = new FormData(this);
+            $.ajax({
+                type: "PUT",
+                url: `{{ url('master/retribusi') }}/`+kd_retribusi,
+                data: fd,
+                cache: false,
+                contentType: false,
+                processData: false,
+                dataType: 'json',
+                success: function(resp) {
+                    if(resp.success) {
+
+                    }
+                }
+            })
+        })
+
+        $(document).on('click', '.hapus', function(e) {
+            e.preventDefault();
+            // console.log();
+            let kd_retribusi = $(this).data('id');
+            let token = "{{ csrf_token() }}";
+            swal.fire({
+                title: "Apakah Anda Yakin ?",
+                icon: 'warning',
+                text: "Anda Tidak Akan Bisa Mengambilakan Data Ini",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Iya, Hapus!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: "DELETE",
+                        url: `{{ url('master/retribusi') }}/`+kd_retribusi,
+                        data: {
+                                _token: token
+                            },
+                            success: function(resp) {
+                                swal.fire(
+                                    'Deleted!',
+                                    'Your file has been deleted.',
+                                    'success'
+                                )
+                                location.reload();
+                            }
+                    });
+                }
+            });
+        });
+
+
+
         function valueing() {
-            if (document.getElementById('rp_retribusi').value === "") {
+            if (document.getElementById('rp_retribusi').value == "") {
                 document.getElementById('batal').disabled = true
                 document.getElementById('simpan').disabled = true
             } else {
