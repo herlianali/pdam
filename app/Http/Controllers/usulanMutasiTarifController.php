@@ -11,4 +11,8 @@ class usulanMutasiTarifController extends Controller
     {
         return view('mutasiPemakaian.usulanMutasiTarif.index');
     }
+    public function cetakBA()
+    {
+        return view('mutasiPemakaian.usulanMutasiTarif.cetakBA');
+    }
 }

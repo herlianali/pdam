@@ -243,5 +243,6 @@ Route::prefix('BAMutasiPelanggan')->group(function () {
 
 Route::prefix('mutasiPemakaian')->group(function () { 
     Route::get('/usulanMutasiTarif', [ usulanMutasiTarifController::class, 'index'])->name('usulanMutasiTarif');
+    Route::get('/cetakBA', [ usulanMutasiTarifController::class, 'cetakBA'])->name('cetakBAusulanTarif');
    
 });

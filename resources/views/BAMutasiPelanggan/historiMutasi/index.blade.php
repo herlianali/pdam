@@ -78,6 +78,7 @@
                                         <th>Ukuran Meter</th>
                                         <th>Retribusi</th>
                                         <th>Nama</th>
+                                        <th>Jalan</th>
                                         <th>Gang</th>
                                         <th>Nomor</th>
                                         <th>No Tmbhn</th>
@@ -86,6 +87,11 @@
                                         <th>Jns Plg</th>
                                         <th>KD Retribusi</th>
                                         <th>No Bundel</th>
+                                        <th>TGL_KABAG</th>
+                                        <th>TGL_KIRIMREKENING</th>
+                                        <th>TGL_PEREMAJAAN</th>
+                                        <th>BLNTERBIT</th>
+                                        <th>MUTASI</th>
                                     </tr>
                                 </thead>
                                 <tbody>

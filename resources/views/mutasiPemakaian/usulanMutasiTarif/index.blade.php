@@ -372,7 +372,7 @@
                                                 </div>
                                                 <div class="col">
                                                     <a
-                                                        href="{{ route('cetakBA') }}"class="btn btn-md btn-info float-right"><i
+                                                        href="{{ route('cetakBAusulanTarif') }}"class="btn btn-md btn-info float-right"><i
                                                             class="fas fa-print"></i> Cetak BA </a>
                                                 </div>
                                             </div>
