@@ -102,7 +102,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('retribusi') }}" class="nav-link {{ Request::segment(2) == 'retribusi' ? 'active' : '' }}">
+                <a href="{{ route('retribusi.index') }}" class="nav-link {{ Request::segment(2) == 'retribusi' ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <small>
                         <p>Retribusi</p>
@@ -110,7 +110,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('wilayahDistribusi') }}" class="nav-link {{ Request::segment(2) == 'wilayahDistribusi' ? 'active' : '' }}">
+                <a href="{{ route('wilayahDistribusi.index') }}" class="nav-link {{ Request::segment(2) == 'wilayahDistribusi' ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <small>
                         <p>Wilayah Distribusi</p>
