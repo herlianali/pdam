@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\mutasiKolektif;
+use App\Models\MutasiKolektif;
 
-class mutasiKolektifController extends Controller
+class MutasiKolektifController extends Controller
 {
     public function index()
     {

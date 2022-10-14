@@ -30,12 +30,12 @@
                         <div class="card-body">
                             <div class="row mb-4">
                                 <div class="col-md-8">
-                                    <form class="form-horizontal" action="" method="post">
+                                    <form class="form-horizontal" action="{{ route('petugasEntry.store') }}" method="post">
                                         @csrf
                                         <div class="form-group row mt-2 ">
-                                            <label for="kode_ptgs" class="col-md-4 col-form-label">Kode Petugas </label>
+                                            <label for="kd_ptgentry" class="col-md-4 col-form-label">Kode Petugas </label>
                                             <div class="col-md-6">
-                                                <input type="text" class="form-control" name="kode_ptgs" id="kode_ptgs"onkeyup="valueing()">
+                                                <input type="text" class="form-control" name="kd_ptgentry" id="kd_ptgentry"onkeyup="valueing()">
                                             </div>
                                         </div>
                                         <div class="form-group row mt-2 ">

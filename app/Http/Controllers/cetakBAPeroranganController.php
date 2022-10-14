@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\cetakBAPerorangan;
+use App\Models\CetakBAPerorangan;
 
-class cetakBAPeroranganController extends Controller
+class CetakBAPeroranganController extends Controller
 {
     public function index()
     {

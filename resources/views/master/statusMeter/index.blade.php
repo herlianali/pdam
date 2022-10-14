@@ -71,7 +71,7 @@
                                     @foreach ($stMeter as $statusMeter)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            <td>{{ $statusMeter->kode_status_meter }}</td>
+                                            <td>{{ $statusMeter->kd_statusmtr }}</td>
                                             <td>{{ $statusMeter->keterangan }}</td>
                                             <td>
                                                 <button type="submit" class="btn btn-xs btn-danger "

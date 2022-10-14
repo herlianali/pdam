@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\monitoringBAMutasiKolektif;
+use App\Models\MonitoringBAMutasiKolektif;
 
-class monitoringBAMutasiKolektifController extends Controller
+class MonitoringBAMutasiKolektifController extends Controller
 {
-    
+
     public function index()
     {
         return view('BAMutasiPelanggan.monitoringBAMutasiKolektif.index');
@@ -18,7 +18,7 @@ class monitoringBAMutasiKolektifController extends Controller
         return view('BAMutasiPelanggan.monitoringBAMutasiKolektif.create');
     }
 
-    
+
     public function persetujuan()
     {
         return view('BAMutasiPelanggan.monitoringBAMutasiKolektif.persetujuan');
@@ -28,17 +28,17 @@ class monitoringBAMutasiKolektifController extends Controller
     {
         return view('BAMutasiPelanggan.monitoringBAMutasiKolektif.preview');
     }
-    
+
     public function cetakUsulan()
     {
         return view('BAMutasiPelanggan.monitoringBAMutasiKolektif.cetakUsulan');
     }
-    
+
     public function cetakLampiran()
     {
         return view('BAMutasiPelanggan.monitoringBAMutasiKolektif.cetakLampiran');
     }
-    
+
     public function pdinas()
     {
         return view('BAMutasiPelanggan.monitoringBAMutasiKolektif.pdinas');

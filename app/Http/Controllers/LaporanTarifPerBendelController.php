@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\laporanTarifPerBendel;
+use App\Models\LaporanTarifPerBendel;
 
 class LaporanTarifPerBendelController extends Controller
 {

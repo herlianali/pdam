@@ -25,7 +25,7 @@
                             <h3 class="card-title">Data Petugas Khusus</h3>
                         </div>
                         <div class="card-body">
-                            <form class="form-horizontal" action="{{ url('/panggilanDinas') }}" method="post">
+                            <form class="form-horizontal" action="{{ route("petugasKhusus.store") }}" method="post">
                                 @csrf
                                 <div class="form-group row mt-2 ">
                                     <label for="nip" class="col-md-2 col-form-label">NIP</label>
@@ -39,19 +39,19 @@
                                 <div class="form-group row mt-2 ">
                                     <label for="nama" class="col-md-2 col-form-label">Nama </label>
                                     <div class="col-md-6">
-                                        <textarea class="form-control" id="nama" onkeyup="valueing()" name="nama"></textarea>
+                                        <input class="form-control" id="nama" disabled></input>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="keterangan" class="col-md-2 col-form-label">Tugas </label>
                                     &nbsp;
                                     <div class="form-check">
-                                        <input type="radio" class="form-check-input" id="korektor" name="tugas">
+                                        <input type="radio" class="form-check-input" id="tugas" name="tugas" value="K">
                                         <label class="form-check-label">Korektor</label>
                                     </div>
                                     &nbsp;
                                     <div class="form-check">
-                                        <input type="radio" class="form-check-input" id="pencatat_meter" name="tugas">
+                                        <input type="radio" class="form-check-input" id="tugas" name="tugas" value="C">
                                         <label class="form-check-label">Pencatat Meter</label>
                                     </div>
                                 </div>
@@ -59,9 +59,9 @@
                                     <label for="jns_pelanggan" class="col-md-2 col-form-label">Jenis Pelanggan</label>
                                     <div class="col-md-6">
                                         <select class="custom-select" name="jenis_pelanggan" id="jenis_pelanggan">
-                                            <option value="option1">option1</option>
-                                            <option value="option2">option2</option>
-                                            <option value="option3">option3</option>
+                                            @foreach ($jns_pelanggan as $pelanggan)
+                                                <option value="{{ $pelanggan->jns_pelanggan }}">{{ $pelanggan->jns_pelanggan }} - {{ $pelanggan->keterangan }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
@@ -106,6 +106,16 @@
                 "autoWidth": false,
                 "responsive": true,
             });
+
+            $("#example1").on("click", ".pilih", function() {
+                var currentRow = $(this).closest("tr");
+                var nip  = currentRow.find("td:eq(0)").text();
+                var nama = currentRow.find("td:eq(1)").text();
+
+                $("#nip").val(nip);
+                $("#nama").val(nama);
+                $('.modal').modal('hide');
+            })
         });
     </script>
 @endpush

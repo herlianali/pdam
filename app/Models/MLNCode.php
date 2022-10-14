@@ -9,7 +9,5 @@ class MLNCode extends Model
 {
     use HasFactory;
 
-    protected $table = 'mln_code';
-
-    protected $guarded = [];
+    protected $table = 'M_CODE';
 }

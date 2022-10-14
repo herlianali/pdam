@@ -48,10 +48,12 @@
                                 style="width: 100%">
                                 <thead>
                                     <tr>
+                                        <th>No</th>
                                         <th>No Pelanggan</th>
                                         <th>Petugas Entri</th>
                                         <th>Tanggal Entri</th>
                                         <th>Aktif</th>
+                                        <th>Aksi</th>
 
                                     </tr>
                                 </thead>
@@ -59,9 +61,9 @@
                                     @foreach ($plgMeterC as $plgnMeterC)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            <td>{{ $plgnMeterC->no_pelanggan }}</td>
-                                            <td>{{ $plgnMeterC->petugas_entri }}</td>
-                                            <td>{{ $plgnMeterC->tanggal_entri }}</td>
+                                            <td>{{ $plgnMeterC->no_plg }}</td>
+                                            <td>{{ $plgnMeterC->ptgentri }}</td>
+                                            <td>{{ $plgnMeterC->tgl_entry }}</td>
                                             <td>{{ $plgnMeterC->aktif }}</td>
                                             <td>
                                                 <button type="submit" class="btn btn-xs btn-danger "

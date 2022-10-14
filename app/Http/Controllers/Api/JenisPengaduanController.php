@@ -1,11 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreJnsPengaduanRequest;
+use App\Http\Resources\JnsPengaduanResource;
+use App\Models\JenisPengaduan;
 use Illuminate\Http\Request;
-use App\Models\HistoriMutasi;
 
-class HistoriMutasiController extends Controller
+class JenisPengaduanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +17,8 @@ class HistoriMutasiController extends Controller
      */
     public function index()
     {
-        return view('BAMutasiPelanggan.historiMutasi.index');
+        $jns_pengaduan = JenisPengaduan::all();
+        return JnsPengaduanResource::collection($jns_pengaduan);
     }
 
     /**
@@ -33,9 +37,10 @@ class HistoriMutasiController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreJnsPengaduanRequest $request)
     {
-        //
+        $jns_pengaduan = JenisPengaduan::create($request->all());
+        return new JnsPengaduanResource($jns_pengaduan);
     }
 
     /**

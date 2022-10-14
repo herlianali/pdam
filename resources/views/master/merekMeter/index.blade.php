@@ -70,8 +70,8 @@
                                     @foreach ($merkMeter as $merekMeter)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            <td>{{ $merekMeter->kode }}</td>
-                                            <td>{{ $merekMeter->keterangan }}</td>
+                                            <td>{{ $merekMeter->kd_merk }}</td>
+                                            <td>{{ $merekMeter->merk }}</td>
                                             <td>
                                                 <button type="submit" class="btn btn-xs btn-danger "
                                                     onclick="deleteMerekMeter({{ $merekMeter->id }})"><i

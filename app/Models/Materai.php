@@ -9,5 +9,6 @@ class Materai extends Model
 {
     use HasFactory;
 
-    protected $guarded = [];
+    // protected $guarded = [];
+    protected $table = "MATERAI";
 }

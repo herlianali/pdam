@@ -28,15 +28,16 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-9">
-                                    <form class="form-horizontal">
+                                    <form class="form-horizontal" action="{{ route('jenisPekerjaan.store') }}" method="POST">
+                                        @csrf
                                         <div class="form-group row">
                                             <label for="jns_pekerjaan" class="col-md-2 col-form-label">Jenis Pekerjaan</label>
-                                            <div class="col-md-6">
+                                            <div class="col-md-8">
                                                 <input type="text" class="form-control" id="jns_pekerjaan" name="jns_pekerjaan" onkeyup="valueing()">
                                             </div>
-                                            <div class="col-md-3">
+                                            {{-- <div class="col-md-3">
                                                 <button class="btn btn-default btn-mt-2" type="button" data-toggle="modal" data-target="#pegawai"><i class="fas fa-search fa-fw"></i> Pilih Pegawai</button>
-                                            </div>
+                                            </div> --}}
                                         </div>
                                         <div class="form-group row">
                                             <label for="keterangan" class="col-md-2 col-form-label">Keterangan</label>
@@ -48,8 +49,9 @@
                                             <label for="jenis_bonp" class="col-md-2 col-form-label">Jenis BON P </label>
                                             <div class="col-md-8">
                                                 <select class="form-control" id="jenis_bonp" onkeyup="valueing()" name="jenis_bonp">
-                                                    <option value=""> </option>
-                                                    <option value=""> </option>
+                                                    @foreach ($jnsBonp as $jb)
+                                                        <option value="{{ $jb->kode }}">{{ $jb->kode }} - {{ $jb->keterangan }}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>
@@ -57,11 +59,11 @@
                                             <label for="beban" class="col-md-2 col-form-label">Beban </label>
                                             <div class="col ml-3">
                                             <div class="col">
-                                                <input type="radio" class="form-check-input" id="pilih" name="jabatan">
+                                                <input type="radio" class="form-check-input" id="pilih" name="beban_plg" value="1">
                                                 <label class="form-check-label">Ya</label>
                                             </div>
                                             <div class="col">
-                                                <input type="radio" class="form-check-input" id="pilih" name="jabatan">
+                                                <input type="radio" class="form-check-input" id="pilih" name="beban_plg" value="0">
                                                 <label class="form-check-label">Tidak</label>
                                             </div>
                                         </div>
@@ -70,14 +72,14 @@
                                             <label for="kel_bonp" class="col-md-2 col-form-label">Kel. BON P </label>
                                             <div class="col-md-8">
                                                 <select class="form-control" id="kel_bonp" onkeyup="valueing()" name="kel_bonp">
-                                                    <option value="T">TDA </option>
-                                                    <option value="K">Kebocoran </option>
-                                                    <option value="M">Meter </option>
-                                                    <option value="S">Segel </option>
-                                                    <option value="A">Air Kotor </option>
-                                                    <option value="R">Stop Kran </option>
-                                                    <option value="L">Lain-Lain </option>
-                                                    <option value="B">Bukaan </option>
+                                                    <option value="T">T - TDA </option>
+                                                    <option value="K">K - Kebocoran </option>
+                                                    <option value="M">M - Meter </option>
+                                                    <option value="S">S - Segel </option>
+                                                    <option value="A">A - Air Kotor </option>
+                                                    <option value="R">R - Stop Kran </option>
+                                                    <option value="L">L - Lain-Lain </option>
+                                                    <option value="B">B - Bukaan </option>
                                                 </select>
                                             </div>
                                         </div>
@@ -111,17 +113,19 @@
                                     @foreach ($jnsPekerjaan as $jenisPekerjaan)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            <td>{{ $jenisPekerjaan->jenis_pekerjaan }}</td>
+                                            <td>{{ $jenisPekerjaan->jns_pekerjaan }}</td>
                                             <td>{{ $jenisPekerjaan->keterangan }}</td>
-                                            <td>{{ $jenisPekerjaan->jenis_bon_p }}</td>
-                                            <td>{{ $jenisPekerjaan->beban }}</td>
-                                            <td>{{ $jenisPekerjaan->kel_bon_p }}</td>
+                                            <td>{{ $jenisPekerjaan->jenis_bonp }}</td>
+                                            <td>{{ $jenisPekerjaan->beban_plg }}</td>
+                                            <td>{{ $jenisPekerjaan->kel_bonp }}</td>
                                             <td>
-                                                <button type="submit" class="btn btn-xs btn-danger "
-                                                    onclick="deletejenisPekerjaan({{ $jenisPekerjaan->id }})"><i
-                                                        class="fas fa-trash-alt"></i> Hapus</button>
-                                                <button type="button" class="btn btn-xs btn-success " data-toggle="modal"
-                                                    data-target="#edit"><i class="fas fa-edit"></i> Edit</button>
+                                                <form action="">
+                                                    <button type="submit" class="btn btn-xs btn-danger "
+                                                        onclick="deletejenisPekerjaan({{ $jenisPekerjaan->id }})"><i
+                                                            class="fas fa-trash-alt"></i> Hapus</button>
+                                                    <button type="button" class="btn btn-xs btn-success " data-toggle="modal"
+                                                        data-target="#edit"><i class="fas fa-edit"></i> Edit</button>
+                                                </form>
                                             </td>
                                         </tr>
                                     @endforeach

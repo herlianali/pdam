@@ -9,4 +9,6 @@ class JenisPelanggan extends Model
 {
     use HasFactory;
 
+    protected $table = 'JENIS_PELANGGAN';
+
 }

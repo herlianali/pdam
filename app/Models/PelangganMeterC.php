@@ -9,5 +9,5 @@ class PelangganMeterC extends Model
 {
     use HasFactory;
 
-    protected $table = 'pelanggan_meter_cs';
+    protected $table = 'pelanggan_mtrc';
 }

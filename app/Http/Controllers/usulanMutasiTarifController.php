@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\usulanMutasiTarif;
+use App\Models\UsulanMutasiTarif;
 
-class usulanMutasiTarifController extends Controller
+class UsulanMutasiTarifController extends Controller
 {
     public function index()
     {
