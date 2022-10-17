@@ -13,17 +13,36 @@ class StatusMeterController extends Controller
         return view('master.statusMeter.index', compact('stMeter'))->with('i');
     }
 
-    
-    public function show($id)
+    public function store(Request $request)
     {
-        $statusMeter = StatusMeter::find($id);
+        StatusMeter::insert([
+            'kd_statusmtr' => $request->kd_statusmtr,
+            'keterangan'   => $request->keterangan
+        ]);
+
+        return redirect()->route('statusMeter.index');
+    }
+
+    public function show($kd_statusmtr)
+    {
+        $statusMeter = StatusMeter::where('kd_statusmtr', $kd_statusmtr)->first();
         return response()->json($statusMeter);
     }
 
-
-    public function destroy($id)
+    public function update(Request $request, $kd_statusmtr)
     {
-        $statusMeter = StatusMeter::findOrFail($id)->delete();
+        StatusMeter::where('kd_statusmtr', $kd_statusmtr)
+                    ->update([
+                        'kd_statusmtr' => $request->kd_statusmtr,
+                        'keterangan'   => $request->keterangan
+                    ]);
+
+        return redirect()->route('statusMeter.index');
+    }
+
+    public function destroy($kd_statusmtr)
+    {
+        StatusMeter::where('kd_statusmtr', $kd_statusmtr)->delete();
         return response()->json([
             'success' => true,
             'message' => 'Data Status Meter Berhasil Dihapus',

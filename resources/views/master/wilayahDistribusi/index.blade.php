@@ -175,7 +175,7 @@
             swal.fire({
                 title: "Apakah Anda Yakin ?",
                 icon: 'warning',
-                text: "Anda Tidak Akan Bisa Mengambilakan Data Ini",
+                text: "Anda Tidak Akan Bisa Mengembalikan Data Ini",
                 showCancelButton: true,
                 confirmButtonColor: "#3085d6",
                 cancelButtonColor: "#d33",

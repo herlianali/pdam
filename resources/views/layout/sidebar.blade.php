@@ -4,7 +4,7 @@
       <!-- Add icons to the links using the .nav-icon class
            with font-awesome or any other icon font library -->
         <li class="nav-item">
-            <a href="pages/log.html" class="nav-link">
+            <a class="nav-link" data-toggle="modal" data-target="#staticBackdrop">
               <i class="nav-icon fas fa-newspaper"></i>
               <p>
                 Log
@@ -118,7 +118,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('statusTanah') }}" class="nav-link {{ Request::segment(2) == 'statusTanah' ? 'active' : '' }}">
+                <a href="{{ route('statusTanah.index') }}" class="nav-link {{ Request::segment(2) == 'statusTanah' ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <small>
                         <p>Status Tanah</p>
@@ -126,7 +126,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('statusAir') }}" class="nav-link {{ Request::segment(2) == 'statusAir' ? 'active' : '' }}">
+                <a href="{{ route('statusAir.index') }}" class="nav-link {{ Request::segment(2) == 'statusAir' ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <small>
                         <p>Status Air</p>
@@ -134,7 +134,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('statusMeter') }}" class="nav-link {{ Request::segment(2) == 'statusMeter' ? 'active' : '' }}">
+                <a href="{{ route('statusMeter.index') }}" class="nav-link {{ Request::segment(2) == 'statusMeter' ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <small>
                         <p>Status Meter</p>
@@ -142,7 +142,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('merekMeter') }}" class="nav-link {{ Request::segment(2) == 'merekMeter' ? 'active' : '' }}">
+                <a href="{{ route('merekMeter.index') }}" class="nav-link {{ Request::segment(2) == 'merekMeter' ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <small>
                         <p>Merk Meter</p>
@@ -150,7 +150,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('materai') }}" class="nav-link {{ Request::segment(2) == 'materai' ? 'active' : '' }}">
+                <a href="{{ route('materai.index') }}" class="nav-link {{ Request::segment(2) == 'materai' ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <small>
                         <p>Materai</p>
@@ -158,7 +158,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('panggilanDinas') }}" class="nav-link">
+                <a href="{{ route('panggilanDinas.index') }}" class="nav-link {{ Request::segment(2) == 'panggilanDinas' ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <small>
                         <p>Jenis Panggilan Dinas</p>
@@ -166,7 +166,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('telponPelanggan') }}" class="nav-link">
+                <a href="{{ route('telponPelanggan.index') }}" class="nav-link {{ Request::segment(2) == 'telponPelanggan' ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <small>
                         <p>Telp Pelanggan</p>
@@ -174,7 +174,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('mlnCode') }}" class="nav-link">
+                <a href="{{ route('mlnCode.index') }}" class="nav-link {{ Request::segment(2) == 'mlnCode' ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <small>
                         <p>MLN Code</p>
@@ -182,7 +182,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('pelangganMeterC') }}" class="nav-link">
+                <a href="{{ route('pelangganMeterC') }}" class="nav-link {{ Request::segment(2) == 'pelangganMeterC' ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <small>
                         <p>Pelanggan Meter C</p>
@@ -190,7 +190,7 @@
                 </a>
             </li>
             <li class="nav-item">
-            <a href="{{ route('monitoringPelanggan') }}" class="nav-link">
+            <a href="{{ route('monitoringPelanggan') }}" class="nav-link {{ Request::segment(2) == 'monitoringPelanggan' ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <small>
                         <p>Monitoring Pelanggan</p>

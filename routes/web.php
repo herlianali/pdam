@@ -54,7 +54,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [LoginController::class, 'login']);
+Route::get('/', [LoginController::class, 'index']);
+Route::post('/login', [LoginController::class, 'login'])->name('login');
 Route::get('/register', [LoginController::class, 'login']);
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
@@ -68,6 +69,7 @@ Route::prefix('master')->group(function () {
 
     Route::resource('jenisPelanggan', JenisPelangganController::class)->parameters(['jenisPelanggan' => 'jns_pelanggan'])->except(['create','edit']);
     Route::get('/petugasKhusus', [PetugasKhususController::class, 'index'])->name('petugasKhusus');
+    Route::get('/petugasKhusus{nip}', [PetugasKhususController::class, 'show'])->name('petugasKhusus.edit');
     Route::post('/petugasKhusus', [PetugasKhususController::class, 'store'])->name('petugasKhusus.store');
 
     Route::resource('petugasKontrol', PetugasKontrolController::class)->parameters(['petugasKontrol' => 'kd_ptgktrl'])->except(['create','edit']);
@@ -105,32 +107,31 @@ Route::prefix('master')->group(function () {
     Route::get('/printwilayahDistribusi', [WilayahDistribusiController::class, 'print'])->name('printwilayahDistribusi');
     // Route::delete('/deleteWilayahDistribusi/{id}',[WilayahDistribusiController::class,'destroy']);
 
-    Route::get('/statusTanah', [StatusTanahController::class, 'index'])->name('statusTanah');
+    Route::resource('/statusTanah', StatusTanahController::class)->parameters(['statusTanah' => 'status_tanah'])->except(['create', 'edit']);
     Route::get('/printstatusTanah', [StatusTanahController::class, 'print'])->name('printstatusTanah');
-    Route::delete('/deleteStatusTanah/{id}',[StatusTanahController::class,'destroy']);
+    // Route::delete('/deleteStatusTanah/{id}',[StatusTanahController::class,'destroy']);
 
-    Route::get('/statusAir', [StatusAirController::class, 'index'])->name('statusAir');
+    Route::resource('/statusAir', StatusAirController::class)->parameters(['statusAir' => 'kd_statusair'])->except(['create', 'edit']);
     Route::get('/printstatusAir', [StatusAirController::class, 'print'])->name('printstatusAir');
-    Route::delete('/deleteStatusAir/{id}', [StatusAirController::class, 'destroy']);
+    // Route::delete('/deleteStatusAir/{id}', [StatusAirController::class, 'destroy']);
 
-    Route::get('/statusMeter', [StatusMeterController::class, 'index'])->name('statusMeter');
+    Route::resource('/statusMeter', StatusMeterController::class)->parameters(['statusMeter' => 'kd_statusair'])->except(['create', 'edit']);
     Route::get('/printstatusMeter', [StatusMeterController::class, 'print'])->name('printstatusMeter');
-    Route::delete('/deleteStatusMeter/{id}', [StatusMeterController::class, 'destroy']);
+    // Route::delete('/deleteStatusMeter/{id}', [StatusMeterController::class, 'destroy']);
 
-    Route::get('/merekMeter', [MerekMeterController::class, 'index'])->name('merekMeter');
+    Route::resource('/merekMeter', MerekMeterController::class)->parameters(['merekMeter' => 'kd_merk'])->except(['create', 'edit']);
     Route::get('/printmerekMeter', [MerekMeterController::class, 'print'])->name('printmerekMeter');
-    Route::delete('/deleteMerekMeter/{id}', [MerekMeterController::class, 'destroy']);
+    // Route::delete('/deleteMerekMeter/{id}', [MerekMeterController::class, 'destroy']);
 
-    Route::get('/materai', [MateraiController::class, 'index'])->name('materai');
+    Route::resource('/materai', MateraiController::class)->parameters(['materai' => 'nominal']);
     Route::get('/printmaterai', [MateraiController::class, 'print'])->name('printmaterai');
-    Route::delete('/deletematerai/{id}', [MateraiController::class, 'destroy']);
+    // Route::delete('/deletematerai/{id}', [MateraiController::class, 'destroy']);
 
-    Route::get('/panggilanDinas', [PanggilanDinasController::class, 'index'])->name('panggilanDinas');
-    Route::post('/panggilanDinas',[PanggilanDinasController::class,'store']);
+    Route::resource('/panggilanDinas', PanggilanDinasController::class)->parameters(['panggilanDinas' => 'jns_pdinas'])->except(['create', 'edit']);
     Route::get('/printpanggilanDinas/setting', [PanggilanDinasController::class, 'settingPrint'])->name('settingPrintPanggilan');
     Route::get('/printpanggilanDinas', [PanggilanDinasController::class, 'print'])->name('printpanggilanDinas');
-    Route::put('/updatepanggilanDinas.{id}', [PanggilanDinasController::class, 'update']);
-    Route::delete('/deletePanggilanDinas/{id}', [PanggilanDinasController::class, 'destroy']);
+
+    Route::resource('/telponPelanggan',  TelponPelangganController::class)->parameters(['telponPelanggan' => 'no_plg'])->except(['create', 'edit', 'destroy', 'store']);
 
     Route::get('/monitoringPelanggan', [MonitoringPelangganController::class, 'index'])->name('monitoringPelanggan');
     Route::get('/monitoringPelanggan.{id}', [MonitoringPelangganController::class, 'show']);
@@ -154,9 +155,8 @@ Route::prefix('master')->group(function () {
 
     Route::get('/cekSurveyTarif',  [CekSurveyTarifController::class,'index'])->name('cekSurveyTarif');
 
-    Route::get('/telponPelanggan',  [TelponPelangganController::class,'index'])->name('telponPelanggan');
 
-    Route::get('/mlnCode', [ MLNCodeController::class,'index'])->name('mlnCode');
+    Route::resource('/mlnCode', MLNCodeController::class)->parameters(['mlnCode' => 'kode'])->except(['create', 'edit']);
 
     Route::get('/pelangganMeterC', [ PelangganMeterCController::class, 'index'])->name('pelangganMeterC');
 

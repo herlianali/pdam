@@ -33,7 +33,10 @@
                                         <div class="form-group row">
                                             <label for="kdptg" class="col-md-2 col-form-label">Kode Petugas</label>
                                             <div class="col-md-6">
-                                                <input type="text" class="form-control" id="kd_ptgcs" name="kd_ptgcs" onkeyup="valueing()">
+                                                <div class="input-group mb-3">
+                                                    <span class="input-group-text" id="basic-addon1">LT</span>
+                                                    <input type="text" class="form-control" id="kd_ptgcs" name="kd_ptgcs" onkeyup="valueing()" aria-describedby="basic-addon1">
+                                                </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <button class="btn btn-default btn-mt-2" type="button" data-toggle="modal"data-target="#pegawai"><i class="fas fa-search fa-fw"></i> Pilih Pegawai</button>
@@ -105,6 +108,7 @@
 @endsection
 
 @push('js')
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
@@ -112,10 +116,22 @@
     <script src="{{ asset('assets/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
     <script>
         $(function() {
+            $('#example1').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "oLanguage": {
+                    "sSearch": "NIP/NAMA : "
+                },
+                "bInfo" : false,
+                "ordering": true,
+                "autoWidth": false,
+                "responsive": true,
+                "pageLength": 5
+            })
             $('#example2').DataTable({
                 "paging": true,
                 "lengthChange": false,
-                "searching": false,
+                "searching": true,
                 "ordering": true,
                 "info": true,
                 "autoWidth": false,
@@ -123,6 +139,40 @@
                 "pageLength": 5
             });
         });
+
+        var showLoading = function() {
+            swal.fire({
+                title: "Mohon Tunggu !",
+                html: "Sedang Memproses...",
+                allowOutsideClick: false,
+                showConfirmButton: false,
+                willOpen: () => {
+                    swal.showLoading()
+                },
+            })
+        }
+
+        $(document).on('click', '#pilih', function(e) {
+            e.preventDefault();
+            let nip = $(this).data('id');
+            $.ajax({
+                type: "GET",
+                url: `{{ url('api/dip') }}/`+nip,
+                data: {
+                    id: nip,
+                    _token: '{{ csrf_token() }}'
+                },
+                beforeSend: function() {
+                    showLoading()
+                },
+                success: function(res) {
+                    $('#nip').val(res.nip)
+                    $('#nama').val(res.nama)
+                    $("#pegawai").modal('hide');
+                    swal.close();
+                }
+            })
+        })
 
         function valueing() {
             if (document.getElementById('kdptg').value === "" || document.getElementById('nip').value === "" || document

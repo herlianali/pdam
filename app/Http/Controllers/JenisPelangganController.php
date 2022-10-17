@@ -45,9 +45,9 @@ class JenisPelangganController extends Controller
         return redirect()->route('jenisPelanggan.index');
     }
 
-    public function show($id)
+    public function show($jns_pelanggan)
     {
-        $jenisPelanggan = JenisPelanggan::find($id);
+        $jenisPelanggan = JenisPelanggan::where('jns_pelanggan', $jns_pelanggan)->first();
 
         return response()->json($jenisPelanggan);
     }

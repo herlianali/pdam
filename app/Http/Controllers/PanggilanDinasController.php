@@ -13,36 +13,44 @@ class PanggilanDinasController extends Controller
         $pDinass = PanggilanDinas::all();
         return view('master.panggilanDinas.index', compact('pDinass'))->with('i');
     }
-  
+
 
     public function store(Request $request)
     {
         $request->validate([
-            
-            'jp_dinas'           => 'required',
-            'keterangan'         => 'required|max:255',
+            'jns_pdinas' => 'required',
+            'keterangan' => 'required',
         ]);
 
-        $pDinas = PanggilanDinas::UpdateOrCreate(['id' => $request->id], [
-            'jp_dinas'           => $request->jp_dinas,
-            'keterangan'         => $request->keterangan,
+        PanggilanDinas::insert([
+            'jns_pdinas' => $request->jns_pdinas,
+            'keterangan' => $request->keterangan,
         ]);
 
-        return response()->json(['code'=>255, 'message'=>'Jenis Panggilan Dinas Created Successfully', 'data' =>$pDinas], 50);
+        return redirect()->route('panggilanDinas.index');
     }
 
-   
-    public function show($id)
+
+    public function show($jns_pdinas)
     {
-        $pDinas = PanggilanDinas::find($id);
+        $pDinas = PanggilanDinas::where('jns_pdinas', $jns_pdinas)->first();
         return response()->json($pDinas);
     }
 
-   
-
-    public function destroy($id)
+    public function update(Request $request, $jns_pdinas)
     {
-        PanggilanDinas::findOrFail($id)->delete();
+        PanggilanDinas::where('jns_pdinas', $jns_pdinas)
+                    ->update([
+                        'jns_pdinas' => $request->jns_pdinas,
+                        'keterangan' => $request->keterangan
+                    ]);
+
+        return redirect()->route('panggilanDinas.index');
+    }
+
+    public function destroy($jns_pdinas)
+    {
+        PanggilanDinas::where('jns_pdinas', $jns_pdinas)->delete();
         return response()->json([
             'success' => true,
             'message' => 'Jenis Panggilan Dinas Berhasil Dihapus',

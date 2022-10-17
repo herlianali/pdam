@@ -7,24 +7,43 @@ use App\Models\StatusTanah;
 
 class StatusTanahController extends Controller
 {
-  
+
     public function index()
     {
         $stTanah = StatusTanah::all();
         return view('master.statusTanah.index', compact('stTanah'))->with('i');
     }
 
-    
-    public function show($id)
+    public function store(Request $request)
     {
-        $statusTanah = StatusTanah::find($id);
+        StatusTanah::insert([
+            'status_tanah' => $request->status_tanah,
+            'keterangan'   => $request->keterangan
+        ]);
+
+        return redirect()->route('statusTanah.index');
+    }
+
+    public function show($status_tanah)
+    {
+        $statusTanah = StatusTanah::where('status_tanah', $status_tanah)->first();
         return response()->json($statusTanah);
     }
 
-
-    public function destroy($id)
+    public function update(Request $request, $status_tanah)
     {
-        $statusTanah = StatusTanah::findOrFail($id)->delete();
+        StatusTanah::where('status_tanah', $status_tanah)
+                    ->update([
+                        'status_tanah' => $request->status_tanah,
+                        'keterangan'   => $request->keterangan
+                    ]);
+
+        return redirect()->route('statusTanah.index');
+    }
+
+    public function destroy($status_tanah)
+    {
+        StatusTanah::where('status_tanah', $status_tanah)->delete();
         return response()->json([
             'success' => true,
             'message' => 'Data Status Tanah Berhasil Dihapus',

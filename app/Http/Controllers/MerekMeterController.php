@@ -14,17 +14,37 @@ class MerekMeterController extends Controller
         return view('master.merekMeter.index', compact('merkMeter'))->with('i');
     }
 
-    
-    public function show($id)
+    public function store(Request $request)
     {
-        $merekMeter = MerekMeter::find($id);
+        MerekMeter::insert([
+            'kd_merk' => $request->kd_merk,
+            'merk'    => $request->merk
+        ]);
+
+        return redirect()->route('merekMeter.index');
+    }
+
+    public function show($kd_merk)
+    {
+        $merekMeter = MerekMeter::where('kd_merk', $kd_merk)->first();
         return response()->json($merekMeter);
     }
 
-
-    public function destroy($id)
+    public function update(Request $request, $kd_merk)
     {
-        $merekMeter = MerekMeter::findOrFail($id)->delete();
+        MerekMeter::where('kd_merk', $kd_merk)
+                    ->update([
+                        'kd_merk' => $request->kd_merk,
+                        'merk'    => $request->merk
+                    ]);
+
+        return redirect()->route('merekMeter.index');
+    }
+
+    public function destroy($kd_merk)
+    {
+        MerekMeter::where('kd_merk', $kd_merk)->delete();
+
         return response()->json([
             'success' => true,
             'message' => 'Data MerekMeter Berhasil Dihapus',

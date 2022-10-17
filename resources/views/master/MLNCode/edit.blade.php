@@ -8,14 +8,16 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="">
+                <form id="form-edit" method="POST">
+                    @csrf
+                    @method('PUT')
                     <div class="form-group">
                         <label for="kode">Kode</label>
-                        <input type="text" class="form-control" id="kode" name="kode">
+                        <input type="text" class="form-control" id="code" name="kode">
                     </div>
                     <div class="form-group">
                         <label for="keterangan">Keterangan</label>
-                        <textarea class="form-control" id="keterangan" name="keterangan" value=""></textarea>
+                        <textarea class="form-control" id="keterangan" name="keterangan"></textarea>
                     </div>
                     <button class="btn btn-success btn-sm" type="submit"><i class="far fa-save"></i> Simpan</button>
 

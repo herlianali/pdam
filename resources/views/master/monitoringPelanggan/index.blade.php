@@ -141,7 +141,18 @@
                                             </thead>
                                             <tbody>
 
-                                                @foreach ($monPelanggan as $mPelanggan)
+                                                <tr>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                                {{-- @foreach ($monPelanggan as $mPelanggan)
                                                     <tr>
                                                         <td>{{ ++$i }}</td>
                                                         <td>{{ $mPelanggan->no_pelanggan }}</td>
@@ -164,7 +175,7 @@
                                                                     class="fas fa-edit"></i> Edit</button>
                                                         </td>
                                                     </tr>
-                                                @endforeach
+                                                @endforeach --}}
                                             </tbody>
                                         </table>
                                     </form>

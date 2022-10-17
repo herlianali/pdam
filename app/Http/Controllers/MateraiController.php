@@ -13,17 +13,37 @@ class MateraiController extends Controller
         return view('master.materai.index', compact('matrai'))->with('i');
     }
 
-    
-    public function show($id)
+    public function store(Request $request)
     {
-        $materai = Materai::find($id);
+        Materai::insert([
+            'nominal'    => $request->nominal,
+            'rp_materai' => $request->rp_materai
+        ]);
+
+        return redirect()->route('materai.index');
+    }
+
+    public function show($nominal)
+    {
+        $materai = Materai::where('nominal', $nominal)->first();
         return response()->json($materai);
     }
 
-
-    public function destroy($id)
+    public function update(Request $request, $nominal)
     {
-        $materai = Materai::findOrFail($id)->delete();
+        Materai::where('nominal', $nominal)
+                    ->update([
+                        'nominal'    => $request->nominal,
+                        'rp_materai' => $request->rp_materai
+                    ]);
+
+        return redirect()->route('materai.index');
+    }
+
+    public function destroy($nominal)
+    {
+        Materai::where('nominal', $nominal)->delete();
+
         return response()->json([
             'success' => true,
             'message' => 'Data Materai Berhasil Dihapus',

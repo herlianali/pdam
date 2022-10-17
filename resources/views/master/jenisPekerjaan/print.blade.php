@@ -58,6 +58,22 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach ($jnsPekerjaan as $jenis)
+                                    <tr>
+                                        <td>{{ ++$i }}</td>
+                                            <td>{{ $jenis->jns_pekerjaan }}</td>
+                                            <td>{{ $jenis->keterangan }}</td>
+                                            <td>{{ $jenis->jenis_bonp }}</td>
+                                            <td>
+                                                @if ($jenis->beban_plg == "0")
+                                                    Tidak
+                                                @else
+                                                    Ya
+                                                @endif
+                                            </td>
+                                            <td>{{ $jenis->kel_bonp }}</td>
+                                    </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

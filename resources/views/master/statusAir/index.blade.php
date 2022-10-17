@@ -29,17 +29,18 @@
                         <div class="card-body">
                             <div class="row mb-4">
                                 <div class="col-md-8">
-                                    <form class="form-horizontal">
+                                    <form class="form-horizontal" action="{{ route('statusAir.index') }}" method="POST">
+                                        @csrf
                                         <div class="form-group row mt-2">
-                                            <label for="kode" class="col-md-2 col-form-label">Kode Status Air</label>
+                                            <label for="kd_statusair" class="col-md-2 col-form-label">Kode Status Air</label>
                                             <div class="col-md-7">
-                                                <input type="text" class="form-control" id="kode" name="kode" onkeyup="valueing()">
+                                                <input type="text" class="form-control" name="kd_statusair" onkeyup="valueing()">
                                             </div>
                                         </div>
                                         <div class="form-group row ">
                                             <label for="keterangan" class="col-md-2 col-form-label">Keterangan </label>
                                             <div class="col-md-7">
-                                                <textarea class="form-control" name="keterangan" id="keterangan" onkeyup="valueing()"></textarea>
+                                                <textarea class="form-control" name="keterangan" onkeyup="valueing()"></textarea>
                                             </div>
                                         </div>
 
@@ -71,14 +72,23 @@
                                     @foreach ($stAir as $statusAir)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            <td>{{ $statusAir->kode_status_air }}</td>
+                                            <td>{{ $statusAir->kd_statusair }}</td>
                                             <td>{{ $statusAir->keterangan }}</td>
                                             <td>
-                                                <button type="submit" class="btn btn-xs btn-danger "
-                                                    onclick="deleteStatusAir({{ $statusAir->id }})"><i
-                                                        class="fas fa-trash-alt"></i> Hapus</button>
-                                                <button type="button" class="btn btn-xs btn-success " data-toggle="modal"
-                                                    data-target="#form"><i class="fas fa-edit"></i> Edit</button>
+                                                <button type="button"
+                                                        class="btn btn-xs btn-danger hapus"
+                                                        data-id="{{ $statusAir->kd_statusair }}">
+                                                        <i class="fas fa-trash-alt"></i>
+                                                        Hapus
+                                                </button>
+                                                <button type="button"
+                                                        class="btn btn-xs btn-success edit"
+                                                        data-id="{{ $statusAir->kd_statusair }}"
+                                                        data-toggle="modal"
+                                                        data-target="#form">
+                                                        <i class="fas fa-edit"></i>
+                                                        Edit
+                                                </button>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -123,49 +133,73 @@
             });
         });
 
-        function deleteStatusAir(id) {
-            console.log(id)
+        var showLoading = function() {
             swal.fire({
-                title: "Hapus Data?",
-                icon: 'question',
-                text: "Apakah Anda Yakin Ingin Menghapus",
-                type: "warning",
-                showCancelButton: !0,
-                confirmButtonColor: "#e74c3c",
-                confirmButtonText: "Iya",
-                cancelButtonText: "Tidak",
-                reverseButtons: !0
-            }).then(function(e) {
-                if (e.value === true) {
-                    let token = "{{ csrf_token() }}"
-                    let _url = `/master/deleteStatusAir/${id}`
-                    console.log(_url)
-
-                    $.ajax({
-                        type: 'DELETE',
-                        url: _url,
-                        data: {
-                            _token: token
-                        },
-                        success: function(resp) {
-                            if (resp.success) {
-                                swal.fire("Selesai!", resp.message, "success");
-                                location.reload();
-                            } else {
-                                swal.fire("Gagal!", "Terjadi Kesalahan.", "error");
-                            }
-                        },
-                        error: function(resp) {
-                            swal.fire("Gagal!", "Terjadi Kesalahan.", "error")
-                        }
-                    })
-                } else {
-                    e.dismiss;
-                }
-            }, function(dismiss) {
-                return false;
-            });
+                title: "Mohon Tunggu !",
+                html: "Sedang Memproses...",
+                allowOutsideClick: false,
+                showConfirmButton: false,
+                willOpen: () => {
+                    swal.showLoading()
+                },
+            })
         }
+
+        $(document).on('click', '.edit', function(e) {
+            e.preventDefault();
+            let kd_statusair = $(this).data('id')
+            $.ajax({
+                type: "GET",
+                url: `{{ url('master/statusAir') }}/`+kd_statusair,
+                data: {
+                    id: kd_statusair,
+                    _token: '{{ csrf_token() }}'
+                },
+                beforeSend: function() {
+                    showLoading()
+                },
+                success: function(response) {
+                    $('#form-edit').attr('action', "{{ url('master/statusAir') }}/"+kd_statusair)
+                    $('#kd_statusair').val(response.kd_statusair)
+                    $('#keterangan').val(response.keterangan)
+                    swal.close();
+                }
+            })
+        })
+
+        $(document).on('click', '.hapus', function(e) {
+            e.preventDefault();
+            // console.log();
+            let kd_statusair = $(this).data('id');
+            let token = "{{ csrf_token() }}";
+            swal.fire({
+                title: "Apakah Anda Yakin ?",
+                icon: 'warning',
+                text: "Anda Tidak Akan Bisa Mengembalikan Data Ini",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Iya, Hapus!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: "DELETE",
+                        url: `{{ url('master/statusAir') }}/`+kd_statusair,
+                        data: {
+                                _token: token
+                            },
+                            success: function(resp) {
+                                swal.fire(
+                                    'Deleted!',
+                                    'Your file has been deleted.',
+                                    'success'
+                                )
+                                location.reload();
+                            }
+                    });
+                }
+            });
+        });
 
         function valueing() {
             if (document.getElementById('kode').value === "" || document.getElementById('keterangan').value === "") {

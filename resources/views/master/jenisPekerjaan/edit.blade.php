@@ -19,15 +19,37 @@
                     </div>
                     <div class="form-group">
                         <label for="jns_bonp">Jenis BON P</label>
-                        <input type="text" class="form-control" id="jns_bonp" name="jns_bonp" value="">
+                        <select class="form-control" id="jenis_bonp" name="jenis_bonp">
+                            @foreach ($jnsBonp as $jb)
+                                <option value="{{ $jb->kode }}">{{ $jb->kode }} - {{ $jb->keterangan }}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="beban">Beban</label>
-                        <input type="text" class="form-control" id="beban" name="beban" value="">
+                        <div class="ml-3 row">
+                            <div class="col-md-1">
+                                <input type="radio" ng-model="selected" class="form-check-input beban_plg" id="Ya" name="beban_plg" value="1">
+                                <label class="form-check-label">Ya</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="radio" ng-model="selected" class="form-check-input beban_plg" id="Tidak" name="beban_plg" value="0">
+                                <label class="form-check-label">Tidak</label>
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="kel_bonp">Kel BON P</label>
-                        <input type="text" class="form-control" id="kel_bonp" name="kel_bonp" value="">
+                        <select class="form-control" id="kel_bonp" name="kel_bonp">
+                            <option value="T">T - TDA </option>
+                            <option value="K">K - Kebocoran </option>
+                            <option value="M">M - Meter </option>
+                            <option value="S">S - Segel </option>
+                            <option value="A">A - Air Kotor </option>
+                            <option value="R">R - Stop Kran </option>
+                            <option value="L">L - Lain-Lain </option>
+                            <option value="B">B - Bukaan </option>
+                        </select>
                     </div>
                     <button class="btn btn-success btn-sm" type="submit"><i class="far fa-save"></i> Simpan</button>
                     <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-undo"></i> Batal</button>

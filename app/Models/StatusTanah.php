@@ -9,5 +9,6 @@ class StatusTanah extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
     protected $table = "STATUS_TANAH";
 }

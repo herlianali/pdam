@@ -33,13 +33,13 @@
                                         <div class="form-group row">
                                             <label for="jns_pelanggan" class="col-md-2 col-form-label">Jenis Pelanggan</label>
                                             <div class="col-md-8">
-                                                <input type="text" class="form-control" id="jns_pelanggan" name="jns_pelanggan" onkeyup="valueing()">
+                                                <input type="text" class="form-control" name="jns_pelanggan" onkeyup="valueing()">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="keterangan" class="col-md-2 col-form-label">Keterangan</label>
                                             <div class="col-md-8">
-                                                <input type="text" class="form-control" id="keterangan" name="keterangan" onkeyup="valueing()">
+                                                <input type="text" class="form-control" name="keterangan" onkeyup="valueing()">
                                             </div>
                                         </div>
                                         <div class="form-group row mt-2 ">
@@ -74,15 +74,20 @@
                                             <td>{{ $jenisPelanggan->keterangan }}</td>
                                             <td>{{ $jenisPelanggan->jns_rekswasta }}</td>
                                             <td>
-                                                <form action="{{ route('jenisPelanggan.destroy', $jenisPelanggan->jns_pelanggan) }}" method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"
-                                                        onclick="deleteJenisPelanggan({{ $jenisPelanggan->jns_pelanggan }})"><i
-                                                            class="fas fa-trash-alt"></i> Hapus</button>
-                                                    <button type="button" class="btn btn-success btn-sm" data-toggle="modal"
-                                                        data-target="#edit"><i class="fas fa-edit"></i> Edit</button>
-                                                </form>
+                                                <button type="button"
+                                                        class="btn btn-danger btn-sm hapus"
+                                                        data-id="{{ $jenisPelanggan->jns_pelanggan }}">
+                                                        <i class="fas fa-trash-alt"></i>
+                                                        Hapus
+                                                </button>
+                                                <button type="button"
+                                                        class="btn btn-success btn-sm edit"
+                                                        data-id="{{ $jenisPelanggan->jns_pelanggan }}"
+                                                        data-toggle="modal"
+                                                        data-target="#edit">
+                                                        <i class="fas fa-edit"></i>
+                                                        Edit
+                                                </button>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -130,51 +135,72 @@
             });
         });
 
-        // function editJenisPelanggan (event) {
-
-        // }
-
-        function deleteJenisPelanggan(id) {
+        var showLoading = function() {
             swal.fire({
-                title: "Hapus Data?",
-                icon: 'question',
-                text: "Apakah Anda Yakin Ingin Menghapus",
-                type: "warning",
-                showCancelButton: !0,
-                confirmButtonColor: "#e74c3c",
-                confirmButtonText: "Iya",
-                cancelButtonText: "Tidak",
-                reverseButtons: !0
-            }).then(function(e) {
-                if (e.value === true) {
-                    let token = "{{ csrf_token() }}"
-                    let _url = `/master/jenisPelanggan/${id}`
-                    console.log(_url)
-
-                    $.ajax({
-                        type: 'DELETE',
-                        url: _url,
-                        data: {
-                            _token: token
-                        },
-                        success: function(resp) {
-                            if (resp.success) {
-                                swal.fire("Selesai!", resp.message, "Berhasil");
-                                location.reload();
-                            } else {
-                                swal.fire("Gagal!", "Terjadi Kesalahan.", "error");
-                            }
-                        },
-                        error: function(resp) {
-                            swal.fire("Gagal!", "Terjadi Kesalahan.", "error")
-                        }
-                    })
-                } else {
-                    e.dismiss;
-                }
-            }, function(dismiss) {
-                return false;
-            });
+                title: "Mohon Tunggu !",
+                html: "Sedang Memproses...",
+                allowOutsideClick: false,
+                showConfirmButton: false,
+                willOpen: () => {
+                    swal.showLoading()
+                },
+            })
         }
+
+        $(document).on('click', '.edit', function(e) {
+            e.preventDefault();
+            let jns_pelanggan = $(this).data('id')
+            $.ajax({
+                type: "GET",
+                url: `{{ url('master/jenisPelanggan') }}/`+jns_pelanggan,
+                data: {
+                    id: jns_pelanggan,
+                    _token: '{{ csrf_token() }}'
+                },
+                beforeSend: function() {
+                    showLoading()
+                },
+                success: function(response) {
+                    $('#form-edit').attr('action', "{{ url('master/jenisPelanggan') }}/"+jns_pelanggan)
+                    $('#jns_pelanggan').val(response.jns_pelanggan)
+                    $('#keterangan').val(response.keterangan)
+                    $('#jns_rekswasta').val(response.jns_rekswasta)
+                    swal.close();
+                }
+            })
+        })
+
+        $(document).on('click', '.hapus', function(e) {
+            e.preventDefault();
+            let jns_pelanggan = $(this).data('id');
+            let token = "{{ csrf_token() }}";
+            swal.fire({
+                title: "Apakah Anda Yakin ?",
+                icon: 'warning',
+                text: "Anda Tidak Akan Bisa Mengembalikan Data Ini",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Iya, Hapus!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: "DELETE",
+                        url: `{{ url('master/jenisPelanggan') }}/`+jns_pelanggan,
+                        data: {
+                                _token: token
+                            },
+                            success: function(resp) {
+                                swal.fire(
+                                    'Deleted!',
+                                    'Your file has been deleted.',
+                                    'success'
+                                )
+                                location.reload();
+                            }
+                    });
+                }
+            });
+        });
     </script>
 @endpush

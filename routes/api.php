@@ -24,5 +24,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('pegawai', [DipController::class, 'pegawai'])->name('api/pegawai');
 
 Route::resource('jenisPengaduan', JenisPengaduanController::class);
+Route::get('dip/{nip}', [DipController::class, 'show']);
 
 

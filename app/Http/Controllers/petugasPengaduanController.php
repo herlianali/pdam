@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\pegawai;
+use App\Models\Dip;
 use Illuminate\Http\Request;
 use App\Models\PetugasPengaduan;
 
@@ -10,27 +10,30 @@ class PetugasPengaduanController extends Controller
 {
     public function index()
     {
-        $pPengaduan = PetugasPengaduan::all();
-        return view('master.petugasPengaduan.index', compact('pPengaduan'))->with('i');
+
+        $cPegawai    = Dip::getData();
+        $pPengaduan  = PetugasPengaduan::getData();
+        // dd($cariPegawai);
+        return view('master.petugasPengaduan.index', compact(['pPengaduan', 'cPegawai']))->with('i');
     }
 
     public function store(Request $request)
     {
-        $request->validate([
-            'kode_ptgcs' => 'required',
-            'nip'        => 'required',
-            'nama'       => 'required',
-        ]);
+        // $request->validate([
+        //     'kode_ptgcs' => 'required',
+        //     'nip'        => 'required',
+        //     'nama'       => 'required',
+        // ]);
 
-        PetugasPengaduan::insert([
-            'kd_ptgcs' => $request->kd_ptgcs,
+        $kd_ptgcs = "LT".$request->kd_ptgcs;
+        $query = PetugasPengaduan::insert([
+            'kd_ptgcs' => $kd_ptgcs,
             'nip'      => $request->nip,
             'nama'     => $request->nama,
             'aktif'    => $request->aktif,
             'iscs'     => 0
         ]);
 
-        // var_dump($request);
         return redirect()->route('petugasPengaduan.index');
     }
 
@@ -42,9 +45,9 @@ class PetugasPengaduanController extends Controller
     //     return redirect()->route('petugasPengaduan.index');
     // }
 
-    public function show($id)
+    public function show($nip)
     {
-        $ptsPengaduan = PetugasPengaduan::find($id);
+        $ptsPengaduan = PetugasPengaduan::where('nip', $nip)->first();
         return response()->json($ptsPengaduan);
     }
 

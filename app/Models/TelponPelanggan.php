@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class TelponPelanggan extends Model
 {
     use HasFactory;
+
+    public $timestamps = false;
+    protected $table = 'info_data_pelanggan';
 }

@@ -9,5 +9,6 @@ class MerekMeter extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
     protected $table = "MERK_METER";
 }

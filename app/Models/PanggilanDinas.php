@@ -8,5 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class PanggilanDinas extends Model
 {
     use HasFactory;
+
+    public $timestamps = false;
     protected $table = 'JENIS_PANGGILANDINAS';
 }

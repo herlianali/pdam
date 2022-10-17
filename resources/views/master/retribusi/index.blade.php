@@ -146,7 +146,7 @@
             let kd_retribusi = $(this).data('id')
             $.ajax({
                 type: "GET",
-                url: `{{ url('master/retribusi') }}/`+kd_retribusi,
+                url: `{{ url('api/dip') }}/`+kd_retribusi,
                 data: {
                     id: kd_retribusi,
                     _token: '{{ csrf_token() }}'
@@ -189,7 +189,7 @@
             swal.fire({
                 title: "Apakah Anda Yakin ?",
                 icon: 'warning',
-                text: "Anda Tidak Akan Bisa Mengambilakan Data Ini",
+                text: "Anda Tidak Akan Bisa Mengembalikan Data Ini",
                 showCancelButton: true,
                 confirmButtonColor: "#3085d6",
                 cancelButtonColor: "#d33",

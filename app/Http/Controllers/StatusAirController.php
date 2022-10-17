@@ -13,17 +13,36 @@ class StatusAirController extends Controller
         return view('master.statusAir.index', compact('stAir'))->with('i');
     }
 
-    
-    public function show($id)
+    public function store(Request $request)
     {
-        $statusAir = StatusAir::find($id);
+        StatusAir::insert([
+            'kd_statusair' => $request->kd_statusair,
+            'keterangan'   => $request->keterangan
+        ]);
+
+        return redirect()->route('statusAir.index');
+    }
+
+    public function show($kd_statusair)
+    {
+        $statusAir = StatusAir::where('kd_statusair', $kd_statusair)->first();
         return response()->json($statusAir);
     }
 
-
-    public function destroy($id)
+    public function update(Request $request, $kd_statusair)
     {
-        $statusAir = StatusAir::findOrFail($id)->delete();
+        StatusAir::where('kd_statusair', $kd_statusair)
+                    ->update([
+                        'kd_statusair' => $request->kd_statusair,
+                        'keterangan'   => $request->keterangan
+                    ]);
+
+        return redirect()->route('statusAir.index');
+    }
+
+    public function destroy($kd_statusair)
+    {
+        StatusAir::where('kd_statusair', $kd_statusair)->delete();
         return response()->json([
             'success' => true,
             'message' => 'Data Status Air Berhasil Dihapus',
