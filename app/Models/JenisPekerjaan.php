@@ -9,5 +9,6 @@ class JenisPekerjaan extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
     protected $table = 'JENIS_PEKERJAAN';
 }

@@ -30,28 +30,34 @@
                         <div class="card-body">
                             <div class="row mb-4">
                                 <div class="col-md-8">
-                                    <form class="form-horizontal" action="{{ url('/panggilanDinas') }}" method="post">
+                                    <form class="form-horizontal" action="{{ route('panggilanDinas.store') }}" method="POST">
                                         @csrf
                                         <div class="form-group row mt-2 ">
-                                            <label for="jp_dinas" class="col-md-4 col-form-label">Jenis Panggilan Dinas
+                                            <label for="jns_pdinas" class="col-md-4 col-form-label">Jenis Panggilan Dinas
                                             </label>
                                             <div class="col-md-6">
-                                                <input type="text" class="form-control" name="jp_dinas" id="jp_dinas" onkeyup="valueing()">
+                                                <input type="text" class="form-control" name="jns_pdinas" onkeyup="valueing()">
                                             </div>
                                         </div>
                                         <div class="form-group row mt-2 ">
                                             <label for="keterangan" class="col-md-4 col-form-label">Keterangan </label>
                                             <div class="col-md-6">
-                                                <textarea class="form-control" id="keterangan" onkeyup="valueing()" name="keterangan"></textarea>
+                                                <textarea class="form-control" onkeyup="valueing()" name="keterangan"></textarea>
                                             </div>
                                         </div>
                                         <div class="form-group row mt-2 ">
                                             <label for="tombol" class="col-md-7 col-form-label"></label>
                                             <div class="col-md-5">
-                                                <button class="btn btn-success btn-sm" type="submit"><i
-                                                        class="far fa-save"></i> Simpan</button>
-                                                <button type="submit" class="btn btn-danger btn-sm"><i
-                                                        class="fas fa-undo"></i> Reset</button>
+                                                <button class="btn btn-success btn-sm"
+                                                        type="submit">
+                                                        <i class="far fa-save"></i>
+                                                        Simpan
+                                                </button>
+                                                <button type="submit"
+                                                        class="btn btn-danger btn-sm">
+                                                        <i class="fas fa-undo"></i>
+                                                        Reset
+                                                </button>
                                             </div>
                                         </div>
 
@@ -75,11 +81,20 @@
                                             <td>{{ $pDinas->jns_pdinas }}</td>
                                             <td>{{ $pDinas->keterangan }}</td>
                                             <td>
-                                                <button type="submit" class="btn btn-xs btn-danger "
-                                                    onclick="deletePanggilanDinas({{ $pDinas->id }})"><i
-                                                        class="fas fa-trash-alt"></i> Hapus</button>
-                                                <button type="button" class="btn btn-xs btn-success " data-toggle="modal"
-                                                    data-target="#edit"><i class="fas fa-edit"></i> Edit</button>
+                                                <button type="submit"
+                                                        class="btn btn-xs btn-danger hapus"
+                                                        data-id="{{ $pDinas->jns_pdinas }}">
+                                                        <i class="fas fa-trash-alt"></i>
+                                                        Hapus
+                                                </button>
+                                                <button type="button"
+                                                        class="btn btn-xs btn-success edit"
+                                                        data-id="{{ $pDinas->jns_pdinas }}"
+                                                        data-toggle="modal"
+                                                        data-target="#edit">
+                                                        <i class="fas fa-edit"></i>
+                                                        Edit
+                                                </button>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -126,48 +141,72 @@
             });
         });
 
-        function deletePanggilanDinas(id) {
-            console.log(id)
+        var showLoading = function() {
             swal.fire({
-                title: "Hapus Data?",
-                icon: 'question',
-                text: "Apakah Anda Yakin Ingin Menghapus",
-                type: "warning",
-                showCancelButton: !0,
-                confirmButtonColor: "#e74c3c",
-                confirmButtonText: "Iya",
-                cancelButtonText: "Tidak",
-                reverseButtons: !0
-            }).then(function(e) {
-                if (e.value === true) {
-                    let token = "{{ csrf_token() }}"
-                    let _url = `/master/deletePanggilanDinas/${id}`
-                    console.log(_url)
-
-                    $.ajax({
-                        type: 'DELETE',
-                        url: _url,
-                        data: {
-                            _token: token
-                        },
-                        success: function(resp) {
-                            if (resp.success) {
-                                swal.fire("Selesai!", resp.message, "success");
-                                location.reload();
-                            } else {
-                                swal.fire("Gagal!", "Terjadi Kesalahan.", "error");
-                            }
-                        },
-                        error: function(resp) {
-                            swal.fire("Gagal!", "Terjadi Kesalahan.", "error")
-                        }
-                    })
-                } else {
-                    e.dismiss;
-                }
-            }, function(dismiss) {
-                return false;
-            });
+                title: "Mohon Tunggu !",
+                html: "Sedang Memproses...",
+                allowOutsideClick: false,
+                showConfirmButton: false,
+                willOpen: () => {
+                    swal.showLoading()
+                },
+            })
         }
+
+        $(document).on('click', '.edit', function(e) {
+            e.preventDefault();
+            let jns_pdinas = $(this).data('id')
+            $.ajax({
+                type: "GET",
+                url: `{{ url('master/panggilanDinas') }}/`+jns_pdinas,
+                data: {
+                    id: jns_pdinas,
+                    _token: '{{ csrf_token() }}'
+                },
+                beforeSend: function() {
+                    showLoading()
+                },
+                success: function(response) {
+                    $('#form-edit').attr('action', "{{ url('master/panggilanDinas') }}/"+jns_pdinas)
+                    $('#jns_pdinas').val(response.jns_pdinas)
+                    $('#keterangan').val(response.keterangan)
+                    swal.close();
+                }
+            })
+        })
+
+        $(document).on('click', '.hapus', function(e) {
+            e.preventDefault();
+            // console.log();
+            let jns_pdinas = $(this).data('id');
+            let token = "{{ csrf_token() }}";
+            swal.fire({
+                title: "Apakah Anda Yakin ?",
+                icon: 'warning',
+                text: "Anda Tidak Akan Bisa Mengembalikan Data Ini",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Iya, Hapus!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: "DELETE",
+                        url: `{{ url('master/panggilanDinas') }}/`+jns_pdinas,
+                        data: {
+                                _token: token
+                            },
+                            success: function(resp) {
+                                swal.fire(
+                                    'Deleted!',
+                                    'Your file has been deleted.',
+                                    'success'
+                                )
+                                location.reload();
+                            }
+                    });
+                }
+            });
+        });
     </script>
 @endpush

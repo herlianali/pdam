@@ -98,9 +98,7 @@
                                                         @endif
                                                     </td>
                                                     <td>
-                                                        {{-- <button type="submit" class="btn btn-xs btn-danger"
-                                                            onclick="deletejenisPengaduan({{ $jenisPengaduan->jns_pengaduan }})"><i
-                                                                class="fas fa-trash-alt"></i> Hapus</button> --}}
+
                                                         <form action="{{ route('jenisPengaduan.destroy', $jenisPengaduan->jns_pengaduan) }}" method="POST">
                                                             @csrf
                                                             @method('DELETE')

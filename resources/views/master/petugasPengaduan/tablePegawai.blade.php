@@ -8,7 +8,36 @@
                 </button>
             </div>
             <div class="modal-body">
-
+                <table id="example1" class="table table-bordered table-responsive-md table-condensed" style="width: 100%">
+                    <thead>
+                        <tr>
+                            <th>Nip</th>
+                            <th>Nama Lengkap</th>
+                            <th>Jns Pegawai</th>
+                            <th>kddk Pegawai</th>
+                            <th>Status Pegawai</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($cPegawai as $cari)
+                            <tr>
+                                <td>{{ $cari->nip }}</td>
+                                <td>{{ $cari->nama }}</td>
+                                <td style="text-align:center">{{ $cari->jns_pegawai }}</td>
+                                <td style="text-align:center">
+                                    @if ($cari->kddk_pegawai  == '01')
+                                        <span class="badge bg-success"><i class="far fa-check-circle"></i> Ya</span>
+                                    @else
+                                        <span class="badge bg-danger"><i class="far fa-times-circle"></i> Tidak</span>
+                                    @endif
+                                </td>
+                                <td style="text-align:center">{{ $cari->status_pegawai }}</td>
+                                <td><button class="btn btn-success btn-sm" id="pilih" data-id="{{ $cari->nip }}">Pilih</button></td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
             <div class="modal-footer">
                 <p class="mr-auto">Klik tombol pilih untuk memasukkan data ke table</p>
@@ -17,9 +46,3 @@
         </div>
     </div>
 </div>
-{{-- Nip
-Nama Lengkap
-Jenis Pegawai
-Kedudukan Pegawai
-Status Pegawai
-Aksi --}}

@@ -12,13 +12,24 @@ class Dip extends Model
 
     protected $table = "DIP";
 
-    public function cariPegawai($nama, $nip)
+    public static function getData()
     {
-        $cari = DB::table($this->table)
-                    ->select('nip', 'nama', 'kddk_pegawai', 'jns_pegawai', 'status_pegawai')
-                    ->where('nama', $nama)
-                    ->orWhere('nip', $nip)
+        return DB::table("DIP")
+                    ->select('nip', 'nama', 'jns_pegawai', 'kddk_pegawai', 'status_pegawai')
+                    ->where('jns_pegawai', '=', 'PD',  'AND', 'jns_pegawai', '=', 'PH')
+                    ->where('status_pegawai', '=', 'P')
+                    ->orderBy('nip')
+                    ->limit(1000)
                     ->get();
-        return $cari;
+    }
+
+    public function getByNip($nip)
+    {
+        return DB::table($this->table)
+                    ->select('nip', 'nama', 'jns_pegawai', 'kddk_pegawai', 'status_pegawai')
+                    ->where('nip', $nip)
+                    ->where('jns_pegawai', '=', 'PD',  'AND', 'jns_pegawai', '=', 'PH')
+                    ->where('status_pegawai', '=', 'P')
+                    ->first();
     }
 }

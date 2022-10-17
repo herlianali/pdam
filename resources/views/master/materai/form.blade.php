@@ -9,7 +9,9 @@
             </div>
             <div class="modal-body">
 
-                <form action="" class="form-horizontal">
+                <form class="form-horizontal" id="form-edit" method="POST">
+                    @csrf
+                    @method('PUT')
                     <div class="form-group row mt-2">
                         <label for="nominal" class="col-md-2 col-form-label">Nominal</label>
                         <div class="col-md-7">

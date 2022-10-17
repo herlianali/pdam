@@ -9,5 +9,6 @@ class JenisBonp extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
     protected $table = "JENIS_BONP";
 }

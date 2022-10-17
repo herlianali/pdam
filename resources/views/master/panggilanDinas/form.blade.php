@@ -8,10 +8,12 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="">
+                <form id="form-edit" method="POST">
+                    @csrf
+                    @method('PUT')
                     <div class="form-group">
                         <label>Jenis Panggilan Dinas</label>
-                        <input type="text" class="form-control" id="no_pelanggan" name="no_pelanggan" disabled>
+                        <input type="text" class="form-control" id="jns_pdinas" name="jns_pdinas" disabled>
                     </div>
                     <div class="form-group">
                         <label>Keterangan</label>

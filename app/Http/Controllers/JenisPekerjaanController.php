@@ -39,13 +39,13 @@ class JenisPekerjaanController extends Controller
 
     public function update(Request $request, $jns_pekerjaan)
     {
-        $request->validate([
-            'jns_pekerjaan' => 'required',
-            'keterangan'    => 'required',
-            'jenis_bonp'    => 'required',
-            'beban_plg'     => 'required',
-            'kel_bonp'      => 'required'
-        ]);
+        // $request->validate([
+        //     'jns_pekerjaan' => 'required',
+        //     'keterangan'    => 'required',
+        //     'jenis_bonp'    => 'required',
+        //     'beban_plg'     => 'required',
+        //     'kel_bonp'      => 'required'
+        // ]);
 
         // dd($request->post());
         JenisPekerjaan::where('jns_pekerjaan', $jns_pekerjaan)->update([
@@ -60,9 +60,9 @@ class JenisPekerjaanController extends Controller
     }
 
 
-    public function show($id)
+    public function show($jns_pekerjaan)
     {
-        $jenisPekerjaan = JenisPekerjaan::find($id);
+        $jenisPekerjaan = JenisPekerjaan::where('jns_pekerjaan', $jns_pekerjaan)->first();
         return response()->json($jenisPekerjaan);
     }
 
@@ -75,7 +75,8 @@ class JenisPekerjaanController extends Controller
 
     public function print()
     {
-        return view('master.jenisPekerjaan.print');
+        $jnsPekerjaan = JenisPekerjaan::all();
+        return view('master.jenisPekerjaan.print', compact('jnsPekerjaan'))->with('i');
     }
 
 }

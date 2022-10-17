@@ -8,17 +8,19 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="" class="form-horizontal">
+                <form class="form-horizontal" id="form-edit" method="POST">
+                    @csrf
+                    @method('PUT')
                     <div class="form-group row mt-2">
-                        <label for="kode" class="col-md-2 col-form-label">Kode Merek</label>
+                        <label for="kd_merk" class="col-md-2 col-form-label">Kode Merek</label>
                         <div class="col-md-8">
-                            <input type="text" class="form-control" id="kode" name="kode" onkeyup="valueing()">
+                            <input type="text" class="form-control" id="kd_merk" name="kd_merk" onkeyup="valueing()">
                         </div>
                     </div>
                     <div class="form-group row ">
-                        <label for="keterangan" class="col-md-2 col-form-label">Keterangan </label>
+                        <label for="merk" class="col-md-2 col-form-label">Merk Meter </label>
                         <div class="col-md-8">
-                            <textarea class="form-control" id="keterangan" name="keterangan" onkeyup="valueing()"></textarea>
+                            <textarea class="form-control" id="merk" name="merk" onkeyup="valueing()"></textarea>
                         </div>
                     </div>
 

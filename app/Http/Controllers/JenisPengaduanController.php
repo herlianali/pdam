@@ -52,6 +52,7 @@ class JenisPengaduanController extends Controller
 
     public function print()
     {
-        return view('master.jenisPengaduan.print');
+        $jenisPengaduans = JenisPengaduan::all();
+        return view('master.jenisPengaduan.print', compact('jenisPengaduans'))->with('i');
     }
 }

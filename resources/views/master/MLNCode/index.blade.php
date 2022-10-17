@@ -28,12 +28,13 @@
                         <div class="card-body">
                             <div class="row mb-4">
                                 <div class="col-md-7">
-                                    <form class="form-horizontal">
+                                    <form class="form-horizontal" action="{{ route('mlnCode.store') }}" method="POST">
+                                        @csrf
                                         <div class="form-group">
                                             <div class="form-group row mt-2 ">
-                                                <label for="kode" class="col-md-3 col-form-label">Pilih Code</label>
+                                                <label for="code" class="col-md-3 col-form-label">Pilih Code</label>
                                                 <div class="col-md-6">
-                                                    <select class="form-control" id="kode" onkeyup="valueing()">
+                                                    <select class="form-control" name="code" onkeyup="valueing()">
                                                         <option value="L"> L</option>
                                                         <option value="M"> M </option>
                                                         <option value="N"> N </option>
@@ -41,15 +42,15 @@
                                                 </div>
                                             </div>
                                             <div class="form-group row ">
-                                                <label for="nama" class="col-md-3 col-form-label">Code</label>
+                                                <label for="kode" class="col-md-3 col-form-label">Kode</label>
                                                 <div class="col-md-6">
-                                                    <input type="text" class="form-control" id="nama" name="kode" onkeyup="valueing()">
+                                                    <input type="text" class="form-control" name="kode" onkeyup="valueing()">
                                                 </div>
                                             </div>
                                             <div class="form-group row ">
                                                 <label for="keterangan" class="col-md-3 col-form-label">Keterangan </label>
                                                 <div class="col-md-6">
-                                                    <textarea class="form-control" id="keterangan" name="keterangan" onkeyup="valueing()"></textarea>
+                                                    <textarea class="form-control" name="keterangan" onkeyup="valueing()"></textarea>
                                                 </div>
                                             </div>
                                             <div class="form-group row ">
@@ -91,31 +92,84 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($ml as $mln)
+                                            @foreach ($m as $mData)
                                                 <tr>
                                                     <td>{{ ++$i }}</td>
-                                                    <td>{{ $mln->kode }}</td>
-                                                    <td>{{ $mln->keterangan }}</td>
+                                                    <td>{{ $mData->kode }}</td>
+                                                    <td>{{ $mData->keterangan }}</td>
 
                                                     <td>
-                                                        <button type="submit" class="btn btn-xs btn-danger "
-                                                            onclick="deletemlnCode({{ $mln->id }})"><i
-                                                                class="fas fa-trash-alt"></i> Hapus</button>
-                                                        <button type="button" class="btn btn-xs btn-success "
-                                                            data-toggle="modal" data-target="#edit"><i
-                                                                class="fas fa-edit"></i> Edit</button>
+                                                        <button type="submit"
+                                                                class="btn btn-xs btn-danger hapus"
+                                                                data-id="{{ $mData->kode }}">
+                                                                <i class="fas fa-trash-alt"></i>
+                                                                Hapus
+                                                            </button>
+                                                            <button type="button"
+                                                                class="btn btn-xs btn-success edit"
+                                                                data-id="{{ $mData->kode }}"
+                                                                data-toggle="modal"
+                                                                data-target="#edit">
+                                                                <i class="fas fa-edit"></i>
+                                                                Edit
+                                                        </button>
                                                     </td>
                                                 </tr>
                                             @endforeach
+                                            @foreach ($l as $lData)
+                                                <tr>
+                                                    <td>{{ ++$i }}</td>
+                                                    <td>{{ $lData->kode }}</td>
+                                                    <td>{{ $lData->keterangan }}</td>
+
+                                                    <td>
+                                                        <button type="submit"
+                                                                class="btn btn-xs btn-danger hapus"
+                                                                data-id="{{ $lData->kode }}">
+                                                                <i class="fas fa-trash-alt"></i>
+                                                                Hapus
+                                                        </button>
+                                                        <button type="button"
+                                                                class="btn btn-xs btn-success edit"
+                                                                data-id="{{ $lData->kode }}"
+                                                                data-toggle="modal"
+                                                                data-target="#edit">
+                                                                <i class="fas fa-edit"></i>
+                                                                Edit
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                            @foreach ($n as $nData)
+                                            <tr>
+                                                <td>{{ ++$i }}</td>
+                                                <td>{{ $nData->kode }}</td>
+                                                <td>{{ $nData->keterangan }}</td>
+
+                                                <td>
+                                                    <button type="submit"
+                                                            class="btn btn-xs btn-danger hapus"
+                                                            data-id="{{ $nData->kode }}">
+                                                            <i class="fas fa-trash-alt"></i>
+                                                            Hapus
+                                                    </button>
+                                                    <button type="button"
+                                                            class="btn btn-xs btn-success edit"
+                                                            data-id="{{ $nData->kode }}"
+                                                            data-toggle="modal"
+                                                            data-target="#edit">
+                                                            <i class="fas fa-edit"></i>
+                                                            Edit
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                         </tbody>
                                     </table>
 
                                 </div>
                                 &nbsp;
-
                             </div>
-
-
                         </div>
                     </div>
     </section>
@@ -124,6 +178,7 @@
 @endsection
 
 @push('js')
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
@@ -164,48 +219,72 @@
             }
         }
 
-        function deletemlnCode(id) {
-            console.log(id)
+        var showLoading = function() {
             swal.fire({
-                title: "Hapus Data?",
-                icon: 'question',
-                text: "Apakah Anda Yakin Ingin Menghapus",
-                type: "warning",
-                showCancelButton: !0,
-                confirmButtonColor: "#e74c3c",
-                confirmButtonText: "Iya",
-                cancelButtonText: "Tidak",
-                reverseButtons: !0
-            }).then(function(e) {
-                if (e.value === true) {
-                    let token = "{{ csrf_token() }}"
-                    let _url = `/master/deletemlnCode/${id}`
-                    console.log(_url)
-
-                    $.ajax({
-                        type: 'DELETE',
-                        url: _url,
-                        data: {
-                            _token: token
-                        },
-                        success: function(resp) {
-                            if (resp.success) {
-                                swal.fire("Selesai!", resp.message, "success");
-                                location.reload();
-                            } else {
-                                swal.fire("Gagal!", "Terjadi Kesalahan.", "error");
-                            }
-                        },
-                        error: function(resp) {
-                            swal.fire("Gagal!", "Terjadi Kesalahan.", "error")
-                        }
-                    })
-                } else {
-                    e.dismiss;
-                }
-            }, function(dismiss) {
-                return false;
-            });
+                title: "Mohon Tunggu !",
+                html: "Sedang Memproses...",
+                allowOutsideClick: false,
+                showConfirmButton: false,
+                willOpen: () => {
+                    swal.showLoading()
+                },
+            })
         }
+
+        $(document).on('click', '.edit', function(e) {
+            e.preventDefault();
+            let code = $(this).data('id')
+            $.ajax({
+                type: "GET",
+                url: `{{ url('master/mlnCode') }}/`+code,
+                data: {
+                    id: code,
+                    _token: '{{ csrf_token() }}'
+                },
+                beforeSend: function() {
+                    showLoading()
+                },
+                success: function(response) {
+                    $('#form-edit').attr('action', "{{ url('master/mlnCode') }}/"+code)
+                    $('#code').val(response.kode)
+                    $('#keterangan').val(response.keterangan)
+                    swal.close();
+                }
+            })
+        })
+
+        $(document).on('click', '.hapus', function(e) {
+            e.preventDefault();
+            // console.log();
+            let code = $(this).data('id');
+            let token = "{{ csrf_token() }}";
+            swal.fire({
+                title: "Apakah Anda Yakin ?",
+                icon: 'warning',
+                text: "Anda Tidak Akan Bisa Mengembalikan Data Ini",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Iya, Hapus!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: "DELETE",
+                        url: `{{ url('master/mlnCode') }}/`+code,
+                        data: {
+                                _token: token
+                            },
+                            success: function(resp) {
+                                swal.fire(
+                                    'Deleted!',
+                                    'Your file has been deleted.',
+                                    'success'
+                                )
+                                location.reload();
+                            }
+                    });
+                }
+            });
+        });
     </script>
 @endpush

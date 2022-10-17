@@ -127,6 +127,13 @@
                                         <td>SEGEL ROPLING</td>
                                         <td>T</td>
                                     </tr>
+                                    @foreach ($jenisPengaduans as $jenis)
+                                    <tr>
+                                        <td>{{ $jenis->jns_pengaduan }}</td>
+                                        <td>{{ $jenis->keterangan }}</td>
+                                        <td>{{ $jenis->sifat }}</td>
+                                    </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

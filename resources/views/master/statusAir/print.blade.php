@@ -38,7 +38,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Print preview Tabel Status Air</h3>
-                            <a href="{{ route('statusAir') }}" class="btn btn-sm btn-success float-right"><i class="fas fa-backward"></i> Kembali</a>
+                            <a href="{{ route('statusAir.index') }}" class="btn btn-sm btn-success float-right"><i class="fas fa-backward"></i> Kembali</a>
                         </div>
                         <div class="card-body priview">
                             <p>

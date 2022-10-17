@@ -9,5 +9,6 @@ class StatusMeter extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
     protected $table = "STATUSMTR";
 }

@@ -8,8 +8,9 @@ use Illuminate\Http\Request;
 
 class DipController extends Controller
 {
-    public function pegawai(Dip $dip)
+    public function show($nip)
     {
-
+        $ptsPengaduan = new Dip;
+        return response()->json($ptsPengaduan->getByNip($nip));
     }
 }

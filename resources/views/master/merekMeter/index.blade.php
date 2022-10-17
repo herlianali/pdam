@@ -28,17 +28,18 @@
                         <div class="card-body">
                             <div class="row mb-4">
                                 <div class="col-md-8">
-                                    <form class="form-horizontal">
+                                    <form class="form-horizontal" action="{{ route('merekMeter.index') }}" method="POST">
+                                        @csrf
                                         <div class="form-group row mt-2">
-                                            <label for="kode" class="col-md-2 col-form-label">Kode Merek </label>
+                                            <label for="kd_merk" class="col-md-2 col-form-label">Kode Merek </label>
                                             <div class="col-md-7">
-                                                <input type="text" class="form-control" id="kode" name="kode" onkeyup="valueing()">
+                                                <input type="text" class="form-control" name="kd_merk" onkeyup="valueing()">
                                             </div>
                                         </div>
                                         <div class="form-group row ">
-                                            <label for="merek_meter" class="col-md-2 col-form-label">Merek Meter </label>
+                                            <label for="merk" class="col-md-2 col-form-label">Merek Meter </label>
                                             <div class="col-md-7">
-                                                <textarea class="form-control" id="merek_meter" name="merek_meter" onkeyup="valueing()"></textarea>
+                                                <textarea class="form-control" name="merk" onkeyup="valueing()"></textarea>
                                             </div>
                                         </div>
 
@@ -73,11 +74,20 @@
                                             <td>{{ $merekMeter->kd_merk }}</td>
                                             <td>{{ $merekMeter->merk }}</td>
                                             <td>
-                                                <button type="submit" class="btn btn-xs btn-danger "
-                                                    onclick="deleteMerekMeter({{ $merekMeter->id }})"><i
-                                                        class="fas fa-trash-alt"></i> Hapus</button>
-                                                <button type="button" class="btn btn-xs btn-success " data-toggle="modal"
-                                                    data-target="#form"><i class="fas fa-edit"></i> Edit</button>
+                                                <button type="submit"
+                                                        class="btn btn-xs btn-danger hapus"
+                                                        data-id="{{ $merekMeter->kd_merk }}">
+                                                        <i class="fas fa-trash-alt"></i>
+                                                        Hapus
+                                                </button>
+                                                <button type="button"
+                                                        class="btn btn-xs btn-success edit"
+                                                        data-id="{{ $merekMeter->kd_merk }}"
+                                                        data-toggle="modal"
+                                                        data-target="#form">
+                                                        <i class="fas fa-edit"></i>
+                                                        Edit
+                                                </button>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -122,49 +132,73 @@
             });
         });
 
-        function deleteMerekMeter(id) {
-            console.log(id)
+        var showLoading = function() {
             swal.fire({
-                title: "Hapus Data?",
-                icon: 'question',
-                text: "Apakah Anda Yakin Ingin Menghapus",
-                type: "warning",
-                showCancelButton: !0,
-                confirmButtonColor: "#e74c3c",
-                confirmButtonText: "Iya",
-                cancelButtonText: "Tidak",
-                reverseButtons: !0
-            }).then(function(e) {
-                if (e.value === true) {
-                    let token = "{{ csrf_token() }}"
-                    let _url = `/master/deleteMerkMeter/${id}`
-                    console.log(_url)
-
-                    $.ajax({
-                        type: 'DELETE',
-                        url: _url,
-                        data: {
-                            _token: token
-                        },
-                        success: function(resp) {
-                            if (resp.success) {
-                                swal.fire("Selesai!", resp.message, "success");
-                                location.reload();
-                            } else {
-                                swal.fire("Gagal!", "Terjadi Kesalahan.", "error");
-                            }
-                        },
-                        error: function(resp) {
-                            swal.fire("Gagal!", "Terjadi Kesalahan.", "error")
-                        }
-                    })
-                } else {
-                    e.dismiss;
-                }
-            }, function(dismiss) {
-                return false;
-            });
+                title: "Mohon Tunggu !",
+                html: "Sedang Memproses...",
+                allowOutsideClick: false,
+                showConfirmButton: false,
+                willOpen: () => {
+                    swal.showLoading()
+                },
+            })
         }
+
+        $(document).on('click', '.edit', function(e) {
+            e.preventDefault();
+            let kd_merk = $(this).data('id')
+            $.ajax({
+                type: "GET",
+                url: `{{ url('master/merekMeter') }}/`+kd_merk,
+                data: {
+                    id: kd_merk,
+                    _token: '{{ csrf_token() }}'
+                },
+                beforeSend: function() {
+                    showLoading()
+                },
+                success: function(response) {
+                    $('#form-edit').attr('action', "{{ url('master/merekMeter') }}/"+kd_merk)
+                    $('#kd_merk').val(response.kd_merk)
+                    $('#merk').val(response.merk)
+                    swal.close();
+                }
+            })
+        })
+
+        $(document).on('click', '.hapus', function(e) {
+            e.preventDefault();
+            // console.log();
+            let kd_merk = $(this).data('id');
+            let token = "{{ csrf_token() }}";
+            swal.fire({
+                title: "Apakah Anda Yakin ?",
+                icon: 'warning',
+                text: "Anda Tidak Akan Bisa Mengembalikan Data Ini",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Iya, Hapus!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: "DELETE",
+                        url: `{{ url('master/merekMeter') }}/`+kd_merk,
+                        data: {
+                                _token: token
+                            },
+                            success: function(resp) {
+                                swal.fire(
+                                    'Deleted!',
+                                    'Your file has been deleted.',
+                                    'success'
+                                )
+                                location.reload();
+                            }
+                    });
+                }
+            });
+        });
 
         function valueing() {
             if (document.getElementById('kode').value === "" || document.getElementById('keterangan').value === "") {

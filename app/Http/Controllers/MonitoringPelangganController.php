@@ -9,8 +9,9 @@ class MonitoringPelangganController extends Controller
 {
     public function index()
     {
-        $monPelanggan = MonitoringPelanggan::all();
-        return view('master.monitoringPelanggan.index', compact('monPelanggan'))->with('i');
+        // $mPelanggan = new MonitoringPelanggan;
+        // $monPelanggan = $mPelanggan->getData();
+        return view('master.monitoringPelanggan.index')->with('i');
     }
 
     public function show($id)
@@ -19,7 +20,7 @@ class MonitoringPelangganController extends Controller
         return response()->json($mPelanggan);
     }
 
-    
+
     public function destroy($id)
     {
         MonitoringPelanggan::findOrFail($id)->delete();

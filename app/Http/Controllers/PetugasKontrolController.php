@@ -44,9 +44,9 @@ class PetugasKontrolController extends Controller
         return redirect()->route('petugasKontrol.index');
     }
 
-    public function show($id)
+    public function show($kd_ptgktrl)
     {
-        $ptKontrol = PetugasKontrol::find($id);
+        $ptKontrol = PetugasKontrol::where($kd_ptgktrl)->first();
         return response()->json($ptKontrol);
     }
 
