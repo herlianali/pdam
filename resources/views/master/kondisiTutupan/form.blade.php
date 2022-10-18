@@ -8,10 +8,12 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="">
+                <form action="" class="form-horizontal" id="form-edit" method="POST">
+                    @csrf
+                    @method('PUT')
                     <div class="form-group">
                         <label for="kode">Kode</label>
-                        <input type="text" class="form-control" id="kode" name="kode" value="">
+                        <input type="text" class="form-control" id="kd_kondisi" name="kd_kondisi" value="">
                     </div>
                     <div class="form-group">
                         <label for="keterangan">keterangan</label>

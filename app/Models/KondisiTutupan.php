@@ -8,6 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class KondisiTutupan extends Model
 {
     use HasFactory;
-
+    public $timestamps = false;
     protected $table = "KONDISI_TUTUPAN";
 }
