@@ -76,6 +76,7 @@
                                                         <i class="fas fa-trash-alt"></i>
                                                         Hapus
                                                 </button>
+                                                
                                                 <button type="button"
                                                         class="btn btn-xs btn-success edit"
                                                         data-id="{{ $kondisiTutupan->kd_kondisi }}"

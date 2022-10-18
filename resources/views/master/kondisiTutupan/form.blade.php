@@ -13,7 +13,7 @@
                     @method('PUT')
                     <div class="form-group">
                         <label for="kode">Kode</label>
-                        <input type="text" class="form-control" id="kd_kondisi" name="kd_kondisi" value="">
+                        <input type="text" class="form-control" id="kode" name="kode" value="">
                     </div>
                     <div class="form-group">
                         <label for="keterangan">keterangan</label>

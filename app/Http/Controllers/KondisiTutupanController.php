@@ -56,7 +56,7 @@ class KondisiTutupanController extends Controller
     }
     public function print()
     {
-        return view('master.kondisiTutupan.print');
+      //  return view('master.kondisiTutupan.print');
     }
 
 }
