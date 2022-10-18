@@ -69,8 +69,11 @@ class JenisPekerjaanController extends Controller
 
     public function destroy($jns_pekerjaan)
     {
-        $jenisPekerjaan = JenisPekerjaan::findOrFail($jns_pekerjaan)->delete();
-        return redirect()->route('jenisPekerjaan.index');
+        JenisPekerjaan::where('jns_pekerjaan', $jns_pekerjaan)->delete();
+        return response()->json([
+            'success' => true,
+            'message' => 'Data Jenis Pekerjaan Berhasil Dihapus',
+        ]);
     }
 
     public function print()
