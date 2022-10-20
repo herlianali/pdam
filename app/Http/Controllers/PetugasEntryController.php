@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+
+use App\Models\Dip;
 use Illuminate\Http\Request;
 use App\Models\PetugasEntry;
 
@@ -9,35 +11,53 @@ class PetugasEntryController extends Controller
 {
     public function index()
     {
-        $pEntry = PetugasEntry::all();
-        return view('master.petugasEntry.index', compact('pEntry'))->with('i');
+        $cPegawai    = Dip::getData();
+        $pEntry  = PetugasEntry::getData();
+        // dd($cariPegawai);
+        return view('master.petugasEntry.index', compact(['pEntry', 'cPegawai']))->with('i');
     }
 
     public function store(Request $request)
     {
+        $kd_ptgentry = "LT".$request->kd_ptgentry;
+        $query = PetugasEntry::insert([
+            'kd_ptgentry' => $kd_ptgentry,
+            'nama'     => $request->nama,
+            'nip'      => $request->nip,
+            'aktif'    => $request->aktif
+          
+        ]);
         // dd($request->post());
 
-        PetugasEntry::insert([
-            'kd_ptgentry' => $request->kd_ptgentry,
-            'nip'         => $request->nip,
-            'nama'        => $request->nama,
-            'aktif'       => "Y"
+        return redirect()->route('petugasEntry.index');
+    }
+
+    public function update(Request $request, $kd_ptgentry)
+    {
+        PetugasEntry::where('kd_ptgentry', $kd_ptgentry)->update([
+            'kd_ptgentry'   => $request->kd_ptgentry,
+            'nama'          => $request->nama,
+            'nip'           => $request->nip,
+            'aktif'         => $request->aktif
         ]);
 
         return redirect()->route('petugasEntry.index');
     }
 
-    public function show($id)
+    public function show($kd_ptgentry)
     {
-        $ptsEntry = PetugasEntry::find($id);
+        $ptsEntry = PetugasEntry::where('kd_ptgentry', $kd_ptgentry)->first();
         return response()->json($ptsEntry);
     }
 
 
     public function destroy($kd_ptgentry)
     {
-        PetugasEntry::findOrFail($kd_ptgentry)->delete();
-        return redirect()->route('petugasEntry');
+        PetugasEntry::where('kd_ptgentry', $kd_ptgentry)->delete();
+        return response()->json([
+            'success' => true,
+            'message' => 'Data Petugas Entry Berhasil Dihapus',
+        ]);
     }
     public function print()
     {
