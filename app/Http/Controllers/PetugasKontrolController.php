@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dip;
 use Illuminate\Http\Request;
 use App\Models\PetugasKontrol;
 
@@ -9,22 +10,24 @@ class PetugasKontrolController extends Controller
 {
     public function index()
     {
+        
+        $cPegawai    = Dip::getData();
         $petugaskontrol = new PetugasKontrol();
         $petugas = $petugaskontrol->showPetugas();
-        return view('master.petugasKontrol.index', compact('petugas'))->with('i');
+        return view('master.petugasKontrol.index', compact(['petugas','cPegawai']))->with('i');
     }
 
     public function store(Request $request)
     {
-        // $petugaskontrol = new PetugasKontrol();
-        // $kodeakhir = $petugaskontrol->getLastKode() + 1;
         $satgas = isset($request->is_satgas) ? 1 : 0;
-        PetugasKontrol::insert([
-            'kd_ptgktrl' => $request->kd_ptgktrl,
-            'nip'        => $request->nip,
-            'nama'       => $request->nama,
-            'is_satgas'  => $satgas
+        $kd_ptgktrl = "TK".$request->kd_ptgktrl;
+        $query = PetugasKontrol::insert([
+            'kd_ptgktrl' => $kd_ptgktrl,
+            'nip'      => $request->nip,
+            'nama'     => $request->nama,
+            'is_satgas'     => $satgas
         ]);
+       
 
         return redirect()->route('petugasKontrol.index');
     }
@@ -52,9 +55,11 @@ class PetugasKontrolController extends Controller
 
     public function destroy($kd_ptgktrl)
     {
-        PetugasKontrol::where('kd_ptgktrl',$kd_ptgktrl)->delete();
-
-        return redirect()->route('petugasKontrol.index');
+        PetugasKontrol::where('kd_ptgktrl', $kd_ptgktrl)->delete();
+        return response()->json([
+            'success' => true,
+            'message' => 'Data Petugas Kontrol Berhasil Dihapus',
+        ]);
     }
 
     public function print()

@@ -1,5 +1,5 @@
 @extends('layout.app')
-@section('title', 'Survey Pelanggan')
+@section('title', 'Cek Survey Tarif')
 
 @push('css')
     <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
@@ -28,29 +28,30 @@
                         <div class="card-body">
                             <div class="row mb-5">
                                 <div class="col-md-9">
-                                    <form class="form-horizontal">
+                                  
                                         <div class="form-group row mt-2 ">
-                                            <label for="nopelanggan" class="col-md-3 col-form-label"> Nomor Pelanggan</label>
+                                            <label for="no_plg" class="col-md-3 col-form-label"> Nomor Pelanggan</label>
                                             <div class="col-md-7">
-                                                <input type="text" class="form-control" id="nopelanggan" name="nopelanggan" onkeyup="valueing()" placeholder="Ketik Nomor Pelanggan Lalu Tekan Enter">
+                                                <input type="text" class="form-control" id="no_plg" name="no_plg" onkeyup="valueing()" placeholder="Ketik Nomor Pelanggan Lalu Tekan Enter">
                                             </div>
                                         </div>
+                                        <form class="form-horizontal">
                                         <div class="form-group row mt-2">
                                             <label for="njop" class="col-md-3 col-form-label"> NJOP</label>
                                             <div class="col-md-7">
-                                                <input type="text" class="form-control" id="njop" name="name" onkeyup="valueing()" readonly value="">
+                                                <input type="text" class="form-control" id="njop" name="njop" onkeyup="valueing()"  readonly value="">
                                             </div>
                                         </div>
                                         <div class="form-group row mt-2">
                                             <label for="listrik" class="col-md-3 col-form-label">Listrik</label>
                                             <div class="col-md-7">
-                                                <input type="text" class="form-control" id="listrik" name="listrik" onkeyup="valueing()"readonly value="">
+                                                <input type="text" class="form-control" id="listrik" name="listrik" onkeyup="valueing()" readonly value="">
                                             </div>
                                         </div>
                                         <div class="form-group row ">
                                             <label for="lebarjalan" class="col-md-3 col-form-label">Lebar Jalan</label>
                                             <div class="col-md-7">
-                                                <input type="text" class="form-control" id="lebarjln" name="lebarjln" onkeyup="valueing()"readonly value="">
+                                                <input type="text" class="form-control" id="jalan" name="jalan" onkeyup="valueing()" readonly value="">
                                             </div>
                                         </div>
                                 </div>
@@ -66,6 +67,7 @@
 @endsection
 
 @push('js')
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
@@ -84,6 +86,41 @@
                 "pageLength": 5
             });
         });
+        var showLoading = function() {
+            swal.fire({
+                title: "Mohon Tunggu !",
+                html: "Sedang Memproses...",
+                allowOutsideClick: false,
+                showConfirmButton: false,
+                willOpen: () => {
+                    swal.showLoading()
+                },
+            })
+        }
+
+        $(document).keyup('enter',function(e) {
+            e.preventDefault();
+            let no_plg = $('#no_plg').val();
+            $.ajax({
+                type: "GET",
+                url: `{{ url('master/cekSurveyTarif') }}/`+no_plg,
+                data: {
+                    id: no_plg,
+                    _token: '{{ csrf_token() }}'
+                },
+                // beforeSend: function() {
+                //     showLoading()
+                // },
+            
+                success: function(response) {
+                    console.log(response,'ini responnya')
+                    $('#njop').val(response.njop)
+                    $('#listrik').val(response.listrik)
+                    $('#jalan').val(response.jalan)
+                    swal.close();
+                }
+            })
+        })
 
         function valueing() {
             if (document.getElementById('kode').value === "" || document.getElementById('keterangan').value === "") {

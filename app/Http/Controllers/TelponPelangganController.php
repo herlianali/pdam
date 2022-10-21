@@ -20,4 +20,18 @@ class TelponPelangganController extends Controller
                                         ->get()->first();
         return response()->json($telpPelanggan);
     }
+    public function update(Request $request, $no_plg)
+    {
+       
+        TelponPelanggan::where('no_plg', $no_plg)->update([
+            'no_plg' => $request->no_plg,
+            'nama'    => $request->nama,
+            'alamat'    => $request->alamat,
+            'telp_1'     => $request->telp_1
+        ]);
+
+        return redirect()->route('telponPelanggan.index');
+    }
+
+
 }
