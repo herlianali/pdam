@@ -5,9 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class RiwayatPemakaian extends Model
+class Secman extends Model
 {
     use HasFactory;
-    protected $table = "";
+    protected $connection = 'oracle2';
+    protected $table = 'USRTAB';
 
 }
