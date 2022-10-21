@@ -15,36 +15,48 @@ class KondisiTutupanController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->post());
-        // $request->validate([
+        $request->validate([
+            'kd_kondisi'    => 'required|max:255',
+            'keterangan'    => 'required'
+        ]);
 
-        // ])
-        KondisiTutupan::insert($request->except('_token'));
+        KondisiTutupan::insert([
+            'kd_kondisi'    => $request->kd_kondisi,
+            'keterangan'    => $request->keterangan
+        ]);
 
         return redirect()->route('kondisiTutupan.index');
     }
 
     public function update(Request $request, $kd_kondisi)
     {
+        KondisiTutupan::where('kd_kondisi', $kd_kondisi)
+                ->update([
+                    'kd_kondisi'    => $request->kd_kondisi,
+                    'keterangan'    => $request->keterangan
+                ]);
 
+
+        return redirect()->route('kondisiTutupan.index');
     }
 
     public function show($kd_kondisi)
     {
-        $kondisiTutupan = KondisiTutupan::find($kd_kondisi);
+        $kondisiTutupan = KondisiTutupan::where('kd_kondisi', $kd_kondisi)->first();
         return response()->json($kondisiTutupan);
     }
-
 
     public function destroy($kd_kondisi)
     {
         KondisiTutupan::where('kd_kondisi', $kd_kondisi)->delete();
-
-        return redirect()->route('kondisiTutupan.index');
+        return response()->json([
+            'success' => true,
+            'message' => 'Data Kondisi Tutupan Berhasil Dihapus',
+        ]);
     }
     public function print()
     {
-        return view('master.kondisiTutupan.print');
+      //  return view('master.kondisiTutupan.print');
     }
 
 }

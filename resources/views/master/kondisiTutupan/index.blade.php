@@ -33,13 +33,13 @@
                                         <div class="form-group row">
                                             <label for="kode" class="col-md-2 col-form-label">Kode</label>
                                             <div class="col-md-7">
-                                                <input type="text" class="form-control" id="kode" name="kd_kondisi" onkeyup="valueing()">
+                                                <input type="text" class="form-control" name="kd_kondisi" onkeyup="valueing()">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="keterangan" class="col-md-2 col-form-label">Keterangan</label>
                                             <div class="col-md-7">
-                                                <textarea class="form-control" id="keterangan" name="keterangan" onkeyup="valueing()"></textarea>
+                                                <textarea class="form-control"  name="keterangan" onkeyup="valueing()"></textarea>
                                             </div>
                                         </div>
                                         <div class="form-group row mt-2">
@@ -70,11 +70,21 @@
                                             <td>{{ $kondisiTutupan->kd_kondisi }}</td>
                                             <td>{{ $kondisiTutupan->keterangan }}</td>
                                             <td>
-                                                <button type="submit" class="btn btn-xs btn-danger "
-                                                    onclick="deletekondisiTutupan({{ $kondisiTutupan->kd_kondisi }})"><i
-                                                        class="fas fa-trash-alt"></i> Hapus</button>
-                                                <button type="button" class="btn btn-xs btn-success " data-toggle="modal"
-                                                    data-target="#form"><i class="fas fa-edit"></i> Edit</button>
+                                                <button type="submit"
+                                                        class="btn btn-xs btn-danger hapus"
+                                                        data-id="{{ $kondisiTutupan->kd_kondisi }}">
+                                                        <i class="fas fa-trash-alt"></i>
+                                                        Hapus
+                                                </button>
+                                                
+                                                <button type="button"
+                                                        class="btn btn-xs btn-success edit"
+                                                        data-id="{{ $kondisiTutupan->kd_kondisi }}"
+                                                        data-toggle="modal"
+                                                        data-target="#form">
+                                                        <i class="fas fa-edit"></i>
+                                                        Edit
+                                                </button>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -123,50 +133,77 @@
             });
         });
 
-        function deletekondisiTutupan(id) {
-            console.log(id)
+        var showLoading = function() {
             swal.fire({
-                title: "Hapus Data?",
-                icon: 'question',
-                text: "Apakah Anda Yakin Ingin Menghapus",
-                type: "warning",
-                showCancelButton: !0,
-                confirmButtonColor: "#e74c3c",
-                confirmButtonText: "Iya",
-                cancelButtonText: "Tidak",
-                reverseButtons: !0
-            }).then(function(e) {
-                if (e.value === true) {
-                    let token = "{{ csrf_token() }}"
-                    let _url = `/master/deletekondisiTutupan/${id}`
-                    console.log(_url)
-
-                    $.ajax({
-                        type: 'DELETE',
-                        url: _url,
-                        data: {
-                            _token: token
-                        },
-                        success: function(resp) {
-                            if (resp.success) {
-                                swal.fire("Selesai!", resp.message, "success");
-                                location.reload();
-                            } else {
-                                swal.fire("Gagal!", "Terjadi Kesalahan.", "error");
-                            }
-                        },
-                        error: function(resp) {
-                            swal.fire("Gagal!", "Terjadi Kesalahan.", "error")
-                        }
-                    })
-                } else {
-                    e.dismiss;
-                }
-            }, function(dismiss) {
-                return false;
-            });
+                title: "Mohon Tunggu !",
+                html: "Sedang Memproses...",
+                allowOutsideClick: false,
+                showConfirmButton: false,
+                willOpen: () => {
+                    swal.showLoading()
+                },
+            })
         }
+        
 
+        $(document).on('click', '.edit', function(e) {
+            e.preventDefault();
+           // console.log('respon');
+            let kd_kondisi = $(this).data('id')
+            $.ajax({
+                type: "GET",
+                url: `{{ url('master/kondisiTutupan') }}/`+kd_kondisi,
+                data: {
+                    id: kd_kondisi,
+                    _token: '{{ csrf_token() }}'
+                },
+                beforeSend: function() {
+                    showLoading()
+                },
+                success: function(response) {
+                    $('#form-edit').attr('action', "{{ url('master/kondisiTutupan') }}/"+kd_kondisi)
+                    $('#kd_kondisi').val(response.kd_kondisi)
+                    $('#keterangan').val(response.keterangan)
+                    swal.close();
+                }
+            })
+        })
+
+        $(document).on('click', '.hapus', function(e) {
+            e.preventDefault();
+             //console.log();
+            let kd_kondisi = $(this).data('id');
+            let token = "{{ csrf_token() }}";
+            swal.fire({
+                title: "Apakah Anda Yakin ?",
+                icon: 'warning',
+                text: "Anda Tidak Akan Bisa Mengembalikan Data Ini",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Iya, Hapus!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: "DELETE",
+                        url: `{{ url('master/kondisiTutupan') }}/`+kd_kondisi,
+                        data: {
+                                _token: token
+                            },
+                            success: function(resp) {
+                                swal.fire(
+                                    'Deleted!',
+                                    'Your file has been deleted.',
+                                    'success'
+                                )
+                                location.reload();
+                            }
+                    });
+                }
+            });
+        });
+
+      
         function valueing() {
             if (document.getElementById('kode').value === "" || document.getElementById('keterangan').value === "") {
                 document.getElementById('batal').disabled = true

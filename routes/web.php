@@ -208,3 +208,10 @@ Route::prefix('mutasipelanggan')->group(function() {
     Route::get('cetakBAPerorangan', [CetakBAPeroranganController::class, 'index'])->name('cetakBAPerorangan');
     Route::get('printmonitoringGunaPersil', [MonitoringGunaPersilController::class, 'print'])->name('printmonitoringGunaPersil');
 });
+
+
+Route::prefix('mutasiPemakaian')->group(function () { 
+    Route::get('/usulanMutasiTarif', [ usulanMutasiTarifController::class, 'index'])->name('usulanMutasiTarif');
+    Route::get('/cetakBA', [ usulanMutasiTarifController::class, 'cetakBA'])->name('cetakBAusulanTarif');
+   
+});
