@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Secman;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
@@ -12,17 +13,14 @@ class LoginController extends Controller
         return view('login.login');
     }
 
-    public function login(Request $request)
+    public function loginUser(Request $request)
     {
         $request->validate([
             'username' => 'required',
             'password' => 'required'
         ]);
-
-        $auth = DB::table('USERS')
-                    ->whereRaw("users = '".$request->username."' AND passwd = '".$request->password."'")
-                    ->first();
-
+        $auth = Secman::whereRaw("username = '".$request->username."' AND passw = '".md5($request->password)."'")
+                        ->first();
         if ($auth) {
             $request->session()->regenerate();
             return redirect()->route('dashboard');
@@ -31,8 +29,12 @@ class LoginController extends Controller
         }
     }
 
-    public function logout()
+    public function logoutUser()
     {
-
+        Session::forget('key');
+        if(!Session::has('key'))
+         {
+            return redirect('/');
+         }
     }
 }

@@ -19,4 +19,18 @@ class PetugasPengaduan extends Model
                 ->orderBy('kd_ptgcs')
                 ->get();
     }
+    public static function getNameKode()
+    {
+        return DB::table("PETUGAS_CS")
+                ->select('kd_ptgcs', 'nama')
+                ->where(DB::raw('substr(kd_ptgcs,0,2)'), '=' , 'LT')
+                ->orderBy('kd_ptgcs')
+                ->get();
+    }
+    // public static function getJnsPengadu()
+    // {
+    //     return DB::table("PETUGAS_CS")
+
+    // }
+
 }

@@ -7,12 +7,12 @@ use App\Models\RiwayatPemakaian;
 
 class RiwayatPemakaianController extends Controller
 {
-       
+
     public function index()
     {
-        
-        $rwPemakaians = RiwayatPemakaian::all();
-        return view('pengaduan.riwayatPemakaian.index', compact('rwPemakaians'))->with('i');
+
+        // $rwPemakaians = RiwayatPemakaian::all();
+        return view('pengaduan.riwayatPemakaian.index')->with('i');
     }
 
     public function detail()
@@ -25,7 +25,7 @@ class RiwayatPemakaianController extends Controller
         return view('pengaduan.riwayatPemakaian.pelanggaran');
     }
 
-    
+
     public function infoPelanggaran()
     {
         return view('pengaduan.riwayatPemakaian.infoPelanggaran');
