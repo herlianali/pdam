@@ -11,8 +11,8 @@ class PengaduanController extends Controller
     public function index()
     {
         
-        $pengaduans = Pengaduan::all();
-        return view('pengaduan.pengaduan.index', compact('pengaduans'))->with('i');
+        $pengaduan = Pengaduan::all();
+        return view('pengaduan.pengaduan.index', compact('pengaduan'))->with('i');
     }
 
     public function detail()

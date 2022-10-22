@@ -69,8 +69,6 @@
                                                 <button type="submit" class="btn btn-xs btn-danger "
                                                     onclick="deletepelangganMeterC({{ $plgnMeterC->id }})"><i
                                                         class="fas fa-trash-alt"></i> Hapus</button>
-                                                <button type="button" class="btn btn-xs btn-success " data-toggle="modal"
-                                                    data-target="#edit"><i class="fas fa-edit"></i> Edit</button>
                                             </td>
                                         </tr>
                                     @endforeach

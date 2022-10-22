@@ -32,7 +32,8 @@
                                         <div class="form-group row mt-2 ">
                                             <label for="nopelanggan" class="col-md-3 col-form-label"> Nomor Pelanggan</label>
                                             <div class="col-md-7">
-                                                <input type="text" class="form-control" id="nopelanggan" name="nopelanggan" onkeyup="valueing()" placeholder="Ketik Nomor Pelanggan Lalu Tekan Enter">
+                                                <input type="text" class="form-control" id="nopelanggan" name="nopelanggan" onkeyup="valueing()"
+                                                data-id="{{ $cekSurveyTarif->nopelanggan }}" placeholder="Ketik Nomor Pelanggan Lalu Tekan Enter">
                                             </div>
                                         </div>
                                         <div class="form-group row mt-2">

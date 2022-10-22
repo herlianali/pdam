@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dip;
 use Illuminate\Http\Request;
 use App\Models\PetugasKontrol;
 
@@ -10,8 +11,9 @@ class PetugasKontrolController extends Controller
     public function index()
     {
         $petugaskontrol = new PetugasKontrol();
-        $petugas = $petugaskontrol->showPetugas();
-        return view('master.petugasKontrol.index', compact('petugas'))->with('i');
+        $petugas        = $petugaskontrol->showPetugas();
+        $cPegawai       = Dip::getData();
+        return view('master.petugasKontrol.index', compact('petugas', 'cPegawai'))->with('i');
     }
 
     public function store(Request $request)

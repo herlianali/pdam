@@ -95,6 +95,7 @@ Route::prefix('master')->group(function () {
     Route::get('/printpetugasEntry', [PetugasEntryController::class, 'print'])->name('printpetugasEntry');
     // Route::delete('/deletepetugasEntry/{id}', [PetugasEntryController::class, 'destroy']);
 
+    Route::resource('gunaPersil', GunaPersilController::class)->parameters(['gunaPersil' => 'kd_gunapersil'])->except(['create','edit']);
     Route::get('/gunaPersil', [GunaPersilController::class, 'index'])->name('gunaPersil');
     Route::delete('/deletegunaPersil/{id}', [GunaPersilController::class, 'destroy']);
     Route::get('/printgunaPersil',[GunaPersilController::class,'print'])->name('printgunaPersil');

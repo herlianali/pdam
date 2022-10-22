@@ -88,7 +88,7 @@
                     </div>
                     </form>
                 </div>
-                <table id="table" class="table table-bordered table-responsive-md table-condensed">
+                <table id="example" class="table table-bordered table-responsive-md table-condensed" style="width: 100%">
                     <thead>
                         <tr>
                             <th width="10%">NIP </th>
@@ -116,6 +116,16 @@
     <script src="{{ asset('assets/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
     <script>
         $(function() {
+            $('#example').DataTable({
+
+            //  "lengthChange": false,
+            //   "autoWidth": false,
+            //   "responsive": true,
+            "oLanguage": {
+                "sSearch": "Keterangan : "
+            },
+            "pageLength": 5
+            }).buttons().container().appendTo('#table_wrapper .col-md-6:eq(0)');
             $('#example2').DataTable({
                 "paging": true,
                 "lengthChange": false,
@@ -127,6 +137,18 @@
                 "pageLength": 5
             });
         });
+
+        var showLoading = function() {
+            swal.fire({
+                title: "Mohon Tunggu !",
+                html: "Sedang Memproses...",
+                allowOutsideClick: false,
+                showConfirmButton: false,
+                willOpen: () => {
+                    swal.showLoading()
+                },
+            })
+        }
 
         function valueing() {
             // if(document.getElementById('kode').value==="" || document.getElementById('keterangan').value==="") {

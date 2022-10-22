@@ -28,34 +28,39 @@
                         <div class="card-body">
                             <div class="row mb-4">
                                 <div class="col-md-8">
-                                    <form class="form-horizontal">
+                                    <form class="form-horizontal" action="{{ route('gunaPersil.store') }}" method="POST">
+                                        @csrf
                                         <div class="form-group row mt-2">
-                                            <label for="kode_merek" class="col-md-2 col-form-label">Kode Merek </label>
+                                            <label for="kd_gunapersil" class="col-md-2 col-form-label">Kode Merek </label>
                                             <div class="col-md-7">
-                                                <input type="text" class="form-control" id="kode_merek" name="kode_merek" onkeyup="valueing()">
+                                                <input type="text" class="form-control" id="kd_gunapersil" name="kd_gunapersil" onkeyup="valueing()">
                                             </div>
                                         </div>
                                         <div class="form-group row ">
                                             <label for="keterangan" class="col-md-2 col-form-label">Keterangan</label>
                                             <div class="col-md-7">
-                                                <textarea class="form-control" id="keterangan" name="keterangan" onkeyup="valueing()"></textarea>
+                                                <textarea class="form-control" name="keterangan" onkeyup="valueing()"></textarea>
                                             </div>
                                         </div>
                                         <div class="form-group row ">
-                                            <label for="induk" class="col-md-2 col-form-label">Induk</label>
+                                            <label for="kd_gunapersil_i" class="col-md-2 col-form-label">Induk</label>
                                             <div class="col-md-7">
-                                                <select class="form-control" id="induk"  name="induk" onkeyup="valueing()">
-                                                    <option value=""> </option>
-                                                    <option value=""> </option>
+                                                <select class="form-control" id="induk" name="induk" onkeyup="valueing()">
+                                                    <option value="1"> 1 - Kelompok I </option>
+                                                    <option value="2"> 2 - Kelompok II </option>
+                                                    <option value="3"> 3 - Kelompok III </option>
+                                                    <option value="4"> 4 - Kelompok IV </option>
+                                                    <option value="5"> 5 - Kelompok V </option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="form-group row ">
-                                            <label for="kode_tarif" class="col-md-2 col-form-label">Kode Tarif</label>
+                                            <label for="kd_tarif" class="col-md-2 col-form-label">Kode Tarif</label>
                                             <div class="col-md-7">
-                                                <select class="form-control" id="kode_tarif" name="kode_tarif" onkeyup="valueing()">
-                                                    <option value=""> </option>
-                                                    <option value=""> </option>
+                                                <select class="custom-select" id="kode_tarif" name="kode_tarif">
+                                                    @foreach ($kd_tarif as $kode)
+                                                        <option value="{{ $kode->kd_tarif }}">{{ $kode->kd_tarif }} - {{ $kode->jns_tarif }}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>
@@ -75,30 +80,38 @@
                             <table id="example" class="table table-bordered table-responsive-md table-condensed" style="width: 100%">
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
-                                        <th>Kode Guna Pensil</th>
-                                        <th>Keterangan</th>
-                                        <th>Aksi</th>
+                                        <th width="15%">Kode Guna Persil</th>
+                                        <th width="50%">Keterangan</th>
+                                        <th width="10%">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($gnPersil as $gunaPersil)
+                                    @foreach ($kd_gunapersil as $gunaPersil)
                                         <tr>
-                                            <td>{{ ++$i }}</td>
                                             <td>{{ $gunaPersil->kd_gunapersil }}</td>
                                             <td>{{ $gunaPersil->keterangan }}</td>
                                             <td>
-                                                <button type="submit" class="btn btn-xs btn-danger "
-                                                    onclick="deletegunaPersil({{ $gunaPersil->id }})"><i
-                                                        class="fas fa-trash-alt"></i> Hapus</button>
-                                                <button type="button" class="btn btn-xs btn-success " data-toggle="modal"
-                                                    data-target="#form"><i class="fas fa-edit"></i> Edit</button>
+                                                <button type="submit"
+                                                        class="btn btn-xs btn-danger hapus"
+                                                        data-id="{{ $gunaPersil->kd_gunapersil }}">
+                                                        <i class="fas fa-trash-alt"></i>
+                                                        Hapus
+                                                </button>
+                                                <button type="button"
+                                                        class="btn btn-xs btn-success edit"
+                                                        data-id="{{ $gunaPersil->kd_gunapersil }}"
+                                                        data-toggle="modal"
+                                                        data-target="#form">
+                                                        <i class="fas fa-edit"></i>
+                                                        Edit
+                                                </button>
                                             </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
                             </table>
                         </div>
+                        @include('master.gunaPersil.form')
                     </div>
                 </div>
     </section>
@@ -136,58 +149,62 @@
             });
         });
 
-        function deletegunaPersil(id) {
-            console.log(id)
-            swal.fire({
-                title: "Hapus Data?",
-                icon: 'question',
-                text: "Apakah Anda Yakin Ingin Menghapus",
-                type: "warning",
-                showCancelButton: !0,
-                confirmButtonColor: "#e74c3c",
-                confirmButtonText: "Iya",
-                cancelButtonText: "Tidak",
-                reverseButtons: !0
-            }).then(function(e) {
-                if (e.value === true) {
-                    let token = "{{ csrf_token() }}"
-                    let _url = `/master/deletegunaPersil/${id}`
-                    console.log(_url)
-
-                    $.ajax({
-                        type: 'DELETE',
-                        url: _url,
-                        data: {
-                            _token: token
-                        },
-                        success: function(resp) {
-                            if (resp.success) {
-                                swal.fire("Selesai!", resp.message, "success");
-                                location.reload();
-                            } else {
-                                swal.fire("Gagal!", "Terjadi Kesalahan.", "error");
-                            }
-                        },
-                        error: function(resp) {
-                            swal.fire("Gagal!", "Terjadi Kesalahan.", "error")
-                        }
-                    })
-                } else {
-                    e.dismiss;
+        $(document).on('click', '.edit', function(e) {
+            e.preventDefault();
+            let kd_gunapersil = $(this).data('id')
+            $.ajax({
+                type: "GET",
+                url: `{{ url('master/gunaPersil') }}/`+kd_gunapersil,
+                data: {
+                    id: kd_gunapersil,
+                    _token: '{{ csrf_token() }}'
+                },
+                beforeSend: function() {
+                    showLoading()
+                },
+                success: function(response) {
+                    $('#form-edit').attr('action', "{{ url('master/gunaPersil') }}/"+kd_gunapersil)
+                    $('#kd_gunapersil').val(response.kd_gunapersil)
+                    $('#keterangan').val(response.keterangan)
+                    $('#induk').val(response.induk)
+                    $('#kode_tarif').val(response.kode_tarif)
+                    swal.close();
                 }
-            }, function(dismiss) {
-                return false;
-            });
-        }
+            })
+        })
 
-        function valueing() {
-            if (document.getElementById('kode').value === "" || document.getElementById('keterangan').value === "") {
-                document.getElementById('batal').disabled = true
-                document.getElementById('simpan').disabled = true
-            } else {
-                document.getElementById('batal').disabled = false
-                document.getElementById('simpan').disabled = false
-            }
-        }
+        $(document).on('click', '.hapus', function(e) {
+            e.preventDefault();
+            // console.log();
+            let kd_gunapersil = $(this).data('id');
+            let token = "{{ csrf_token() }}";
+            swal.fire({
+                title: "Apakah Anda Yakin ?",
+                icon: 'warning',
+                text: "Anda Tidak Akan Bisa Mengembalikan Data Ini",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Iya, Hapus!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: "DELETE",
+                        url: `{{ url('master/gunaPersil') }}/`+kd_gunapersil,
+                        data: {
+                                _token: token
+                            },
+                            success: function(resp) {
+                                swal.fire(
+                                    'Deleted!',
+                                    'Your file has been deleted.',
+                                    'success'
+                                )
+                                location.reload();
+                            }
+                    });
+                }
+            });
+        });
     </script>
 @endpush
