@@ -31,8 +31,8 @@ class GunaPersilController extends Controller
         GunaPersil::insert([
             'kd_gunapersil'     => $request->kd_gunapersil,
             'keterangan'        => $request->keterangan,
-            'kd_gunapersil_i'   => $request->induk,
-            'kd_tarif'          => $request->kode_tarif,
+            'kd_gunapersil_i'   => $request->kd_gunapersil_i,
+            'kd_tarif'          => $request->kd_tarif,
             'jns_persil'        => "a"
         ]);
         
@@ -47,20 +47,21 @@ class GunaPersilController extends Controller
 
     public function update(Request $request, $kd_gunapersil)
     {
-        StatusAir::where('kd_gunapersil', $kd_gunapersil)
+        //dd($request->post());
+        GunaPersil::where('kd_gunapersil', $kd_gunapersil)
                     ->update([
-                        'kd_gunapersil' => $request->kd_gunapersil,
-                        'keterangan'    => $request->keterangan,
-                        'induk'         => $request->guna_persil,
-                        'kode_tarif'    => $request->kode_tarif
+                        'kd_gunapersil'     => $request->kd_gunapersil,
+                        'keterangan'        => $request->keterangan,
+                        'kd_gunapersil_i'   => $request->kd_gunapersil_i,
+                        'kd_tarif'          => $request->kd_tarif
                     ]);
 
-        return redirect()->route('gunaPersil.index');
+        return redirect()->route('gunaPersil');
     }
 
-    public function destroy($id)
+    public function destroy($kd_gunapersil)
     {
-        $gunaPersil = GunaPersil::findOrFail($id)->delete();
+        GunaPersil::where('kd_gunapersil', $kd_gunapersil)->delete();
         return response()->json([
             'success' => true,
             'message' => 'Data Guna Persil Berhasil Dihapus',

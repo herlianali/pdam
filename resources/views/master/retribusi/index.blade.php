@@ -146,7 +146,7 @@
             let kd_retribusi = $(this).data('id')
             $.ajax({
                 type: "GET",
-                url: `{{ url('api/dip') }}/`+kd_retribusi,
+                url: `{{ url('master/retribusi') }}/`+kd_retribusi,
                 data: {
                     id: kd_retribusi,
                     _token: '{{ csrf_token() }}'
@@ -162,24 +162,7 @@
             })
         })
 
-        $('#edit-form').submit(function(e) {
-            e.preventDefault();
-            const fd = new FormData(this);
-            $.ajax({
-                type: "PUT",
-                url: `{{ url('master/retribusi') }}/`+kd_retribusi,
-                data: fd,
-                cache: false,
-                contentType: false,
-                processData: false,
-                dataType: 'json',
-                success: function(resp) {
-                    if(resp.success) {
 
-                    }
-                }
-            })
-        })
 
         $(document).on('click', '.hapus', function(e) {
             e.preventDefault();
@@ -214,8 +197,6 @@
                 }
             });
         });
-
-
 
         function valueing() {
             if (document.getElementById('rp_retribusi').value == "") {

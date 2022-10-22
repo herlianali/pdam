@@ -22,7 +22,13 @@ class JenisPengaduanController extends Controller
             'reward'        => 'required'
         ]);
 
-        JenisPengaduan::insert($request->except('_token'));
+        // JenisPengaduan::insert($request->except('_token'));
+        JenisPengaduan::insert([
+            'jns_pengaduan' => $request->jns_pengaduan,
+            'keterangan'    => $request->keterangan,
+            'sifat'         => $request->sifat,
+            'reward'        => $request->reward
+        ]);
 
         return redirect()->route('jenisPengaduan.index');
     }
@@ -37,17 +43,32 @@ class JenisPengaduanController extends Controller
         //     'reward' => 'required'
         // ]);
 
-        JenisPengaduan::where('jns_pengaduan', $jns_pengaduan)
-                        ->update($request->except(['_token', '_method']));
+        // JenisPengaduan::where('jns_pengaduan', $jns_pengaduan)
+        //                 ->update($request->except(['_token', '_method']));
+
+        JenisPengaduan::where('jns_pengaduan', $jns_pengaduan)->update([
+            'jns_pengaduan' => $request->jns_pengaduan,
+            'keterangan'    => $request->keterangan,
+            'sifat'         => $request->sifat,
+            'pelayanan'     => $request->pelayanan,
+            'reward'        => $request->reward
+        ]);
 
         return redirect()->route('jenisPengaduan.index');
+    }
+    public function show($jns_pengaduan)
+    {
+        $jenisPengaduan = JenisPengaduan::where('jns_pengaduan', $jns_pengaduan)->first();
+        return response()->json($jenisPengaduan);
     }
 
     public function destroy($jns_pengaduan)
     {
         JenisPengaduan::where('jns_pengaduan', $jns_pengaduan)->delete();
-
-        return redirect()->route('jenisPengaduan.index');
+        return response()->json([
+            'success' => true,
+            'message' => 'Data Jenis Pengaduan Berhasil Dihapus',
+        ]);
     }
 
     public function print()

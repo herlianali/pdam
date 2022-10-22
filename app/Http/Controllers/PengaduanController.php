@@ -4,15 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pengaduan;
+use App\Models\PetugasPengaduan;
+
 
 class PengaduanController extends Controller
 {
-    
+
     public function index()
     {
-        
-        $pengaduan = Pengaduan::all();
-        return view('pengaduan.pengaduan.index', compact('pengaduan'))->with('i');
+        // $pengaduans = Pengaduan::all();
+        $ptgcs = PetugasPengaduan::getNameKode();
+        return view('pengaduan.pengaduan.pengaduan', compact(['ptgcs']));
     }
 
     public function detail()
@@ -74,7 +76,7 @@ class PengaduanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-  
+
 
     /**
      * Update the specified resource in storage.

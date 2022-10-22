@@ -125,7 +125,7 @@
                                             </td>
                                             <td>{{ $jenisPekerjaan->kel_bonp }}</td>
                                             <td>
-                                                <button type="button"
+                                                <button type="submit"
                                                         class="btn btn-xs btn-danger hapus"
                                                         data-id="{{ $jenisPekerjaan->jns_pekerjaan }}">
                                                         <i class="fas fa-trash-alt"></i>
@@ -216,7 +216,7 @@
                     if(response.beban_plg.trim() === '1'){
                         $('#Ya').attr('checked', '')
                     }else{
-                        $('Tidak').attr('checked', '')
+                        $('#Tidak').attr('checked', '')
                     }
                     $('#kel_bonp').val(response.kel_bonp.trim()).change()
                     console.log(response.beban_plg.trim());
@@ -227,7 +227,7 @@
 
         $(document).on('click', '.hapus', function(e) {
             e.preventDefault();
-            // console.log();
+             //console.log();
             let jns_pekerjaan = $(this).data('id');
             let token = "{{ csrf_token() }}";
             swal.fire({

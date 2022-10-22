@@ -5,9 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class KondisiTutupan extends Model
+class Secman extends Model
 {
     use HasFactory;
-    public $timestamps = false;
-    protected $table = "KONDISI_TUTUPAN";
+    protected $connection = 'oracle2';
+    protected $table = 'USRTAB';
+
 }

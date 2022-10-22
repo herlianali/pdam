@@ -12,6 +12,7 @@ class GunaPersil extends Model
 
     protected $table = "GUNA_PERSIL";
     protected $fillable = ["kd_gunapersil", "keterangan", "kd_gunapersil_i", "kd_tarif"];
+    public $timestamps = false;
 
     // public function joinGunaPersil()
     // {

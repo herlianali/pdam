@@ -10,6 +10,6 @@ class JenisPengaduan extends Model
     use HasFactory;
 
     protected $table = 'JENIS_PENGADUAN';
-    protected $fillable = ['jns_pengaduan', 'keterangan', 'sifat', 'reward'];
+    // protected $fillable = ['jns_pengaduan', 'keterangan', 'sifat', 'reward'];
     public $timestamps = false;
 }

@@ -41,6 +41,7 @@ use App\Http\Controllers\MonitoringGunaPersilController;
 use App\Http\Controllers\MutasiKolektifController;
 use App\Http\Controllers\PengaduanController;
 use App\Http\Controllers\RiwayatPemakaianController;
+use App\Http\Controllers\UsulanMutasiTarifController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -55,8 +56,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [LoginController::class, 'index']);
-Route::post('/login', [LoginController::class, 'login'])->name('login');
-Route::get('/register', [LoginController::class, 'login']);
+Route::post('/login', [LoginController::class, 'loginUser'])->name('login');
+Route::get('/logout', [LoginController::class, 'logoutUser'])->name('logout');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
@@ -68,9 +69,13 @@ Route::prefix('master')->group(function () {
     Route::get('/printPengaduan', [JenisPengaduanController::class, 'print'])->name('printPengaduan');
 
     Route::resource('jenisPelanggan', JenisPelangganController::class)->parameters(['jenisPelanggan' => 'jns_pelanggan'])->except(['create','edit']);
-    Route::get('/petugasKhusus', [PetugasKhususController::class, 'index'])->name('petugasKhusus');
-    Route::get('/petugasKhusus{nip}', [PetugasKhususController::class, 'show'])->name('petugasKhusus.edit');
-    Route::post('/petugasKhusus', [PetugasKhususController::class, 'store'])->name('petugasKhusus.store');
+    
+    Route::resource('petugasKhusus', PetugasKhususController::class)->parameters(['petugasKhusus' => 'nip'])->except(['create','edit']);
+    // Route::get('checkPetKhusus/{nip}', [PetugasKhususController::class, 'check'])->parameters(['petugasKhusus' => 'nip']);
+
+    // Route::get('/petugasKhusus', [PetugasKhususController::class, 'index'])->name('petugasKhusus');
+    // Route::get('/petugasKhusus/{nip}', [PetugasKhususController::class, 'show'])->name('petugasKhusus.edit');
+    // Route::post('/petugasKhusus', [PetugasKhususController::class, 'store'])->name('petugasKhusus.store');
 
     Route::resource('petugasKontrol', PetugasKontrolController::class)->parameters(['petugasKontrol' => 'kd_ptgktrl'])->except(['create','edit']);
     Route::get('/printpetugasKontrol', [PetugasKontrolController::class, 'print'])->name('printpetugasKontrol');
@@ -161,18 +166,57 @@ Route::prefix('master')->group(function () {
 
     Route::get('/pelangganMeterC', [ PelangganMeterCController::class, 'index'])->name('pelangganMeterC');
 
+
+    // Route::get('cetakBAPerorangan', [CetakBAPeroranganController::class, 'index'])->name('cetakBAPerorangan');
+});
+
+Route::prefix('pengaduan')->group(function() {
+
     Route::get('pengaduan', [PengaduanController::class, 'index'])->name('pengaduan');
     Route::get('riwayatPemakaian', [RiwayatPemakaianController::class, 'index'])->name('riwayatPemakaian');
+    Route::get('infoPelanggaran', [RiwayatPemakaianController::class, 'infoPelanggaran'])->name('infoPelanggaran');
+    Route::get('kartuPelanggan', [RiwayatPemakaianController::class, 'kartuPelanggan'])->name('kartuPelanggan');
+    Route::get('pelanggaran', [RiwayatPemakaianController::class, 'pelanggaran'])->name('pelanggaran');
+
+
     Route::get('informasiPelunasanRekening', [InformasiPelunasanRekeningController::class, 'index'])->name('informasiPelunasanRekening');
+    Route::get('printinformasiPelunasanRekening', [InformasiPelunasanRekeningController::class, 'print'])->name('printinformasiPelunasanRekening');
+});
+
+Route::prefix('mutasipelanggan')->group(function() {
     Route::get('monitoringGunaPersil', [MonitoringGunaPersilController::class, 'index'])->name('monitoringGunaPersil');
     Route::get('historiMutasi', [HistoriMutasiController::class, 'index'])->name('historiMutasi');
     Route::get('monitoringBAMutasiKolektif', [MonitoringBAMutasiKolektifController::class, 'index'])->name('monitoringBAMutasiKolektif');
+    Route::get('createmonitoringBAMutasiKolektif', [MonitoringBAMutasiKolektifController::class, 'create'])->name('createmonitoringBAMutasiKolektif');
+    Route::get('previewmonitoringBAMutasiKolektif', [MonitoringBAMutasiKolektifController::class, 'preview'])->name('previewmonitoringBAMutasiKolektif');
+    Route::get('persetujuan', [MonitoringBAMutasiKolektifController::class, 'persetujuan'])->name('persetujuan');
+
     Route::get('monitoringBAMutasiPerorangan', [MonitoringBAMutasiPeroranganController::class, 'index'])->name('monitoringBAMutasiPerorangan');
+    Route::get('createmonitoringBAMutasiPerorangan', [MonitoringBAMutasiPeroranganController::class, 'create'])->name('createmonitoringBAMutasiPerorangan');
+    Route::get('editmonitoringBAMutasiPerorangan', [MonitoringBAMutasiPeroranganController::class, 'edit'])->name('editmonitoringBAMutasiPerorangan');
+    Route::get('persetujuanmonitoringBAMutasiPerorangan', [MonitoringBAMutasiPeroranganController::class, 'persetujuan'])->name('persetujuanmonitoringBAMutasiPerorangan');
+
     Route::get('mutasiKolektif', [MutasiKolektifController::class, 'index'])->name('mutasiKolektif');
+    Route::get('cetakBA', [MutasiKolektifController::class, 'cetakBA'])->name('cetakBA');
+    Route::get('cetakLampiran', [MutasiKolektifController::class, 'cetakLampiran'])->name('cetakLampiran');
+
     Route::get('laporanRekapitulasiPerubahanTarif', [LaporanRekapitulasiPerubahanTarifController::class, 'index'])->name('laporanRekapitulasiPerubahanTarif');
     Route::get('laporanPerubahanTNTperBulan', [LaporanPerubahanTNTperBulanController::class, 'index'])->name('laporanPerubahanTNTperBulan');
     Route::get('laporanRekapitulasiNaikTurun', [LaporanRekapitulasiNaikTurunController::class, 'index'])->name('laporanRekapitulasiNaikTurun');
+    Route::get('printlaporanRekapitulasiNaikTurun', [LaporanRekapitulasiNaikTurunController::class, 'index'])->name('printlaporanRekapitulasiNaikTurun');
+
     Route::get('laporanTarifPerBendel', [LaporanTarifPerBendelController::class, 'index'])->name('laporanTarifPerBendel');
+    Route::get('entriSurat', [LaporanTarifPerBendelController::class, 'index'])->name('entriSurat');
+
+    Route::get('usulanMutasiTarif', [UsulanMutasiTarifController::class, 'index'])->name('usulanMutasiTarif');
+
     Route::get('cetakBAPerorangan', [CetakBAPeroranganController::class, 'index'])->name('cetakBAPerorangan');
-    // Route::get('cetakBAPerorangan', [CetakBAPeroranganController::class, 'index'])->name('cetakBAPerorangan');
+    Route::get('printmonitoringGunaPersil', [MonitoringGunaPersilController::class, 'print'])->name('printmonitoringGunaPersil');
+});
+
+
+Route::prefix('mutasiPemakaian')->group(function () { 
+    Route::get('/usulanMutasiTarif', [ usulanMutasiTarifController::class, 'index'])->name('usulanMutasiTarif');
+    Route::get('/cetakBA', [ usulanMutasiTarifController::class, 'cetakBA'])->name('cetakBAusulanTarif');
+   
 });

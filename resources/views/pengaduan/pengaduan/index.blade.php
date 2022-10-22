@@ -23,7 +23,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Pengaduan</h3>
-                            <a href="{{ route('tambahpengaduan') }}" class="btn btn-xs btn-warning float-right"><i
+                            <a href="" class="btn btn-xs btn-warning float-right"><i
                                     class="fas fa-plus"></i> Tambah Pengaduan</a>
                         </div>
                         <div class="card-body">
@@ -122,9 +122,9 @@
                                         <td>
                                             <button type="submit" class="btn btn-danger btn-xs" onclick=""><i
                                                     class="fas fa-trash-alt"></i> Hapus</button>
-                                            <a href="{{ route('detailpengaduan') }}" class="btn btn-xs btn-success"><i
+                                            <a href="" class="btn btn-xs btn-success"><i
                                                     class="fas fa-eye"></i> Info</a>
-                                            <a href="{{ route('editpengaduan') }}" class="btn btn-xs btn-warning"><i
+                                            <a href="" class="btn btn-xs btn-warning"><i
                                                     class="fas fa-edit"></i> Edit</a>
                                         </td>
                                     </tr>

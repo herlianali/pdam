@@ -8,7 +8,9 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="">
+                <form action="" class="form-horizontal" id="form-edit" method="POST">
+                    @csrf
+                    @method('PUT')
                     <div class="form-group">
                         <label for="jns_pekerjaan">Jenis Pekerjaan</label>
                         <input type="text" class="form-control" id="jns_pekerjaan" name="jns-pekerjaan" value="">

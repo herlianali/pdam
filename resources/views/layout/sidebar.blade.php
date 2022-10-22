@@ -54,7 +54,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('petugasKhusus') }}" class="nav-link {{ Request::segment(2) == 'petugasKhusus' ? 'active' : '' }}">
+                <a href="{{ route('petugasKhusus.index') }}" class="nav-link {{ Request::segment(2) == 'petugasKhusus' ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <small>
                         <p>Petugas Khusus</p>
@@ -231,7 +231,7 @@
             </li>
         </ul>
     </li>
-    <li class="nav-item">
+    <li class="nav-item {{ Request::segment(1) == 'pengaduan' ? 'menu-open' : '' }}">
         <a href="" class="nav-link">
             <i class="nav-icon fas fa-headset"></i>
             <p>
@@ -241,13 +241,13 @@
         </a>
         <ul class="nav nav-treeview">
             <li class="nav-item">
-                <a href="{{ route('pengaduan')}}" class="nav-link">
+                <a href="{{ route('pengaduan')}}" class="nav-link {{ Request::segment(2) == 'pengaduan' ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p><small>Pengaduan</small></p>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('riwayatPemakaian')}}" class="nav-link">
+                <a href="{{ route('riwayatPemakaian')}}" class="nav-link {{ Request::segment(2) == 'riwayatPemakaian' ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p><small>Riwayat Pemakaian</small></p>
                 </a>
@@ -367,7 +367,7 @@
         </ul>
         <ul class="nav nav-treeview">
           <li class="nav-item">
-            {{-- <a href="{{ route('entriSurat')}}" class="nav-link"> --}}
+            <a href="{{ route('entriSurat')}}" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
               <p><small> Surat Pemberitahuan Rekategori Tarif</small></p>
             </a>
@@ -385,7 +385,7 @@
         </a>
         <ul class="nav nav-treeview">
           <li class="nav-item">
-            {{-- <a href="{{ route('usulanMutasiTarif')}}" class="nav-link"> --}}
+            <a href="{{ route('usulanMutasiTarif')}}" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
               <p><small>Usulan Mutasi Tarif</small></p>
             </a>
