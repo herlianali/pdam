@@ -11,5 +11,7 @@ class JenisPelanggan extends Model
 
     public $timestamps = false;
     protected $table = 'JENIS_PELANGGAN';
+  
+
 
 }

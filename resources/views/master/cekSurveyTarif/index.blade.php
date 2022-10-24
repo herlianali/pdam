@@ -28,14 +28,24 @@
                         <div class="card-body">
                             <div class="row mb-5">
                                 <div class="col-md-9">
-                                  
+                                    <form class="form-horizontal">
                                         <div class="form-group row mt-2 ">
                                             <label for="no_plg" class="col-md-3 col-form-label"> Nomor Pelanggan</label>
-                                            <div class="col-md-7">
-                                                <input type="text" class="form-control" id="no_plg" name="no_plg" onkeyup="valueing()" placeholder="Ketik Nomor Pelanggan Lalu Tekan Enter">
+                                            <div class="col-md-5">
+                                                <input type="text" class="form-control" id="nopel" name="nopel" onkeyup="valueing()" placeholder="Ketik Nomor Pelanggan">
                                             </div>
+                                            <button class="btn btn-info btn-mt-2"
+                                            id="cari"
+                                            type="button">
+                                            <i class="fa fa-search"></i>
+                                    </button>
+                                    &nbsp;
+                                    <button class="btn btn-danger btn-mt-2" id="clear">
+                                        <i class="fa fa-trash"></i>
+                                        Clear
+                                    </button>
                                         </div>
-                                        <form class="form-horizontal">
+                                      
                                         <div class="form-group row mt-2">
                                             <label for="njop" class="col-md-3 col-form-label"> NJOP</label>
                                             <div class="col-md-7">
@@ -51,7 +61,7 @@
                                         <div class="form-group row ">
                                             <label for="lebarjalan" class="col-md-3 col-form-label">Lebar Jalan</label>
                                             <div class="col-md-7">
-                                                <input type="text" class="form-control" id="jalan" name="jalan" onkeyup="valueing()" readonly value="">
+                                                <input type="text" class="form-control" id="lebarjalan" name="lebarjalan" onkeyup="valueing()" readonly value="">
                                             </div>
                                         </div>
                                 </div>
@@ -98,29 +108,44 @@
             })
         }
 
-        $(document).keyup('enter',function(e) {
+        
+        $(document).on('click', '#clear', function(e) {
             e.preventDefault();
-            let no_plg = $('#no_plg').val();
+            $('#njop').val()
+            $('#listrik').val()
+            $('#lebarjalan').val()
+        })
+
+        $(document).on('click','#cari',function(e) {
+            e.preventDefault();
+            let nopel = $('#nopel').val();
             $.ajax({
                 type: "GET",
-                url: `{{ url('master/cekSurveyTarif') }}/`+no_plg,
+                url: `{{ url('master/cekSurveyTarif') }}/`+nopel,
                 data: {
-                    id: no_plg,
+                    id: nopel,
                     _token: '{{ csrf_token() }}'
                 },
-                // beforeSend: function() {
-                //     showLoading()
-                // },
+                beforeSend: function() {
+                    showLoading()
+                },
             
                 success: function(response) {
-                    console.log(response,'ini responnya')
+                  console.log(response,'ini responnya')
                     $('#njop').val(response.njop)
                     $('#listrik').val(response.listrik)
-                    $('#jalan').val(response.jalan)
+                    $('#lebarjalan').val(response.lebarjalan)
                     swal.close();
                 }
             })
         })
+
+
+        
+        // function clear() {
+        //     document.getElementById('nopel').value = ''
+        // }
+        // document.getElementById("clear").addEventListener("click", clear);
 
         function valueing() {
             if (document.getElementById('kode').value === "" || document.getElementById('keterangan').value === "") {

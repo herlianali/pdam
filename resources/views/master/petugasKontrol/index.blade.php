@@ -23,17 +23,19 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Petugas Kontrol</h3>
-                            <a href="{{ route('printpetugasKontrol') }}" class="btn btn-xs btn-success float-right"><i class="fas fa-print"></i> Cetak</a>
+                            <a href="{{ route('printpetugasKontrol') }}" class="btn btn-xs btn-success float-right"><i
+                                    class="fas fa-print"></i> Cetak</a>
                         </div>
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-9">
-                                    <form class="form-horizontal" action="{{ route('petugasKontrol.store') }}" method="POST">
+                                    <form class="form-horizontal" action="{{ route('petugasKontrol.store') }}"method="POST">
                                         @csrf
                                         <div class="form-group row">
                                             <label for="kd_ptgktrl" class="col-md-2 col-form-label">Kode Petugas</label>
                                             <div class="col-md-6">
-                                                <input type="text" class="form-control" id="kd_ptgktrl" name="kd_ptgktrl" onkeyup="valueing()">
+                                                <input type="text" class="form-control" id="kd_ptgktrl" name="kd_ptgktrl"
+                                                    onkeyup="valueing()">
                                             </div>
                                             <div class="col-md-3">
                                                 <input type="checkbox" name="is_satgas">
@@ -43,7 +45,8 @@
                                         <div class="form-group row">
                                             <label for="nip" class="col-md-2 col-form-label">NIP Pegawai</label>
                                             <div class="col-md-6">
-                                                <input type="text" class="form-control" id="nip" name="nip" onkeyup="valueing()">
+                                                <input type="text" class="form-control" id="nip" name="nip"
+                                                    onkeyup="valueing()">
                                             </div>
                                             <div class="col-md-3">
                                                 <button class="btn btn-default btn-mt-2" type="button" data-toggle="modal"
@@ -54,7 +57,8 @@
                                         <div class="form-group row">
                                             <label for="nama" class="col-md-2 col-form-label">Nama Pegawai</label>
                                             <div class="col-md-8">
-                                                <input type="text" class="form-control" id="nama" name="nama" onkeyup="valueing()">
+                                                <input type="text" class="form-control" id="nama" name="nama"
+                                                    onkeyup="valueing()">
                                             </div>
                                         </div>
                                         <div class="form-group row mt-2 ">
@@ -74,7 +78,7 @@
                                 style="width: 100%">
                                 <thead>
                                     <tr>
-                                       
+
                                         <th>Kode Petugas</th>
                                         <th>NIP</th>
                                         <th>Nama</th>
@@ -85,34 +89,35 @@
                                 <tbody>
                                     @foreach ($petugas as $ptKontrol)
                                         <tr>
-                                           
+
                                             <td>{{ $ptKontrol->kd_ptgktrl }}</td>
                                             <td>{{ $ptKontrol->nip }}</td>
                                             <td>{{ $ptKontrol->nama }}</td>
                                             <td>
                                                 @if ($ptKontrol->is_satgas == 1)
-                                                    <span class="badge badge-success"><i
-                                                        class="fas fa-check-circle"></i> Ya</span>
+                                                    <span class="badge badge-success"><i class="fas fa-check-circle"></i>
+                                                        Ya</span>
                                                 @else
-                                                    <span class="badge badge-danger"><i
-                                                            class="fas fa-times-circle"></i> Tidak</span>
+                                                    <span class="badge badge-danger"><i class="fas fa-times-circle"></i>
+                                                        Tidak</span>
                                                 @endif
                                             </td>
                                             <td>
-                                                    <button type="submit"
-                                                    class="btn btn-danger btn-sm hapus"
-                                                    data-id="{{ $ptKontrol->kd_ptgktrl }}">
-                                                    <i class="fas fa-trash-alt"></i>
-                                                    Hapus
-                                            </button>
-                                            <button type="button"
-                                                    class="btn btn-success btn-sm edit"
-                                                    data-id="{{ $ptKontrol->kd_ptgktrl }}"
-                                                    data-toggle="modal"
-                                                    data-target="#edit">
-                                                    <i class="fas fa-edit"></i>
-                                                    Edit
-                                            </button>
+                                                <button type="submit" 
+                                                class="btn btn-danger btn-sm hapus"
+                                                data-id="{{ $ptKontrol->kd_ptgktrl }}">
+                                                <i class="fas fa-trash-alt"></i>
+                                                Hapus
+                                                </button>
+
+                                                <button type="button" 
+                                                class="btn btn-success btn-sm edit"
+                                                data-id="{{ $ptKontrol->kd_ptgktrl }}" 
+                                                data-toggle="modal"
+                                                data-target="#edit">
+                                                <i class="fas fa-edit"></i>
+                                                Edit
+                                                </button>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -137,14 +142,14 @@
     <script src="{{ asset('assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
     <script>
-          $(function() {
+        $(function() {
             $('#example1').DataTable({
                 "paging": true,
                 "lengthChange": false,
                 "oLanguage": {
                     "sSearch": "NIP/NAMA : "
                 },
-                "bInfo" : false,
+                "bInfo": false,
                 "ordering": true,
                 "autoWidth": false,
                 "responsive": true,
@@ -175,40 +180,6 @@
             })
         }
 
-        $(document).on('click', '.hapus', function(e) {
-            e.preventDefault();
-            //  console.log('respon');
-            let kd_ptgktrl = $(this).data('id');
-            let token = "{{ csrf_token() }}";
-            swal.fire({
-                title: "Apakah Anda Yakin ?",
-                icon: 'warning',
-                text: "Anda Tidak Akan Bisa Mengembalikan Data Ini",
-                showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Iya, Hapus!"
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    $.ajax({
-                        type: "DELETE",
-                        url: `{{ url('master/petugasKontrol') }}/`+kd_ptgktrl,
-                        data: {
-                                _token: token
-                            },
-                            success: function(resp) {
-                                swal.fire(
-                                    'Deleted!',
-                                    'Your file has been deleted.',
-                                    'success'
-                                )
-                                location.reload();
-                            }
-                    });
-                }
-            });
-        });
-
         $(document).on('click', '.edit', function(e) {
             e.preventDefault();
             let kd_ptgktrl = $(this).data('id')
@@ -219,15 +190,20 @@
                     id: kd_ptgktrl,
                     _token: '{{ csrf_token() }}'
                 },
-                // beforeSend: function() {
-                //     showLoading()
-                // },
+                beforeSend: function() {
+                    showLoading()
+                },
                 success: function(response) {
+                    console.log(response)
                     $('#form-edit').attr('action', "{{ url('master/petugasKontrol') }}/"+kd_ptgktrl)
-                    $('#kd_ptgktrl').val(response.kd_ptgktrl)
-                    $('#nip').val(response.nip)
-                    $('#nama').val(response.nama)
-                    // $('#satgas').val(response.satgas)
+                    $('#kd_ptgktrl1').val(response.kd_ptgktrl)
+                    $('#nip1').val(response.nip)
+                    $('#nama1').val(response.nama)
+                    if(response.is_satgas == 1){
+                        $('#is_satgas').attr('checked', 'checked')
+                    }else{
+                        $('#is_satgas').removeAttr('checked', ' ')
+                    }
                     swal.close();
                 }
             })
@@ -239,7 +215,7 @@
             let nip = $(this).data('id');
             $.ajax({
                 type: "GET",
-                url: `{{ url('api/dip') }}/`+nip,
+                url: `{{ url('api/dip') }}/` + nip,
                 data: {
                     id: nip,
                     _token: '{{ csrf_token() }}'
@@ -255,6 +231,42 @@
                 }
             })
         })
+
+        $(document).on('click', '.hapus', function(e) {
+            e.preventDefault();
+            //  console.log('respon');
+            let kd_ptgktrl = $(this).data('id').trim().replace(/\s/g, '');
+            let token = "{{ csrf_token() }}";
+            swal.fire({
+                title: "Apakah Anda Yakin ?",
+                icon: 'warning',
+                text: "Anda Tidak Akan Bisa Mengembalikan Data Ini",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Iya, Hapus!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: "DELETE",
+                        url: `{{ url('master/petugasKontrol') }}/` + kd_ptgktrl,
+                        data: {
+                            _token: token
+                        },
+                        success: function(resp) {
+                            swal.fire(
+                                'Deleted!',
+                                'Your file has been deleted.',
+                                'success'
+                            )
+                            location.reload();
+                        }
+                    });
+                }
+            });
+        });
+
+      
 
 
         // function deletePetugasKontrol(id) {

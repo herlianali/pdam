@@ -54,6 +54,13 @@
                                         <th width="70%">Keterangan</th>
                                     </tr>
                                 </thead>
+                                <tbody>
+                                    @foreach ($stTanah as $statusTanah)
+                                        <tr>
+                                            <td>{{ ++$i }}</td>
+                                            <td>{{ $statusTanah->status_tanah }}</td>
+                                            <td>{{ $statusTanah->keterangan }}</td>
+                                </tbody>
                             </table>
                         </div>
                     </div>

@@ -149,7 +149,7 @@
         $(document).on('click', '.edit', function(e) {
             e.preventDefault();
            // console.log('respon');
-            let kd_kondisi = $(this).data('id')
+            let kd_kondisi = $(this).data('id');
             $.ajax({
                 type: "GET",
                 url: `{{ url('master/kondisiTutupan') }}/`+kd_kondisi,
@@ -162,7 +162,7 @@
                 },
                 success: function(response) {
                     $('#form-edit').attr('action', "{{ url('master/kondisiTutupan') }}/"+kd_kondisi)
-                    $('#kd_kondisi').val(response.kd_kondisi)
+                    $('#kd_kondisi').val(response.kd_kondisi.trim()).change()
                     $('#keterangan').val(response.keterangan)
                     swal.close();
                 }
@@ -172,7 +172,7 @@
         $(document).on('click', '.hapus', function(e) {
             e.preventDefault();
              //console.log();
-            let kd_kondisi = $(this).data('id');
+            let kd_kondisi = $(this).data('id').trim().replace(/\s/g, '');
             let token = "{{ csrf_token() }}";
             swal.fire({
                 title: "Apakah Anda Yakin ?",
@@ -190,7 +190,9 @@
                         data: {
                                 _token: token
                             },
+                          
                             success: function(resp) {
+                                //  console.log('respon');
                                 swal.fire(
                                     'Deleted!',
                                     'Your file has been deleted.',

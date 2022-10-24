@@ -41,6 +41,7 @@ use App\Http\Controllers\MonitoringGunaPersilController;
 use App\Http\Controllers\MutasiKolektifController;
 use App\Http\Controllers\PengaduanController;
 use App\Http\Controllers\RiwayatPemakaianController;
+use App\Http\Controllers\UsulanMutasiTarifController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -131,7 +132,8 @@ Route::prefix('master')->group(function () {
     Route::get('/printpanggilanDinas/setting', [PanggilanDinasController::class, 'settingPrint'])->name('settingPrintPanggilan');
     Route::get('/printpanggilanDinas', [PanggilanDinasController::class, 'print'])->name('printpanggilanDinas');
 
-    Route::resource('/telponPelanggan',  TelponPelangganController::class)->parameters(['telponPelanggan' => 'no_plg'])->except(['create', 'edit', 'destroy', 'store']);
+    
+    Route::resource('/telponPelanggan', TelponPelangganController::class)->parameters(['telponPelanggan' => 'no_plg'])->except(['create','destroy', 'store']);
 
     Route::get('/monitoringPelanggan', [MonitoringPelangganController::class, 'index'])->name('monitoringPelanggan');
     Route::get('/monitoringPelanggan.{id}', [MonitoringPelangganController::class, 'show']);
@@ -154,10 +156,12 @@ Route::prefix('master')->group(function () {
     Route::get('/createsurveyTarif', [SurveyTarifController::class, 'create'])->name('createsurveyTarif');
 
     Route::get('/cekSurveyTarif',  [CekSurveyTarifController::class,'index'])->name('cekSurveyTarif');
-    // Route::get('/cekSurveyTarif/{no_plg}',[  CekSurveyTarifController::class,'show']);
+    Route::get('/cekSurveyTarif/{nopel}', [CekSurveyTarifController::class,'show'])->name('cekSurveyTarif.show');
 
     Route::resource('/mlnCode', MLNCodeController::class)->parameters(['mlnCode' => 'kode'])->except(['create', 'edit']);
 
+    
+    // Route::resource('/pelangganMeterC', PelangganMeterCController::class)->parameters(['pelangganMeterC' => 'no_plg'])->except(['create', 'edit']);
     Route::get('/pelangganMeterC', [ PelangganMeterCController::class, 'index'])->name('pelangganMeterC');
 
     Route::get('pengaduan', [PengaduanController::class, 'index'])->name('pengaduan');

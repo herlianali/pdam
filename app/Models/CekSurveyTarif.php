@@ -10,5 +10,7 @@ class CekSurveyTarif extends Model
     use HasFactory;
 
     public $timestamps = false;
-    protected $table = "survey_tarif";
+    protected $table = "pb_data";
+
+
 }

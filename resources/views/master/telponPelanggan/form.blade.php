@@ -14,7 +14,7 @@
                     <div class="form-group row mt-2 ">
                         <label for="nama" class="col-md-2 col-form-label">Nama</label>
                         <div class="col-md-8">
-                            <input type="text" class="form-control" id="nama" onkeyup="valueing()" readonly value="">
+                            <input type="text" class="form-control" id="nama" name="nama" onkeyup="valueing()" readonly value="">
                         </div>
                     </div>
                     <div class="form-group row ">

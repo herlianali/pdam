@@ -28,10 +28,8 @@
                                             <input type="text" class="form-control" id="no_plg" name="no_plg">
                                         </div>
 
-                                        <button class="btn btn-info btn-mt-2"
-                                                id="cari"
-                                                type="button">
-                                                <i class="fa fa-search"></i>
+                                        <button class="btn btn-info btn-mt-2" id="cari" type="button">
+                                            <i class="fa fa-search"></i>
                                         </button>
                                         &nbsp;
 
@@ -47,8 +45,8 @@
                                 <div class="form-group row ">
                                     <label for="nama" class="col-md-2 col-form-label">Nama</label>
                                     <div class="col-md-4">
-                                        <input type="text" class="form-control" id="nama" name="nama" onkeyup="valueing()"
-                                            readonly value="">
+                                        <input type="text" class="form-control" id="nama" name="nama"
+                                            onkeyup="valueing()" readonly value="">
                                     </div>
                                 </div>
                                 <div class="form-group row ">
@@ -60,17 +58,20 @@
                                 <div class="form-group row ">
                                     <label for="nomor" class="col-md-2 col-form-label">No Telepon</label>
                                     <div class="col-md-4">
-                                        <input type="text" class="form-control" id="telp_1" name="telp_1" onkeyup="valueing()" readonly value="">
+                                        <input type="text" class="form-control" id="telp_1" name="telp_1"
+                                            onkeyup="valueing()" >
                                     </div>
+                                
                                     <button type="button"
-                                                class="btn btn-success btn-sm edit"
-                                                data-toggle="modal"
-                                                id="edit"
-                                                data-target="#edit">
-                                                <i class="fas fa-edit"></i>
-                                                Edit
-                                                </button>
-                                  
+                                    class="btn btn-xs btn-success edit"
+                               
+                                    data-toggle="modal"
+                                    data-target="#edit">
+                                    <i class="fas fa-edit"></i>
+                                    Edit
+                            </button> 
+                                
+
                                 </div>
                             </form>
                         </div>
@@ -81,7 +82,7 @@
 @endsection
 
 @push('js')
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
@@ -128,7 +129,7 @@
             let no_plg = $('#no_plg').val();
             $.ajax({
                 type: "GET",
-                url: `{{ url('master/telponPelanggan') }}/`+no_plg,
+                url: `{{ url('master/telponPelanggan') }}/` + no_plg,
                 data: {
                     id: no_plg,
                     _token: '{{ csrf_token() }}'
@@ -137,6 +138,7 @@
                 //     showLoading()
                 // },
                 success: function(response) {
+
                     $('#nama').val(response.nama)
                     $('#alamat').val(response.alamat)
                     $('#telp_1').val(response.telp_1)
@@ -150,16 +152,16 @@
             let no_plg = $('#no_plg').val()
             $.ajax({
                 type: "GET",
-                url: `{{ url('master/telponPelanggan') }}/`+no_plg,
+                url: `{{ url('master/telponPelanggan') }}/` + no_plg,
                 data: {
-                    id: no_plg,
+                    id: telp_1,
                     _token: '{{ csrf_token() }}'
                 },
                 // beforeSend: function() {
                 //     showLoading()
                 // },
                 success: function(response) {
-                    $('#form-edit').attr('action', "{{ url('master/telponPelanggan') }}/"+no_plg)
+                    $('#form-edit').attr('action', "{{ url('master/telponPelanggan') }}/" + no_plg)
                     $('#nama').val(response.nama)
                     $('#alamat').val(response.alamat)
                     $('#telp_1').val(response.telp_1)

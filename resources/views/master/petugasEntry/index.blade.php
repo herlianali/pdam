@@ -180,7 +180,7 @@
                 },
                 success: function(response) {
                     $('#form-edit').attr('action', "{{ url('master/petugasEntry') }}/"+kd_ptgentry)
-                    $('#kd_ptgentry1').val(response.kd_ptgentry)
+                    $('#kd_ptgentry1').val(response.kd_ptgentry.trim()).change()
                     $('#nama1').val(response.nama)
                     $('#nip1').val(response.nip)
                     $('#aktif').val(response.aktif)
@@ -194,7 +194,7 @@
         $(document).on('click', '.hapus', function(e) {
             e.preventDefault();
              //console.log();
-            let kd_ptgentry = $(this).data('id');
+            let kd_ptgentry = $(this).data('id').trim().replace(/\s/g, '');
             let token = "{{ csrf_token() }}";
             swal.fire({
                 title: "Apakah Anda Yakin ?",

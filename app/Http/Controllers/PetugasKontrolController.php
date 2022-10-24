@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Dip;
 use Illuminate\Http\Request;
 use App\Models\PetugasKontrol;
+use \Illuminate\Support\Facades\DB;
 
 class PetugasKontrolController extends Controller
 {
@@ -22,9 +23,9 @@ class PetugasKontrolController extends Controller
         $satgas = isset($request->is_satgas) ? 1 : 0;
         $kd_ptgktrl = "TK".$request->kd_ptgktrl;
         $query = PetugasKontrol::insert([
-            'kd_ptgktrl' => $kd_ptgktrl,
-            'nip'      => $request->nip,
-            'nama'     => $request->nama,
+            'kd_ptgktrl'    => $kd_ptgktrl,
+            'nip'           => $request->nip,
+            'nama'          => $request->nama,
             'is_satgas'     => $satgas
         ]);
        
@@ -36,8 +37,7 @@ class PetugasKontrolController extends Controller
     {
         $satgas = isset($request->is_satgas) ? 1 : 0;
 
-        PetugasKontrol::where('kd_ptgktrl', $kd_ptgktrl)
-                        ->update([
+        PetugasKontrol::where(DB::raw("REPLACE(kd_ptgktrl,' ','')"), $kd_ptgktrl)->update([
                             'kd_ptgktrl' => $request->kd_ptgktrl,
                             'nip'        => $request->nip,
                             'nama'       => $request->nama,
@@ -49,13 +49,14 @@ class PetugasKontrolController extends Controller
 
     public function show($kd_ptgktrl)
     {
-        $ptKontrol = PetugasKontrol::where($kd_ptgktrl)->first();
+        $ptKontrol = PetugasKontrol::where('kd_ptgktrl', $kd_ptgktrl)->first();
         return response()->json($ptKontrol);
     }
 
     public function destroy($kd_ptgktrl)
     {
-        PetugasKontrol::where('kd_ptgktrl', $kd_ptgktrl)->delete();
+        
+        PetugasKontrol::where(DB::raw("REPLACE(kd_ptgktrl,' ','')"), $kd_ptgktrl)->delete();
         return response()->json([
             'success' => true,
             'message' => 'Data Petugas Kontrol Berhasil Dihapus',

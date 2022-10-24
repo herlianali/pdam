@@ -33,13 +33,13 @@
                                         <div class="form-group row">
                                             <label for="jns_pelanggan" class="col-md-2 col-form-label">Jenis Pelanggan</label>
                                             <div class="col-md-8">
-                                                <input type="text" class="form-control" name="jns_pelanggan" onkeyup="valueing()">
+                                                <input type="text" class="form-control" name="jns_pelanggan" >
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="keterangan" class="col-md-2 col-form-label">Keterangan</label>
                                             <div class="col-md-8">
-                                                <input type="text" class="form-control" name="keterangan" onkeyup="valueing()">
+                                                <input type="text" class="form-control" name="keterangan" >
                                             </div>
                                         </div>
                                         <div class="form-group row mt-2 ">
@@ -162,7 +162,7 @@
                 },
                 success: function(response) {
                     $('#form-edit').attr('action', "{{ url('master/jenisPelanggan') }}/"+jns_pelanggan)
-                    $('#jns_pelanggan').val(response.jns_pelanggan)
+                    $('#jns_pelanggan').val(response.jns_pelanggan.trim()).change()
                     $('#keterangan').val(response.keterangan)
                     $('#jns_rekswasta').val(response.jns_rekswasta)
                     swal.close();
@@ -172,7 +172,8 @@
 
         $(document).on('click', '.hapus', function(e) {
             e.preventDefault();
-            let jns_pelanggan = $(this).data('id');
+            let jns_pelanggan = $(this).data('id').trim().replace(/\s/g, '');
+            console.log(jns_pelanggan.length)
             let token = "{{ csrf_token() }}";
             swal.fire({
                 title: "Apakah Anda Yakin ?",
@@ -190,7 +191,9 @@
                         data: {
                                 _token: token
                             },
+                           
                             success: function(resp) {
+                                // console.log('respon');
                                 swal.fire(
                                     'Deleted!',
                                     'Your file has been deleted.',

@@ -12,12 +12,11 @@ class CekSurveyTarifController extends Controller
         return view('master.cekSurveyTarif.index');
     }
 
-    public function show($no_plg)
+    public function show($nopel)
     {
-        $cekSurveyTarif = CekSurveyTarif::select('njop', 'listrik', 'jalan')
-                                        ->where('no_plg', $no_plg)
-                                        ->where('aktif', 1)
-                                        ->get()->first();
+        $cekSurveyTarif = CekSurveyTarif::select('njop', 'listrik', 'lebarjalan')
+                                        ->where('nopel', $nopel)
+                                        ->first();
         return response()->json($cekSurveyTarif);
     }
 }
