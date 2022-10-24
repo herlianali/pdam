@@ -8,27 +8,35 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="">
-                    <div class="form-group">
+                <form action="" class="form-horizontal" id="form-edit" method="POST">
+                    @csrf
+                    @method('PUT')
+                    <div class="form-group row mt-2 ">
                         <label for="nama" class="col-md-2 col-form-label">Nama</label>
                         <div class="col-md-8">
-                            <input type="text" class="form-control" id="nama" onkeyup="valueing()">
+                            <input type="text" class="form-control" id="nama" name="nama" onkeyup="valueing()" readonly value="">
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group row ">
                         <label for="alamat" class="col-md-2 col-form-label">Alamat</label>
                         <div class="col-md-8">
-                            <textarea class="form-control" id="keterangan" name="keterangan"></textarea>
+                            <textarea class="form-control" id="alamat" name="alamat" readonly value=""></textarea>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group row ">
                         <label for="nomor" class="col-md-2 col-form-label">No Telepon</label>
                         <div class="col-md-8">
-                            <input type="text" class="form-control" id="notlp" name="notlp" onkeyup="valueing()">
+                            <input type="text" class="form-control" id="telp_1" name="telp_1" onkeyup="valueing()">
                         </div>
                     </div>
-                    <button class="btn btn-success btn-sm" type="submit"><i class="far fa-save"></i> Simpan</button>
+                    <div class="form-group row ">
+                        <label for="nomor" class="col-md-2 col-form-label"></label>
+                        <div class="col-md-8">
+                            <button class="btn btn-success btn-sm "  type="submit"><i class="far fa-save"></i> Simpan</button>
 
+                        </div>
+                    </div>
+                 
                 </form>
             </div>
         </div>

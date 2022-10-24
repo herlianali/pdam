@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\KondisiTutupan;
+use \Illuminate\Support\Facades\DB;
 
 class KondisiTutupanController extends Controller
 {
@@ -30,7 +31,9 @@ class KondisiTutupanController extends Controller
 
     public function update(Request $request, $kd_kondisi)
     {
-        KondisiTutupan::where('kd_kondisi', $kd_kondisi)
+        
+        KondisiTutupan::where(DB::raw("REPLACE(kd_kondisi,' ','')"), $kd_kondisi)
+        // KondisiTutupan::where('kd_kondisi', $kd_kondisi)
                 ->update([
                     'kd_kondisi'    => $request->kd_kondisi,
                     'keterangan'    => $request->keterangan
@@ -48,7 +51,7 @@ class KondisiTutupanController extends Controller
 
     public function destroy($kd_kondisi)
     {
-        KondisiTutupan::where('kd_kondisi', $kd_kondisi)->delete();
+        KondisiTutupan::where(DB::raw("REPLACE(kd_kondisi,' ','')"), $kd_kondisi)->delete();
         return response()->json([
             'success' => true,
             'message' => 'Data Kondisi Tutupan Berhasil Dihapus',

@@ -10,6 +10,7 @@ class PetugasKontrol extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
     protected $table = "PTGKONTROL";
 
     public function showPetugas()
@@ -21,6 +22,8 @@ class PetugasKontrol extends Model
                     ->where(DB::raw('substr(KD_PTGKTRL,1,1)'), '=' , 'T')
                     ->get();
     }
+
+
 
     public function getLastKode()
     {

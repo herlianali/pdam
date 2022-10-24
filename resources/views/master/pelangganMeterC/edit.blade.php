@@ -8,25 +8,30 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="">
+                <form action="" class="form-horizontal" id="form-edit" method="POST">
+                    @csrf
+                    @method('PUT')
                     <div class="form-group">
                         <label for="no_pelanggan">No Pelanggan</label>
-                        <input type="text" class="form-control" id="no_pelanggan" name="no_pelanggan" readonly
+                        <input type="text" class="form-control" id="no_plg" name="no_plg" readonly
                             value="">
                     </div>
                     <div class="form-group">
                         <label for="ptgs_entri">Petugas Entri</label>
-                        <input type="text" class="form-control" id="ptgs_entri" name="ptgs_entri" readonly
+                        <input type="text" class="form-control" id="ptgentri" name="ptgentri" readonly
                             value="">
                     </div>
                     <div class="form-group">
                         <label for="tgl_entri">Tanggal Entri</label>
-                        <input type="datetime" class="form-control" id="tgl_entri" name="tgl_entri" readonly
+                        <input type="datetime" class="form-control" id="tgl_entry" name="tgl_entri" readonly
                             value="">
                     </div>
                     <div class="form-group">
                         <label for="status">Aktif</label>
-                        <input type="text" class="form-control" id="status" name="status">
+                        <select class="form-control" id="aktif" name="aktif" onkeyup="valueing()">
+                            <option value="0"> 0 </option>
+                            <option value="1"> 1 </option>
+                        </select>
                     </div>
 
                     <button class="btn btn-success btn-sm" type="submit"><i class="far fa-save"></i> Simpan</button>

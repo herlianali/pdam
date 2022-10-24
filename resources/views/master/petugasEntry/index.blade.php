@@ -92,20 +92,20 @@
                                             <td>{{ $ptsEntry->aktif }}</td>
                                            
                                             <td>
-                                                <button type="button"
+                                                <button type="submit"
                                                 class="btn btn-danger btn-sm hapus"
                                                 data-id="{{ $ptsEntry->kd_ptgentry }}">
                                                 <i class="fas fa-trash-alt"></i>
                                                 Hapus
-                                        </button>
-                                        <button type="button"
+                                                 </button>
+                                                 <button type="button"
                                                 class="btn btn-success btn-sm edit"
                                                 data-id="{{ $ptsEntry->kd_ptgentry }}"
                                                 data-toggle="modal"
                                                 data-target="#edit">
                                                 <i class="fas fa-edit"></i>
                                                 Edit
-                                        </button>
+                                                </button>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -180,7 +180,7 @@
                 },
                 success: function(response) {
                     $('#form-edit').attr('action', "{{ url('master/petugasEntry') }}/"+kd_ptgentry)
-                    $('#kd_ptgentry1').val(response.kd_ptgentry)
+                    $('#kd_ptgentry1').val(response.kd_ptgentry.trim()).change()
                     $('#nama1').val(response.nama)
                     $('#nip1').val(response.nip)
                     $('#aktif').val(response.aktif)
@@ -194,7 +194,7 @@
         $(document).on('click', '.hapus', function(e) {
             e.preventDefault();
              //console.log();
-            let kd_ptgentry = $(this).data('id');
+            let kd_ptgentry = $(this).data('id').trim().replace(/\s/g, '');
             let token = "{{ csrf_token() }}";
             swal.fire({
                 title: "Apakah Anda Yakin ?",

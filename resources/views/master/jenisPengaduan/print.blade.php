@@ -92,41 +92,6 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>01</td>
-                                        <td>METER. TIDAK ADA</td>
-                                        <td>T</td>
-                                    </tr>
-                                    <tr>
-                                        <td>02</td>
-                                        <td>DAFTARR ADA METER TIDAK ADA</td>
-                                        <td>A</td>
-                                    </tr>
-                                    <tr>
-                                        <td>03</td>
-                                        <td>DAFTARR TIDAK ADA METER ADA</td>
-                                        <td>A</td>
-                                    </tr>
-                                    <tr>
-                                        <td>04</td>
-                                        <td>METER BARU</td>
-                                        <td>T</td>
-                                    </tr>
-                                    <tr>
-                                        <td>05</td>
-                                        <td>SEGEL METER TIDAK ADA</td>
-                                        <td>T</td>
-                                    </tr>
-                                    <tr>
-                                        <td>06</td>
-                                        <td>SGL MTR & SGL KOPL TDK ADA</td>
-                                        <td>T</td>
-                                    </tr>
-                                    <tr>
-                                        <td>07</td>
-                                        <td>SEGEL ROPLING</td>
-                                        <td>T</td>
-                                    </tr>
                                     @foreach ($jenisPengaduans as $jenis)
                                     <tr>
                                         <td>{{ $jenis->jns_pengaduan }}</td>

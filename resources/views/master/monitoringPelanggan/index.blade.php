@@ -121,7 +121,8 @@
                                     &nbsp;
                                     <br>
 
-                                    <form class="form-horizontal">
+                                    <form class="form-horizontal"  method="POST">
+                                        @csrf
                                         <table id="table"
                                             class="table table-bordered table-responsive-md table-condensed"
                                             style="width: 100%">
@@ -219,6 +220,35 @@
 
             });
         });
+
+        
+
+        $(document).on('click', '.filter', function(e) {
+            e.preventDefault();
+           // console.log('respon');
+            let nama = $(this).data('id');
+            let jalan = $(this).data('id');
+            let gang = $(this).data('id');
+            let nomor = $(this).data('id');
+            let notamb = $(this).data('id');
+            $.ajax({
+                type: "GET",
+                url: `{{ url('master/monitoringPelanggan') }}/`+nama,
+                data: {
+                    id: nama,
+                    _token: '{{ csrf_token() }}'
+                },
+                beforeSend: function() {
+                    showLoading()
+                },
+                success: function(response) {
+                    $('#form-edit').attr('action', "{{ url('master/kondisiTutupan') }}/"+kd_kondisi)
+                    $('#kd_kondisi').val(response.kd_kondisi.trim()).change()
+                    $('#keterangan').val(response.keterangan)
+                    swal.close();
+                }
+            })
+        })
 
         // Kalo pake API
         // function filter() {

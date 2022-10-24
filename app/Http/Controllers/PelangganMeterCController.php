@@ -4,29 +4,49 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\PelangganMeterC;
+use DateTime;
 
 class PelangganMeterCController extends Controller
 {
     public function index()
     {
-        $plgMeterC = PelangganMeterC::all();
-        return view('master.pelangganMeterC.index', compact('plgMeterC'))->with('i');
+        $pelangganMTRC = PelangganMeterC::all();
+        return view('master.pelangganMeterC.index', compact('pelangganMTRC'))->with('i');
     }
 
+    public function store(Request $request)
+    {
+        $request->validate([
+            'no_plg'        => 'required',
+            'ptgentri'      => 'required',
+            'tgl_entry'     => 'required',
+            'aktif'         => 'required'
+        ]);
+
+        PelangganMeterC::insert([
+            'no_plg'        => $request->no_plg,
+            'ptgentri'      => "ADMIN",
+            'tgl_entry'     => $request->tgl_entry,
+            'aktif'         => "1"
+        ]);
+
+        return redirect()->route('jenisPelanggan.index');
+    }
     
-    public function show($id)
+    public function show($no_plg)
     {
-        $plgnMeterC = PelangganMeterC::find($id);
-        return response()->json($plgnMeterC);
+        $pelangganMtrC = PelangganMeterC::where('no_plg', $no_plg)->first();
+        return response()->json($pelangganMtrC);
     }
 
 
-    public function destroy($id)
+    public function destroy($no_plg)
     {
-        $plgnMeterC = PelangganMeterC::findOrFail($id)->delete();
+        PelangganMeterC::where('no_plg', $no_plg)->delete();
+
         return response()->json([
             'success' => true,
-            'message' => 'Data Pelanggan Meter Berhasil Dihapus',
+            'message' => 'Data Retribusi Berhasil Dihapus',
         ]);
     }
     public function print()
