@@ -41,7 +41,8 @@
 
                                 </div>
                             </div>
-                            <form class="form-horizontal">
+                            <form class="form-horizontal" action="{{ route('telponPelanggan.index') }}" method="POST">
+                                @csrf
                                 <div class="form-group row ">
                                     <label for="nama" class="col-md-2 col-form-label">Nama</label>
                                     <div class="col-md-4">
@@ -59,18 +60,15 @@
                                     <label for="nomor" class="col-md-2 col-form-label">No Telepon</label>
                                     <div class="col-md-4">
                                         <input type="text" class="form-control" id="telp_1" name="telp_1"
-                                            onkeyup="valueing()" >
+                                            onkeyup="valueing()">
                                     </div>
-                                
-                                    <button type="button"
-                                    class="btn btn-xs btn-success edit"
-                               
-                                    data-toggle="modal"
-                                    data-target="#edit">
-                                    <i class="fas fa-edit"></i>
-                                    Edit
-                            </button> 
-                                
+
+                                    <button type="button" class="btn btn-xs btn-success edit" data-toggle="modal"
+                                        data-target="#edit">
+                                        <i class="fas fa-edit"></i>
+                                        Edit
+                                    </button>
+
 
                                 </div>
                             </form>
@@ -134,9 +132,9 @@
                     id: no_plg,
                     _token: '{{ csrf_token() }}'
                 },
-                // beforeSend: function() {
-                //     showLoading()
-                // },
+                beforeSend: function() {
+                    showLoading()
+                },
                 success: function(response) {
 
                     $('#nama').val(response.nama)
@@ -147,31 +145,31 @@
             })
         })
 
-        $(document).on('click', '#edit', function(e) {
+        $(document).on('click', '.edit', function(e) {
             e.preventDefault();
             let no_plg = $('#no_plg').val()
             $.ajax({
                 type: "GET",
                 url: `{{ url('master/telponPelanggan') }}/` + no_plg,
                 data: {
-                    id: telp_1,
+                    id: no_plg,
                     _token: '{{ csrf_token() }}'
                 },
-                // beforeSend: function() {
-                //     showLoading()
-                // },
+                beforeSend: function() {
+                    showLoading()
+                },
                 success: function(response) {
                     $('#form-edit').attr('action', "{{ url('master/telponPelanggan') }}/" + no_plg)
-                    $('#nama').val(response.nama)
-                    $('#alamat').val(response.alamat)
-                    $('#telp_1').val(response.telp_1)
+                    $('#nama1').val(response.nama)
+                    $('#alamat1').val(response.alamat)
+                    $('#telp_1_i').val(response.telp_1)
                     swal.close();
                 }
             })
         })
 
         function clear() {
-            document.getElementById('noPelanggan').value = ''
+            document.getElementById('no_plg').value = ''
         }
         document.getElementById("clear").addEventListener("click", clear);
     </script>

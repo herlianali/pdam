@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\TelponPelanggan;
+use \Illuminate\Support\Facades\DB;
 
 class TelponPelangganController extends Controller
 {
@@ -22,18 +23,19 @@ class TelponPelangganController extends Controller
         return response()->json($telpPelanggan);
     }
 
-    // public function update(Request $request, $no_plg)
-    // {
+    public function update(Request $request, $no_plg)
+    {
        
-    //     TelponPelanggan::where('no_plg', $no_plg)->update([
-    //         'no_plg' => $request->no_plg,
-    //         'nama'    => $request->nama,
-    //         'alamat'    => $request->alamat,
-    //         'telp_1'     => $request->telp_1
-    //     ]);
+        TelponPelanggan::where(DB::raw("REPLACE(no_plg,' ','')"), $no_plg)->update([
+        // TelponPelanggan::where('no_plg', $no_plg)->update([
+            'no_plg'    => $request->no_plg,
+            'nama'      => $request->nama,
+            'alamat'    => $request->alamat,
+            'telp_1'    => $request->telp_1
+        ]);
 
-    //     return redirect()->route('telponPelanggan.index');
-    // }
+        return redirect()->route('telponPelanggan.index');
+    }
 
 
 }

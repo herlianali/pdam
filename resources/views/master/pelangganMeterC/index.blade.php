@@ -33,13 +33,15 @@
                                         <div class="form-group row ">
                                             <label for="no_pelanggan" class="col-md-3 col-form-label">Nomor Pelanggan</label>
                                             <div class="col-md-5">
-                                                <input type="text" class="form-control" id="no_plg" name="no_plg" onkeyup="valueing()">
+                                                <input type="text" class="form-control" id="no_plg" name="no_plg">
                                             </div>
                                             <button class="btn btn-success btn-sm" type="submit"><i
                                                     class="far fa-save"></i> Simpan</button>
                                             &nbsp;
-                                            <button type="submit" class="btn btn-danger btn-sm"><i
-                                                    class="fas fa-trash"></i> Bersihkan</button>
+                                            <button class="btn btn-danger btn-mt-2" id="clear">
+                                                <i class="fa fa-trash"></i>
+                                                Bersihkan
+                                            </button>
                                         </div>
                                     </form>
                                 </div>
@@ -132,13 +134,16 @@
             })
         }
         
-
+        function clear() {
+            document.getElementById('no_plg').value = ''
+        }
+        document.getElementById("clear").addEventListener("click", clear);
  
 
         $(document).on('click', '.hapus', function(e) {
             e.preventDefault();
              //console.log();
-            let no_plg = $(this).data('id');
+            let no_plg = $(this).data('id').trim().replace(/\s/g, '');
             let token = "{{ csrf_token() }}";
             swal.fire({
                 title: "Apakah Anda Yakin ?",
@@ -215,5 +220,6 @@
         //         return false;
         //     });
         // }
+
     </script>
 @endpush
