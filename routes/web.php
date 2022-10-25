@@ -144,7 +144,9 @@ Route::prefix('master')->group(function () {
     Route::delete('/deletemonitoringPelanggan/{id}', [MonitoringPelangganController::class, 'destroy']);
     Route::post('/monitoringPelanggan/filter', [MonitoringPelangganController::class, 'filter']);
 
+    Route::resource('/penetapanTeraMeter', PenetapanTeraMeterController::class)->parameters(['penetapanTeraMeter' => 'no_bonc'])->except(['create', 'edit']);
     Route::get('/penetapanTeraMeter', [PenetapanTeraMeterController::class, 'index'])->name('penetapanTeraMeter');
+    Route::get('/penetapanTeraMeter.{id}', [PenetapanTeraMeterController::class, 'show']);
     Route::get('/printpenetapanTeraMeter', [PenetapanTeraMeterController::class, 'print'])->name('printpenetapanTeraMeter');
 
     Route::get('/insertPosisiMeter', [InsertPosisiMeterController::class, 'index'])->name('insertPosisiMeter');
