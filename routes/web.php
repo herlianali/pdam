@@ -155,6 +155,7 @@ Route::prefix('master')->group(function () {
     Route::get('/createsurveyTarif', [SurveyTarifController::class, 'create'])->name('createsurveyTarif');
 
     Route::get('/cekSurveyTarif',  [CekSurveyTarifController::class,'index'])->name('cekSurveyTarif');
+    Route::get('/cekSurveyTarif/{nopel}',  [CekSurveyTarifController::class,'show'])->name('cekSurveyTarif.show');
 
 
     Route::resource('/mlnCode', MLNCodeController::class)->parameters(['mlnCode' => 'kode'])->except(['create', 'edit']);
@@ -210,8 +211,8 @@ Route::prefix('mutasipelanggan')->group(function() {
 });
 
 
-Route::prefix('mutasiPemakaian')->group(function () { 
+Route::prefix('mutasiPemakaian')->group(function () {
     Route::get('/usulanMutasiTarif', [ usulanMutasiTarifController::class, 'index'])->name('usulanMutasiTarif');
     Route::get('/cetakBA', [ usulanMutasiTarifController::class, 'cetakBA'])->name('cetakBAusulanTarif');
-   
+
 });

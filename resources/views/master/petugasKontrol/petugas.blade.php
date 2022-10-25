@@ -20,33 +20,18 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>TK01</td>
-                            <td>17900203</td>
-                            <td>Ema Nurmasanti, S.T</td>
-                            <td>
-                                <button class="btn btn-success btn-sm"><i class="far fa-check-circle"></i>
-                                    Pilih</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>TK02</td>
-                            <td>18200417</td>
-                            <td>Mashud CH</td>
-                            <td>
-                                <button class="btn btn-success btn-sm"><i class="far fa-check-circle"></i>
-                                    Pilih</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>TK03</td>
-                            <td>510037084</td>
-                            <td>Djauhar Busthom</td>
-                            <td>
-                                <button class="btn btn-success btn-sm"><i class="far fa-check-circle"></i>
-                                    Pilih</button>
-                            </td>
-                        </tr>
+                        @foreach ($c_petugas as $petugas)
+
+                            <tr>
+                                <td>{{ $petugas->nip }}</td>
+                                <td>{{ $petugas->nama }}</td>
+                                <td>test</td>
+                                <td>
+                                    <button class="btn btn-success btn-sm"><i class="far fa-check-circle"></i>
+                                        Pilih</button>
+                                    </td>
+                            </tr>
+                            @endforeach
                     </tbody>
                 </table>
             </div>

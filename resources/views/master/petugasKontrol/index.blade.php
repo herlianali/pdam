@@ -33,7 +33,7 @@
                                         <div class="form-group row">
                                             <label for="kd_ptgktrl" class="col-md-2 col-form-label">Kode Petugas</label>
                                             <div class="col-md-6">
-                                                <input type="text" class="form-control" id="kd_ptgktrl" name="kd_ptgktrl" onkeyup="valueing()">
+                                                <input type="text" class="form-control" id="kd_ptgktrl_i" name="kd_ptgktrl" onkeyup="valueing()">
                                             </div>
                                             <div class="col-md-3">
                                                 <input type="checkbox" name="is_satgas">
@@ -43,7 +43,7 @@
                                         <div class="form-group row">
                                             <label for="nip" class="col-md-2 col-form-label">NIP Pegawai</label>
                                             <div class="col-md-6">
-                                                <input type="text" class="form-control" id="nip" name="nip" onkeyup="valueing()">
+                                                <input type="text" class="form-control" id="nip_i" name="nip" onkeyup="valueing()">
                                             </div>
                                             <div class="col-md-3">
                                                 <button class="btn btn-default btn-mt-2" type="button" data-toggle="modal"
@@ -54,7 +54,7 @@
                                         <div class="form-group row">
                                             <label for="nama" class="col-md-2 col-form-label">Nama Pegawai</label>
                                             <div class="col-md-8">
-                                                <input type="text" class="form-control" id="nama" name="nama" onkeyup="valueing()">
+                                                <input type="text" class="form-control" id="nama_i" name="nama" onkeyup="valueing()">
                                             </div>
                                         </div>
                                         <div class="form-group row mt-2 ">
@@ -102,8 +102,14 @@
                                                 <button type="submit" class="btn btn-xs btn-danger "
                                                     onclick="deletePetugasKontrol({{ $ptKontrol->kd_ptgktrl }})"><i
                                                         class="fas fa-trash-alt"></i> Hapus</button>
-                                                <button type="button" class="btn btn-xs btn-success " data-toggle="modal"
-                                                    data-target="#edit"><i class="fas fa-edit"></i> Edit</button>
+                                                <button type="button"
+                                                        class="btn btn-xs btn-success edit"
+                                                        data-id="{{ $ptKontrol->kd_ptgktrl }}"
+                                                        data-toggle="modal"
+                                                        data-target="#edit">
+                                                        <i class="fas fa-edit"></i>
+                                                        Edit
+                                                </button>
                                             </td>
                                         </tr>
                                     @endforeach

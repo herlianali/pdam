@@ -106,7 +106,7 @@
                                                             </button>
                                                             <button type="button"
                                                                     class="btn btn-xs btn-success edit"
-                                                                    data-id="{{ $jenisPengaduan->jns_pengaduan }}"
+                                                                    data-id="@php trim($jenisPengaduan->jns_pengaduan) @endphp"
                                                                     data-toggle="modal"
                                                                     data-target="#form">
                                                                     <i class="fas fa-edit"></i>
@@ -185,6 +185,7 @@
                     showLoading()
                 },
                 success: function(response) {
+                    console.log(response)
                     $('#form-edit').attr('action', "{{ url('master/jenisPengaduan') }}/"+jns_pengaduan)
                     $('#jns_pengaduan').val(response.jns_pengaduan)
                     $('#keterangan').val(response.keterangan)

@@ -18,5 +18,5 @@ class PenetapanTeraMeterController extends Controller
     {
         return view('master.penetapanTeraMeter.create');
     }
-    
+
 }

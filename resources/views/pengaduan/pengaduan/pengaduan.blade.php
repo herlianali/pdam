@@ -36,19 +36,29 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal"
-                                        data-target="#pelanggan"><i class="fas fa-search"></i> Cari
-                                        Pelanggan</button>
+                                    <button type="button"
+                                            class="btn btn-outline-primary btn-sm"
+                                            data-toggle="modal"
+                                            data-target="#pelanggan">
+                                            <i class="fas fa-search"></i>
+                                            Cari Pelanggan
+                                    </button>
                                     &nbsp;
-                                    <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal"
-                                        data-target="#form"><i class="fas fa-search"></i> Cari Pengaduan</button>
+                                    <button type="button"
+                                            class="btn btn-outline-primary btn-sm"
+                                            data-toggle="modal"
+                                            data-target="#pengaduan">
+                                            <i class="fas fa-search"></i>
+                                            Cari Pengaduan
+                                    </button>
                                 </div>
                                 <div class="form-group row">
                                     <label for="jns_pengadu" class="col-md-2 col-form-label col-form-label-sm"> Jenis Pengadu </label>
                                     <div class="col-md-5">
                                         <select class="form-control form-control-sm" id="jns_pengadu" name="jns_pengadu">
-                                            <option value=""> </option>
-                                            <option value=""> </option>
+                                            <option value="P"> P - Pelanggan </option>
+                                            <option value="N"> N - Non Pelanggan </option>
+                                            <option value="I"> I - Internal PDAM </option>
                                         </select>
                                     </div>
                                 </div>
@@ -242,6 +252,12 @@
                 </div>
                 <div class="col-6">
                     <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Data</h3>
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button>
+                            </div>
+                        </div>
                         <div class="card-body">
                             <table id="table" class="table table-bordered table-responsive-md table-condensed">
                                 <thead>
@@ -250,22 +266,68 @@
                                         <th>Status</th>
                                         <th>No Pelanggan</th>
                                         <th>Jenis Pengaduan</th>
-                                        <th>Nama Pengaduan</th>
+                                        <th>Nama Pengadu</th>
+                                        <th>Alamat Pendau</th>
+                                        <th>Nama</th>
+                                        <th>Jalan</th>
+                                        <th>Gang</th>
+                                        <th>Nomor</th>
+                                        <th>No Tamb</th>
+                                        <th>Tgl Penduanan</th>
+                                        <th>Uraian</th>
+                                        <th>Jenis Pengaduan</th>
+                                        <th>Asal Pengaduan</th>
+                                        <th>Sifat</th>
+                                        <th>No BonC</th>
+                                        <th>Tgl BonC</th>
+                                        <th>Kelompok BonC</th>
+                                        <th>Status BonC</th>
+                                        <th>No BonP</th>
+                                        <th>Tgl BonP</th>
+                                        <th>Jenis Pekerjaan</th>
+                                        <th>Status BonP</th>
+                                        <th>Kd ptgkontrol</th>
+                                        <th>Ptg Kontrol</th>
+                                        <th>Telpon</th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>
-                                            <button type="submit" class="btn btn-danger btn-xs" onclick=""><i
-                                                    class="fas fa-trash-alt"></i> Hapus</button>
-                                        </td>
-                                    </tr>
+                                    {{-- @foreach ( as ) --}}
+                                        <tr onclick="">
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>
+                                                <button type="submit" class="btn btn-danger btn-xs" onclick=""><i
+                                                        class="fas fa-trash-alt"></i> Hapus</button>
+                                            </td>
+                                        </tr>
+                                    {{-- @endforeach --}}
                                 </tbody>
                             </table>
                         </div>
@@ -275,6 +337,9 @@
         </div>
     </section>
 @endsection
+
+@include('pengaduan.pengaduan.m_c_pelanggan')
+@include('pengaduan.pengaduan.m_c_pengaduan')
 
 @push('js')
     <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
@@ -294,6 +359,11 @@
                 "sScrollXInner": "100%"
 
             });
+        })
+
+
+        $(document).on('click', '.nama', function(e) {
+            $('#no_pa').prop('disabled', true)
         })
     </script>
 @endpush
