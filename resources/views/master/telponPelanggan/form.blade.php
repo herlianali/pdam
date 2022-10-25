@@ -14,19 +14,19 @@
                     <div class="form-group row mt-2 ">
                         <label for="nama" class="col-md-2 col-form-label">Nama</label>
                         <div class="col-md-8">
-                            <input type="text" class="form-control" id="nama" name="nama" onkeyup="valueing()" readonly value="">
+                            <input type="text" class="form-control" id="nama1" name="nama" onkeyup="valueing()" readonly value="">
                         </div>
                     </div>
                     <div class="form-group row ">
                         <label for="alamat" class="col-md-2 col-form-label">Alamat</label>
                         <div class="col-md-8">
-                            <textarea class="form-control" id="alamat" name="alamat" readonly value=""></textarea>
+                            <textarea class="form-control" id="alamat1" name="alamat" readonly value=""></textarea>
                         </div>
                     </div>
                     <div class="form-group row ">
                         <label for="nomor" class="col-md-2 col-form-label">No Telepon</label>
                         <div class="col-md-8">
-                            <input type="text" class="form-control" id="telp_1" name="telp_1" onkeyup="valueing()">
+                            <input type="text" class="form-control" id="telp_1_i" name="telp_1" onkeyup="valueing()">
                         </div>
                     </div>
                     <div class="form-group row ">
