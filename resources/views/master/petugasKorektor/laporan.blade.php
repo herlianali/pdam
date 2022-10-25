@@ -108,15 +108,28 @@
                                             id="laporan_honorium_kelebihan_beban_petugas_korektor" name="pilih">
                                         <label class="form-check-label">Laporan Honorium Kelebihan Beban
                                             Petugas Korektor</label>
+                                        <br>
+                                        <input type="radio" class="form-check-input"
+                                            id="laporan_honorium_kelebihan_beban_petugas_korektor_direksi" name="pilih">
+                                        <label class="form-check-label">Laporan Honorium Kelebihan Beban Petugas
+                                            Korektor(Direksi)</label>
                                     </div>
-                                    <input type="radio" class="form-check-input"
-                                        id="laporan_honorium_kelebihan_beban_petugas_korektor_direksi" name="pilih">
-                                    <label class="form-check-label">Laporan Honorium Kelebihan Beban Petugas
-                                        Korektor(Direksi)</label>
                                 </div>
                             </div>
                         </form>
                     </div>
+                    <table id="example" class="table table-bordered table-responsive-md table-condensed" style="width: 100%">
+                        <thead>
+                            <tr>
+                                <th>Tanggal</th>
+                                <th>THBL</th>
+                                <th>NIP</th>
+                                <th>Periode Tagih</th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                    </table>
                 </div>
             </div>
     </section>

@@ -20,23 +20,28 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($c_petugas as $petugas)
-
+                        @foreach ($cPegawai as $cari)
                             <tr>
-                                <td>{{ $petugas->nip }}</td>
-                                <td>{{ $petugas->nama }}</td>
-                                <td>test</td>
-                                <td>
-                                    <button class="btn btn-success btn-sm"><i class="far fa-check-circle"></i>
-                                        Pilih</button>
-                                    </td>
+                                <td>{{ $cari->nip }}</td>
+                                <td>{{ $cari->nama }}</td>
+                                <td style="text-align:center">{{ $cari->jns_pegawai }}</td>
+                                <td style="text-align:center">
+                                    @if ($cari->kddk_pegawai  == '01')
+                                        <span class="badge bg-success"><i class="far fa-check-circle"></i> Ya</span>
+                                    @else
+                                        <span class="badge bg-danger"><i class="far fa-times-circle"></i> Tidak</span>
+                                    @endif
+                                </td>
+                                <td style="text-align:center">{{ $cari->status_pegawai }}</td>
+                                <td><button class="btn btn-success btn-sm" id="pilih" data-id="{{ $cari->nip }}">Pilih</button></td>
                             </tr>
-                            @endforeach
+                        @endforeach
                     </tbody>
                 </table>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <p class="mr-auto">Klik tombol pilih untuk memasukkan data ke table</p>
+                <button type="button" class="btn btn-danger float-right btn-sm" data-dismiss="modal"><i class="far fa-times-circle"></i> Close</button>
             </div>
         </div>
     </div>

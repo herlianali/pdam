@@ -54,7 +54,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('petugasKhusus') }}" class="nav-link {{ Request::segment(2) == 'petugasKhusus' ? 'active' : '' }}">
+                <a href="{{ route('petugasKhusus.index') }}" class="nav-link {{ Request::segment(2) == 'petugasKhusus' ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <small>
                         <p>Petugas Khusus</p>

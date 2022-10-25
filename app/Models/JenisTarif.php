@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class InsertPosisiMeter extends Model
+class JenisTarif extends Model
 {
     use HasFactory;
 
-    protected $table = "INSERT_POSISI_METER";
-    protected $fillable = ["no", "no_plg", "posisi_meter"];
+    public $timestamps = false;
+    protected $table = 'JENIS_TARIF';
 }

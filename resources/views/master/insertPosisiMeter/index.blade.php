@@ -37,15 +37,37 @@
                                                 <input type="file" class="custom-file-input" name="dokumen"
                                                     id="custom-file">
                                                 <label class="custom-file-label" for="customeFile">Choose
-                                                    File</label>
+                                                    File
+                                                </label>
+                                            </div>&nbsp;
+                                            <button class="btn btn-info btn-mt-2" id="download" type="button" alt title="Download Format File Excel" href="{% static 'Data Item Master.csv' %}">
+                                                <i class="fas fa-file-excel"></i>
+                                            </button>
+                                            <div class="form-group col-xs-12 col-lg-6">
+                                                <a class="btn btn-primary" href="{{ url('csv-template/import-template.csv') }}" download>
+                                                    <i class="fas fa-file-excel"></i>
+                                                </a>
                                             </div>
                                         </div>
                                     </form>
                                 </div>
                             </div>
+                            <table id="example" class="table table-bordered table-responsive-md table-condensed" style="width: 100%">
+                                <thead>
+                                    <tr>
+                                        <th width="10%">No</th>
+                                        <th>No Pelanggan</th>
+                                        <th>Posisi Meter</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
     </section>
 @endsection
 
@@ -57,6 +79,17 @@
     <script src="{{ asset('assets/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
     <script>
         $(function() {
+            $(function() {
+            $('#example').DataTable({
+
+            //  "lengthChange": false,
+            //   "autoWidth": false,
+            //   "responsive": true,
+            "oLanguage": {
+                "sSearch": "Search : "
+            },
+            "pageLength": 5
+            }).buttons().container().appendTo('#table_wrapper .col-md-6:eq(0)');
             $('#example2').DataTable({
                 "paging": true,
                 "lengthChange": false,

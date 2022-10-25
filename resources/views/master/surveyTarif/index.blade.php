@@ -61,25 +61,25 @@
                                         <div class="form-group row mt-2">
                                             <label for="nopelanggan" class="col-md-3 col-form-label">No Pelanggan</label>
                                             <div class="col-md-3">
-                                                <input type="text" class="form-control" id="nopelanggan" name="nopelanggan" onkeyup="valueing()">
+                                                <input type="text" class="form-control" id="nopelanggan" name="nopelanggan" onkeyup="valueing()" disabled>
                                             </div>
                                         </div>
                                         <div class="form-group row ">
                                             <label for="nama" class="col-md-3 col-form-label">Nama</label>
                                             <div class="col-md-3">
-                                                <input type="text" class="form-control" id="nama" name="nama" onkeyup="valueing()">
+                                                <input type="text" class="form-control" id="nama" name="nama" onkeyup="valueing()" disabled>
                                             </div>
                                         </div>
                                         <div class="form-group row ">
                                             <label for="alamat" class="col-md-3 col-form-label">Alamat</label>
                                             <div class="col-md-3">
-                                                <textarea class="form-control" id="alamat" name="alamat" onkeyup="valueing()"></textarea>
+                                                <textarea class="form-control" id="alamat" name="alamat" onkeyup="valueing()" disabled></textarea>
                                             </div>
                                         </div>
                                         <div class="form-group row ">
                                             <label for="nomor" class="col-md-3 col-form-label">Nomor PA</label>
                                             <div class="col-md-3">
-                                                <input type="text" class="form-control" id="noPA" name="noPA"onkeyup="valueing()">
+                                                <input type="text" class="form-control" id="noPA" name="noPA"onkeyup="valueing()" disabled>
                                             </div>
                                         </div>
 
@@ -93,7 +93,7 @@
 
                                             <div class="col-md-2">
                                                 <input type="text" class="form-control" id="tariflama" name="tariflama"
-                                                    onkeyup="valueing()">
+                                                    onkeyup="valueing()" disabled>
                                             </div>
                                             <label for="tariflama" class="col-md-1 col-form-label">Tarif Lama</label>
                                         </div>

@@ -13,6 +13,15 @@ class PelangganMeterCController extends Controller
         return view('master.pelangganMeterC.index', compact('plgMeterC'))->with('i');
     }
 
+    public function store(Request $request)
+    {
+        PelangganMeterC::insert([
+            'no_pelanggan' => $request->no_pelanggan
+        ]);
+
+        return redirect()->route('pelangganMeterC.index');
+    }
+
     
     public function show($id)
     {
@@ -23,7 +32,7 @@ class PelangganMeterCController extends Controller
 
     public function destroy($id)
     {
-        $plgnMeterC = PelangganMeterC::findOrFail($id)->delete();
+        $plgnMeterC = PelangganMeterC::where('id', $id)->delete();
         return response()->json([
             'success' => true,
             'message' => 'Data Pelanggan Meter Berhasil Dihapus',

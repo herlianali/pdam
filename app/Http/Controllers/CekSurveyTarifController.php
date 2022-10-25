@@ -11,10 +11,24 @@ class CekSurveyTarifController extends Controller
         return view('master.cekSurveyTarif.index');
     }
 
-    public function show($nopel){
+    public function search(Request $request)
+    {
+        $this->validate($request, [
+            'nopelanggan' => 'required|nopelanggan'
+        ]);
 
+        $request = Customer::where('nopelanggan', $request->nopelanggan)->first();
+        if ($request) {
+            return response()->json([
+                'status' => 'success',
+                'data' => $request
+            ], 200);
+        }
+        return response()->json([
+            'status' => 'failed',
+            'data' => []
+        ]);
+        return view('master.cekSurveyTarif.index');
     }
-
-
 
 }

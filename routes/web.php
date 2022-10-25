@@ -69,9 +69,13 @@ Route::prefix('master')->group(function () {
     Route::get('/printPengaduan', [JenisPengaduanController::class, 'print'])->name('printPengaduan');
 
     Route::resource('jenisPelanggan', JenisPelangganController::class)->parameters(['jenisPelanggan' => 'jns_pelanggan'])->except(['create','edit']);
-    Route::get('/petugasKhusus', [PetugasKhususController::class, 'index'])->name('petugasKhusus');
-    Route::get('/petugasKhusus{nip}', [PetugasKhususController::class, 'show'])->name('petugasKhusus.edit');
-    Route::post('/petugasKhusus', [PetugasKhususController::class, 'store'])->name('petugasKhusus.store');
+    
+    Route::resource('petugasKhusus', PetugasKhususController::class)->parameters(['petugasKhusus' => 'nip'])->except(['create','edit']);
+    // Route::get('checkPetKhusus/{nip}', [PetugasKhususController::class, 'check'])->parameters(['petugasKhusus' => 'nip']);
+
+    // Route::get('/petugasKhusus', [PetugasKhususController::class, 'index'])->name('petugasKhusus');
+    // Route::get('/petugasKhusus/{nip}', [PetugasKhususController::class, 'show'])->name('petugasKhusus.edit');
+    // Route::post('/petugasKhusus', [PetugasKhususController::class, 'store'])->name('petugasKhusus.store');
 
     Route::resource('petugasKontrol', PetugasKontrolController::class)->parameters(['petugasKontrol' => 'kd_ptgktrl'])->except(['create','edit']);
     Route::get('/printpetugasKontrol', [PetugasKontrolController::class, 'print'])->name('printpetugasKontrol');
@@ -96,6 +100,7 @@ Route::prefix('master')->group(function () {
     Route::get('/printpetugasEntry', [PetugasEntryController::class, 'print'])->name('printpetugasEntry');
     // Route::delete('/deletepetugasEntry/{id}', [PetugasEntryController::class, 'destroy']);
 
+    Route::resource('gunaPersil', GunaPersilController::class)->parameters(['gunaPersil' => 'kd_gunapersil'])->except(['create','edit']);
     Route::get('/gunaPersil', [GunaPersilController::class, 'index'])->name('gunaPersil');
     Route::delete('/deletegunaPersil/{id}', [GunaPersilController::class, 'destroy']);
     Route::get('/printgunaPersil',[GunaPersilController::class,'print'])->name('printgunaPersil');
@@ -139,7 +144,9 @@ Route::prefix('master')->group(function () {
     Route::delete('/deletemonitoringPelanggan/{id}', [MonitoringPelangganController::class, 'destroy']);
     Route::post('/monitoringPelanggan/filter', [MonitoringPelangganController::class, 'filter']);
 
+    Route::resource('/penetapanTeraMeter', PenetapanTeraMeterController::class)->parameters(['penetapanTeraMeter' => 'no_bonc'])->except(['create', 'edit']);
     Route::get('/penetapanTeraMeter', [PenetapanTeraMeterController::class, 'index'])->name('penetapanTeraMeter');
+    Route::get('/penetapanTeraMeter.{id}', [PenetapanTeraMeterController::class, 'show']);
     Route::get('/printpenetapanTeraMeter', [PenetapanTeraMeterController::class, 'print'])->name('printpenetapanTeraMeter');
 
     Route::get('/insertPosisiMeter', [InsertPosisiMeterController::class, 'index'])->name('insertPosisiMeter');
