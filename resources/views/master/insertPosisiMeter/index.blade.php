@@ -44,7 +44,7 @@
                                                 <i class="fas fa-file-excel"></i>
                                             </button>
                                             <div class="form-group col-xs-12 col-lg-6">
-                                                <a class="btn btn-primary" href="{{ url('csv-template/import-template.csv') }}" download>
+                                                <a class="btn btn-primary" href="{% storage 'app/upload.xls' %}" download>
                                                     <i class="fas fa-file-excel"></i>
                                                 </a>
                                             </div>

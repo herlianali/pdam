@@ -146,7 +146,8 @@ Route::prefix('master')->group(function () {
 
     Route::resource('/penetapanTeraMeter', PenetapanTeraMeterController::class)->parameters(['penetapanTeraMeter' => 'no_bonc'])->except(['create', 'edit']);
     Route::get('/penetapanTeraMeter', [PenetapanTeraMeterController::class, 'index'])->name('penetapanTeraMeter');
-    Route::get('/penetapanTeraMeter.{id}', [PenetapanTeraMeterController::class, 'show']);
+    Route::get('/penetapanTeraMeter/{no_bonc}', [PenetapanTeraMeterController::class, 'show'])->name('penetapanTeraMeter.show');
+    //Route::get('/penetapanTeraMeter/{no_bonc}', [PenetapanTeraMeterController::class, 'getData']);
     Route::get('/printpenetapanTeraMeter', [PenetapanTeraMeterController::class, 'print'])->name('printpenetapanTeraMeter');
 
     Route::get('/insertPosisiMeter', [InsertPosisiMeterController::class, 'index'])->name('insertPosisiMeter');

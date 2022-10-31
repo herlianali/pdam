@@ -42,15 +42,15 @@
                             <div class="form-group row mt-2">
                                 <label for="thbl" class="col-md-2 col-form-label">THBL</label>
                                 <div class="col-md-3">
-                                    <input type="text" class="form-control" id="thbl" name="thbl"
-                                        onkeyup="valueing()" placeholder="/">
+                                    <input type="month" class="form-control" id="thbl" name="thbl"
+                                        onkeyup="valueing()">
                                 </div>
                             </div>
                             <div class="form-group row ">
-                                <label for="tgl" class="col-md-2 col-form-label">Tgl.Penugasan</label>
+                                <label for="date" class="col-md-2 col-form-label">Tgl.Penugasan</label>
                                 <div class="col-md-3">
-                                    <input type="date" class="form-control" id="tgl_penugasan" name="tgl_penugasan"
-                                        onkeyup="valueing()">
+                                    <input type="date" class="form-control" id="date" name="date"
+                                        onkeyup="valueing()" value="{{ $date }}">
                                 </div>
                             </div>
                         </form>

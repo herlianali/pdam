@@ -17,13 +17,10 @@ class PetugasKhususController extends Controller
         $jenis_pelanggan = new PetugasKhusus;
         $jenis = $jenis_pelanggan->getData();
         return view('master.petugasKhusus.index', compact(['jns_pelanggan', 'jenis', 'c_pegawai']))->with('i');
-        //dd($ZZ);
     }
     
     public function store(Request $request)
     {
-        // dd($request->post());
-
         PetugasKhusus::insert([
             'nip'       => $request->nip,
             'tugas'     => $request->tugas,

@@ -40,18 +40,17 @@
                             <div class="form-group row mt-2">
                                 <label for="nip" class="col-md-2 col-form-label">NIP</label>
                                 <div class="col-md-4">
-                                    <select class="form-control" id="nip" name="nip" onkeyup="valueing()">
-
-                                        <option value=""> </option>
-                                        <option value=""> </option>
-                                    </select>
+                                    <input type="text" class="form-control" name="nip" id="nip" onkeyup="valueing()">
                                 </div>
+                                <button class="btn btn-info  btn-mt-2" type="button" data-toggle="modal"
+                                    data-target="#data"><i class="fa fa-search"></i></button>
+                                &nbsp;
                             </div>
                             <div class="form-group row ">
                                 <label for="nama" class="col-md-2 col-form-label">Nama</label>
                                 <div class="col-md-4">
                                     <input type="text" class="form-control" name="nama" id="nama"
-                                        onkeyup="valueing()">
+                                        onkeyup="valueing()" disabled>
                                 </div>
                             </div>
                             <div class="form-group row ">
@@ -88,7 +87,7 @@
                     </div>
                     </form>
                 </div>
-                <table id="example" class="table table-bordered table-responsive-md table-condensed" style="width: 100%">
+                <table id="example2" class="table table-bordered table-responsive-md table-condensed" style="width: 100%">
                     <thead>
                         <tr>
                             <th width="10%">NIP </th>
@@ -105,31 +104,34 @@
             </div>
         </div>
     </section>
-
+    @include('master.petugasKorektor.data')
 @endsection
 
 @push('js')
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
     <script>
-        $(function() {
-            $('#example').DataTable({
-
-            //  "lengthChange": false,
-            //   "autoWidth": false,
-            //   "responsive": true,
-            "oLanguage": {
-                "sSearch": "Keterangan : "
-            },
-            "pageLength": 5
-            }).buttons().container().appendTo('#table_wrapper .col-md-6:eq(0)');
+       $(function() {
+            $('#example1').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "oLanguage": {
+                    "sSearch": "NIP/NAMA : "
+                },
+                "bInfo" : false,
+                "ordering": true,
+                "autoWidth": false,
+                "responsive": true,
+                "pageLength": 5
+            })
             $('#example2').DataTable({
                 "paging": true,
                 "lengthChange": false,
-                "searching": false,
+                "searching": true,
                 "ordering": true,
                 "info": true,
                 "autoWidth": false,
@@ -137,6 +139,30 @@
                 "pageLength": 5
             });
         });
+
+        
+        $(document).on('click', '#pilih', function(e) {
+            e.preventDefault();
+            let nip = $(this).data('id');
+            $.ajax({
+                type: "GET",
+                url: `{{ url('api/dip') }}/`+nip,
+                data: {
+                    id: nip,
+                    _token: '{{ csrf_token() }}'
+                },
+                beforeSend: function() {
+                    showLoading()
+                },
+                success: function(res) {
+                    $('#nip').val(res.nip)
+                    $('#nama').val(res.nama)
+                    $("#pegawai").modal('hide');
+                    swal.close();
+                }
+            })
+
+            
 
         var showLoading = function() {
             swal.fire({
