@@ -59,7 +59,10 @@ class KondisiTutupanController extends Controller
     }
     public function print()
     {
-      //  return view('master.kondisiTutupan.print');
+       
+        $kondTutupan = KondisiTutupan::all();
+        return view('master.kondisiTutupan.print', compact('kondTutupan'))->with('i');
     }
+    
 
 }

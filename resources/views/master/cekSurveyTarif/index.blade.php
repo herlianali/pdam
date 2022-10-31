@@ -109,12 +109,12 @@
         }
 
         
-        $(document).on('click', '#clear', function(e) {
-            e.preventDefault();
-            $('#njop').val()
-            $('#listrik').val()
-            $('#lebarjalan').val()
-        })
+        // $(document).on('click', '#clear', function(e) {
+        //     e.preventDefault();
+        //     $('#njop').val()
+        //     $('#listrik').val()
+        //     $('#lebarjalan').val()
+        // })
 
         $(document).on('click','#cari',function(e) {
             e.preventDefault();
@@ -131,7 +131,7 @@
                 },
             
                 success: function(response) {
-                  console.log(response,'ini responnya')
+                //   console.log(response,'ini responnya')
                     $('#njop').val(response.njop)
                     $('#listrik').val(response.listrik)
                     $('#lebarjalan').val(response.lebarjalan)
@@ -142,10 +142,10 @@
 
 
         
-        // function clear() {
-        //     document.getElementById('nopel').value = ''
-        // }
-        // document.getElementById("clear").addEventListener("click", clear);
+        function clear() {
+            document.getElementById('nopel').value = ''
+        }
+        document.getElementById("clear").addEventListener("click", clear);
 
         function valueing() {
             if (document.getElementById('kode').value === "" || document.getElementById('keterangan').value === "") {

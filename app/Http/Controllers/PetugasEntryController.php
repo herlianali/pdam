@@ -63,7 +63,9 @@ class PetugasEntryController extends Controller
     }
     public function print()
     {
-        return view('master.petugasEntry.print');
+        $cPegawai    = Dip::getData();
+        $pEntry  = PetugasEntry::getData();
+        return view('master.petugasEntry.print', compact(['pEntry']))->with('i');
     }
 
 }

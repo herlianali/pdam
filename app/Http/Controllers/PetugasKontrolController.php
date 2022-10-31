@@ -63,8 +63,14 @@ class PetugasKontrolController extends Controller
         ]);
     }
 
-    public function print()
+   
+        public function print()
     {
-        return view('master.petugasKontrol.print');
+        
+        $cPegawai    = Dip::getData();
+        $petugaskontrol = new PetugasKontrol();
+        $petugas = $petugaskontrol->showPetugas();
+        return view('master.petugasKontrol.print', compact(['petugas','cPegawai']))->with('i');
     }
+    
 }

@@ -24,8 +24,18 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Jenis Panggilan Dinas</h3>
-                            <a href="{{ route('settingPrintPanggilan') }}" class="btn btn-xs btn-success float-right"><i
-                                    class="fas fa-print"></i> Cetak</a>
+                           
+                              
+                            <button type="button"
+                            class="btn btn-xs btn-success filter float-right"
+                            data-toggle="modal"
+                            data-target="#filter">
+                            <i class="fas fa-print"></i>
+                            Print
+                    </button> 
+                    
+                            {{-- <a href="{{ route('settingPrintPanggilan') }}" class="btn btn-xs btn-success float-right"><i
+                                    class="fas fa-print"></i> Cetak</a> --}}
                         </div>
                         <div class="card-body">
                             <div class="row mb-4">
@@ -107,6 +117,10 @@
 
     {{-- Edit Form --}}
     @include('master.panggilanDinas.form')
+    
+    @include('master.panggilanDinas.filter')
+    
+
 @endsection
 
 @push('js')

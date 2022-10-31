@@ -30,25 +30,27 @@
                                 Pegawai</button>
                         </div>
                     </div>
-                    <div class="form-group row mt-2">
-                        <label for="recid" class="col-md-2 col-form-label">Recid</label>
-                        <div class="col-md-8">
-                            <input type="text" class="form-control" id="recid1" name="recid1"
-                                onkeyup="valueing()">
+                    
+                    <div class="form-group row mt-2 ">
+                        <label for="jabatan" class="col-md-2 col-form-label">Jabatan</label>
+                        <div class="col-md-4">
+                            <div class="form-check">
+                                <input type="radio" class="form-check-input" id="konektor" name="jabatan" value="0">
+                                <label class="form-check-label">Konektor</label>
+                                <br>
+                                <input type="radio" class="form-check-input" id="senior_staf " name="jabatan" value="1">
+                                <label class="form-check-label">Senior Staf</label>
+                                <br>
+                                <input type="radio" class="form-check-input" id="supervisor " name="jabatan" value="2">
+                                <label class="form-check-label">Supervisor</label>
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group row mt-2">
-                        <label for="zona" class="col-md-2 col-form-label">Zona</label>
-                        <div class="col-md-8">
-                            <input type="text" class="form-control" id="zona1" name="zona1"
-                                onkeyup="valueing()">
-                        </div>
-                    </div>
-                    <div class="form-group row mt-2">
-                        <label for="bundel" class="col-md-2 col-form-label">Bundel</label>
-                        <div class="col-md-8">
-                            <input type="text" class="form-control" id="no_bundel1" name="no_bundel1"
-                                onkeyup="valueing()">
+                    <div class="form-group row mt-2 ">
+                        <label for="status" class="col-md-2 col-form-label">Status</label>
+                        <div class="col-md-3">
+                            <input type="checkbox" id="aktif" name="aktif">
+                            <label class="col-form-label" for="aktif">Aktif</label>
                         </div>
                     </div>
                     <div class="form-group row mt-2">
@@ -58,12 +60,10 @@
                             <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-undo"></i> Batal</button>
                         </div>
                     </div>
-
-                  
                 </form>
             </div>
         </div>
     </div>
+@include('master.petugasKorektor.petCs')
 </div>
 
-@include('master.petugasKorektor.petCs')

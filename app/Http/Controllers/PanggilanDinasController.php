@@ -58,14 +58,18 @@ class PanggilanDinasController extends Controller
     }
 
     public function settingPrint(){
-        return view('master.panggilanDinas.setting-print');
+        
+        
+        $pDinass = PanggilanDinas::all();
+        return view('master.panggilanDinas.index', compact('pDinass'))->with('i');
+        // return view('master.panggilanDinas.setting-print');
     }
 
     public function print()
     {
-        $pDinas = PanggilanDinas::all()->except(['created_at', 'updated_at']);
+        // $pDinas = PanggilanDinas::all()->except(['created_at', 'updated_at']);
 
-        $pdf = PDF::loadview('master.panggilanDinas.print', compact('pDinas'));
-        return $pdf->download('jenis-panggilan-dinas.pdf');
+        // $pdf = PDF::loadview('master.panggilanDinas.print', compact('pDinas'));
+        // return $pdf->download('jenis-panggilan-dinas.pdf');
     }
 }

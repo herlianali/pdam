@@ -136,7 +136,7 @@
                     showLoading()
                 },
                 success: function(response) {
-
+                    console.log('resp');
                     $('#nama').val(response.nama)
                     $('#alamat').val(response.alamat)
                     $('#telp_1').val(response.telp_1)

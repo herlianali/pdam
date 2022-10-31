@@ -23,8 +23,15 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Petugas Kontrol</h3>
-                            <a href="{{ route('printpetugasKontrol') }}" class="btn btn-xs btn-success float-right"><i
-                                    class="fas fa-print"></i> Cetak</a>
+                            <button type="button"
+                            class="btn btn-xs btn-success filter float-right"
+                            data-toggle="modal"
+                            data-target="#filter">
+                            <i class="fas fa-print"></i>
+                            Print
+                    </button>
+                            {{-- <a href="{{ route('printpetugasKontrol') }}" class="btn btn-xs btn-success float-right"><i
+                                    class="fas fa-print"></i> Cetak</a> --}}
                         </div>
                         <div class="card-body">
                             <div class="row">
@@ -104,14 +111,14 @@
                                             </td>
                                             <td>
                                                 <button type="submit" 
-                                                class="btn btn-danger btn-sm hapus"
+                                                class="btn btn-danger btn-xs hapus"
                                                 data-id="{{ $ptKontrol->kd_ptgktrl }}">
                                                 <i class="fas fa-trash-alt"></i>
                                                 Hapus
                                                 </button>
 
                                                 <button type="button" 
-                                                class="btn btn-success btn-sm edit"
+                                                class="btn btn-success btn-xs edit"
                                                 data-id="{{ $ptKontrol->kd_ptgktrl }}" 
                                                 data-toggle="modal"
                                                 data-target="#edit">
@@ -132,6 +139,7 @@
 
     @include('master.petugasKontrol.edit')
     @include('master.petugasKontrol.petugas')
+    @include('master.petugasKontrol.filter')
 @endsection
 
 @push('js')

@@ -23,7 +23,14 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Kondisi Tutupan</h3>
-                            <a href="{{ route('printkondisiTutupan') }}" class="btn btn-sm btn-success float-right"><i class="fas fa-print"></i> Cetak</a>
+                            <button type="button"
+                            class="btn btn-xs btn-success filter float-right"
+                            data-toggle="modal"
+                            data-target="#filter">
+                            <i class="fas fa-print"></i>
+                            Print
+                    </button>
+                            {{-- <a href="{{ route('printkondisiTutupan') }}" class="btn btn-sm btn-success float-right"><i class="fas fa-print"></i> Cetak</a> --}}
                         </div>
                         <div class="card-body">
                             <div class="row mb-4">
@@ -92,7 +99,7 @@
                             </table>
                         </div>
                         @include('master.kondisiTutupan.form')
-
+                        @include('master.kondisiTutupan.filter')
                     </div>
                 </div>
             </div>

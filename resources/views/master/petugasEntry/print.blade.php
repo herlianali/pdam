@@ -39,8 +39,8 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h3 class="card-title">Print preview Petugas Entry</h3>
-                                    <a href="{{ route('printpanggilanDinas') }}"
-                                        class="btn btn-sm btn-success float-right"><i class="fas fa-print"></i> Cetak</a>
+                                    {{-- <a href="{{ route('printpanggilanDinas') }}"
+                                        class="btn btn-sm btn-success float-right"><i class="fas fa-print"></i> Cetak</a> --}}
                                 </div>
                                 <div class="card-body priview">
                                     <p> Pemerintah Kota <br>
@@ -57,12 +57,19 @@
                                                 <th>NIP</th>
                                                 <th>Nama</th>
                                                 <th>Status</th>
-                                                <th>ISCS</th>
+                                               
 
                                             </tr>
                                         </thead>
                                         <tbody>
-
+                                            @foreach ($pEntry as $ptsEntry)
+                                        <tr>
+                                            <td>{{ $ptsEntry->kd_ptgentry }}</td>
+                                            <td>{{ $ptsEntry->nip }}</td>
+                                            <td>{{ $ptsEntry->nama }}</td>
+                                            <td>{{ $ptsEntry->aktif }}</td>
+                                            </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>

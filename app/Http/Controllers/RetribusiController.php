@@ -54,7 +54,8 @@ class RetribusiController extends Controller
 
     public function print()
     {
-        return view('master.retribusi.print');
+        $retribus = Retribusi::all();
+        return view('master.retribusi.print', compact('retribus'))->with('i');
     }
 
 }

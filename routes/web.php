@@ -69,6 +69,8 @@ Route::prefix('master')->group(function () {
     Route::get('/printPengaduan', [JenisPengaduanController::class, 'print'])->name('printPengaduan');
 
     Route::resource('jenisPelanggan', JenisPelangganController::class)->parameters(['jenisPelanggan' => 'jns_pelanggan'])->except(['create','edit']);
+    Route::get('/printjenisPelanggan', [JenisPelangganController::class, 'print'])->name('printjenisPelanggan');
+    
     Route::get('/petugasKhusus', [PetugasKhususController::class, 'index'])->name('petugasKhusus');
     Route::get('/petugasKhusus{nip}', [PetugasKhususController::class, 'show'])->name('petugasKhusus.edit');
     Route::post('/petugasKhusus', [PetugasKhususController::class, 'store'])->name('petugasKhusus.store');
@@ -84,6 +86,8 @@ Route::prefix('master')->group(function () {
     Route::resource('kondisiTutupan', KondisiTutupanController::class)->parameters(['kondisiTutupan' => 'kd_kondisi'])->except(['create','edit']);
     Route::get('/printkondisiTutupan', [KondisiTutupanController::class, 'print'])->name('printkondisiTutupan');
 
+    
+    // Route::resource('petugasKorektor', PetugasKorektorController::class)->parameters(['petugasKorektor' => 'nip'])->except(['create','edit']);
     Route::get('/petugasKorektor', [PetugasKorektorController::class, 'index'])->name('petugasKorektor');
     Route::get('/laporanpetugasKorektor',[PetugasKorektorController::class,'laporan'])->name('laporanpetugasKorektor');
     Route::get('/viewsisapetugasKorektor', [PetugasKorektorController::class, 'viewsisa'])->name('viewsisapetugasKorektor');
