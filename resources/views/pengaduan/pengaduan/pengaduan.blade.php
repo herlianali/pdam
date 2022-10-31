@@ -155,8 +155,9 @@
                                     <label for="asal_pengaduan" class="col-md-3 col-form-label col-form-label-sm"> Asal Pengaduan </label>
                                     <div class="col-md-5 ml-n4">
                                         <select class="form-control form-control-sm" id="asal_pengaduan" name="asal_pengaduan">
-                                            <option value=""> </option>
-                                            <option value=""> </option>
+                                            @foreach ($aslPengaduan as $asal)
+                                                <option value="{{ $asal->asal_pengaduan }}"> {{ $asal->asal_pengaduan }} - {{ $asal->keterangan }} </option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
@@ -164,8 +165,9 @@
                                     <label for="jns_pengaduan" class="col-md-3 col-form-label col-form-label-sm"> Jenis Pengaduan </label>
                                     <div class="col-md-5 ml-n4">
                                         <select class="form-control form-control-sm" id="jns_pengaduan" name="jns_pengaduan">
-                                            <option value=""> </option>
-                                            <option value=""> </option>
+                                            @foreach ($jnsPengaduan as $jenis)
+                                                <option value="{{ $jenis->jns_pengaduan }}"> {{ $jenis->jns_pengaduan }} - {{ $jenis->keterangan }} </option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
@@ -250,105 +252,24 @@
                         </div>
                     </form>
                 </div>
-                <div class="col-6">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Data</h3>
-                            <div class="card-tools">
-                                <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <table id="table" class="table table-bordered table-responsive-md table-condensed">
-                                <thead>
-                                    <tr>
-                                        <th>No Pengaduan</th>
-                                        <th>Status</th>
-                                        <th>No Pelanggan</th>
-                                        <th>Jenis Pengaduan</th>
-                                        <th>Nama Pengadu</th>
-                                        <th>Alamat Pendau</th>
-                                        <th>Nama</th>
-                                        <th>Jalan</th>
-                                        <th>Gang</th>
-                                        <th>Nomor</th>
-                                        <th>No Tamb</th>
-                                        <th>Tgl Penduanan</th>
-                                        <th>Uraian</th>
-                                        <th>Jenis Pengaduan</th>
-                                        <th>Asal Pengaduan</th>
-                                        <th>Sifat</th>
-                                        <th>No BonC</th>
-                                        <th>Tgl BonC</th>
-                                        <th>Kelompok BonC</th>
-                                        <th>Status BonC</th>
-                                        <th>No BonP</th>
-                                        <th>Tgl BonP</th>
-                                        <th>Jenis Pekerjaan</th>
-                                        <th>Status BonP</th>
-                                        <th>Kd ptgkontrol</th>
-                                        <th>Ptg Kontrol</th>
-                                        <th>Telpon</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {{-- @foreach ( as ) --}}
-                                        <tr onclick="">
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td>
-                                                <button type="submit" class="btn btn-danger btn-xs" onclick=""><i
-                                                        class="fas fa-trash-alt"></i> Hapus</button>
-                                            </td>
-                                        </tr>
-                                    {{-- @endforeach --}}
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
+                @include('pengaduan.pengaduan.table')
             </div>
         </div>
+
+        @include('pengaduan.pengaduan.m_c_pelanggan')
+        @include('pengaduan.pengaduan.m_c_pengaduan')
     </section>
 @endsection
 
-@include('pengaduan.pengaduan.m_c_pelanggan')
-@include('pengaduan.pengaduan.m_c_pengaduan')
-
 @push('js')
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
     <script>
-        $(function(){
+        var table = function(params){
             $('table.table').DataTable({
                 "sScrollY":  ( 0.6 * $(window).height() ),
                 "bPaginate": false,
@@ -357,13 +278,121 @@
                 "bAutoWidth": true,
                 "sScrollX": "100%",
                 "sScrollXInner": "100%"
-
             });
+        }
+
+        var showLoading = function() {
+            swal.fire({
+                title: "Mohon Tunggu !",
+                html: "Sedang Memproses...",
+                allowOutsideClick: false,
+                showConfirmButton: false,
+                willOpen: () => {
+                    swal.showLoading()
+                },
+            })
+        }
+
+        // // function
+        $('#no_pelanggan_c').on('click', function() {
+            if($(this).is(":checked")) {
+                $('#no_pelanggan').prop("disabled", false)
+                $('#nama_c').prop("checked", false)
+                $('#nama').prop("disabled", true)
+
+                $('#no_pa_c').prop("checked", false)
+                $('#no_pa').prop("disabled", true)
+
+                $('#alamat_c').prop("checked", false)
+                $('#jalan').prop("disabled", true)
+                $('#gang').prop("disabled", true)
+                $('#no').prop("disabled", true)
+                $('#no_tambahan').prop("disabled", true)
+                $('#f-pelanggan').submit(function(e){
+                    e.preventDefault()
+                    let params = $('#no_pelanggan').val();
+
+                })
+            }else{
+                $('#no_pelanggan').prop("disabled", true)
+            }
+        })
+
+        $('#nama_c').on('click', function() {
+            if($(this).is(":checked")) {
+                $('#nama').prop("disabled", false)
+                $('#no_pelanggan_c').prop("checked", false)
+                $('#no_pelanggan').prop("disabled", true)
+
+                $('#no_pa_c').prop("checked", false)
+                $('#no_pa').prop("disabled", true)
+
+
+                $('#alamat_c').prop("checked", false)
+                $('#jalan').prop("disabled", true)
+                $('#gang').prop("disabled", true)
+                $('#no').prop("disabled", true)
+                $('#no_tambahan').prop("disabled", true)
+            }else{
+                $('#nama').prop("disabled", true)
+            }
+        })
+
+        $('#no_pa_c').on('click', function() {
+            if($(this).is(":checked")) {
+                $('#no_pa').prop("disabled", false)
+                $('#nama_c').prop("checked", false)
+                $('#nama').prop("disabled", true)
+
+                $('#no_pelanggan_c').prop("checked", false)
+                $('#no_pelanggan').prop("disabled", true)
+
+                $('#alamat_c').prop("checked", false)
+                $('#jalan').prop("disabled", true)
+                $('#gang').prop("disabled", true)
+                $('#no').prop("disabled", true)
+                $('#no_tambahan').prop("disabled", true)
+            }else{
+                $('#no_pa').prop("disabled", true)
+            }
+        })
+
+        $('#alamat_c').on('click', function() {
+            if($(this).is(":checked")) {
+                $('#jalan').prop("disabled", false)
+                $('#gang').prop("disabled", false)
+                $('#no').prop("disabled", false)
+                $('#no_tambahan').prop("disabled", false)
+
+                $('#nama_c').prop("checked", false)
+                $('#nama').prop("disabled", true)
+
+                $('#no_pelanggan_c').prop("checked", false)
+                $('#no_pelanggan').prop("disabled", true)
+
+                $('#no_pa_c').prop("checked", false)
+                $('#no_pa').prop("disabled", true)
+            }else{
+                $('#jalan').prop("disabled", true)
+                $('#gang').prop("disabled", true)
+                $('#no').prop("disabled", true)
+                $('#no_tambahan').prop("disabled", true)
+            }
         })
 
 
-        $(document).on('click', '.nama', function(e) {
-            $('#no_pa').prop('disabled', true)
-        })
+        // data test input "0000010 "
+
+        // $(document).ready(function() {
+        //     $('#f-pelanggan').submit(function(e){
+        //         e.preventDefault();
+        //         if($('#no_pelanggan_c').is(":checked")) {
+        //             let params = $('#no_pelanggan').val();
+
+        //         }
+        //     })
+        // })
+
+
     </script>
 @endpush
