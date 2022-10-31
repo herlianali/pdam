@@ -9,6 +9,8 @@ class PetugasKorektor extends Model
 {
     use HasFactory;
     protected $table = 'PTGKOREKTOR_NEW';
+    public $timestamps = false;
+
 
     public function showKorektor()
     {

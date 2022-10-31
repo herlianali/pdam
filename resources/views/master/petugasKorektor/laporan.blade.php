@@ -46,10 +46,10 @@
                     <div class="col-md-12">
                         <form class="form-horizontal">
                             <div class="form-group row mt-2">
-                                <label for="tgl" class="col-md-2 col-form-label">Tanggal </label>
+                                <label for="date" class="col-md-2 col-form-label">Tanggal </label>
                                 <div class="col-md-2">
-                                    <input type="date" class="form-control" id="tgl" name="tgl"
-                                        onkeyup="valueing()">
+                                    <input type="date" class="form-control" id="date" name="date"
+                                        onkeyup="valueing()" value="{{ $date }}">
                                 </div>
                                 <label for="thbl" class="col-form-label">THBL </label>
                                 <div class="col-md-2">

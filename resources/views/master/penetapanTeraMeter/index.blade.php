@@ -31,13 +31,13 @@
                             <div class="row mb-5">
                                 <div class="col-md-1"></div>
                                 <div class="col-md-9">
-                                    <form class="form-horizontal">
-
+                                    <form class="form-horizontal" action="" method="POST">
+                                    @csrf
                                         <div class="form-group row mt-2 ">
                                             <label for="nopenetapan" class="col-md-3 col-form-label"> Nomor
                                                 Penetapan</label>
                                             <div class="col-md-4">
-                                                <input type="text" class="form-control" value="TTRA{{ $no }}" name="no_tera" disabled>
+                                                <input type="text" class="form-control" value="TTRA{{ $no }}" name="no_tera" readonly>
                                             </div>
                                             <label for="tanggal" class="col-md-0 col-form-label"> Tanggal</label>
                                             <div class="col-md-4">
@@ -47,7 +47,7 @@
                                         <div class="form-group row">
                                             <label for="nobon" class="col-md-3 col-form-label"> No Bon C</label>
                                             <div class="col-md-4">
-                                                <input type="text" class="form-control" name="no_bonc">
+                                                <input type="text" class="form-control" id="no_bonc" name="no_bonc">
                                             </div>
                                             <button class="btn btn-info btn-mt-2" id="cari" type="button">
                                                 <i class="fa fa-search"></i>
@@ -63,44 +63,44 @@
                                         <div class="form-group row mt-2">
                                             <label for="nopel" class="col-md-3 col-form-label">Nopel</label>
                                             <div class="col-md-9">
-                                                <input type="text" class="form-control" name="no_plg" disabled>
+                                                <input type="text" class="form-control" id="no_plg" name="no_plg" onkeyup="valueing()" readonly>
                                             </div>
                                         </div>
                                         <div class="form-group row ">
                                             <label for="nama" class="col-md-3 col-form-label">Nama </label>
                                             <div class="col-md-9">
-                                                <input type="text" class="form-control" name="nama" disabled>
+                                                <input type="text" class="form-control" id="nama" name="nama" onkeyup="valueing()" readonly>
                                             </div>
                                         </div>
                                         <div class="form-group row ">
                                             <label for="alamat" class="col-md-3 col-form-label">Alamat</label>
                                             <div class="col-md-9">
-                                                <textarea class="form-control" name="alamat" disabled></textarea>
+                                                <textarea class="form-control" id="alamat" name="alamat" onkeyup="valueing()" readonly></textarea>
                                             </div>
                                         </div>
                                         <div class="form-group row ">
-                                            <label for="tarif" class="col-md-3 col-form-label">Tarif</label>
+                                            <label for="kd_tarif" class="col-md-3 col-form-label">Tarif</label>
                                             <div class="col-md-9">
-                                                <input type="text" class="form-control" name="tarif" disabled>
+                                                <input type="text" class="form-control" id="kd_tarif" name="kd_tarif" onkeyup="valueing()" readonly>
                                             </div>
                                         </div>
                                         <div class="form-group row ">
-                                            <label for="UKMeter" class="col-md-3 col-form-label">UK Meter</label>
-                                            <div class="col-md-2">
-                                                <input type="text" class="form-control" name="uk_meter" disabled>
+                                            <label for="ukuran_mtr" class="col-md-3 col-form-label">UK Meter</label>
+                                            <div class="col-md-1">
+                                                <input type="text" class="form-control" id="ukuran_mtr" name="ukuran_mtr" onkeyup="valueing()" readonly>
                                             </div>
                                             <label for="biaya" class="col-form-label">Biaya</label>
                                             <div class="col-md-2">
-                                                <input type="text" class="form-control" name="biaya_tera" disabled>
+                                                <input type="text" class="form-control" id="biaya_tera" name="biaya_tera" onkeyup="valueing()" readonly>
                                             </div>
 
                                             <label for="ppn" class="col-form-label">PPN</label>
-                                            <div class="col-md-1">
-                                                <input type="text" class="form-control" name="ppn" disabled>
+                                            <div class="col-md-2">
+                                                <input type="text" class="form-control" id="ppn" name="ppn" onkeyup="valueing()" readonly>
                                             </div>
                                             <label for="total" class="col-form-label"> Total </label>
                                             <div class="col-md-2">
-                                                <input type="text" class="form-control" name="total_biaya" disabled>
+                                                <input type="text" class="form-control" id="total_biaya" name="total_biaya" onkeyup="valueing()" readonly>
                                             </div>
                                         </div>
                                         <br>
@@ -121,9 +121,9 @@
                                             </div>
                                         </div>
                                         <div class="form-group row ">
-                                            <label for="telepon" class="col-md-3 col-form-label">Telepon</label>
+                                            <label for="telp_pengadu" class="col-md-3 col-form-label">Telepon</label>
                                             <div class="col-md-9">
-                                                <input type="text" class="form-control" name="telepon"
+                                                <input type="text" class="form-control" name="telp_pengadu"
                                                     onkeyup="valueing()">
                                             </div>
                                         </div>
@@ -176,6 +176,18 @@
             });
         });
 
+        var showLoading = function() {
+            swal.fire({
+                title: "Mohon Tunggu !",
+                html: "Sedang Memproses...",
+                allowOutsideClick: false,
+                showConfirmButton: false,
+                willOpen: () => {
+                    swal.showLoading()
+                },
+            })
+        }
+
         $(document).on('click', '#cari', function(e) {
             e.preventDefault();
             let no_bonc = $('#no_bonc').val();
@@ -186,23 +198,57 @@
                     id: no_bonc,
                     _token: '{{ csrf_token() }}'
                 },
+                beforeSend: function() {
+                    showLoading()
+                },
                 success: function(response) {
+                    var mtr = parseFloat(response.ukuran_mtr);
+                    if (mtr==0.5 || mtr==0.75) {
+                        var biaya_tera=45000
+                    } else if (mtr==1 || mtr==1.5) {
+                        var biaya_tera=60000
+                    }else if (mtr==2) {
+                        var biaya_tera=75000
+                    }else if (mtr==3) {
+                        var biaya_tera=120000
+                    }else if (mtr==4) {
+                        var biaya_tera=225000
+                    }else if (mtr==6) {
+                        var biaya_tera=300000
+                    }else if (mtr==8) {
+                        var biaya_tera=300000
+                    }else if (mtr==10) {
+                        var biaya_tera=450000
+                    }else if (mtr==12) {
+                        var biaya_tera=600000
+                    }else if (mtr==16) {
+                        var biaya_tera=750000
+                    }
+                    var ppn = biaya_tera * 0.1
+                    var total_biaya = biaya_tera + biaya_tera * 0.1
                     $('#no_plg').val(response.no_plg)
                     $('#nama').val(response.nama)
-                    $('#alamat').val(response.alamat)
-                    $('#tarif').val(response.tarif)
-                    $('#uk_meter').val(response.uk_meter)
-                    $('#biaya_tera').val(response.biaya_tera)
-                    $('#ppn').val(response.ppn)
-                    $('#total_biaya').val(response.total_biaya)
+                    $('#alamat').val(response.jalan.trim()+' '+response.gang.trim()+' '+response.nomor.trim()+' '+response.notamb)
+                    $('#kd_tarif').val(response.kd_tarif)
+                    $('#ukuran_mtr').val(mtr)
+                    $('#biaya_tera').val(biaya_tera)
+                    $('#ppn').val(ppn)
+                    $('#total_biaya').val(total_biaya)
                     swal.close();
                 }
             })
         })
 
-        function clear() {
-            document.getElementById('no_plg').value = ''
-        }
-        document.getElementById("clear").addEventListener("click", clear);
+        $(document).on('click', '#clear', function(e) {
+            e.preventDefault();
+            $('#no_bonc').val()
+            $('#no_plg').val()
+            $('#nama').val()
+            $('#alamat').val()
+            $('#kd_tarif').val()
+            $('#ukuran_mtr').val()
+            $('#biaya_tera').val()
+            $('#total_biaya').val()
+        })
     </script>
 @endpush

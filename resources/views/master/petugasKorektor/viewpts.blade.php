@@ -45,16 +45,16 @@
                                     <input type="text" class="form-control" id="periode" name="periode"
                                         onkeyup="valueing()" placeholder="/">
                                 </div>
-                                <label for="tgl" class="col-md-1 col-form-label">Tanggal</label>
+                                <label for="date" class="col-md-1 col-form-label">Tanggal</label>
                                 <div class="col-md-3">
-                                    <input type="date" class="form-control" id="tgl" name="tgl"
-                                        onkeyup="valueing()">
+                                    <input type="date" class="form-control" id="date" name="date"
+                                        onkeyup="valueing()" value="{{ $date }}">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="zona" class="col-md-2 col-form-label">Zona</label>
                                 <div class="col-md-3">
-                                    <input type="date" class="form-control" id="zona" name="zona"
+                                    <input type="text" class="form-control" id="zona" name="zona"
                                         onkeyup="valueing()">
                                 </div>
                                 <label for="nip" class="col-md-1 col-form-label">NIP</label>

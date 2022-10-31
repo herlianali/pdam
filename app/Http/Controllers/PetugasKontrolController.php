@@ -10,10 +10,10 @@ class PetugasKontrolController extends Controller
 {
     public function index()
     {
-        $c_petugas = Dip::getData();
+        $c_data = Dip::getData();
         $petugaskontrol = new PetugasKontrol();
         $petugas = $petugaskontrol->showPetugas();
-        return view('master.petugasKontrol.index', compact(['petugas', 'c_petugas']))->with('i');
+        return view('master.petugasKontrol.index', compact(['petugas', 'c_data']))->with('i');
     }
 
     public function store(Request $request)

@@ -35,7 +35,7 @@
                                         <div class="form-group row mt-2">
                                             <label for="blnrek" class="col-md-3 col-form-label">Bulan Rekening </label>
                                             <div class="col-md-3">
-                                                <input type="date" class="form-control" id="blnrekening" name="blnrekening" onkeyup="valueing()">
+                                                <input type="text" class="form-control" id="blnrekening" name="blnrekening" value="{{ $date }}">
                                             </div>
                                         </div>
                                         <div class="form-group row ">
@@ -55,6 +55,8 @@
                                             <div class="col-md-3">
                                                 <input type="text" class="form-control" id="nobundel" name="nobundel" onkeyup="valueing()">
                                             </div>
+                                            <button class="btn btn-info  btn-mt-2" type="button" data-toggle="modal"
+                                                data-target=""><i class="fa fa-search"></i></button>
                                         </div>
                                         <br>
                                         <br>
@@ -136,6 +138,7 @@
 @endsection
 
 @push('js')
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
@@ -155,14 +158,57 @@
             });
         });
 
+        $(document).on('click', '#cari', function(e) {
+            e.preventDefault();
+            let thbl = $('#thbl').val();
+            let zona = $('#zona').val();
+            let jns_pelanggan = $('#jns_pelanggan').val();
+            let no_bundel = $('#no_bundel').val();
+            $.ajax({
+                type: "GET",
+                url: `{{ url('master/surveyTarif') }}/` + no_bonc,
+                data: {
+                    id: no_bonc,
+                    _token: '{{ csrf_token() }}'
+                },
+                success: function(response) {
+                    if (amper>20) {
+                        var listrik=5000
+                    } else if (amper==2) {
+                        var listrik=450
+                    }else if (amper==4) {
+                        var listrik=900
+                    }else if (ampper==6) {
+                        var listrik=1300
+                    }else if (amper==10) {
+                        var listrik=2200
+                    }else if (amper==16) {
+                        var listrik=3500
+                    }else if (amper==20) {
+                        var listrik=4400
+                    }else {
+                        "Data Ampere Tersebut Tidak Ada"
+                    }
+                    $('#no_plg').val(response.no_plg)
+                    $('#nama').val(response.nama)
+                    $('#alamat').val(response.alamat)
+                    $('#noPA').val(response.noPA)
+                    $('#jalan').val(response.jalan)
+                    $('#listrik').val(response.listrik)
+                    $('#njop').val(response.njop)
+                    swal.close();
+                }
+            })
+        })
+
         function valueing() {
-            if (document.getElementById('kode').value === "" || document.getElementById('keterangan').value === "") {
-                document.getElementById('batal').disabled = true
-                document.getElementById('simpan').disabled = true
-            } else {
-                document.getElementById('batal').disabled = false
-                document.getElementById('simpan').disabled = false
-            }
+            // if (document.getElementById('kode').value === "" || document.getElementById('keterangan').value === "") {
+            //     document.getElementById('batal').disabled = true
+            //     document.getElementById('simpan').disabled = true
+            // } else {
+            //     document.getElementById('batal').disabled = false
+            //     document.getElementById('simpan').disabled = false
+            // }
         }
     </script>
 @endpush
