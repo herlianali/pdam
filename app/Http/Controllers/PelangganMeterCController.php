@@ -6,7 +6,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\PelangganMeterC;
 use Carbon\Carbon;
-use \Illuminate\Support\Facades\DB;
+
 
 class PelangganMeterCController extends Controller
 {
@@ -28,7 +28,7 @@ class PelangganMeterCController extends Controller
         $tgl = Carbon::now()->format('Y-m-d H:i:s');
         PelangganMeterC::insert([
             'no_plg'        => $request->no_plg,
-            'ptgentri'      => $request->user_login,
+            'ptgentri'      => "ADMIN",
             'tgl_entry'     => $tgl,
             'aktif'         => "1"
         ]);
@@ -45,8 +45,8 @@ class PelangganMeterCController extends Controller
 
     public function destroy($no_plg)
     {
-        PelangganMeterC::where(DB::raw("REPLACE(no_plg,' ','')"), $no_plg)->delete();
-        // PelangganMeterC::where('no_plg', $no_plg)->delete();
+        PelangganMeterC::where('no_plg', $no_plg)->delete();
+
         return response()->json([
             'success' => true,
             'message' => 'Data Retribusi Berhasil Dihapus',

@@ -26,7 +26,7 @@
     </ol>
     <br>
     <br>
-    <a href="{{ route('printpanggilanDinas') }}" class="btn btn-sm btn-success float-right"><i class="fas fa-download"></i>
+    {{-- <a href="{{ route('printpanggilanDinas') }}" class="btn btn-sm btn-success float-right"><i class="fas fa-download"></i> --}}
         Download</a>
 @endsection
 
@@ -38,7 +38,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Print preview Tabel Retribusi</h3>
-                            <a href="{{ route('retribusi') }}" class="btn btn-sm btn-success float-right"><i class="fas fa-backward"></i> Kembal</a>
+                            {{-- <a href="{{ route('retribusi') }}" class="btn btn-sm btn-success float-right"><i class="fas fa-backward"></i> Kembal</a> --}}
                         </div>
                         <div class="card-body priview">
                             <p>
@@ -58,6 +58,14 @@
                                         <th width="70%">Nilai Retribusi</th>
                                     </tr>
                                 </thead>
+                                <tbody>
+                                    @foreach ($retribus as $retribusi)
+                                    <tr>
+                                        <td>{{ ++$i }}</td>
+                                        <td>{{ $retribusi->rp_retirbusi }}</td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
                             </table>
                         </div>
                     </div>

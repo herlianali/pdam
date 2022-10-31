@@ -53,7 +53,7 @@
                                 </div>
                                 <label for="thbl" class="col-form-label">THBL </label>
                                 <div class="col-md-2">
-                                    <input type="date" class="form-control" id="thbl" name="thbl"
+                                    <input type="month" class="form-control" id="thbl" name="thbl"
                                         onkeyup="valueing()">
                                 </div>
                             </div>

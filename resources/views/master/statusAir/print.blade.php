@@ -60,6 +60,15 @@
 
                                     </tr>
                                 </thead>
+                                <tbody>
+                                    @foreach ($stAir as $statusAir)
+                                    <tr>
+                                        <td>{{ ++$i }}</td>
+                                        <td>{{ $statusAir->kd_statusair }}</td>
+                                        <td>{{ $statusAir->keterangan }}</td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
                             </table>
                         </div>
                     </div>

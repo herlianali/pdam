@@ -34,42 +34,11 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-sm-4">
-
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Filter Petugas Kontrol</h3>
-                        </div>
-                        <div class="card-body">
-
-                            <form class="form-horizontal">
-                                <div class="form-group row mt-2">
-                                    <label for="wilayah" class="col-md-3 col-form-label"> Wilayah </label>
-                                    <div class="col-md-7">
-                                        <select class="form-control" id="wilayah" onkeyup="valueing()">
-
-                                            <option value="wilayah T"> Semua Wilayah </option>
-                                            <option value="wilayah B"> Langganan Timur</option>
-                                            <option value="wilayah B"> Langganan Barat</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <button type="submit" class="btn-info float-right">Preview</button>
-                                &nbsp;
-                                <button class="btn-danger float-right">Batal</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="col-md-8">
-
+                <div class="col-sm-12">
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Print preview Tabel Petugas Kontrol</h3>
-                            <a href="{{ route('petugasKontrol') }}" class="btn btn-sm btn-success float-right"><i
+                            {{-- <a href="{{ route('petugasKontrol') }}" class="btn btn-sm btn-success float-right"><i --}}
                                     class="fas fa-backward"></i> Kembali</a>
                         </div>
                         <div class="card-body priview">
@@ -93,6 +62,17 @@
                                         <th width="20%">Bagian</th>
                                     </tr>
                                 </thead>
+                                <tbody>
+                                    @foreach ($petugas as $ptKontrol)
+                                    <tr>
+
+                                        <td>{{ $ptKontrol->kd_ptgktrl }}</td>
+                                        <td>{{ $ptKontrol->nip }}</td>
+                                        <td>{{ $ptKontrol->nama }}</td>
+                                        <td>{{ $ptKontrol->bagian }}</td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
                             </table>
                         </div>
                     </div>
@@ -101,22 +81,3 @@
         </div>
     </section>
 @endsection
-
-@push('js')
-    <script type="text/javascript">
-        const box = document.getElementById('startEnd');
-
-        function clickRadio() {
-            if (document.getElementById('semuakd').checked) {
-                box.style.display = "none"
-            } else {
-                box.style.display = "block"
-            }
-        }
-
-        const radioButtons = document.querySelectorAll('input[name="filter"]');
-        radioButtons.forEach(radio => {
-            radio.addEventListener('click', clickRadio)
-        });
-    </script>
-@endpush

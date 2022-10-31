@@ -24,7 +24,14 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Status Air</h3>
-                            <a href="{{ route('printstatusAir') }}" class="btn btn-xs btn-success float-right"><i class="fas fa-print"></i> Cetak Tabel</a>
+                            <button type="button"
+                            class="btn btn-xs btn-success filter float-right"
+                            data-toggle="modal"
+                            data-target="#filter">
+                            <i class="fas fa-print"></i>
+                            Print
+                    </button>
+                            {{-- <a href="{{ route('printstatusAir') }}" class="btn btn-xs btn-success float-right"><i class="fas fa-print"></i> Cetak Tabel</a> --}}
                         </div>
                         <div class="card-body">
                             <div class="row mb-4">
@@ -96,6 +103,8 @@
                             </table>
                         </div>
                         @include('master.statusAir.form')
+                        @include('master.statusAir.filter')
+
                     </div>
                 </div>
     </section>

@@ -4,31 +4,45 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\PetugasKorektor;
+use App\Models\koreksiKorektor;
+use App\Models\ViewSisa;
+use App\Models\Dip;
+use \Illuminate\Support\Facades\DB;
 
 class PetugasKorektorController extends Controller
 {
     public function index()
     {
-        $pKorektor = PetugasKorektor::all();
-        return view('master.petugasKorektor.index', compact('pKorektor'))->with('i');
+
+        $cS    = Dip::getData();
+        $petugasKorektor    = new PetugasKorektor();
+        $korektor           = $petugasKorektor->showKorektor();
+        $KoreksiKorektor    = new koreksiKorektor();
+        $koreksi            = $KoreksiKorektor->showKoreksi();
+        return view('master.petugasKorektor.index', compact('korektor','cS'))->with('i');
+
     }
 
 
-    public function show($id)
+    
+    public function store(Request $request)
     {
-        $ptsKorektor = PetugasKorektor::find($id);
-        return response()->json($ptsKorektor);
-    }
-
-
-    public function destroy($id)
-    {
-        $ptsKorektor = PetugasKorektor::findOrFail($id)->delete();
-        return response()->json([
-            'success' => true,
-            'message' => 'Data Petugas Berhasil Dihapus',
+        $aktif = isset($request->aktif) ? 1 : 0;
+        PetugasKorektor::insert([
+            'nip'           => $request->nip,
+            'nama'          => $request->nama,
+            'jabatan'       => $request->jabatan,
+            'aktif'         => $aktif
         ]);
+       
     }
+
+    public function show($nip)
+    {
+        $pKorektor = PetugasKorektor::where('nip', $nip)->first();
+        return response()->json($pKorektor);
+    }
+
     public function laporan()
     {
         return view('master.petugasKorektor.laporan');
@@ -36,7 +50,10 @@ class PetugasKorektorController extends Controller
 
     public function viewsisa()
     {
-        return view('master.petugasKorektor.viewsisa');
+        
+        $ViewSisa    = new ViewSisa();
+        $Sisa        = $ViewSisa->showSisa();
+        return view('master.petugasKorektor.viewsisa', compact('Sisa'))->with('i');
     }
 
     public function random()
@@ -46,7 +63,12 @@ class PetugasKorektorController extends Controller
 
     public function koreksi()
     {
-        return view('master.petugasKorektor.koreksi');
+
+        $cS    = Dip::getData();
+        $KoreksiKorektor    = new koreksiKorektor();
+        $koreksi            = $KoreksiKorektor->showKoreksi();
+      
+        return view('master.petugasKorektor.koreksi', compact('koreksi','cS'))->with('i');
     }
 
 

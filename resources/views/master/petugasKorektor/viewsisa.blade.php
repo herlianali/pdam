@@ -84,6 +84,8 @@
                                 </tr>
                             </thead>
                             <tbody>
+
+                                
                             </tbody>
                         </table>
                         <p>Jumlah Data = </p>

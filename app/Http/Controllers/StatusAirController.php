@@ -50,7 +50,8 @@ class StatusAirController extends Controller
     }
     public function print()
     {
-        return view('master.statusAir.print');
+        $stAir = StatusAir::all();
+        return view('master.statusAir.print', compact('stAir'))->with('i');
     }
 
 }
