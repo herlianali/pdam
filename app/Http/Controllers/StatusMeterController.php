@@ -50,6 +50,7 @@ class StatusMeterController extends Controller
     }
     public function print()
     {
-        return view('master.statusMeter.print');
+        $stMeter = StatusMeter::all();
+        return view('master.statusMeter.print', compact('stMeter'))->with('i');
     }
 }

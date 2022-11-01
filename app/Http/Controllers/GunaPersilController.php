@@ -69,6 +69,12 @@ class GunaPersilController extends Controller
     }
     public function print()
     {
-        return view('master.gunaPersil.print');
+        $kd_gunapersil = GunaPersil::select('kd_gunapersil', 'keterangan')->get();
+        $guna_persil = new GunaPersil;
+        $guna = $guna_persil->getData();
+        $kd_tarif = JenisTarif::select('kd_tarif', 'jns_tarif')->get();
+        $kode_tarif = new GunaPersil;
+        $kode = $kode_tarif->getData();
+        return view('master.gunaPersil.print', compact('kd_gunapersil', 'guna', 'kd_tarif', 'kode'))->with('i');
     }
 }
