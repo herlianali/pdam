@@ -82,7 +82,7 @@
                                 <div class="form-group row">
                                     <label for="nama" class="col-md-2 col-form-label col-form-label-sm"> Nama </label>
                                     <div class="col-md-10">
-                                        <input type="text" class="form-control form-control-sm" name="nama">
+                                        <input type="text" class="form-control form-control-sm" name="nama" id="nama_diadukan">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -137,24 +137,24 @@
                                 <div class="form-group row">
                                     <label for="no_pengaduan" class="col-md-3 col-form-label col-form-label-sm"> No Pengaduan </label>
                                     <div class="col-md-5 ml-n4">
-                                        <input type="text" class="form-control form-control-sm" name="no_pengaduan">
+                                        <input type="text" class="form-control form-control-sm" name="no_pengaduan" id="no_pengaduan_f">
                                     </div>
                                     {{-- <div class="col-md-4 row"> --}}
-                                        <button type="button" class="btn btn-outline-primary btn-sm col-md-2 " data-toggle="modal" data-target="#baru"> Baru </button>
-                                        <button type="button" class="btn btn-outline-primary btn-sm col-md-2 ml-1" data-toggle="modal" data-target="#koreksi"> Koreksi</button>
+                                        <button type="button" class="btn btn-outline-primary btn-sm col-md-2 " data-toggle="modal" data-target="#baru" disabled> Baru </button>
+                                        <button type="button" class="btn btn-outline-primary btn-sm col-md-2 ml-1" data-toggle="modal" data-target="#koreksi" disabled> Koreksi</button>
                                     {{-- </div> --}}
                                 </div>
                                 <div class="form-group row">
                                     <label for="tgl_pengaduan" class="col-md-3 col-form-label col-form-label-sm"> Tgl Pengaduan </label>
                                     <div class="col-md-5 ml-n4">
-                                        <input type="text" class="form-control form-control-sm" name="tgl_pengaduan">
+                                        <input type="text" class="form-control form-control-sm" name="tgl_pengaduan" id="tgl_pengaduan_f">
                                     </div>
-                                    <button type="button" class="btn btn-outline-primary btn-sm col-md-4"> Batal Pengajuan </button>
+                                    <button type="button" class="btn btn-outline-primary btn-sm col-md-4" disabled> Batal Pengajuan </button>
                                 </div>
                                 <div class="form-group row">
                                     <label for="asal_pengaduan" class="col-md-3 col-form-label col-form-label-sm"> Asal Pengaduan </label>
                                     <div class="col-md-5 ml-n4">
-                                        <select class="form-control form-control-sm" id="asal_pengaduan" name="asal_pengaduan">
+                                        <select class="form-control form-control-sm" id="asal_pengaduan_f" name="asal_pengaduan">
                                             @foreach ($aslPengaduan as $asal)
                                                 <option value="{{ $asal->asal_pengaduan }}"> {{ $asal->asal_pengaduan }} - {{ $asal->keterangan }} </option>
                                             @endforeach
@@ -164,7 +164,7 @@
                                 <div class="form-group row">
                                     <label for="jns_pengaduan" class="col-md-3 col-form-label col-form-label-sm"> Jenis Pengaduan </label>
                                     <div class="col-md-5 ml-n4">
-                                        <select class="form-control form-control-sm" id="jns_pengaduan" name="jns_pengaduan">
+                                        <select class="form-control form-control-sm" id="jns_pengaduan_f" name="jns_pengaduan">
                                             @foreach ($jnsPengaduan as $jenis)
                                                 <option value="{{ $jenis->jns_pengaduan }}"> {{ $jenis->jns_pengaduan }} - {{ $jenis->keterangan }} </option>
                                             @endforeach
@@ -174,19 +174,19 @@
                                 <div class="form-group row">
                                     <label for="uraian" class="col-md-3 col-form-label col-form-label-sm"> Uraian </label>
                                     <div class="col-md-9 ml-n4">
-                                        <input type="text" class="form-control form-control-sm" name="uraian">
+                                        <input type="text" class="form-control form-control-sm" name="uraian" id="uraian_f">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="u_noBonC" class="col-md-3 col-form-label col-form-label-sm"> Usulan No Bon C </label>
                                     <div class="col-md-9 ml-n4">
-                                        <input type="text" class="form-control form-control-sm" name="u_noBonC">
+                                        <input type="text" class="form-control form-control-sm" name="u_noBonC" id="u_noBonC_f">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="u_noBonC" class="col-md-3 col-form-label col-form-label-sm"> No Bon C Mtr Garansi </label>
                                     <div class="col-md-9 ml-n4">
-                                        <input type="text" class="form-control form-control-sm" name="u_noBonC">
+                                        <input type="text" class="form-control form-control-sm" name="u_noBonCMtrG" id="u_noBonCMtrG_f">
                                     </div>
                                 </div>
                             </div>
@@ -197,7 +197,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" name="status_bon_c" id="">
+                                    <input type="checkbox" class="form-check-input" name="status_bon_c" id="status_bon_c_f" disabled>
                                     <label class="form-check-label form-check-sm"> Buat Bon C </label>
                                 </div>
                                 <div class="form-group row">
@@ -269,17 +269,26 @@
     <script src="{{ asset('assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
     <script>
-        var table = function(params){
-            $('table.table').DataTable({
-                "sScrollY":  ( 0.6 * $(window).height() ),
-                "bPaginate": false,
-                "bJQueryUI": true,
-                "bScrollCollapse": true,
-                "bAutoWidth": true,
-                "sScrollX": "100%",
-                "sScrollXInner": "100%"
-            });
-        }
+
+        $(document).ready(function() {
+            $('#nama_diadukan').prop('readonly', true)
+            $('#no_pengaduan_f').prop('readonly', true)
+            $('#tgl_pengaduan_f').prop('readonly', true)
+            $('#asal_pengaduan_f').prop('disabled', true)
+            $('#jns_pengaduan_f').prop('disabled', true)
+            $('#uraian_f').prop('readonly', true)
+            $('#u_noBonC_f').prop('readonly', true)
+        })
+
+        $('table.table').DataTable({
+            "sScrollY":  ( 0.6 * $(window).height() ),
+            "bPaginate": false,
+            "bJQueryUI": true,
+            "bScrollCollapse": true,
+            "bAutoWidth": true,
+            "sScrollX": "100%",
+            "sScrollXInner": "100%"
+        });
 
         var showLoading = function() {
             swal.fire({
@@ -379,6 +388,7 @@
                 $('#no_tambahan').prop("disabled", true)
             }
         })
+
 
 
         // data test input "0000010 "
