@@ -19,13 +19,16 @@ class LoginController extends Controller
             'username' => 'required',
             'password' => 'required'
         ]);
-        $auth = Secman::whereRaw("username = '".$request->username."' AND passw = '".md5($request->password)."'")
+        $auth = Secman::whereRaw("userid = '".$request->username."' AND passw = '".md5($request->password)."'")
                         ->first();
         if ($auth) {
-            $request->session()->regenerate();
+            session([
+                'login'    => true,
+                'username' => $auth->username
+            ]);
             return redirect()->route('dashboard');
         }else{
-            return redirect()->route('login');
+            return redirect()->back();
         }
     }
 
