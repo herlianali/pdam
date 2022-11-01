@@ -50,10 +50,18 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th width="30%">Kode Wilayah</th>
-                                        <th width="70%">Nama</th>
+                                        <th width="20%">Kode Wilayah</th>
+                                        <th>Nama</th>
                                     </tr>
                                 </thead>
+                                <tbody>
+                                    @foreach ($wilDist as $wilDistribusi)
+                                        <tr>
+                                            <td>{{ $wilDistribusi->kd_wilayah }}</td>
+                                            <td>{{ $wilDistribusi->nama }}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
                             </table>
                         </div>
                     </div>

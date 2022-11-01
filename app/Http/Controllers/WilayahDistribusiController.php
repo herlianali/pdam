@@ -55,8 +55,10 @@ class WilayahDistribusiController extends Controller
             'message' => 'Data Wilayah Distribusi Berhasil Dihapus',
         ]);
     }
+    
     public function print()
     {
-        return view('master.wilayahDistribusi.print');
+        $wilDist = WilayahDistribusi::all();
+        return view('master.wilayahDistribusi.print', compact('wilDist'))->with('i');
     }
 }
