@@ -249,6 +249,9 @@
             $('#ukuran_mtr').val()
             $('#biaya_tera').val()
             $('#total_biaya').val()
+            $('#nama_pengadu').val()
+            $('#alamat_pengadu').val()
+            $('#telp_pengadu').val()
         })
     </script>
 @endpush

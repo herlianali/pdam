@@ -23,7 +23,12 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Guna Persil</h3>
-                            <a href="{{ route('printgunaPersil') }}" class="btn btn-xs btn-success float-right"><i class="fas fa-print"></i> Cetak Tabel</a>
+                            <button type="button"
+                                class="btn btn-xs btn-success float-right"
+                                data-toggle="modal"
+                                data-target="#filter">
+                                <i class="fas fa-print"></i> Cetak
+                            </button>
                         </div>
                         <div class="card-body">
                             <div class="row mb-4">
@@ -111,7 +116,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        @include('master.gunaPersil.form')
+                        @include('master.gunaPersil.filter')
                     </div>
                 </div>
     </section>

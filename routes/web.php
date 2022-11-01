@@ -129,7 +129,7 @@ Route::prefix('master')->group(function () {
     Route::get('/printmerekMeter', [MerekMeterController::class, 'print'])->name('printmerekMeter');
     // Route::delete('/deleteMerekMeter/{id}', [MerekMeterController::class, 'destroy']);
 
-    Route::resource('/materai', MateraiController::class)->parameters(['materai' => 'nominal']);
+    Route::resource('materai', MateraiController::class)->parameters(['materai' => 'nominal'])->except(['create', 'edit']);
     Route::get('/printmaterai', [MateraiController::class, 'print'])->name('printmaterai');
     // Route::delete('/deletematerai/{id}', [MateraiController::class, 'destroy']);
 

@@ -14,7 +14,7 @@ class SurveyTarifController extends Controller
         return view('master.surveyTarif.index', compact('date'))->with('i');
     }
   
-    public function create()
+    public function create(Request $request)
     {
         return view('master.surveyTarif.create');
     }

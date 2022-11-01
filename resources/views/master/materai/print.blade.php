@@ -37,7 +37,7 @@
                 <div class="col-sm-12">
                     <div class="card">
                         <div class="card-header">
-                            <a href="{{ route('materai') }}" class="btn btn-xs btn-success float-right"><i class="fas fa-backward"></i> Kembali</a>
+                            <a href="{{ route('materai.index') }}" class="btn btn-xs btn-success float-right"><i class="fas fa-backward"></i> Kembali</a>
                             <h3 class="card-title">Print preview Daftar Materai</h3>
                         </div>
                         <div class="card-body priview">
