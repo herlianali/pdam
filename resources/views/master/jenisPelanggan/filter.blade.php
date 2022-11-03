@@ -8,13 +8,15 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="">
+                {{-- <form class="form-horizontal" action="{{ route('printjenisPelanggan') }}" method="POST"> --}}
+                    @csrf
                     <div class="form-group">
                         <div class="form-check">
                             <input type="radio" name="filter" id="semuakd" value="semua">
                             <label for="">Semua Kode</label>
                         </div>
                     </div>
+
                     <div class="row">
                         <div class="col-md-3 col-sm-3">
                             <div class="form-group">
@@ -24,6 +26,7 @@
                                 </div>
                             </div>
                         </div>
+                        <div id="box">
                         <div class="col-md-3 col-sm-4" id="startEnd">
                             <div class="form-group">
                                 <input class="form-control" type="text" name="start" id="start">
@@ -36,6 +39,7 @@
                             </div>
                         </div>
                     </div>
+                    </div>
                     <button type="submit" class="btn btn-info btn-sm">Preview</button>
                     <button class="btn btn-danger btn-sm">Batal</button>
                 </form>
@@ -44,22 +48,3 @@
     </div>
 </div>
 
-
-@push('js')
-    <script type="text/javascript">
-        const box = document.getElementById('startEnd');
-
-        function clickRadio() {
-            if (document.getElementById('semuakd').checked) {
-                box.style.display = "none"
-            } else {
-                box.style.display = "block"
-            }
-        }
-
-        const radioButtons = document.querySelectorAll('input[name="filter"]');
-        radioButtons.forEach(radio => {
-            radio.addEventListener('click', clickRadio)
-        });
-    </script>
-@endpush

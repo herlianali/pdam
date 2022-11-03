@@ -70,7 +70,7 @@ Route::prefix('master')->group(function () {
 
     Route::resource('jenisPelanggan', JenisPelangganController::class)->parameters(['jenisPelanggan' => 'jns_pelanggan'])->except(['create','edit']);
     Route::get('/printjenisPelanggan', [JenisPelangganController::class, 'print'])->name('printjenisPelanggan');
-    
+   
     Route::get('/petugasKhusus', [PetugasKhususController::class, 'index'])->name('petugasKhusus');
     Route::get('/petugasKhusus{nip}', [PetugasKhususController::class, 'show'])->name('petugasKhusus.edit');
     Route::post('/petugasKhusus', [PetugasKhususController::class, 'store'])->name('petugasKhusus.store');
@@ -133,8 +133,8 @@ Route::prefix('master')->group(function () {
     // Route::delete('/deletematerai/{id}', [MateraiController::class, 'destroy']);
 
     Route::resource('/panggilanDinas', PanggilanDinasController::class)->parameters(['panggilanDinas' => 'jns_pdinas'])->except(['create', 'edit']);
-    Route::get('/printpanggilanDinas/setting', [PanggilanDinasController::class, 'settingPrint'])->name('settingPrintPanggilan');
-    Route::get('/printpanggilanDinas', [PanggilanDinasController::class, 'print'])->name('printpanggilanDinas');
+    // Route::get('/printpanggilanDinas/setting', [PanggilanDinasController::class, 'settingPrint'])->name('settingPrintPanggilan');
+    Route::post('/printpanggilanDinas', [PanggilanDinasController::class, 'printPreview'])->name('printpanggilanDinas');
 
     
     Route::resource('/telponPelanggan', TelponPelangganController::class)->parameters(['telponPelanggan' => 'no_plg'])->except(['create','destroy', 'store']);

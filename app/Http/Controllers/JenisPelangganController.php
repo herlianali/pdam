@@ -20,7 +20,6 @@ class JenisPelangganController extends Controller
         return view('master.jenisPelanggan.print', compact('jenisPelanggans'))->with('i');
     }
 
-
     public function store(Request $request)
     {
         $request->validate([
@@ -60,6 +59,7 @@ class JenisPelangganController extends Controller
 
         return response()->json($jenisPelanggan);
     }
+
 
     public function destroy($jns_pelanggan)
     {

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\StatusAir;
+use Illuminate\Support\Facades\DB;
 
 class StatusAirController extends Controller
 {
@@ -48,10 +49,24 @@ class StatusAirController extends Controller
             'message' => 'Data Status Air Berhasil Dihapus',
         ]);
     }
+
     public function print()
     {
         $stAir = StatusAir::all();
         return view('master.statusAir.print', compact('stAir'))->with('i');
     }
+
+  
+    // public function printPreview(Request $request){
+    //     if($request->filter == "semua"){
+    //         $filter = StatusAir::all();
+    //     }else {
+        
+        
+    //     $filter = StatusAir::filter($request->start, $request->end);
+    // }
+    //     // dd($filter);
+    //      return view('master.statusAir.print', compact('filter'));
+    // }
 
 }

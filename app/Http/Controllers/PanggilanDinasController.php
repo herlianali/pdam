@@ -57,19 +57,34 @@ class PanggilanDinasController extends Controller
         ]);
     }
 
-    public function settingPrint(){
+    // public function settingPrint(){
         
         
-        $pDinass = PanggilanDinas::all();
-        return view('master.panggilanDinas.index', compact('pDinass'))->with('i');
-        // return view('master.panggilanDinas.setting-print');
+    //     $pDinass = PanggilanDinas::all();
+    //     return view('master.panggilanDinas.index', compact('pDinass'))->with('i');
+    //     // return view('master.panggilanDinas.setting-print');
+    // }
+
+    
+    public function printPreview(Request $request){
+        if($request->filter == "semua"){
+            $filter = PanggilanDinas::all();
+        }else {
+        
+        
+        $filter = PanggilanDinas::filter($request->start, $request->end);
+    }
+        // dd($filter);
+         return view('master.panggilanDinas.print', compact('filter'));
     }
 
-    public function print()
-    {
-        // $pDinas = PanggilanDinas::all()->except(['created_at', 'updated_at']);
+    // public function print()
+    // {
 
-        // $pdf = PDF::loadview('master.panggilanDinas.print', compact('pDinas'));
-        // return $pdf->download('jenis-panggilan-dinas.pdf');
-    }
+
+    //     $pDinas = PanggilanDinas::all()->except(['created_at', 'updated_at']);
+
+    //     $pdf = PDF::loadview('master.panggilanDinas.print', compact('pDinas'));
+    //     return $pdf->download('jenis-panggilan-dinas.pdf');
+    // }
 }

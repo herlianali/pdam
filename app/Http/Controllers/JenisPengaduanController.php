@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\JenisPengaduan;
 use Illuminate\Http\Request;
+use \Illuminate\Support\Facades\DB;
 
 class JenisPengaduanController extends Controller
 {
@@ -46,7 +47,7 @@ class JenisPengaduanController extends Controller
         // JenisPengaduan::where('jns_pengaduan', $jns_pengaduan)
         //                 ->update($request->except(['_token', '_method']));
 
-        JenisPengaduan::where('jns_pengaduan', $jns_pengaduan)->update([
+        JenisPengaduan::where(DB::raw("REPLACE(jns_pengaduan,' ','')"), $jns_pengaduan)->update([
             'jns_pengaduan' => $request->jns_pengaduan,
             'keterangan'    => $request->keterangan,
             'sifat'         => $request->sifat,
@@ -64,7 +65,7 @@ class JenisPengaduanController extends Controller
 
     public function destroy($jns_pengaduan)
     {
-        JenisPengaduan::where('jns_pengaduan', $jns_pengaduan)->delete();
+        JenisPengaduan::where(DB::raw("REPLACE(jns_pengaduan,' ','')"), $jns_pengaduan)->delete();
         return response()->json([
             'success' => true,
             'message' => 'Data Jenis Pengaduan Berhasil Dihapus',
