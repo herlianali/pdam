@@ -23,7 +23,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Wilayah Distribusi</h3>
-                            <a href="{{ route('printwilayahDistribusi') }}" class="btn btn-xs btn-success float-right"><i class="fas fa-print"></i> Cetak Tabel</a>
+                            <a href="{{ route('printwilayahDistribusi') }}" class="btn btn-xs btn-success float-right"><i class="fas fa-print"></i> Cetak </a>
                         </div>
                         <div class="card-body">
                             <div class="row mb-4">
@@ -115,7 +115,7 @@
                 //   "autoWidth": false,
                 //   "responsive": true,
                 "oLanguage": {
-                    "sSearch": "Keterangan : "
+                    "sSearch": "Search : "
                 },
                 "pageLength": 5
             }).buttons().container().appendTo('#table_wrapper .col-md-6:eq(0)');

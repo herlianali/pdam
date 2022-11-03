@@ -57,12 +57,23 @@ class KondisiTutupanController extends Controller
             'message' => 'Data Kondisi Tutupan Berhasil Dihapus',
         ]);
     }
+  
     public function print()
     {
-       
         $kondTutupan = KondisiTutupan::all();
         return view('master.kondisiTutupan.print', compact('kondTutupan'))->with('i');
     }
-    
+
+    // public function printPreview(Request $request){
+    //     if($request->filter == "semua"){
+    //         $filter = KondisiTutupan::all();
+    //     }else {
+        
+        
+    //     $filter = KondisiTutupan::filter($request->start, $request->end);
+    // }
+    //     // dd($filter);
+    //      return view('master.kondisiTutupan.print', compact('filter'));
+    // }
 
 }

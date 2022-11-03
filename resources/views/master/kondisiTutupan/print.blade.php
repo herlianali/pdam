@@ -37,7 +37,7 @@
                 <div class="col-sm-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Print preview Tabel Kondisi Tutupan</h3>
+                            <h3 class="card-title">Preview Kondisi Tutupan</h3>
                             {{-- <a href="{{ route('kondisiTutupan') }}" class="btn btn-sm btn-success float-right"><i class="fas fa-backward"></i> Kembali</a> --}}
                         </div>
                         <div class="card-body priview">
@@ -76,3 +76,24 @@
         </div>
     </section>
 @endsection
+
+
+{{-- 
+@push('js')
+    <script type="text/javascript">
+        const box = document.getElementById('startEnd');
+
+        function clickRadio() {
+            if (document.getElementById('semuakd').checked) {
+                box.style.display = "none"
+            } else {
+                box.style.display = "block"
+            }
+        }
+
+        const radioButtons = document.querySelectorAll('input[name="filter"]');
+        radioButtons.forEach(radio => {
+            radio.addEventListener('click', clickRadio)
+        });
+    </script>
+@endpush --}}

@@ -24,14 +24,15 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Jenis Pelanggan</h3>
-                            <button type="button"
+                            {{-- <button type="button"
                             class="btn btn-xs btn-success filter float-right"
                             data-toggle="modal"
                             data-target="#filter">
                             <i class="fas fa-print"></i>
                             Print
-                    </button>
-                        </div>
+                    </button>                         --}}
+                    <a href="{{ route('printjenisPelanggan') }}" class="btn btn-xs btn-success float-right"><i class="fas fa-print"></i> Cetak</a>
+                </div>
                         <div class="card-body">
                             <div class="row mb-4">
                                 <div class="col-md-9">
@@ -126,7 +127,7 @@
                 //   "autoWidth": false,
                 //   "responsive": true,
                 "oLanguage": {
-                    "sSearch": "Keterangan : "
+                    "sSearch": "Search : "
                 },
                 "pageLength": 5
             }).buttons().container().appendTo('#table_wrapper .col-md-6:eq(0)');

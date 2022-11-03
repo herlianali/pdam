@@ -24,13 +24,14 @@
                         <div class="card-header">
                             <h3 class="card-title">Merek Meter</h3>
                           
-                            <button type="button"
+                            {{-- <button type="button"
                             class="btn btn-xs btn-success filter float-right"
                             data-toggle="modal"
                             data-target="#filter">
                             <i class="fas fa-print"></i>
                             Print
-                    </button>  {{-- <a href="{{ route('printmerekMeter') }}" class="btn btn-xs btn-success float-right"><i class="fas fa-print"></i> Cetak Tabel</a> --}}
+                    </button>   --}}
+                    <a href="{{ route('printmerekMeter') }}" class="btn btn-xs btn-success float-right"><i class="fas fa-print"></i> Cetak Tabel</a>
                         </div>
                         <div class="card-body">
                             <div class="row mb-4">
@@ -102,7 +103,7 @@
                             </table>
                         </div>
                         @include('master.merekMeter.form')
-                        @include('master.merekMeter.filter')
+                        {{-- @include('master.merekMeter.filter') --}}
                     </div>
                 </div>
     </section>
@@ -123,7 +124,7 @@
                 //   "autoWidth": false,
                 //   "responsive": true,
                 "oLanguage": {
-                    "sSearch": "Kode/Keterangan : "
+                    "sSearch": "Search : "
                 },
                 "pageLength": 5
             }).buttons().container().appendTo('#table_wrapper .col-md-6:eq(0)');

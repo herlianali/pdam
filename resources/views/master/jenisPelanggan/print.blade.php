@@ -36,6 +36,7 @@
                             <h3 class="card-title">Preview Jenis Pelanggan</h3>
                         </div>
                         <div class="card-body priview">
+                            <form class="form-horizontal">
                             <p> Pemerintah Kota <br>
                                 Surabaya <br>
                                 PERUSAHAAN DAERAH AIR <br>
@@ -62,9 +63,13 @@
                                 </tbody>
                             </table>
                         </div>
+                    </form>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 @endsection
+
+
+
