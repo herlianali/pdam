@@ -69,7 +69,7 @@ Route::prefix('master')->group(function () {
     Route::get('/printPengaduan', [JenisPengaduanController::class, 'print'])->name('printPengaduan');
 
     Route::resource('jenisPelanggan', JenisPelangganController::class)->parameters(['jenisPelanggan' => 'jns_pelanggan'])->except(['create','edit']);
-
+    
     Route::resource('petugasKhusus', PetugasKhususController::class)->parameters(['petugasKhusus' => 'nip'])->except(['create','edit']);
     // Route::get('checkPetKhusus/{nip}', [PetugasKhususController::class, 'check'])->parameters(['petugasKhusus' => 'nip']);
 
@@ -82,7 +82,7 @@ Route::prefix('master')->group(function () {
     // Route::delete('/deletePetugasKontrol/{id}', [PetugasKontrolController::class, 'destroy']);
 
     Route::resource('jenisPekerjaan', JenisPekerjaanController::class)->parameters(['jenisPekerjaan' => 'jns_pekerjaan'])->except(['create','edit']);
-    Route::get('/printjenisPekerjaan', [JenisPekerjaanController::class, 'print'])->name('printjenisPekerjaan');
+    Route::post('/printjenisPekerjaan', [JenisPekerjaanController::class, 'printPreview'])->name('printjenisPekerjaan');
     // Route::delete('/deletejenisPekerjaan/{id}', [JenisPekerjaanController::class, 'destroy']);
 
     Route::resource('kondisiTutupan', KondisiTutupanController::class)->parameters(['kondisiTutupan' => 'kd_kondisi'])->except(['create','edit']);
@@ -101,7 +101,8 @@ Route::prefix('master')->group(function () {
     // Route::delete('/deletepetugasEntry/{id}', [PetugasEntryController::class, 'destroy']);
 
     Route::resource('gunaPersil', GunaPersilController::class)->parameters(['gunaPersil' => 'kd_gunapersil'])->except(['create','edit']);
-    // Route::delete('/deletegunaPersil/{id}', [GunaPersilController::class, 'destroy']);
+    Route::get('/gunaPersil', [GunaPersilController::class, 'index'])->name('gunaPersil');
+    Route::delete('/deletegunaPersil/{id}', [GunaPersilController::class, 'destroy']);
     Route::get('/printgunaPersil',[GunaPersilController::class,'print'])->name('printgunaPersil');
 
     Route::resource('retribusi', RetribusiController::class)->parameters(['retribusi' => 'kd_retribusi'])->except(['create', 'edit']);
@@ -176,9 +177,6 @@ Route::prefix('master')->group(function () {
 Route::prefix('pengaduan')->group(function() {
 
     Route::get('pengaduan', [PengaduanController::class, 'index'])->name('pengaduan');
-    // Route::get('cariPelanggan/{params}', [PengaduanController::class, 'cariPelanggan'])->name('cariPelanggan');
-    Route::post('cariPelanggan', [PengaduanController::class, 'cariPelanggan'])->name('cariPelanggan');
-
     Route::get('riwayatPemakaian', [RiwayatPemakaianController::class, 'index'])->name('riwayatPemakaian');
     Route::get('infoPelanggaran', [RiwayatPemakaianController::class, 'infoPelanggaran'])->name('infoPelanggaran');
     Route::get('kartuPelanggan', [RiwayatPemakaianController::class, 'kartuPelanggan'])->name('kartuPelanggan');

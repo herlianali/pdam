@@ -76,10 +76,16 @@ class JenisPekerjaanController extends Controller
         ]);
     }
 
-    public function print()
-    {
-        $jnsPekerjaan = JenisPekerjaan::all();
-        return view('master.jenisPekerjaan.print', compact('jnsPekerjaan'))->with('i');
+    public function printPreview(Request $request){
+        if($request->filter == "semua"){
+            $filter = JenisPekerjaan::all();
+        }else {
+        
+        
+        $filter = JenisPekerjaan::filter($request->start, $request->end);
+    }
+        // dd($filter);
+         return view('master.jenisPekerjaan.print', compact('filter'));
     }
 
 }

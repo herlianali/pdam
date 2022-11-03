@@ -24,12 +24,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Status Meter</h3>
-                            <button type="button"
-                                class="btn btn-xs btn-success float-right"
-                                data-toggle="modal"
-                                data-target="#filter">
-                                <i class="fas fa-print"></i> Cetak
-                            </button>
+                            <a href="{{ route('printstatusMeter') }}" class="btn btn-xs btn-success float-right"><i class="fas fa-print"></i> Cetak Tabel</a>
                         </div>
                         <div class="card-body">
                             <div class="row mb-4">
@@ -101,7 +96,6 @@
                                 </tbody>
                             </table>
                         </div>
-                        @include('master.statusMeter.filter')
                     </div>
                 </div>
     </section>
@@ -122,7 +116,7 @@
                 //   "autoWidth": false,
                 //   "responsive": true,
                 "oLanguage": {
-                    "sSearch": "Keterangan : "
+                    "sSearch": "Search : "
                 },
                 "pageLength": 5
             }).buttons().container().appendTo('#table_wrapper .col-md-6:eq(0)');
