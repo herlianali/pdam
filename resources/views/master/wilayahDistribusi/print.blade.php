@@ -33,7 +33,7 @@
                 <div class="col-sm-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Print preview Tabel Wilayah Distribusi</h3>
+                            <h3 class="card-title">Preview Wilayah Distribusi</h3>
                             <a href="{{ route('printwilayahDistribusi') }}" class="btn btn-sm btn-success float-right"><iclass="fas fa-print"></i> Cetak</a>
                         </div>
                         <div class="card-body priview">
@@ -50,10 +50,18 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th width="30%">Kode Wilayah</th>
-                                        <th width="70%">Nama</th>
+                                        <th width="20%">Kode Wilayah</th>
+                                        <th>Nama</th>
                                     </tr>
                                 </thead>
+                                <tbody>
+                                    @foreach ($wilDist as $wilDistribusi)
+                                        <tr>
+                                            <td>{{ $wilDistribusi->kd_wilayah }}</td>
+                                            <td>{{ $wilDistribusi->nama }}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
                             </table>
                         </div>
                     </div>

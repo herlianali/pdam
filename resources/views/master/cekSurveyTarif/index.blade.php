@@ -64,6 +64,7 @@
                                                 <input type="text" class="form-control" id="lebarjalan" name="lebarjalan" onkeyup="valueing()" readonly value="">
                                             </div>
                                         </div>
+                                        <button type="button" class="btn btn-sm btn-danger" id="clear">Clear</button>
                                 </div>
                             </div>
                             </form>
@@ -147,14 +148,24 @@
         }
         document.getElementById("clear").addEventListener("click", clear);
 
-        function valueing() {
-            if (document.getElementById('kode').value === "" || document.getElementById('keterangan').value === "") {
-                document.getElementById('batal').disabled = true
-                document.getElementById('simpan').disabled = true
-            } else {
-                document.getElementById('batal').disabled = false
-                document.getElementById('simpan').disabled = false
-            }
-        }
+        $(document).on('click', '#clear', function(e) {
+            e.preventDefault();
+            console.log("clear data")
+            $('#nopelanggan').val()
+            $('#njop').val()
+            $('#listrik').val()
+            $('#lebarjln').val()
+        })
+
+
+        // function valueing() {
+        //     if (document.getElementById('kode').value === "" || document.getElementById('keterangan').value === "") {
+        //         document.getElementById('batal').disabled = true
+        //         document.getElementById('simpan').disabled = true
+        //     } else {
+        //         document.getElementById('batal').disabled = false
+        //         document.getElementById('simpan').disabled = false
+        //     }
+        // }
     </script>
 @endpush

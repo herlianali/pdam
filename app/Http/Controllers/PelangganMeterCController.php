@@ -16,27 +16,8 @@ class PelangganMeterCController extends Controller
         return view('master.pelangganMeterC.index', compact('pelangganMTRC'))->with('i');
     }
 
-    public function store(Request $request)
-    {
-        $request->validate([
-            'no_plg'        => 'required',
-            'ptgentri'      => 'required',
-            'tgl_entry'     => 'required',
-            'aktif'         => 'required'
-        ]);
-
-        $tgl = Carbon::now()->format('Y-m-d H:i:s');
-        PelangganMeterC::insert([
-            'no_plg'        => $request->no_plg,
-            'ptgentri'      => "ADMIN",
-            'tgl_entry'     => $tgl,
-            'aktif'         => "1"
-        ]);
-
-        return redirect()->route('jenisPelanggan.index');
-    }
     
-    public function show($no_plg)
+    public function show($id)
     {
         $pelangganMtrC = PelangganMeterC::where('no_plg', $no_plg)->first();
         return response()->json($pelangganMtrC);
@@ -45,8 +26,7 @@ class PelangganMeterCController extends Controller
 
     public function destroy($no_plg)
     {
-        PelangganMeterC::where('no_plg', $no_plg)->delete();
-
+        $plgnMeterC = PelangganMeterC::findOrFail($id)->delete();
         return response()->json([
             'success' => true,
             'message' => 'Data Retribusi Berhasil Dihapus',

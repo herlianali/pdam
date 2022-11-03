@@ -52,8 +52,7 @@
                                         <div class="form-group row">
                                             <label for="nip" class="col-md-2 col-form-label">NIP Pegawai</label>
                                             <div class="col-md-6">
-                                                <input type="text" class="form-control" id="nip" name="nip"
-                                                    onkeyup="valueing()">
+                                                <input type="text" class="form-control" id="nip_i" name="nip" onkeyup="valueing()">
                                             </div>
                                             <div class="col-md-3">
                                                 <button class="btn btn-default btn-mt-2" type="button" data-toggle="modal"

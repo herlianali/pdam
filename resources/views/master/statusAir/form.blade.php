@@ -14,8 +14,7 @@
                     <div class="form-group row mt-2">
                         <label for="kd_statusair" class="col-md-2 col-form-label">Kode Status Air</label>
                         <div class="col-md-8">
-                            <input type="text" name="kd_statusair" class="form-control" id="kd_statusair"
-                                >
+                            <input type="text" name="kd_statusair" class="form-control" id="kd_statusair">
                         </div>
                     </div>
                     <div class="form-group row ">

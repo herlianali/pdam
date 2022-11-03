@@ -37,8 +37,8 @@
                 <div class="col-sm-12">
                     <div class="card">
                         <div class="card-header">
-                            <a href="{{ route('materai') }}" class="btn btn-xs btn-success float-right"><i class="fas fa-backward"></i> Kembali</a>
-                            <h3 class="card-title">Print preview Daftar Materai</h3>
+                            <a href="{{ route('materai.index') }}" class="btn btn-xs btn-success float-right"><i class="fas fa-backward"></i> Kembali</a>
+                            <h3 class="card-title">Preview Daftar Materai</h3>
                         </div>
                         <div class="card-body priview">
                             <p> Pemerintah Kota <br>
@@ -56,9 +56,17 @@
                                         <th width="20">No</th>
                                         <th width="30%">Nominal</th>
                                         <th width="50%">Materai</th>
-
                                     </tr>
                                 </thead>
+                                <tbody>
+                                    @foreach ($matrai as $materai)
+                                        <tr>
+                                            <td>{{ ++$i }}</td>
+                                            <td>{{ $materai->nominal }}</td>
+                                            <td>{{ $materai->rp_materai }}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
                             </table>
                         </div>
                     </div>

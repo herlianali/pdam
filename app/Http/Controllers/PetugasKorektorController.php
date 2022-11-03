@@ -2,42 +2,34 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dip;
 use Illuminate\Http\Request;
 use App\Models\PetugasKorektor;
-use App\Models\koreksiKorektor;
-use App\Models\ViewSisa;
-use App\Models\Dip;
-use \Illuminate\Support\Facades\DB;
 
 class PetugasKorektorController extends Controller
 {
     public function index()
     {
-
-        $cS    = Dip::getData();
-        $petugasKorektor    = new PetugasKorektor();
-        $korektor           = $petugasKorektor->showKorektor();
-        $KoreksiKorektor    = new koreksiKorektor();
-        $koreksi            = $KoreksiKorektor->showKoreksi();
-        return view('master.petugasKorektor.index', compact('korektor','cS'))->with('i');
-
+        $pKorektor = PetugasKorektor::all();
+        return view('master.petugasKorektor.index', compact('pKorektor'))->with('i');
     }
 
-
-    
     public function store(Request $request)
     {
-        $aktif = isset($request->aktif) ? 1 : 0;
         PetugasKorektor::insert([
-            'nip'           => $request->nip,
-            'nama'          => $request->nama,
-            'jabatan'       => $request->jabatan,
-            'aktif'         => $aktif
+            'nip'       => $request->nip,
+            'jabatan'   => $request->jabatan,
+            'aktif'     => $request->aktif
         ]);
-       
+
+    public function show($id)
+    {
+        $ptsKorektor = PetugasKorektor::find($id);
+        return response()->json($ptsKorektor);
     }
 
-    public function show($nip)
+
+    public function destroy($id)
     {
         $pKorektor = PetugasKorektor::where('nip', $nip)->first();
         return response()->json($pKorektor);
@@ -45,36 +37,31 @@ class PetugasKorektorController extends Controller
 
     public function laporan()
     {
-        return view('master.petugasKorektor.laporan');
+        $date   = Carbon::now()->format('Y-m-d');
+        return view('master.petugasKorektor.laporan', compact('date'))->with('i');
     }
 
     public function viewsisa()
     {
-        
-        $ViewSisa    = new ViewSisa();
-        $Sisa        = $ViewSisa->showSisa();
-        return view('master.petugasKorektor.viewsisa', compact('Sisa'))->with('i');
+        return view('master.petugasKorektor.viewsisa');
     }
 
     public function random()
     {
-        return view('master.petugasKorektor.random');
+        $date   = Carbon::now()->format('Y-m-d');
+        return view('master.petugasKorektor.random', compact('date'))->with('i');
     }
 
     public function koreksi()
     {
-
-        $cS    = Dip::getData();
-        $KoreksiKorektor    = new koreksiKorektor();
-        $koreksi            = $KoreksiKorektor->showKoreksi();
-      
-        return view('master.petugasKorektor.koreksi', compact('koreksi','cS'))->with('i');
+        return view('master.petugasKorektor.koreksi');
     }
 
 
     public function viewpts()
     {
-        return view('master.petugasKorektor.viewpts');
+        $date   = Carbon::now()->format('Y-m-d');
+        return view('master.petugasKorektor.viewpts', compact('date'))->with('i');
     }
 
     public function monitoring()

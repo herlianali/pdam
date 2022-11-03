@@ -23,7 +23,12 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Jenis Pekerjaan</h3>
-                            <a href="{{ route('printjenisPekerjaan') }}" class="btn btn-xs btn-success float-right"><i class="fas fa-print"></i> Cetak</a>
+                            <button type="button"
+                                class="btn btn-xs btn-success float-right"
+                                data-toggle="modal"
+                                data-target="#filter">
+                                <i class="fas fa-print"></i> Cetak
+                            </button>
                         </div>
                         <div class="card-body">
                             <div class="row">
@@ -145,7 +150,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        @include('master.jenisPekerjaan.edit')
+                        @include('master.jenisPekerjaan.filter')
                     </div>
                 </div>
             </div>

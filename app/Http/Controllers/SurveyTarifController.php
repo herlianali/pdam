@@ -4,15 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\SurveyTarif;
+use Carbon\Carbon;
 
 class SurveyTarifController extends Controller
 {
     public function index()
     {
-        return view('master.surveyTarif.index');
+        $date = Carbon::now()->format('m-Y');
+        return view('master.surveyTarif.index', compact('date'))->with('i');
     }
   
-    public function create()
+    public function create(Request $request)
     {
         return view('master.surveyTarif.create');
     }

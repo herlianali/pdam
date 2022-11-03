@@ -2,19 +2,40 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AsalPengaduan;
+use App\Models\DilM;
+use App\Models\JenisPengaduan;
 use Illuminate\Http\Request;
 use App\Models\Pengaduan;
 use App\Models\PetugasPengaduan;
-
+use Illuminate\Support\Facades\DB;
 
 class PengaduanController extends Controller
 {
 
-    public function index()
+    public function index($table = null)
     {
-        // $pengaduans = Pengaduan::all();
         $ptgcs = PetugasPengaduan::getNameKode();
-        return view('pengaduan.pengaduan.pengaduan', compact(['ptgcs']));
+        $aslPengaduan = AsalPengaduan::all();
+        $jnsPengaduan = JenisPengaduan::select('jns_pengaduan', 'keterangan')->get();
+        $table;
+        return view('pengaduan.pengaduan.pengaduan', compact('ptgcs', 'table', 'aslPengaduan', 'jnsPengaduan'));
+    }
+
+    public function cariPelanggan(Request $request)
+    {
+        if($request->no_pelanggan_c == "on") {
+            $no_plg = $request->no_pelanggan;
+        }elseif($request->nama_c == "on") {
+            $no_plg = DilM::getByNama($request->nama);
+        }elseif($request->no_pa_c == "on") {
+
+        }elseif($request->alamat_c == "on") {
+
+        }
+        // $query = Pengaduan::getDataNative($no_plg);
+        // return response()->json($query);
+        dd($no_plg->ukuran_mtr);
     }
 
     public function detail()

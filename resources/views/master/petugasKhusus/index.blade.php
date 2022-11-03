@@ -25,7 +25,7 @@
                             <h3 class="card-title">Data Petugas Khusus</h3>
                         </div>
                         <div class="card-body">
-                            <form class="form-horizontal" action="{{ route("petugasKhusus.store") }}" method="post">
+                            <form class="form-horizontal" action="{{ route('petugasKhusus.store') }}" method="post">
                                 @csrf
                                 <div class="form-group row mt-2 ">
                                     <label for="nip" class="col-md-2 col-form-label">NIP</label>
@@ -74,11 +74,46 @@
                                             Reset</button>
                                     </div>
                                 </div>
-
                             </form>
-
-
+                            <table id="example" class="table table-bordered table-responsive-md table-condensed" style="width: 100%">
+                            <thead>
+                                <tr>
+                                    <th width="5%">No</th>
+                                    <th width="10%">NIP </th>
+                                    <th width="20%">Nama</th>
+                                    <th width="10%">Tugas</th>
+                                    <th width="20%">Jenis Pelanggan</th>
+                                    <th width="10%">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($jenis as $petugasKhusus)
+                                    <tr>
+                                        <td>{{ ++$i }}</td>
+                                        <td>{{ $petugasKhusus->nip }}</td>
+                                        <td>{{ $petugasKhusus->nama }}</td>
+                                        <td>
+                                                @if ($petugasKhusus->tugas == "K")
+                                                    K
+                                                @else
+                                                    C
+                                                @endif
+                                        </td>
+                                        <td>{{ $petugasKhusus->keterangan }}</td>
+                                        <td>
+                                            <button type="submit"
+                                                    class="btn btn-xs btn-danger hapus"
+                                                    data-id="{{ $petugasKhusus->nip }}">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                    Hapus
+                                            </button>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                         </div>
+                        
                     </div>
                 </div>
             </div>
@@ -97,7 +132,18 @@
     <script src="{{ asset('assets/plugins/bs-custom-file-input/bs-custom-file-input.js') }}"></script>
     <script>
         $(function() {
-            $('#table').DataTable({
+            $(function() {
+            $('#example').DataTable({
+
+            //  "lengthChange": false,
+            //   "autoWidth": false,
+            //   "responsive": true,
+            "oLanguage": {
+                "sSearch": "Search : "
+            },
+            "pageLength": 5
+            }).buttons().container().appendTo('#table_wrapper .col-md-6:eq(0)');
+            $('#example2').DataTable({
                 "paging": true,
                 "lengthChange": false,
                 "searching": false,
@@ -105,7 +151,9 @@
                 "info": true,
                 "autoWidth": false,
                 "responsive": true,
+                "pageLength": 5
             });
+        });
 
             $("#example1").on("click", ".pilih", function() {
                 var currentRow = $(this).closest("tr");
@@ -116,6 +164,61 @@
                 $("#nama").val(nama);
                 $('.modal').modal('hide');
             })
+        });
+
+        var showLoading = function() {
+            swal.fire({
+                title: "Mohon Tunggu !",
+                html: "Sedang Memproses...",
+                allowOutsideClick: false,
+                showConfirmButton: false,
+                willOpen: () => {
+                    swal.showLoading()
+                },
+            })
+        }
+
+        // validasi nip petugas khusu
+        // $(document).on('click', '.simpan', function() {
+        //     e.preventDefault()
+        // })
+
+        $(document).on('click', '.hapus', function(e) {
+            e.preventDefault();
+            let nip = $(this).data('id').trim().replace(/\s/g, '');
+            let token = '{{ csrf_token() }}';
+            swal.fire({
+                title: "Apakah Anda Yakin ?",
+                icon: 'warning',
+                text: "Anda Tidak Akan Bisa Mengembalikan Data Ini",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Iya, Hapus!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        data: {
+                            _token: token
+                        },
+                        type: "DELETE",
+                        url: `{{ url('master/petugasKhusus') }}/`+nip,
+                        beforeSend: function() {
+                            showLoading()
+                        },
+                        success: function(response) {
+                            console.log(response);
+                            swal.fire(
+                                    'Deleted!',
+                                    'Your file has been deleted.',
+                                    'success'
+                                )
+                                location.reload();
+                        }
+                    })
+                }
+            })
+
         });
     </script>
 @endpush

@@ -51,11 +51,11 @@
                                 </div>
                             </div>
                             <div class="form-group row mt-2">
-                                <label for="tgl_penugasan" class="col-md-2 col-form-label">Tanggal Penugasan
+                                <label for="date" class="col-md-2 col-form-label">Tanggal Penugasan
                                 </label>
                                 <div class="col-md-4">
-                                    <input type="text" class="form-control" id="tgl_penugasan" name="tgl_penugasan"
-                                        onkeyup="valueing()">
+                                    <input type="date" class="form-control" id="date" name="date"
+                                        onkeyup="valueing()" value="{{ $date }}">
                                 </div>
                             </div>
                             <div class="form-group row mt-2">

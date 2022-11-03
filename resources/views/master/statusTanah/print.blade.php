@@ -33,7 +33,7 @@
                 <div class="col-sm-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Print preview Tabel Status Tanah</h3>
+                            <h3 class="card-title">Preview Status Tanah</h3>
                             <a href="{{ route('printpanggilanDinas') }}" class="btn btn-sm btn-success float-right"><i class="fas fa-print"></i> Cetak</a>
                         </div>
                         <div class="card-body priview">
@@ -57,9 +57,10 @@
                                 <tbody>
                                     @foreach ($stTanah as $statusTanah)
                                         <tr>
-                                            <td>{{ ++$i }}</td>
                                             <td>{{ $statusTanah->status_tanah }}</td>
                                             <td>{{ $statusTanah->keterangan }}</td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

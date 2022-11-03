@@ -51,7 +51,8 @@ class StatusTanahController extends Controller
     }
     public function print()
     {
-        return view('master.statusTanah.print');
+        $stTanah = StatusTanah::all();
+        return view('master.statusTanah.print', compact('stTanah'))->with('i');
     }
 
 }
