@@ -75,7 +75,7 @@
                                 </label>
                                 <div class="col-md-3">
                                     <input type="date" class="form-control" id="date"
-                                        name="date" onkeyup="valueing()" value="{{ $date }}">
+                                        name="date" onkeyup="valueing()" value="">
                                 </div>
                             </div>
                             <div class="form-group row mt-2">
