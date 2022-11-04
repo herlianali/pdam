@@ -37,8 +37,8 @@
                 <div class="col-sm-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Print preview Tabel Status Air</h3>
-                            <a href="{{ route('statusAir.index') }}" class="btn btn-sm btn-success float-right"><i class="fas fa-backward"></i> Kembali</a>
+                            <h3 class="card-title">Preview Status Air</h3>
+                            {{-- <a href="{{ route('statusAir.index') }}" class="btn btn-sm btn-success float-right"><i class="fas fa-backward"></i> Kembali</a> --}}
                         </div>
                         <div class="card-body priview">
                             <p>
@@ -54,12 +54,21 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th width="20%">No</th>
+                                   
                                         <th width="30%">Kode</th>
                                         <th width="30%">Keterangan</th>
 
                                     </tr>
                                 </thead>
+                                <tbody>
+                                    @foreach ($stAir as $statusAir)
+                                    <tr>
+                                    
+                                        <td>{{ $statusAir->kd_statusair }}</td>
+                                        <td>{{ $statusAir->keterangan }}</td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
                             </table>
                         </div>
                     </div>
@@ -69,21 +78,4 @@
     </section>
 @endsection
 
-@push('js')
-    <script type="text/javascript">
-        const box = document.getElementById('startEnd');
 
-        function clickRadio() {
-            if (document.getElementById('semuakd').checked) {
-                box.style.display = "none"
-            } else {
-                box.style.display = "block"
-            }
-        }
-
-        const radioButtons = document.querySelectorAll('input[name="filter"]');
-        radioButtons.forEach(radio => {
-            radio.addEventListener('click', clickRadio)
-        });
-    </script>
-@endpush

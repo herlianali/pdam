@@ -8,23 +8,26 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="">
+                <form action="" class="form-horizontal" id="form-edit" method="POST">
+                    @csrf
+                    @method('PUT')
                     <div class="form-group">
                         <label for="kode_petugas">Kode Petugas</label>
-                        <input type="text" class="form-control" id="kode_petugas" name="kode_petugas" >
+                        <input type="text" class="form-control" id="kd_ptgktrl1" name="kd_ptgktrl" >
                     </div>
                     <div class="form-group">
                         <label for="nip">Nip Pegawai</label>
-                        <input type="text" class="form-control" id="nip" name="nip" >
+                        <input type="text" class="form-control" id="nip1" name="nip" readonly value="" >
                     </div>
                     <div class="form-group">
                         <label for="nama">Nama Pegawai</label>
-                        <input type="text" class="form-control" id="nama" name="nama" >
+                        <input type="text" class="form-control" id="nama1" name="nama" readonly value=""  >
                     </div>
-                    <div class="form-group col-md-3">
-                        <input type="checkbox" id="is_satgas" name="is_satgas">
+                    <div class="form-group">
+                        <input type="checkbox" name="is_satgas" id="is_satgas">
                         <label class="col-form-label" for="is_satgas">Is Satgas</label>
                     </div>
+                
                     <button class="btn btn-success btn-sm" type="submit"><i class="far fa-save"></i> Simpan</button>
                     <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-undo"></i> Batal</button>
                 </form>

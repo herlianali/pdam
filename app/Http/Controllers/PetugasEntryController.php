@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Models\Dip;
 use Illuminate\Http\Request;
 use App\Models\PetugasEntry;
+use \Illuminate\Support\Facades\DB;
 
 class PetugasEntryController extends Controller
 {
@@ -34,7 +35,8 @@ class PetugasEntryController extends Controller
 
     public function update(Request $request, $kd_ptgentry)
     {
-        PetugasEntry::where('kd_ptgentry', $kd_ptgentry)->update([
+        
+        PetugasEntry::where(DB::raw("REPLACE(kd_ptgentry,' ','')"), $kd_ptgentry)->update([
             'kd_ptgentry'   => $request->kd_ptgentry,
             'nama'          => $request->nama,
             'nip'           => $request->nip,
@@ -53,7 +55,7 @@ class PetugasEntryController extends Controller
 
     public function destroy($kd_ptgentry)
     {
-        PetugasEntry::where('kd_ptgentry', $kd_ptgentry)->delete();
+        PetugasEntry::where(DB::raw("REPLACE(kd_ptgentry,' ','')"), $kd_ptgentry)->delete();
         return response()->json([
             'success' => true,
             'message' => 'Data Petugas Entry Berhasil Dihapus',
@@ -61,7 +63,9 @@ class PetugasEntryController extends Controller
     }
     public function print()
     {
-        return view('master.petugasEntry.print');
+        $cPegawai    = Dip::getData();
+        $pEntry  = PetugasEntry::getData();
+        return view('master.petugasEntry.print', compact(['pEntry']))->with('i');
     }
 
 }

@@ -21,4 +21,7 @@ class Retribusi extends Model
                     ->latest('kd_retribusi')
                     ->first()->{'kd_retribusi'};
     }
+
+    
+
 }

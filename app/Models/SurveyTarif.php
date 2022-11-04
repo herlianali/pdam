@@ -10,7 +10,7 @@ class SurveyTarif extends Model
 {
     use HasFactory;
 
-    public $table = "pb_data";
+    public $table = "SURVEY_TARIF";
 
     public function showTarif()
     {

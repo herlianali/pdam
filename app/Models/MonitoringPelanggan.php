@@ -10,6 +10,7 @@ class MonitoringPelanggan extends Model
 {
     use HasFactory;
 
+    protected $table = "DIL";
     public function getData()
     {
         return DB::table('DIL')

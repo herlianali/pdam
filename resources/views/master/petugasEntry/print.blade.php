@@ -30,17 +30,12 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-4 col-sm-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Filter Petugas Entry</h3>
-                        </div>
                         <div class="col-sm-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title">Print preview Petugas Entry</h3>
-                                    <a href="{{ route('printpanggilanDinas') }}"
-                                        class="btn btn-sm btn-success float-right"><i class="fas fa-print"></i> Cetak</a>
+                                    <h3 class="card-title">Preview Petugas Entry</h3>
+                                    {{-- <a href="{{ route('printpanggilanDinas') }}"
+                                        class="btn btn-sm btn-success float-right"><i class="fas fa-print"></i> Cetak</a> --}}
                                 </div>
                                 <div class="card-body priview">
                                     <p> Pemerintah Kota <br>
@@ -57,12 +52,19 @@
                                                 <th>NIP</th>
                                                 <th>Nama</th>
                                                 <th>Status</th>
-                                                <th>ISCS</th>
+                                               
 
                                             </tr>
                                         </thead>
                                         <tbody>
-
+                                            @foreach ($pEntry as $ptsEntry)
+                                        <tr>
+                                            <td>{{ $ptsEntry->kd_ptgentry }}</td>
+                                            <td>{{ $ptsEntry->nip }}</td>
+                                            <td>{{ $ptsEntry->nama }}</td>
+                                            <td>{{ $ptsEntry->aktif }}</td>
+                                            </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>
@@ -72,22 +74,3 @@
                 </div>
     </section>
 @endsection
-
-@push('js')
-    <script type="text/javascript">
-        const box = document.getElementById('startEnd');
-
-        function clickRadio() {
-            if (document.getElementById('semuakd').checked) {
-                box.style.display = "none"
-            } else {
-                box.style.display = "block"
-            }
-        }
-
-        const radioButtons = document.querySelectorAll('input[name="filter"]');
-        radioButtons.forEach(radio => {
-            radio.addEventListener('click', clickRadio)
-        });
-    </script>
-@endpush

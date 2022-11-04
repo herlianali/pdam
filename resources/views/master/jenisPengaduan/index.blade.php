@@ -24,7 +24,14 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Jenis Pengaduan</h3>
-                            <a href="{{ route('printPengaduan') }}" class="btn btn-sm btn-success float-right"><i class="fas fa-print"></i> Cetak</a>
+                            <button type="button"
+                            class="btn btn-xs btn-success filter float-right"
+                            data-toggle="modal"
+                            data-target="#filter">
+                            <i class="fas fa-print"></i>
+                            Print
+                    </button>
+                          
                         </div>
                         <div class="card-body">
                             <div class="row mb-4">
@@ -32,6 +39,7 @@
                                 <div class="col-md-12">
                                     <form class="form-horizontal" action="{{ route('jenisPengaduan.store') }}" method="POST">
                                         @csrf
+                                      
                                         <div class="form-group row ">
                                             <label for="kode" class="col-md-3 col-form-label">Kode</label>
                                             <div class="col-md-4">
@@ -70,6 +78,7 @@
                                         </div>
                                     </form>
                                     <br>
+                                   
                                     &nbsp;
                                     <table id="table" class="table table-bordered table-responsive-md table-condensed"
                                         style="width: 100%">
@@ -126,6 +135,7 @@
 
     {{-- Edit Form --}}
     @include('master.jenisPengaduan.edit')
+    @include('master.jenisPengaduan.filter')
 @endsection
 
 @push('js')
@@ -143,7 +153,7 @@
                 //   "autoWidth": false,
                 //   "responsive": true,
                 "oLanguage": {
-                    "sSearch": "Keterangan : "
+                    "sSearch": "Search : "
                 },
                 "pageLength": 5
             }).buttons().container().appendTo('#table_wrapper .col-md-6:eq(0)');

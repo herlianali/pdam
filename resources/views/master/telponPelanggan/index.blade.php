@@ -28,10 +28,8 @@
                                             <input type="text" class="form-control" id="no_plg" name="no_plg">
                                         </div>
 
-                                        <button class="btn btn-info btn-mt-2"
-                                                id="cari"
-                                                type="button">
-                                                <i class="fa fa-search"></i>
+                                        <button class="btn btn-info btn-mt-2" id="cari" type="button">
+                                            <i class="fa fa-search"></i>
                                         </button>
                                         &nbsp;
 
@@ -43,12 +41,13 @@
 
                                 </div>
                             </div>
-                            <form class="form-horizontal">
+                            <form class="form-horizontal" action="{{ route('telponPelanggan.index') }}" method="POST">
+                                @csrf
                                 <div class="form-group row ">
                                     <label for="nama" class="col-md-2 col-form-label">Nama</label>
                                     <div class="col-md-4">
-                                        <input type="text" class="form-control" id="nama" name="nama" onkeyup="valueing()"
-                                            readonly value="">
+                                        <input type="text" class="form-control" id="nama" name="nama"
+                                            onkeyup="valueing()" readonly value="">
                                     </div>
                                 </div>
                                 <div class="form-group row ">
@@ -60,13 +59,17 @@
                                 <div class="form-group row ">
                                     <label for="nomor" class="col-md-2 col-form-label">No Telepon</label>
                                     <div class="col-md-4">
-                                        <input type="text" class="form-control" id="telp_1" name="telp_1" onkeyup="valueing()">
+                                        <input type="text" class="form-control" id="telp_1" name="telp_1"
+                                            onkeyup="valueing()">
                                     </div>
-                                    <button type="button" class="btn btn-success btn-sm mt-6 " data-toggle="modal"
-                                        data-target="#form"><i class="fas fa-edit"></i> Edit</button>
-                                    &nbsp;
-                                    <button type="submit" class="btn btn-info btn-sm mt-6  " id="simpan"><i
-                                            class="far fa-save"></i> Simpan</button>
+
+                                    <button type="button" class="btn btn-xs btn-success edit" data-toggle="modal"
+                                        data-target="#edit">
+                                        <i class="fas fa-edit"></i>
+                                        Edit
+                                    </button>
+
+
                                 </div>
                             </form>
                         </div>
@@ -77,6 +80,7 @@
 @endsection
 
 @push('js')
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
@@ -118,12 +122,12 @@
             })
         }
 
-        $(document).on('click', '.cari', function(e) {
+        $(document).on('click', '#cari', function(e) {
             e.preventDefault();
-            let no_plg = $(this).data('id')
+            let no_plg = $('#no_plg').val();
             $.ajax({
                 type: "GET",
-                url: `{{ url('master/telponPelanggan') }}/`+no_plg,
+                url: `{{ url('master/telponPelanggan') }}/` + no_plg,
                 data: {
                     id: no_plg,
                     _token: '{{ csrf_token() }}'
@@ -132,16 +136,40 @@
                     showLoading()
                 },
                 success: function(response) {
+                    console.log('resp');
                     $('#nama').val(response.nama)
-                    $('#alamat').val(response.keterangan)
+                    $('#alamat').val(response.alamat)
                     $('#telp_1').val(response.telp_1)
                     swal.close();
                 }
             })
         })
 
+        $(document).on('click', '.edit', function(e) {
+            e.preventDefault();
+            let no_plg = $('#no_plg').val()
+            $.ajax({
+                type: "GET",
+                url: `{{ url('master/telponPelanggan') }}/` + no_plg,
+                data: {
+                    id: no_plg,
+                    _token: '{{ csrf_token() }}'
+                },
+                beforeSend: function() {
+                    showLoading()
+                },
+                success: function(response) {
+                    $('#form-edit').attr('action', "{{ url('master/telponPelanggan') }}/" + no_plg)
+                    $('#nama1').val(response.nama)
+                    $('#alamat1').val(response.alamat)
+                    $('#telp_1_i').val(response.telp_1)
+                    swal.close();
+                }
+            })
+        })
+
         function clear() {
-            document.getElementById('noPelanggan').value = ''
+            document.getElementById('no_plg').value = ''
         }
         document.getElementById("clear").addEventListener("click", clear);
     </script>

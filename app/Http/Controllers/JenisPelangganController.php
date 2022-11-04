@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\JenisPelanggan;
 use Illuminate\Http\Request;
+use \Illuminate\Support\Facades\DB;
 
 class JenisPelangganController extends Controller
 {
@@ -13,10 +14,16 @@ class JenisPelangganController extends Controller
         return view('master.jenisPelanggan.index', compact('jenisPelanggans'))->with('i');
     }
 
+    public function print()
+    {
+        $jenisPelanggans = JenisPelanggan::all();
+        return view('master.jenisPelanggan.print', compact('jenisPelanggans'))->with('i');
+    }
+
     public function store(Request $request)
     {
         $request->validate([
-            'jns_pelanggan' => 'required|max:255',
+            'jns_pelanggan' => 'required',
             'keterangan'    => 'required'
         ]);
 
@@ -36,7 +43,8 @@ class JenisPelangganController extends Controller
         //     'keterangan'    => 'required'
         // ]);
 
-        JenisPelanggan::where('jns_pelanggan', $jns_pelanggan)->update([
+        JenisPelanggan::where(DB::raw("REPLACE(jns_pelanggan,' ','')"), $jns_pelanggan)
+        ->update([
             'jns_pelanggan' => $request->jns_pelanggan,
             'keterangan'    => $request->keterangan,
             'jns_rekswasta' => "S"
@@ -52,10 +60,13 @@ class JenisPelangganController extends Controller
         return response()->json($jenisPelanggan);
     }
 
+
     public function destroy($jns_pelanggan)
     {
-        JenisPelanggan::where('jns_pelanggan', $jns_pelanggan)->delete();
-
-        return redirect()->route('jenisPelanggan.index');
+        JenisPelanggan::where(DB::raw("REPLACE(jns_pelanggan,' ','')"), $jns_pelanggan)->delete();
+        return response()->json([
+            'success' => true,
+            'message' => 'Data Jenis Pelanggan Berhasil Dihapus',
+        ]);
     }
 }

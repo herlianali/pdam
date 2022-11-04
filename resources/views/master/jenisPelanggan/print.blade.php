@@ -14,15 +14,15 @@
     </style>
 @endpush
 
-@section('title', 'Print Jenis Pengaduan')
+@section('title', 'Print Jenis Pelanggan')
 
 @section('namaHal', 'Petugas')
 
 @section('breadcrumb')
     <ol class="breadcrumb float-sm-right">
         <li class="breadcrumb-item"><a href="#">Master</a></li>
-        <li class="breadcrumb-item active">Jenis Pengaduan</li>
-        <li class="breadcrumb-item active">Print Jenis Pengaduan</li>
+        <li class="breadcrumb-item active">Jenis Pelanggan</li>
+        <li class="breadcrumb-item active">Print Jenis Pelanggan</li>
     </ol>
 @endsection
 
@@ -33,38 +33,43 @@
                 <div class="col-sm-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Preview Jenis Pengaduan</h3>
+                            <h3 class="card-title">Preview Jenis Pelanggan</h3>
                         </div>
                         <div class="card-body priview">
+                            <form class="form-horizontal">
                             <p> Pemerintah Kota <br>
                                 Surabaya <br>
                                 PERUSAHAAN DAERAH AIR <br>
                             </p>
                             <div class="mx-auto mb-3" style="width: 250px;">
-                                <span>Table Master Jenis Pengaduan</span> <br>
+                                <span>Table Master Jenis Pelanggan</span> <br>
                             </div>
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>Kode</th>
+                                        <th>Jenis Pelanggan</th>
                                         <th>Keterangan</th>
-                                        <th>Sif</th>
+                                        <th>JNS Rekswasta</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($jenisPengaduans as $jenis)
+                                    @foreach ($jenisPelanggans as $jenis)
                                     <tr>
-                                        <td>{{ $jenis->jns_pengaduan }}</td>
+                                        <td>{{ $jenis->jns_pelanggan }}</td>
                                         <td>{{ $jenis->keterangan }}</td>
-                                        <td>{{ $jenis->sifat }}</td>
+                                        <td>{{ $jenis->jns_rekswasta }}</td>
                                     </tr>
                                     @endforeach
                                 </tbody>
                             </table>
                         </div>
+                    </form>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 @endsection
+
+
+

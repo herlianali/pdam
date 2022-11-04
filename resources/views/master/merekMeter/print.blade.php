@@ -37,8 +37,8 @@
                 <div class="col-sm-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Print preview Tabel Merk Meter</h3>
-                            <a href="{{ route('merekMeter') }}" class="btn btn-sm btn-success float-right"><i class="fas fa-backward"></i> Kembali</a>
+                            <h3 class="card-title">Preview Merk Meter</h3>
+                            {{-- <a href="{{ route('merekMeter') }}" class="btn btn-sm btn-success float-right"><i class="fas fa-backward"></i> Kembali</a> --}}
                         </div>
                         <div class="card-body priview">
                             <p> Pemerintah Kota <br>
@@ -54,12 +54,19 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th width="20%">No</th>
                                         <th width="30%">Kode</th>
                                         <th width="30%">Merk Meter</th>
 
                                     </tr>
                                 </thead>
+                                <tbody>
+                                    @foreach ($merkMeter as $merekMeter)
+                                    <tr>
+                                        <td>{{ $merekMeter->kd_merk }}</td>
+                                        <td>{{ $merekMeter->merk }}</td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
                             </table>
                         </div>
                     </div>
