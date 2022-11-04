@@ -18,6 +18,7 @@ class PetugasKorektor extends Model
         return DB::table($this->table)
         ->select('PTGKOREKTOR_NEW.nip','DIP.nama','PTGKOREKTOR_NEW.aktif','PTGKOREKTOR_NEW.jabatan','PTGKOREKTOR_NEW.recid','PTGKOREKTOR_NEW.userakses')
         ->join ('DIP', 'DIP.nip', '=', 'PTGKOREKTOR_NEW.nip')
+        ->limit(900)
         ->get();
     }
 }

@@ -3,33 +3,29 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dip;
+use App\Models\koreksiKorektor;
 use Illuminate\Http\Request;
 use App\Models\PetugasKorektor;
+use Carbon\Carbon;
 
 class PetugasKorektorController extends Controller
 {
     public function index()
     {
-        $pKorektor = PetugasKorektor::all();
-        return view('master.petugasKorektor.index', compact('pKorektor'))->with('i');
+        $cS    = Dip::getData();
+        $pKorektor = new PetugasKorektor();
+        $korektor = $pKorektor->showKorektor();
+        return view('master.petugasKorektor.index', compact('cS', 'korektor'))->with('i');
     }
 
-    public function store(Request $request)
+    public function show($nip)
     {
-        PetugasKorektor::insert([
-            'nip'       => $request->nip,
-            'jabatan'   => $request->jabatan,
-            'aktif'     => $request->aktif
-        ]);
-
-    public function show($id)
-    {
-        $ptsKorektor = PetugasKorektor::find($id);
-        return response()->json($ptsKorektor);
+        $petKorektor = PetugasKorektor::where('nip', $nip)->first();
+        return response()->json($petKorektor);
     }
 
 
-    public function destroy($id)
+    public function destroy($nip)
     {
         $pKorektor = PetugasKorektor::where('nip', $nip)->first();
         return response()->json($pKorektor);
@@ -54,7 +50,10 @@ class PetugasKorektorController extends Controller
 
     public function koreksi()
     {
-        return view('master.petugasKorektor.koreksi');
+        $cS    = Dip::getData();
+        $Koreksi = new koreksiKorektor();
+        $koreksi = $Koreksi->showKoreksi();
+        return view('master.petugasKorektor.koreksi', compact('cS', 'koreksi'))->with('i');
     }
 
 

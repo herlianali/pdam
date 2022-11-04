@@ -44,6 +44,59 @@
                     <div class="col-md-12">                 
                     </div>
                 </div>
+                {{-- <form class="form-horizontal" action="" method="post">
+                    @csrf
+                    <div class="form-group row mt-2">
+                        <label for="nip" class="col-md-2 col-form-label">NIP </label>
+                        <div class="col-md-3">
+                            <input type="text" class="form-control" id="nip" name="nip"
+                                onkeyup="valueing()">
+                        </div>
+                    </div>
+                    <div class="form-group row mt-2">
+                        <label for="nama" class="col-md-2 col-form-label">Nama </label>
+                        <div class="col-md-3">
+                            <input type="text" class="form-control" id="nama"
+                                name="nama"onkeyup="valueing()">
+                        </div>
+                        <div class="col-md-3">
+                            <button class="btn btn-default btn-mt-2" type="button"
+                                data-toggle="modal"data-target="#cs"><i class="fas fa-search fa-fw"></i> Pilih
+                                Pegawai</button>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="beban" class="col-md-2 col-form-label">Jabatan </label>
+                        <div class="col ml-3 row">
+                            <div class="col-md-1">
+                                <input type="radio" class="form-check-input" name="jabatan" value="0">
+                                <label class="form-check-label">Konektor</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="radio" class="form-check-input" name="jabatan" value="1">
+                                <label class="form-check-label">Senior Staf</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="radio" class="form-check-input" name="jabatan" value="2">
+                                <label class="form-check-label">Supervisor</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row mt-2">
+                        <label for="" class="col-md-2 col-form-label"></label>
+                        <div class="col-md-7">
+                            <input type="checkbox">
+                            <label for="potensial" class="col-md-2 col-form-label">Aktif</label>
+                        </div>
+                    </div>
+                    <div class="form-group row mt-2 ">
+                        <label for="" class="col-md-6 col-form-label"></label>
+                        <div class="col-md-6">
+                            <button class="btn btn-success btn-sm float-right" type="submit">Tampil</button>
+
+                        </div>
+                    </div>
+                </form> --}}
                 <table id="example2" class="table table-bordered table-responsive-md table-condensed">
                     <thead>
                         <tr>
@@ -197,15 +250,15 @@
                     $('#form-edit').attr('action', "{{ url('master/petugasKorektor') }}/"+nip)
                     $('#nip1').val(response.nip)
                     $('#nama1').val(response.nama)
-                    if(response.jabatan.trim() === '0'){
-                        $('#konektor').attr('checked', '')
-                    }
-                    else if {
-                        $('#supervisor').attr('checked', '')
-                    }
-                    else {
-                        $('#seniorstaff').attr('checked', '')
-                    }
+                    // if(response.jabatan.trim() === '0'){
+                    //     $('#konektor').attr('checked', '')
+                    // }
+                    // else if {
+                    //     $('#supervisor').attr('checked', '')
+                    // }
+                    // else {
+                    //     $('#seniorstaff').attr('checked', '')
+                    // }
                     console.log(response.jabatan.trim());
                     if(response.aktif == 1){
                         $('#aktif').attr('checked', 'checked')
