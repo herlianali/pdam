@@ -26,7 +26,7 @@ class PetugasKontrolController extends Controller
             'kd_ptgktrl'    => $kd_ptgktrl,
             'nip'           => $request->nip,
             'nama'          => $request->nama,
-            'is_satgas'     => $satgas
+            'is_satgas'     => $satgas 
         ]);
        
 

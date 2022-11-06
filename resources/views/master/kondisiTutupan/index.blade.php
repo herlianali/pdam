@@ -168,6 +168,7 @@
                     showLoading()
                 },
                 success: function(response) {
+                    
                     $('#form-edit').attr('action', "{{ url('master/kondisiTutupan') }}/"+kd_kondisi)
                     $('#kd_kondisi').val(response.kd_kondisi.trim()).change()
                     $('#keterangan').val(response.keterangan)
@@ -197,6 +198,9 @@
                         data: {
                                 _token: token
                             },
+                            beforeSend: function() {
+                    showLoading()
+                },
                           
                             success: function(resp) {
                                 //  console.log('respon');

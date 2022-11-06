@@ -47,7 +47,7 @@ class JenisPelangganController extends Controller
         ->update([
             'jns_pelanggan' => $request->jns_pelanggan,
             'keterangan'    => $request->keterangan,
-            'jns_rekswasta' => "S"
+            'jns_rekswasta' => $request->jns_rekswasta
         ]);
 
         return redirect()->route('jenisPelanggan.index');

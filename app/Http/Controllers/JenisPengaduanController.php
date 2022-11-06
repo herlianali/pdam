@@ -59,8 +59,9 @@ class JenisPengaduanController extends Controller
     }
     public function show($jns_pengaduan)
     {
-        $jenisPengaduan = JenisPengaduan::where('jns_pengaduan', $jns_pengaduan)->first();
+        $jenisPengaduan = JenisPengaduan::where(DB::raw("REPLACE(jns_pengaduan,' ','')"), $jns_pengaduan)->first();
         return response()->json($jenisPengaduan);
+        // return $jns_pengaduan;
     }
 
     public function destroy($jns_pengaduan)

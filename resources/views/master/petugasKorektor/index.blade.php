@@ -42,9 +42,8 @@
             <div class="card-body">
                 <div class="row mb-9">
                     <div class="col-md-12">                 
-                    </div>
-                </div>
-                {{-- <form class="form-horizontal" action="" method="post">
+                  
+                <form class="form-horizontal" action="" method="post">
                     @csrf
                     <div class="form-group row mt-2">
                         <label for="nip" class="col-md-2 col-form-label">NIP </label>
@@ -96,7 +95,10 @@
 
                         </div>
                     </div>
-                </form> --}}
+                </form>
+            </div>
+        </div>
+      
                 <table id="example2" class="table table-bordered table-responsive-md table-condensed">
                     <thead>
                         <tr>
@@ -134,7 +136,7 @@
 
                                     <button type="button" 
                                     class="btn btn-success btn-sm edit"
-                                    data-id="{{ $petKorektor->nip }}" 
+                                    data-id="{{ $petKorektor->recid }}" 
                                     data-toggle="modal"
                                     data-target="#edit">
                                     <i class="fas fa-edit"></i>
@@ -145,8 +147,9 @@
                         @endforeach
                     </tbody>
                 </table>
-            </div>
+        
         </div>
+    </div>
     </section>
     @include('master.petugasKorektor.petcs')
     @include('master.petugasKorektor.edit')
@@ -182,6 +185,46 @@
                 "autoWidth": false,
                 "responsive": true,
                 "pageLength": 5
+            });
+        });
+
+        
+
+        $(document).on('click', '.hapus', function(e) {
+            e.preventDefault();
+             //console.log();
+            let nip = $(this).data('id').trim().replace(/\s/g, '');
+            let token = "{{ csrf_token() }}";
+            swal.fire({
+                title: "Apakah Anda Yakin ?",
+                icon: 'warning',
+                text: "Anda Tidak Akan Bisa Mengembalikan Data Ini",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Iya, Hapus!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: "DELETE",
+                        url: `{{ url('master/petugasKorektor') }}/`+nip,
+                        data: {
+                                _token: token
+                            },
+                            beforeSend: function() {
+                    showLoading()
+                },
+                            success: function(resp) {
+                                
+                                swal.fire(
+                                    'Deleted!',
+                                    'Your file has been deleted.',
+                                    'success'
+                                )
+                                location.reload();
+                            }
+                    });
+                }
             });
         });
 
@@ -234,20 +277,20 @@
         
         $(document).on('click', '.edit', function(e) {
             e.preventDefault();
-            let nip = $(this).data('id')
+            let recid = $(this).data('id')
             $.ajax({
                 type: "GET",
-                url: `{{ url('master/petugasKorektor') }}/`+nip,
+                url: `{{ url('master/petugasKorektor') }}/`+recid,
                 data: {
-                    id: nip,
+                    id: recid,
                     _token: '{{ csrf_token() }}'
                 },
                 // beforeSend: function() {
                 //     showLoading()
                 // },
                 success: function(response) {
-                    console.log('respon');
-                    $('#form-edit').attr('action', "{{ url('master/petugasKorektor') }}/"+nip)
+                    console.log(response);
+                    $('#form-edit').attr('action', "{{ url('master/petugasKorektor') }}/"+recid)
                     $('#nip1').val(response.nip)
                     $('#nama1').val(response.nama)
                     // if(response.jabatan.trim() === '0'){
@@ -259,10 +302,10 @@
                     // else {
                     //     $('#seniorstaff').attr('checked', '')
                     // }
-                    console.log(response.jabatan.trim());
+                    // console.log(response.aktif.trim());
                     if(response.aktif == 1){
                         $('#aktif').attr('checked', 'checked')
-                    }else if{
+                    }else{
                         $('#aktif').removeAttr('checked', ' ')
                     }
                     swal.close();

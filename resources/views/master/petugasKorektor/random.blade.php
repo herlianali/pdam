@@ -65,6 +65,7 @@
                             </tr>
                         </thead>
                         <tbody>
+                           
                         </tbody>
                     </table>
                     <button type="submit" class="btn btn-info btn-sm mt-6  " id="simpan"> Clear Petugas</button> &nbsp;
