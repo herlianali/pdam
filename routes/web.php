@@ -57,6 +57,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [LoginController::class, 'index']);
 Route::post('/login', [LoginController::class, 'loginUser'])->name('login');
+Route::get('/csrf', function (){echo csrf_token();});
 Route::get('/logout', [LoginController::class, 'logoutUser'])->name('logout');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
@@ -155,9 +156,11 @@ Route::prefix('master')->group(function () {
     Route::get('/insertPosisiMeter', [InsertPosisiMeterController::class, 'index'])->name('insertPosisiMeter');
 
     Route::get('/surveyTarif', [SurveyTarifController::class, 'index'])->name('surveyTarif');
+    Route::post('/surveyTarif', [SurveyTarifController::class,'show'])->name('surveyTarif.show');
     Route::get('/cetaksurvey', [SurveyTarifController::class, 'cetaksurvey'])->name('cetaksurvey');
     Route::get('/dataKosong', [SurveyTarifController::class, 'datakosong'])->name('dataKosong');
     Route::get('/cetakdk', [SurveyTarifController::class, 'cetakdk'])->name('cetakdk');
+    Route::get('/editpln', [SurveyTarifController::class, 'editpln'])->name('editpln');
     Route::get('/lebihentri', [SurveyTarifController::class, 'lebihentri'])->name('lebihentri');
     Route::get('/cetaklebihentri', [SurveyTarifController::class, 'cetaklebihentri'])->name('cetaklebihentri');
 

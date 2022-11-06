@@ -187,9 +187,9 @@
                         data: {
                                 _token: token
                             },
-                            beforeSend: function() {
-                    showLoading()
-                },
+                //             beforeSend: function() {
+                //     showLoading()
+                // },
                             success: function(resp) {
                                 swal.fire(
                                     'Deleted!',

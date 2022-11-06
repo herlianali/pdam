@@ -21,7 +21,6 @@ class MonitoringPelangganController extends Controller
     }
     
 
-
     public function filter(Request $request)
     {
         $result = [];
