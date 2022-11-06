@@ -26,8 +26,7 @@
     </ol>
     <br>
     <br>
-    {{-- <a href="{{ route('printkondisiTutupan') }}" class="btn btn-sm btn-success float-right"><i class="fas fa-download"></i> --}}
-        Download</a>
+   
 @endsection
 
 @section('content')
@@ -38,7 +37,10 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Preview Kondisi Tutupan</h3>
-                            {{-- <a href="{{ route('kondisiTutupan') }}" class="btn btn-sm btn-success float-right"><i class="fas fa-backward"></i> Kembali</a> --}}
+                            <button type="submit"
+                            class="btn btn-xs float-right btn-success print">
+                            Print
+                            </button>
                         </div>
                         <div class="card-body priview">
                             <p>

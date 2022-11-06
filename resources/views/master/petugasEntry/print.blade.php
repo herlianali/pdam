@@ -34,8 +34,10 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h3 class="card-title">Preview Petugas Entry</h3>
-                                    {{-- <a href="{{ route('printpanggilanDinas') }}"
-                                        class="btn btn-sm btn-success float-right"><i class="fas fa-print"></i> Cetak</a> --}}
+                                    <button type="submit"
+                                    class="btn btn-xs float-right btn-success print">
+                                    Print
+                                    </button>
                                 </div>
                                 <div class="card-body priview">
                                     <p> Pemerintah Kota <br>
