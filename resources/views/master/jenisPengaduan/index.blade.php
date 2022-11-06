@@ -115,7 +115,7 @@
                                                             </button>
                                                             <button type="button"
                                                                     class="btn btn-xs btn-success edit"
-                                                                    data-id="@php trim($jenisPengaduan->jns_pengaduan) @endphp"
+                                                                    data-id="{{ $jenisPengaduan->jns_pengaduan}} "
                                                                     data-toggle="modal"
                                                                     data-target="#form">
                                                                     <i class="fas fa-edit"></i>
@@ -183,7 +183,8 @@
 
         $(document).on('click', '.edit', function(e) {
             e.preventDefault();
-            let jns_pengaduan = $(this).data('id')
+            let jns_pengaduan = $(this).attr("data-id").trim()
+            // console.log("0")
             $.ajax({
                 type: "GET",
                 url: `{{ url('master/jenisPengaduan') }}/`+jns_pengaduan,

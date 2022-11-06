@@ -157,7 +157,7 @@
                 "paging": true,
                 "lengthChange": false,
                 "oLanguage": {
-                    "sSearch": "NIP/NAMA : "
+                    "sSearch": "Search: "
                 },
                 "bInfo": false,
                 "ordering": true,
@@ -203,6 +203,42 @@
                 }
             })
         })
+
+        
+        $(document).on('click', '.hapus', function(e) {
+            e.preventDefault();
+            let recid = $(this).data('id')
+            let token = "{{ csrf_token() }}";
+            swal.fire({
+                title: "Apakah Anda Yakin ?",
+                icon: 'warning',
+                text: "Anda Tidak Akan Bisa Mengembalikan Data Ini",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Iya, Hapus!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: "DELETE",
+                        url: `{{ url('master/koreksipetugasKorektor') }}/` + recid,
+                        data: {
+                            _token: token
+                        },
+                        success: function(resp) {
+                            swal.fire(
+                                'Deleted!',
+                                'Your file has been deleted.',
+                                'success'
+                            )
+                            location.reload();
+                        }
+                    });
+                }
+            });
+        });
+
+      
 
 
         // $(document).on('click', '.hapus', function(e) {
