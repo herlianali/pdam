@@ -116,6 +116,7 @@
                                 </tbody>
                             </table>
                         </div>
+                        @include('master.gunaPersil.form')
                         @include('master.gunaPersil.filter')
                     </div>
                 </div>

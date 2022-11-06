@@ -66,7 +66,7 @@
                                     <label for="total_data" class="col-md-2 col-form-label">Total Data Kosong </label>
                                     <div class="col-md-4">
                                         <input type="text" class="form-control" name="tota_data" id="total_data"
-                                            onkeyup="valueing()" value="{{ $confirmed }}">
+                                            onkeyup="valueing()" value="{{ $count }}">
                                     </div>
                                 </div>
                                 <div class="form-group row mt-2 ">

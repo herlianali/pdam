@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Zona;
+use App\Models\Rekening;
 use App\Models\SurveyTarif;
 use Carbon\Carbon;
 
@@ -37,9 +38,13 @@ class SurveyTarifController extends Controller
     
     public function lebihentri()
     {
-        $total = SurveyTarif::count();
-        $entri  = SurveyTarif::getDataEntri();
-        return view('master.surveytarif.lebihentri', compact('entri','total'))->with('i');
+        // $total = SurveyTarif::count();
+        // $entri  = SurveyTarif::getDataEntri();
+        $periode = Rekening::where('periode', '122005')->count();
+        $kd_tarif = Rekening::where('kd_tarif', ['21', '31', '41', '42'])->count();
+        $total = $periode + $kd_tarif;
+        dd($total);
+        //return view('master.surveytarif.lebihentri', compact('entri','total'))->with('i');
 
     }
     
@@ -49,11 +54,12 @@ class SurveyTarifController extends Controller
     }
     public function datakosong()
     {
-        $count = SurveyTarif::count();
-        $confirmed = SurveyTarif::where('jalan', '0')->count();
+        $jalan = SurveyTarif::where('jalan', '0')->count();
+        $listrik = SurveyTarif::where('listrik', '0')->count();
+        $count = $jalan + $listrik;
         $data  = SurveyTarif::getDataKosong();
         $dataS  = Zona::all();
-        return view('master.surveytarif.datakosong', compact('data','count','dataS','confirmed'))->with('i');
+        return view('master.surveytarif.datakosong', compact('data','count','dataS'))->with('i');
     
     }
 

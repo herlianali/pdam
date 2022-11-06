@@ -64,7 +64,7 @@
                                                 <input type="text" class="form-control" id="lebarjalan" name="lebarjalan" onkeyup="valueing()" readonly value="">
                                             </div>
                                         </div>
-                                        <button type="button" class="btn btn-sm btn-danger" id="clear">Clear</button>
+                                    
                                 </div>
                             </div>
                             </form>

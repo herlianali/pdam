@@ -35,7 +35,7 @@ class GunaPersilController extends Controller
             'kd_tarif'          => $request->kd_tarif,
             'jns_persil'        => "a"
         ]);
-        
+
         return redirect()->route('gunaPersil');
     }
 
@@ -67,6 +67,18 @@ class GunaPersilController extends Controller
             'message' => 'Data Guna Persil Berhasil Dihapus',
         ]);
     }
+
+    public function printPreview(Request $request)
+    {
+        if($request->filter == "semua"){
+            $filter = GunaPersil::all();
+        }else{
+            $filter = GunaPersil::filter($request->start, $request->end);
+        }
+
+        return view('master.gunaPersil.print', compact('filter'));
+    }
+
     public function print()
     {
         // $kd_gunapersil = GunaPersil::select('kd_gunapersil', 'keterangan')->get();
