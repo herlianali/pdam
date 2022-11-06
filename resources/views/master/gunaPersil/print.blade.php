@@ -24,9 +24,6 @@
         <li class="breadcrumb-item active">Guna Persil</li>
         <li class="breadcrumb-item active">Print Guna Persil</li>
     </ol>
-    <br>
-    <br>
-    <a href="{{ route('printgunaPersil') }}" class="btn btn-sm btn-success float-right"><i class="fas fa-download"></i> Download</a>
 @endsection
 
 @section('content')
@@ -37,6 +34,10 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Print preview Guna Persil</h3>
+                            <button type="submit"
+                            class="btn btn-xs float-right btn-success print">
+                            Print
+                            </button>
                         </div>
                         <div class="card-body priview">
                             <p> Pemerintah Kota <br>
