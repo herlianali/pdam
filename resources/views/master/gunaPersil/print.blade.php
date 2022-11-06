@@ -26,15 +26,14 @@
     </ol>
     <br>
     <br>
-    <a href="" class="btn btn-sm btn-success float-right"><i class="fas fa-download"></i> Download</a>
+    <a href="{{ route('printgunaPersil') }}" class="btn btn-sm btn-success float-right"><i class="fas fa-download"></i> Download</a>
 @endsection
 
 @section('content')
     <section class="content">
         <div class="container-fluid">
-            {{-- <div class="row"> --}}
-
-                <div class="col-md-12 col-sm-12">
+            <div class="row">
+                <div class="col-md-8 col-sm-12">
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Print preview Guna Persil</h3>
@@ -48,18 +47,19 @@
                                 <span>Table Master Guna Pensil</span> <br>
                             </div>
                             <table class="table">
-                                <thead>
+                            <thead>
                                     <tr>
-                                        <td>Kode Guna Persil</td>
-                                        <td>Keterangan</td>
+                                        <th width="15%">Kode Guna Persil</th>
+                                        <th width="50%">Keterangan</th>
+                                        <th width="10%">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($filter as $data)
-                                    <tr>
-                                        <td>{{ $data->kd_gunapersil }}</td>
-                                        <td>{{ $data->keterangan }}</td>
-                                    </tr>
+                                    @foreach ($kd_gunapersil as $gunaPersil)
+                                        <tr>
+                                            <td>{{ $gunaPersil->kd_gunapersil }}</td>
+                                            <td>{{ $gunaPersil->keterangan }}</td>
+                                        </tr>
                                     @endforeach
                                 </tbody>
                             </table>

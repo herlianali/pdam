@@ -33,7 +33,7 @@
                 <div class="col-sm-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Print preview Tabel Wilayah Distribusi</h3>
+                            <h3 class="card-title">Preview Wilayah Distribusi</h3>
                             <a href="{{ route('printwilayahDistribusi') }}" class="btn btn-sm btn-success float-right"><iclass="fas fa-print"></i> Cetak</a>
                         </div>
                         <div class="card-body priview">

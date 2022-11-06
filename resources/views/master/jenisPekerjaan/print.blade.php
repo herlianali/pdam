@@ -36,7 +36,7 @@
                 <div class="col-sm-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Print preview Jenis Pekerjaan</h3>
+                            <h3 class="card-title">Preview Jenis Pekerjaan</h3>
                         </div>
                         <div class="card-body priview">
                             <p> Pemerintah Kota <br>
@@ -49,7 +49,6 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>No</th>
                                         <th>Jenis Pekerjaan</th>
                                         <th>Keterangan</th>
                                         <th>Jenis BON P</th>
@@ -58,9 +57,8 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($jnsPekerjaan as $jenis)
+                                    @foreach ($filter as $jenis)
                                     <tr>
-                                        <td>{{ ++$i }}</td>
                                             <td>{{ $jenis->jns_pekerjaan }}</td>
                                             <td>{{ $jenis->keterangan }}</td>
                                             <td>{{ $jenis->jenis_bonp }}</td>

@@ -43,11 +43,6 @@
                                             <button class="btn btn-info btn-mt-2" id="download" type="button" alt title="Download Format File Excel" href="{% static 'Data Item Master.csv' %}">
                                                 <i class="fas fa-file-excel"></i>
                                             </button>
-                                            <div class="form-group col-xs-12 col-lg-6">
-                                                <a class="btn btn-primary" href="{% storage 'app/upload.xls' %}" download>
-                                                    <i class="fas fa-file-excel"></i>
-                                                </a>
-                                            </div>
                                         </div>
                                     </form>
                                 </div>

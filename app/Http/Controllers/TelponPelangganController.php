@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\TelponPelanggan;
+use \Illuminate\Support\Facades\DB;
 
 class TelponPelangganController extends Controller
 {
     public function index()
     {
+        
         return view('master.telponPelanggan.index');
     }
 
@@ -17,7 +19,23 @@ class TelponPelangganController extends Controller
         $telpPelanggan = TelponPelanggan::select('nama', 'telp_1', 'alamat')
                                         ->where('no_plg', $no_plg)
                                         ->where('aktif', 1)
-                                        ->get()->first();
+                                        ->first();
         return response()->json($telpPelanggan);
     }
+
+    public function update(Request $request, $no_plg)
+    {
+       
+        TelponPelanggan::where(DB::raw("REPLACE(no_plg,' ','')"), $no_plg)->update([
+        // TelponPelanggan::where('no_plg', $no_plg)->update([
+            'no_plg'    => $request->no_plg,
+            'nama'      => $request->nama,
+            'alamat'    => $request->alamat,
+            'telp_1'    => $request->telp_1
+        ]);
+
+        return redirect()->route('telponPelanggan.index');
+    }
+
+
 }

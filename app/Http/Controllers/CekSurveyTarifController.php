@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\DilM;
+use App\Models\CekSurveyTarif;
 use Illuminate\Http\Request;
 
 class CekSurveyTarifController extends Controller
@@ -12,30 +12,11 @@ class CekSurveyTarifController extends Controller
         return view('master.cekSurveyTarif.index');
     }
 
-    public function search(Request $request)
+    public function show($nopel)
     {
-        $this->validate($request, [
-            'nopelanggan' => 'required|nopelanggan'
-        ]);
-
-        $request = DilM::where('nopelanggan', $request->nopelanggan)->first();
-        if ($request) {
-            return response()->json([
-                'status' => 'success',
-                'data' => $request
-            ], 200);
-        }
-        return response()->json([
-            'status' => 'failed',
-            'data' => []
-        ]);
-        return view('master.cekSurveyTarif.index');
+        $cekSurveyTarif = CekSurveyTarif::select('njop', 'listrik', 'lebarjalan')
+                                        ->where('nopel', $nopel)
+                                        ->first();
+        return response()->json($cekSurveyTarif);
     }
-
-    public function test()
-    {
-        $data = DilM::getDataKosong();
-        dd($data);
-    }
-
 }

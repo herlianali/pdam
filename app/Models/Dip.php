@@ -19,7 +19,7 @@ class Dip extends Model
                     ->where('jns_pegawai', '=', 'PD',  'AND', 'jns_pegawai', '=', 'PH')
                     ->where('status_pegawai', '=', 'P')
                     ->orderBy('nip')
-                    ->limit(1000)
+                    ->limit(900)
                     ->get();
     }
 

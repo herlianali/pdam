@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class CekSurveyTarif extends Model
 {
     use HasFactory;
+
+    public $timestamps = false;
+    protected $table = "pb_data";
+
+
 }

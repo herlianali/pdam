@@ -14,21 +14,12 @@ class MonitoringPelangganController extends Controller
         return view('master.monitoringPelanggan.index')->with('i');
     }
 
-    public function show($id)
+    public function show($no_plg)
     {
-        $mPelanggan = MonitoringPelanggan::find($id);
-        return response()->json($mPelanggan);
+        $monPelanggan = MonitoringPelanggan::where('no_plg', $no_plg)->first();
+        return response()->json($monPelanggan);
     }
-
-
-    public function destroy($id)
-    {
-        MonitoringPelanggan::findOrFail($id)->delete();
-        return response()->json([
-            'success' => true,
-            'message' => 'Data Monitoring Pelanggan Berhasil Dihapus',
-        ]);
-    }
+    
 
     public function filter(Request $request)
     {

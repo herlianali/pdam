@@ -117,18 +117,15 @@
                                         </div>
                                         &nbsp;
 
-                                    </form>
+                                 
                                     &nbsp;
                                     <br>
-
-                                    <form class="form-horizontal">
                                         <table id="table"
                                             class="table table-bordered table-responsive-md table-condensed"
                                             style="width: 100%">
                                             <thead>
 
                                                 <tr>
-                                                    <th>ID</th>
                                                     <th>No Pelanggan</th>
                                                     <th>Nama</th>
                                                     <th>Jalan</th>
@@ -141,20 +138,9 @@
                                             </thead>
                                             <tbody>
 
-                                                <tr>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                </tr>
-                                                {{-- @foreach ($monPelanggan as $mPelanggan)
+                                                @foreach ($filter as $mPelanggan)
                                                     <tr>
-                                                        <td>{{ ++$i }}</td>
+                                                        
                                                         <td>{{ $mPelanggan->no_pelanggan }}</td>
                                                         <td>{{ $mPelanggan->nama }}</td>
                                                         <td>{{ $mPelanggan->jalan }}</td>
@@ -164,18 +150,23 @@
                                                         <td>{{ $mPelanggan->KD_Tarif }}</td>
 
                                                         <td>
-                                                            <button type="button" class="btn btn-xs btn-info "
-                                                                data-toggle="modal" data-target="#detail"><i
-                                                                    class="fas fa-eye"></i> Info</button>
-                                                            <button type="button" class="btn btn-xs btn-danger "
-                                                                onclick="deletemonitoringPelanggan({{ $mPelanggan->id }})"><i
-                                                                    class="fas fa-trash-alt"></i> Hapus</button>
-                                                            <button type="button" class="btn btn-xs btn-success "
-                                                                data-toggle="modal" data-target="#edit"><i
-                                                                    class="fas fa-edit"></i> Edit</button>
+                                                            <button type="submit"
+                                                                    class="btn btn-xs btn-danger hapus"
+                                                                    data-id="{{ $mPelanggan->no_plg }}">
+                                                                    <i class="fas fa-trash-alt"></i>
+                                                                    Hapus
+                                                            </button>
+                                                            {{-- <button type="button"
+                                                                    class="btn btn-xs btn-success edit"
+                                                                    data-id="{{ $jenisPekerjaan->jns_pekerjaan }}"
+                                                                    data-toggle="modal"
+                                                                    data-target="#form">
+                                                                    <i class="fas fa-edit"></i>
+                                                                    Edit
+                                                            </button> --}}
                                                         </td>
                                                     </tr>
-                                                @endforeach --}}
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </form>
@@ -219,6 +210,43 @@
 
             });
         });
+
+        
+        $(document).on('click', '.hapus', function(e) {
+            e.preventDefault();
+             //console.log();
+            let no_plg = $(this).data('id');
+            let token = "{{ csrf_token() }}";
+            swal.fire({
+                title: "Apakah Anda Yakin ?",
+                icon: 'warning',
+                text: "Anda Tidak Akan Bisa Mengembalikan Data Ini",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Iya, Hapus!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: "DELETE",
+                        url: `{{ url('master/jenisPekerjaan') }}/`+no_plg,
+                        data: {
+                                _token: token
+                            },
+                            success: function(resp) {
+                                swal.fire(
+                                    'Deleted!',
+                                    'Your file has been deleted.',
+                                    'success'
+                                )
+                                location.reload();
+                            }
+                    });
+                }
+            });
+        });
+
+
 
         // Kalo pake API
         // function filter() {
@@ -264,48 +292,6 @@
         //     })
         // }
 
-        function deletemonitoringPelanggan(id) {
-            swal.fire({
-                title: "Hapus Data?",
-                icon: 'question',
-                text: "Apakah Anda Yakin Ingin Menghapus",
-                type: "warning",
-                showCancelButton: !0,
-                confirmButtonColor: "#e74c3c",
-                confirmButtonText: "Iya",
-                cancelButtonText: "Tidak",
-                reverseButtons: !0
-            }).then(function(e) {
-                if (e.value === true) {
-                    let token = "{{ csrf_token() }}"
-                    let _url = `/master/deletemonitoringPelanggan/${id}`
-                    console.log(_url)
-
-                    $.ajax({
-                        type: 'DELETE',
-                        url: _url,
-                        data: {
-                            _token: token
-                        },
-                        success: function(resp) {
-                            if (resp.success) {
-                                swal.fire("Selesai!", resp.message, "success");
-                                location.reload();
-                            } else {
-                                swal.fire("Gagal!", "Terjadi Kesalahan.", "error");
-                            }
-                        },
-                        error: function(resp) {
-                            swal.fire("Gagal!", "Terjadi Kesalahan.", "error")
-                        }
-                    })
-                    // } else {
-                    //     e.dismiss;
-                }
-            })
-            // }, function(dismiss) {
-            //     return false;
-            // });
-        }
+       
     </script>
 @endpush

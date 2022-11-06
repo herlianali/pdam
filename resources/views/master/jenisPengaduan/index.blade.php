@@ -24,7 +24,14 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Jenis Pengaduan</h3>
-                            <a href="{{ route('printPengaduan') }}" class="btn btn-sm btn-success float-right"><i class="fas fa-print"></i> Cetak</a>
+                            <button type="button"
+                            class="btn btn-xs btn-success filter float-right"
+                            data-toggle="modal"
+                            data-target="#filter">
+                            <i class="fas fa-print"></i>
+                            Print
+                    </button>
+                          
                         </div>
                         <div class="card-body">
                             <div class="row mb-4">
@@ -32,6 +39,7 @@
                                 <div class="col-md-12">
                                     <form class="form-horizontal" action="{{ route('jenisPengaduan.store') }}" method="POST">
                                         @csrf
+                                      
                                         <div class="form-group row ">
                                             <label for="kode" class="col-md-3 col-form-label">Kode</label>
                                             <div class="col-md-4">
@@ -70,6 +78,7 @@
                                         </div>
                                     </form>
                                     <br>
+                                   
                                     &nbsp;
                                     <table id="table" class="table table-bordered table-responsive-md table-condensed"
                                         style="width: 100%">
@@ -106,7 +115,7 @@
                                                             </button>
                                                             <button type="button"
                                                                     class="btn btn-xs btn-success edit"
-                                                                    data-id="@php trim($jenisPengaduan->jns_pengaduan) @endphp"
+                                                                    data-id="{{ $jenisPengaduan->jns_pengaduan}} "
                                                                     data-toggle="modal"
                                                                     data-target="#form">
                                                                     <i class="fas fa-edit"></i>
@@ -126,6 +135,7 @@
 
     {{-- Edit Form --}}
     @include('master.jenisPengaduan.edit')
+    @include('master.jenisPengaduan.filter')
 @endsection
 
 @push('js')
@@ -143,7 +153,7 @@
                 //   "autoWidth": false,
                 //   "responsive": true,
                 "oLanguage": {
-                    "sSearch": "Keterangan : "
+                    "sSearch": "Search : "
                 },
                 "pageLength": 5
             }).buttons().container().appendTo('#table_wrapper .col-md-6:eq(0)');
@@ -173,7 +183,8 @@
 
         $(document).on('click', '.edit', function(e) {
             e.preventDefault();
-            let jns_pengaduan = $(this).data('id')
+            let jns_pengaduan = $(this).attr("data-id").trim()
+            // console.log("0")
             $.ajax({
                 type: "GET",
                 url: `{{ url('master/jenisPengaduan') }}/`+jns_pengaduan,
@@ -199,7 +210,6 @@
 
         $(document).on('click', '.hapus', function(e) {
             e.preventDefault();
-             //console.log();
             let jns_pengaduan = $(this).data('id');
             let token = "{{ csrf_token() }}";
             swal.fire({

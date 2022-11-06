@@ -10,16 +10,47 @@ class SurveyTarif extends Model
 {
     use HasFactory;
 
-    public $table = "pb_data";
+    public $table = "SURVEY_TARIF";
 
-    public function showTarif()
+    public static function getDataKosong()
     {
-        return DB::table($this->table)
-                    ->select('REKENING.no_plg','REKENING.nama','REKENING.alamat','REKENING.noPA','PB_DATA.lebarjalan','REKENING.KD_TARIF'.'SURVEY_TARIF.listrik'.'SURVEY_TARIF.NJOP')
-                    ->join ('REKENING', 'REKENING.no_plg', '=', 'SURVEY_TARIF.no_plg')
-                    ->join ('PB_DATA', 'PB_DATA.listrik', '=', 'SURVEY_TARIF.listrik')
-                    ->first();
+        return DB::table("SURVEY_TARIF")
+                    ->select('DIL.zona','DIL.no_bundel','SURVEY_TARIF.no_plg','SURVEY_TARIF.listrik','SURVEY_TARIF.jalan')
+                    ->join ('DIL', 'DIL.no_plg', '=', 'SURVEY_TARIF.no_plg')
+                    ->where('SURVEY_TARIF.listrik','=','0')
+                    ->where('SURVEY_TARIF.jalan','=','0')
+                    ->orderBy('zona','asc')
+                    ->limit(900)
+                    ->get();
+                
+                
     }
+
+    public static function getDataEntri()
+    {
+        return DB::table("SURVEY_TARIF")
+                    ->select('SURVEY_TARIF.no_plg','REKENING.kd_tarif','REKENING.no_bundel','REKENING.zona')
+                    ->join ('REKENING', 'REKENING.no_plg', '=', 'SURVEY_TARIF.no_plg')
+                    ->where('REKENING.periode','=','122005')
+                    ->whereNotIn('REKENING.kd_tarif',['21','31','41','42'])
+                    // ->orderBy('zona','asc')
+                    // ->orderBy('no_bundel','asc')
+                    ->limit(500)
+                    ->get();
+                    
+    }
+
+    public static function getData($periode, $no_bundel, $zona, $jns_pelanggan)
+    {
+        return DB::table("SURVEY_TARIF")
+                    ->where('periode', 'LIKE', $periode)
+                    ->where('no_bundel', 'LIKE', $no_bundel)
+                    ->where('zona', 'LIKE', $zona)
+                    ->where('jns_pelanggan', 'LIKE', $jns_pelanggan)
+                    ->join ('REKENING', 'REKENING.no_plg', '=', 'SURVEY_TARIF.no_plg')
+                    // ->join ('PB_DATA', 'PB_DATA.listrik', '=', 'SURVEY_TARIF.listrik')
+                    ->first();
+                }
 
     public function getByNopel($nopel)
     {

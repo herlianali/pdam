@@ -23,17 +23,26 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Petugas Kontrol</h3>
-                            <a href="{{ route('printpetugasKontrol') }}" class="btn btn-xs btn-success float-right"><i class="fas fa-print"></i> Cetak</a>
+                            <button type="button"
+                            class="btn btn-xs btn-success filter float-right"
+                            data-toggle="modal"
+                            data-target="#filter">
+                            <i class="fas fa-print"></i>
+                            Print
+                    </button>
+                            {{-- <a href="{{ route('printpetugasKontrol') }}" class="btn btn-xs btn-success float-right"><i
+                                    class="fas fa-print"></i> Cetak</a> --}}
                         </div>
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-9">
-                                    <form class="form-horizontal" action="{{ route('petugasKontrol.store') }}" method="POST">
+                                    <form class="form-horizontal" action="{{ route('petugasKontrol.store') }}"method="POST">
                                         @csrf
                                         <div class="form-group row">
                                             <label for="kd_ptgktrl" class="col-md-2 col-form-label">Kode Petugas</label>
                                             <div class="col-md-6">
-                                                <input type="text" class="form-control" id="kd_ptgktrl_i" name="kd_ptgktrl" onkeyup="valueing()">
+                                                <input type="text" class="form-control" id="kd_ptgktrl" name="kd_ptgktrl"
+                                                    onkeyup="valueing()">
                                             </div>
                                             <div class="col-md-3">
                                                 <input type="checkbox" name="is_satgas">
@@ -54,7 +63,8 @@
                                         <div class="form-group row">
                                             <label for="nama" class="col-md-2 col-form-label">Nama Pegawai</label>
                                             <div class="col-md-8">
-                                                <input type="text" class="form-control" id="nama_i" name="nama" onkeyup="valueing()">
+                                                <input type="text" class="form-control" id="nama" name="nama"
+                                                    onkeyup="valueing()">
                                             </div>
                                         </div>
                                         <div class="form-group row mt-2 ">
@@ -70,11 +80,11 @@
                                 </div>
 
                             </div>
-                            <table id="table" class="table table-bordered table-responsive-md table-condensed"
+                            <table id="example2" class="table table-bordered table-responsive-md table-condensed"
                                 style="width: 100%">
                                 <thead>
                                     <tr>
-                                        <th>No</th>
+
                                         <th>Kode Petugas</th>
                                         <th>NIP</th>
                                         <th>Nama</th>
@@ -85,30 +95,34 @@
                                 <tbody>
                                     @foreach ($petugas as $ptKontrol)
                                         <tr>
-                                            <td>{{ ++$i }}</td>
+
                                             <td>{{ $ptKontrol->kd_ptgktrl }}</td>
                                             <td>{{ $ptKontrol->nip }}</td>
                                             <td>{{ $ptKontrol->nama }}</td>
                                             <td>
                                                 @if ($ptKontrol->is_satgas == 1)
-                                                    <span class="badge badge-success"><i
-                                                        class="fas fa-check-circle"></i> Ya</span>
+                                                    <span class="badge badge-success"><i class="fas fa-check-circle"></i>
+                                                        Ya</span>
                                                 @else
-                                                    <span class="badge badge-danger"><i
-                                                            class="fas fa-times-circle"></i> Tidak</span>
+                                                    <span class="badge badge-danger"><i class="fas fa-times-circle"></i>
+                                                        Tidak</span>
                                                 @endif
                                             </td>
                                             <td>
-                                                <button type="submit" class="btn btn-xs btn-danger "
-                                                    onclick="deletePetugasKontrol({{ $ptKontrol->kd_ptgktrl }})"><i
-                                                        class="fas fa-trash-alt"></i> Hapus</button>
-                                                <button type="button"
-                                                        class="btn btn-xs btn-success edit"
-                                                        data-id="{{ $ptKontrol->kd_ptgktrl }}"
-                                                        data-toggle="modal"
-                                                        data-target="#edit">
-                                                        <i class="fas fa-edit"></i>
-                                                        Edit
+                                                <button type="submit" 
+                                                class="btn btn-danger btn-xs hapus"
+                                                data-id="{{ $ptKontrol->kd_ptgktrl }}">
+                                                <i class="fas fa-trash-alt"></i>
+                                                Hapus
+                                                </button>
+
+                                                <button type="button" 
+                                                class="btn btn-success btn-xs edit"
+                                                data-id="{{ $ptKontrol->kd_ptgktrl }}" 
+                                                data-toggle="modal"
+                                                data-target="#edit">
+                                                <i class="fas fa-edit"></i>
+                                                Edit
                                                 </button>
                                             </td>
                                         </tr>
@@ -124,6 +138,7 @@
 
     @include('master.petugasKontrol.edit')
     @include('master.petugasKontrol.petugas')
+    @include('master.petugasKontrol.filter')
 @endsection
 
 @push('js')
@@ -135,72 +150,175 @@
     <script src="{{ asset('assets/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
     <script>
         $(function() {
-            $('#table').DataTable({
-
-                //  "lengthChange": false,
-                //   "autoWidth": false,
-                //   "responsive": true,
-                "oLanguage": {
-                    "sSearch": "Kode Petugas/ NIP : "
-                },
-                "pageLength": 5
-            }).buttons().container().appendTo('#table_wrapper .col-md-6:eq(0)');
-            $('#table1').DataTable({
+            $('#example1').DataTable({
                 "paging": true,
                 "lengthChange": false,
-                "searching": false,
+                "oLanguage": {
+                    "sSearch": "NIP/NAMA : "
+                },
+                "bInfo": false,
+                "ordering": true,
+                "autoWidth": false,
+                "responsive": true,
+                "pageLength": 5
+            })
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": true,
                 "ordering": true,
                 "info": true,
                 "autoWidth": false,
                 "responsive": true,
                 "pageLength": 5
-
             });
         });
 
-        function deletePetugasKontrol(id) {
-            console.log(id)
-            swal.fire({
-                title: "Hapus Data?",
-                icon: 'question',
-                text: "Apakah Anda Yakin Ingin Menghapus",
-                type: "warning",
-                showCancelButton: !0,
-                confirmButtonColor: "#e74c3c",
-                confirmButtonText: "Iya",
-                cancelButtonText: "Tidak",
-                reverseButtons: !0
-            }).then(function(e) {
-                if (e.value === true) {
-                    let token = "{{ csrf_token() }}"
-                    let _url = `/master/deletePetugasKontrol/${id}`
-                    console.log(_url)
 
+        var showLoading = function() {
+            swal.fire({
+                title: "Mohon Tunggu !",
+                html: "Sedang Memproses...",
+                allowOutsideClick: false,
+                showConfirmButton: false,
+                willOpen: () => {
+                    swal.showLoading()
+                },
+            })
+        }
+
+        $(document).on('click', '.edit', function(e) {
+            e.preventDefault();
+            let kd_ptgktrl = $(this).data('id')
+            $.ajax({
+                type: "GET",
+                url: `{{ url('master/petugasKontrol') }}/`+kd_ptgktrl,
+                data: {
+                    id: kd_ptgktrl,
+                    _token: '{{ csrf_token() }}'
+                },
+                beforeSend: function() {
+                    showLoading()
+                },
+                success: function(response) {
+                    console.log(response)
+                    $('#form-edit').attr('action', "{{ url('master/petugasKontrol') }}/"+kd_ptgktrl)
+                    $('#kd_ptgktrl1').val(response.kd_ptgktrl)
+                    $('#nip1').val(response.nip)
+                    $('#nama1').val(response.nama)
+                    if(response.is_satgas == 1){
+                        $('#is_satgas').attr('checked', 'checked')
+                    }else{
+                        $('#is_satgas').removeAttr('checked', ' ')
+                    }
+                    swal.close();
+                }
+            })
+        })
+
+
+        $(document).on('click', '#pilih', function(e) {
+            e.preventDefault();
+            let nip = $(this).data('id');
+            $.ajax({
+                type: "GET",
+                url: `{{ url('api/dip') }}/` + nip,
+                data: {
+                    id: nip,
+                    _token: '{{ csrf_token() }}'
+                },
+                beforeSend: function() {
+                    showLoading()
+                },
+                success: function(res) {
+                    $('#nip').val(res.nip)
+                    $('#nama').val(res.nama)
+                    $("#pegawai").modal('hide');
+                    swal.close();
+                }
+            })
+        })
+
+        $(document).on('click', '.hapus', function(e) {
+            e.preventDefault();
+            //  console.log('respon');
+            let kd_ptgktrl = $(this).data('id').trim().replace(/\s/g, '');
+            let token = "{{ csrf_token() }}";
+            swal.fire({
+                title: "Apakah Anda Yakin ?",
+                icon: 'warning',
+                text: "Anda Tidak Akan Bisa Mengembalikan Data Ini",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Iya, Hapus!"
+            }).then((result) => {
+                if (result.isConfirmed) {
                     $.ajax({
-                        type: 'DELETE',
-                        url: _url,
+                        type: "DELETE",
+                        url: `{{ url('master/petugasKontrol') }}/` + kd_ptgktrl,
                         data: {
                             _token: token
                         },
                         success: function(resp) {
-                            if (resp.success) {
-                                swal.fire("Selesai!", resp.message, "success");
-                                location.reload();
-                            } else {
-                                swal.fire("Gagal!", "Terjadi Anjayy.", "error");
-                            }
-                        },
-                        error: function(resp) {
-                            swal.fire("Gagal!", "Terjadi Kesalahan.", "error")
+                            swal.fire(
+                                'Deleted!',
+                                'Your file has been deleted.',
+                                'success'
+                            )
+                            location.reload();
                         }
-                    })
-                } else {
-                    e.dismiss;
+                    });
                 }
-            }, function(dismiss) {
-                return false;
             });
-        }
+        });
+
+      
+
+
+        // function deletePetugasKontrol(id) {
+        //     console.log(id)
+        //     swal.fire({
+        //         title: "Hapus Data?",
+        //         icon: 'question',
+        //         text: "Apakah Anda Yakin Ingin Menghapus",
+        //         type: "warning",
+        //         showCancelButton: !0,
+        //         confirmButtonColor: "#e74c3c",
+        //         confirmButtonText: "Iya",
+        //         cancelButtonText: "Tidak",
+        //         reverseButtons: !0
+        //     }).then(function(e) {
+        //         if (e.value === true) {
+        //             let token = "{{ csrf_token() }}"
+        //             let _url = `/master/deletePetugasKontrol/${id}`
+        //             console.log(_url)
+
+        //             $.ajax({
+        //                 type: 'DELETE',
+        //                 url: _url,
+        //                 data: {
+        //                     _token: token
+        //                 },
+        //                 success: function(resp) {
+        //                     if (resp.success) {
+        //                         swal.fire("Selesai!", resp.message, "success");
+        //                         location.reload();
+        //                     } else {
+        //                         swal.fire("Gagal!", "Terjadi Anjayy.", "error");
+        //                     }
+        //                 },
+        //                 error: function(resp) {
+        //                     swal.fire("Gagal!", "Terjadi Kesalahan.", "error")
+        //                 }
+        //             })
+        //         } else {
+        //             e.dismiss;
+        //         }
+        //     }, function(dismiss) {
+        //         return false;
+        //     });
+        // }
 
         function valueing() {
             if (document.getElementById('kdptg').value === "" || document.getElementById('nip').value === "" || document

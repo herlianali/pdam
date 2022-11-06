@@ -32,38 +32,40 @@
                                 <div class="col-md-1"></div>
                                 <div class="col-md-12">
                                     <form class="form-horizontal">
+                                        @csrf
                                         <div class="form-group row mt-2">
                                             <label for="blnrek" class="col-md-3 col-form-label">Bulan Rekening </label>
                                             <div class="col-md-3">
-                                                <input type="text" class="form-control" id="blnrekening" name="blnrekening" value="{{ $date }}">
+                                                <input type="text" class="form-control" id="periode" name="periode" value="{{ $date }}">
                                             </div>
                                         </div>
                                         <div class="form-group row ">
                                             <label for="subzona" class="col-md-3 col-form-label">Sub Zona</label>
                                             <div class="col-md-3">
-                                                <input type="text" class="form-control" id="subzona" name="subzona" onkeyup="valueing()">
+                                                <input type="text" class="form-control" id="zona" name="zona" onkeyup="valueing()">
                                             </div>
                                         </div>
                                         <div class="form-group row ">
                                             <label for="jenispelanggan" class="col-md-3 col-form-label">JenisPelanggan</label>
                                             <div class="col-md-3">
-                                                <input type="text" class="form-control" id="jenispelanggan" name="jenispelanggan" onkeyup="valueing()">
+                                                <input type="text" class="form-control" id="jns_pelanggan" name="jns_pelanggan" onkeyup="valueing()">
                                             </div>
                                         </div>
                                         <div class="form-group row ">
                                             <label for="nobundel" class="col-md-3 col-form-label">No Bundel</label>
                                             <div class="col-md-3">
-                                                <input type="text" class="form-control" id="nobundel" name="nobundel" onkeyup="valueing()">
+                                                <input type="text" class="form-control" id="no_bundel" name="no_bundel" onkeyup="valueing()">
                                             </div>
-                                            <button class="btn btn-info  btn-mt-2" type="button" data-toggle="modal"
-                                                data-target=""><i class="fa fa-search"></i></button>
+                                            <button class="btn btn-info btn-mt-2" id="cari" type="button">
+                                                <i class="fa fa-search"></i>
+                                            </button>
                                         </div>
                                         <br>
                                         <br>
                                         <div class="form-group row mt-2">
                                             <label for="nopelanggan" class="col-md-3 col-form-label">No Pelanggan</label>
                                             <div class="col-md-3">
-                                                <input type="text" class="form-control" id="nopelanggan" name="nopelanggan" onkeyup="valueing()" disabled>
+                                                <input type="text" class="form-control" id="no_plg" name="no_plg" onkeyup="valueing()" disabled>
                                             </div>
                                         </div>
                                         <div class="form-group row ">
@@ -81,20 +83,20 @@
                                         <div class="form-group row ">
                                             <label for="nomor" class="col-md-3 col-form-label">Nomor PA</label>
                                             <div class="col-md-3">
-                                                <input type="text" class="form-control" id="noPA" name="noPA"onkeyup="valueing()" disabled>
+                                                <input type="text" class="form-control" id="no_pa" name="no_pa" onkeyup="valueing()" disabled>
                                             </div>
                                         </div>
 
                                         <div class="form-group row mt-2">
                                             <label for="lebarjln" class="col-md-3 col-form-label">Lebar Jalan</label>
                                             <div class="col-md-2">
-                                                <input type="text" class="form-control" id="lebarjln" name="lebarjln"
+                                                <input type="text" class="form-control" id="jalan" name="jalan"
                                                     onkeyup="valueing()">
                                             </div>
                                             <label for="M" class="col-md-1 col-form-label">M</label>
 
                                             <div class="col-md-2">
-                                                <input type="text" class="form-control" id="tariflama" name="tariflama"
+                                                <input type="text" class="form-control" id="kd_tarif" name="kd_tarif"
                                                     onkeyup="valueing()" disabled>
                                             </div>
                                             <label for="tariflama" class="col-md-1 col-form-label">Tarif Lama</label>
@@ -102,7 +104,7 @@
                                         <div class="form-group row mt-2 ">
                                             <label for="listrik" class="col-md-3 col-form-label">Listrik</label>
                                             <div class="col-md-2">
-                                                <input type="text" class="form-control" id="listrik" name="listrik"
+                                                <input type="text" class="form-control" id="amper" name="amper"
                                                     onkeyup="valueing()">
                                             </div>
                                             <label for="amp" class="col-md-1 col-form-label">Amp</label>
@@ -160,25 +162,31 @@
 
         $(document).on('click', '#cari', function(e) {
             e.preventDefault();
-            let thbl = $('#thbl').val();
+            let periode = $('#periode').val();
             let zona = $('#zona').val();
             let jns_pelanggan = $('#jns_pelanggan').val();
             let no_bundel = $('#no_bundel').val();
             $.ajax({
-                type: "GET",
-                url: `{{ url('master/surveyTarif') }}/` + no_bonc,
+                type: "POST",
+                dataType: "JSON",
+                url: `{{ url('master/surveyTarif') }}/`,
                 data: {
-                    id: no_bonc,
-                    _token: '{{ csrf_token() }}'
+                    '_token': '{{ csrf_token() }}',
+                    '_method': "POST",
+                    'periode': periode,
+                    'zona': zona,
+                    'jns_pelanggan': jns_pelanggan,
+                    'no_bundel': no_bundel,
                 },
                 success: function(response) {
+                    console.log(response)
                     if (amper>20) {
                         var listrik=5000
                     } else if (amper==2) {
                         var listrik=450
                     }else if (amper==4) {
                         var listrik=900
-                    }else if (ampper==6) {
+                    }else if (amper==6) {
                         var listrik=1300
                     }else if (amper==10) {
                         var listrik=2200
@@ -192,7 +200,7 @@
                     $('#no_plg').val(response.no_plg)
                     $('#nama').val(response.nama)
                     $('#alamat').val(response.alamat)
-                    $('#noPA').val(response.noPA)
+                    $('#no_pa').val(response.no_pa)
                     $('#jalan').val(response.jalan)
                     $('#listrik').val(response.listrik)
                     $('#njop').val(response.njop)

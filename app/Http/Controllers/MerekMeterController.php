@@ -50,9 +50,13 @@ class MerekMeterController extends Controller
             'message' => 'Data MerekMeter Berhasil Dihapus',
         ]);
     }
+    
     public function print()
     {
-        return view('master.merekMeter.print');
+      
+        $merkMeter = MerekMeter::all();
+        return view('master.merekMeter.print', compact('merkMeter'))->with('i');
     }
+
 
 }

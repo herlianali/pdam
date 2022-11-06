@@ -150,6 +150,8 @@
                                 </tbody>
                             </table>
                         </div>
+                        
+                        @include('master.jenisPekerjaan.edit')
                         @include('master.jenisPekerjaan.filter')
                     </div>
                 </div>

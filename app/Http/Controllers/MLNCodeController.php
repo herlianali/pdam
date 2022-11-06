@@ -21,10 +21,9 @@ class MLNCodeController extends Controller
 
     public function store(Request $request)
     {
-
         $mlncode = new MLNCode;
         $data = [
-            'kode'       => $request->kode,
+            'kode'       => $request->code.$request->kode,
             'keterangan' => $request->keterangan
         ];
 
