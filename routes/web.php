@@ -103,7 +103,7 @@ Route::prefix('master')->group(function () {
     Route::resource('gunaPersil', GunaPersilController::class)->parameters(['gunaPersil' => 'kd_gunapersil'])->except(['create','edit']);
     Route::get('/gunaPersil', [GunaPersilController::class, 'index'])->name('gunaPersil');
     Route::delete('/deletegunaPersil/{id}', [GunaPersilController::class, 'destroy']);
-    Route::get('/printgunaPersil',[GunaPersilController::class,'print'])->name('printgunaPersil');
+    Route::post('/printgunaPersil',[GunaPersilController::class,'printPreview'])->name('printgunaPersil');
 
     Route::resource('retribusi', RetribusiController::class)->parameters(['retribusi' => 'kd_retribusi'])->except(['create', 'edit']);
     Route::get('/printretribusi', [RetribusiController::class, 'print'])->name('printretribusi');

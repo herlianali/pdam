@@ -27,4 +27,9 @@ class DilM extends Model
         DB::table("DIL")->select('no_plg')->where(DB::raw("TRIM(jalan)"), 'LIKE', $jalan)->orderByDesc('no_plg')->first()->{'no_plg'};
 
     }
+
+    public static function getDataKosong()
+    {
+        return DB::table('DIL');
+    }
 }

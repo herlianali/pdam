@@ -7,10 +7,10 @@
             </div>
         </div>
         <div class="card-body">
-            {{-- @if ($table === null) --}}
-                {{-- <h3 class="text-center">Tidak Ada Data Yang Bisa Ditampilkan Silahkan Melakukan Pencarian</h3> --}}
-            {{-- @else --}}
-                <table id="table" class="table table-bordered table-responsive-md table-condensed">
+            {{-- @if ($table === null)
+                <h3 class="text-center">Tidak Ada Data Yang Bisa Ditampilkan Silahkan Melakukan Pencarian</h3>
+            @else --}}
+                <table class="table table-bordered table-responsive">
                     <thead>
                         <tr>
                             <th>No Pengaduan</th>
@@ -43,10 +43,36 @@
                         </tr>
                     </thead>
                     <tbody>
-
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
                     </tbody>
-                    {{-- <tbody id="tableData">
-                    </tbody> --}}
                 </table>
             {{-- @endif --}}
         </div>

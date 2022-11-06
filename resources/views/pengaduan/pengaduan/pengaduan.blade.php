@@ -197,7 +197,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" name="status_bon_c" id="status_bon_c_f" disabled>
+                                    <input type="checkbox" class="form-check-input" name="status_bon_c" id="status_bon_c_f" onclick="return false;">
                                     <label class="form-check-label form-check-sm"> Buat Bon C </label>
                                 </div>
                                 <div class="form-group row">
@@ -218,7 +218,7 @@
                                     </div>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" name="status_bon_c" id="">
+                                    <input type="checkbox" class="form-check-input" name="status_bon_c" id="" onclick="return false;">
                                     <label class="form-check-label form-check-sm"> Buat Bon C </label>
                                 </div>
                                 <div class="form-group row">
@@ -280,16 +280,6 @@
             $('#u_noBonC_f').prop('readonly', true)
         })
 
-        $('table.table').DataTable({
-            "sScrollY":  ( 0.6 * $(window).height() ),
-            "bPaginate": false,
-            "bJQueryUI": true,
-            "bScrollCollapse": true,
-            "bAutoWidth": true,
-            "sScrollX": "100%",
-            "sScrollXInner": "100%"
-        });
-
         var showLoading = function() {
             swal.fire({
                 title: "Mohon Tunggu !",
@@ -302,7 +292,12 @@
             })
         }
 
-        // // function
+        var cariPlg = $('#f-pelanggan').submit(function(e){
+                e.preventDefault()
+                let params = $('#no_pelanggan').val();
+                console.log("Test Button");
+            })
+
         $('#no_pelanggan_c').on('click', function() {
             if($(this).is(":checked")) {
                 $('#no_pelanggan').prop("disabled", false)
@@ -317,11 +312,7 @@
                 $('#gang').prop("disabled", true)
                 $('#no').prop("disabled", true)
                 $('#no_tambahan').prop("disabled", true)
-                $('#f-pelanggan').submit(function(e){
-                    e.preventDefault()
-                    let params = $('#no_pelanggan').val();
-
-                })
+                cariPlg;
             }else{
                 $('#no_pelanggan').prop("disabled", true)
             }
