@@ -116,6 +116,7 @@
                                 </tbody>
                             </table>
                         </div>
+                        @include('master.gunaPersil.form')
                         @include('master.gunaPersil.filter')
                     </div>
                 </div>
@@ -137,7 +138,7 @@
                 //   "autoWidth": false,
                 //   "responsive": true,
                 "oLanguage": {
-                    "sSearch": "Kode/Keterangan : "
+                    "sSearch": "Search : "
                 },
                 "pageLength": 5
             }).buttons().container().appendTo('#table_wrapper .col-md-6:eq(0)');

@@ -96,6 +96,7 @@
                                 </tbody>
                             </table>
                         </div>
+                        @include('master.statusMeter.form')
                     </div>
                 </div>
     </section>

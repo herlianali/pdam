@@ -22,16 +22,12 @@
                             value="">
                     </div>
                     <div class="form-group">
-                        <label for="tgl_entri">Tanggal Entri</label>
-                        <input type="datetime" class="form-control" id="tgl_entry" name="tgl_entri" readonly
-                            value="">
+                        <label for="tgl_entry">Tanggal Entri</label>
+                        <input type="text" class="form-control" id="tgl_entry" name="tgl_entry" readonly>
                     </div>
                     <div class="form-group">
-                        <label for="status">Aktif</label>
-                        <select class="form-control" id="aktif" name="aktif" onkeyup="valueing()">
-                            <option value="0"> 0 </option>
-                            <option value="1"> 1 </option>
-                        </select>
+                        <label class="col-form-label" for="aktif">Aktif</label>
+                        <input type="checkbox" name="aktif" id="aktif">
                     </div>
 
                     <button class="btn btn-success btn-sm" type="submit"><i class="far fa-save"></i> Simpan</button>

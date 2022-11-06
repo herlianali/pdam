@@ -29,11 +29,12 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-9">
-                                    <form class="form-horizontal">
+                                    <form class="form-horizontal" action="{{ route('pelangganMeterC.store') }}" method="post">
+                                        @csrf
                                         <div class="form-group row ">
                                             <label for="no_pelanggan" class="col-md-3 col-form-label">Nomor Pelanggan</label>
                                             <div class="col-md-5">
-                                                <input type="text" class="form-control" id="no_plg" name="no_plg">
+                                                <input type="text" class="form-control" name="no_plg">
                                             </div>
                                             <button class="btn btn-success btn-sm" type="submit"><i
                                                     class="far fa-save"></i> Simpan</button>
@@ -73,9 +74,15 @@
                                                 data-id="{{ $pelangganMtrC->no_plg }}">
                                                 <i class="fas fa-trash-alt"></i>
                                                 Hapus
-                                        </button>
-                                        
-                                       
+                                                </button>
+                                                <button type="button"
+                                                        class="btn btn-xs btn-success edit"
+                                                        data-id="{{ $pelangganMtrC->no_plg }}"
+                                                        data-toggle="modal"
+                                                        data-target="#edit">
+                                                        <i class="fas fa-edit"></i>
+                                                        Edit
+                                                </button>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -83,6 +90,7 @@
                                 </tbody>
                             </table>
                         </div>
+                        @include('master.pelangganMeterC.edit')
                     </div>
                 </div>
     </section>
@@ -163,7 +171,6 @@
                             },
                           
                             success: function(resp) {
-                                //  console.log('respon');
                                 swal.fire(
                                     'Deleted!',
                                     'Your file has been deleted.',
@@ -176,50 +183,33 @@
             });
         });
 
-      
-
-        // function deletePelangganMeterC(id) {
-        //     swal.fire({
-        //         title: "Hapus Data?",
-        //         icon: 'question',
-        //         text: "Apakah Anda Yakin Ingin Menghapus",
-        //         type: "warning",
-        //         showCancelButton: !0,
-        //         confirmButtonColor: "#e74c3c",
-        //         confirmButtonText: "Iya",
-        //         cancelButtonText: "Tidak",
-        //         reverseButtons: !0
-        //     }).then(function(e) {
-        //         if (e.value === true) {
-        //             let token = "{{ csrf_token() }}"
-        //             let _url = `/pelangganMeterC/${id}`
-        //             console.log(_url)
-
-        //             $.ajax({
-        //                 type: 'DELETE',
-        //                 url: _url,
-        //                 data: {
-        //                     _token: token
-        //                 },
-        //                 success: function(resp) {
-        //                     if (resp.success) {
-        //                         swal.fire("Selesai!", resp.message, "Berhasil");
-        //                         location.reload();
-        //                     } else {
-        //                         swal.fire("Gagal!", "Terjadi Kesalahan.", "error");
-        //                     }
-        //                 },
-        //                 error: function(resp) {
-        //                     swal.fire("Gagal!", "Terjadi Kesalahan.", "error")
-        //                 }
-        //             })
-        //         } else {
-        //             e.dismiss;
-        //         }
-        //     }, function(dismiss) {
-        //         return false;
-        //     });
-        // }
-
+        $(document).on('click', '.edit', function(e) {
+            e.preventDefault();
+            let no_plg = $(this).data('id')
+            $.ajax({
+                type: "GET",
+                url: `{{ url('master/pelangganMeterC') }}/`+no_plg,
+                data: {
+                    id: no_plg,
+                    _token: '{{ csrf_token() }}'
+                },
+                beforeSend: function() {
+                    showLoading()
+                },
+                success: function(response) {
+                    $('#form-edit').attr('action', "{{ url('master/pelangganMeterC') }}/"+no_plg)
+                    $('#no_plg').val(response.no_plg.trim()).change()
+                    $('#ptgentri').val(response.ptgentri)
+                    $('#tgl_entry').val(response.tgl_entry)
+                    if(response.aktif == 1){
+                        $('#aktif').attr('checked', 'checked')
+                    }else{
+                        $('#aktif').removeAttr('checked', ' ')
+                    }
+                    // $('#aktif').val(response.aktif)
+                    swal.close();
+                }
+            })
+        })
     </script>
 @endpush

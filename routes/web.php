@@ -170,8 +170,8 @@ Route::prefix('master')->group(function () {
     Route::resource('/mlnCode', MLNCodeController::class)->parameters(['mlnCode' => 'kode'])->except(['create', 'edit']);
 
     
-    // Route::resource('/pelangganMeterC', PelangganMeterCController::class)->parameters(['pelangganMeterC' => 'no_plg'])->except(['create', 'edit']);
-    Route::get('/pelangganMeterC', [ PelangganMeterCController::class, 'index'])->name('pelangganMeterC');
+    Route::resource('/pelangganMeterC', PelangganMeterCController::class)->parameters(['pelangganMeterC' => 'no_plg'])->except(['create', 'edit']);
+    //Route::get('/pelangganMeterC', [ PelangganMeterCController::class, 'index'])->name('pelangganMeterC');
 
 
     // Route::get('cetakBAPerorangan', [CetakBAPeroranganController::class, 'index'])->name('cetakBAPerorangan');

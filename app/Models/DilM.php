@@ -27,4 +27,13 @@ class DilM extends Model
         DB::table("DIL")->select('no_plg')->where(DB::raw("TRIM(jalan)"), 'LIKE', $jalan)->orderByDesc('no_plg')->first()->{'no_plg'};
 
     }
+
+    public static function getDataKosong()
+    {
+        return DB::table("DIL")
+                    ->select('DIL.zona', 'DIL.no_bundel', 'DIL.no_plg', 'b.listrik', 'b.jalan')
+                    ->join("(SELECT 'no_plg', 'listrik', 'jalan' FROM 'SURVEY_TARIF' WHERE trim(listrik) = '0' OR trim(jalan) = '0') as b", 'DIL.no_plg', '=', 'b.no_plg')
+                    ->orderBy('DIL.zona', 'asc')
+                    ->first();
+    }
 }

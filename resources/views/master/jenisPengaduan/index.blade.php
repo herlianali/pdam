@@ -209,7 +209,6 @@
 
         $(document).on('click', '.hapus', function(e) {
             e.preventDefault();
-             //console.log();
             let jns_pengaduan = $(this).data('id');
             let token = "{{ csrf_token() }}";
             swal.fire({
