@@ -22,6 +22,8 @@
                             <div class="row mb-4">
                                 <div class="col-md-1"></div>
                                 <div class="col-md-12">
+                                <form class="form-horizontal" action="{{ route('telponPelanggan.index') }}" method="POST">
+                                @csrf
                                     <div class="form-group row mt-2">
                                         <label for="nomor" class="col-md-2 col-form-label">No Pelanggan</label>
                                         <div class="col-md-4">
@@ -33,16 +35,15 @@
                                         </button>
                                         &nbsp;
 
-                                        <button class="btn btn-danger btn-mt-2" id="clear">
-                                            <i class="fa fa-trash"></i>
-                                            Bersihkan
+                                        <button type="reset" class="btn btn-danger btn-mt-2">
+                                            <i class="fa fa-undo"></i>
+                                            Reset
                                         </button>
                                     </div>
 
                                 </div>
                             </div>
-                            <form class="form-horizontal" action="{{ route('telponPelanggan.index') }}" method="POST">
-                                @csrf
+                            
                                 <div class="form-group row ">
                                     <label for="nama" class="col-md-2 col-form-label">Nama</label>
                                     <div class="col-md-4">
@@ -167,10 +168,5 @@
                 }
             })
         })
-
-        function clear() {
-            document.getElementById('no_plg').value = ''
-        }
-        document.getElementById("clear").addEventListener("click", clear);
     </script>
 @endpush

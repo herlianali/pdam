@@ -39,9 +39,9 @@
                                             <button class="btn btn-success btn-sm" type="submit"><i
                                                     class="far fa-save"></i> Simpan</button>
                                             &nbsp;
-                                            <button class="btn btn-danger btn-mt-2" id="clear">
-                                                <i class="fa fa-trash"></i>
-                                                Bersihkan
+                                            <button type="reset" class="btn btn-danger btn-mt-2">
+                                                <i class="fa fa-undo"></i>
+                                                Reset
                                             </button>
                                         </div>
                                     </form>
@@ -141,11 +141,6 @@
                 },
             })
         }
-        
-        function clear() {
-            document.getElementById('no_plg').value = ''
-        }
-        document.getElementById("clear").addEventListener("click", clear);
  
 
         $(document).on('click', '.hapus', function(e) {

@@ -75,9 +75,7 @@
                             <div class="row mb-3">
 
                                 <div class="col-md-12">
-                                    <form class="form-horizontal" method="POST"
-                                        action="/master/monitoringPelanggan/filter">
-                                        @csrf
+                                    <form class="form-horizontal" id="fFilter">
                                         <div class="form-group row ">
                                             <div class="col-md-1"></div>
                                             &nbsp; <input type="checkbox" id="cekNama" value="true" name="cekNama">
@@ -117,7 +115,7 @@
                                         </div>
                                         &nbsp;
 
-                                 
+
                                     &nbsp;
                                     <br>
                                         <table id="table"
@@ -138,9 +136,9 @@
                                             </thead>
                                             <tbody>
 
-                                                @foreach ($filter as $mPelanggan)
+                                                {{-- @foreach ($filter as $mPelanggan)
                                                     <tr>
-                                                        
+
                                                         <td>{{ $mPelanggan->no_pelanggan }}</td>
                                                         <td>{{ $mPelanggan->nama }}</td>
                                                         <td>{{ $mPelanggan->jalan }}</td>
@@ -164,9 +162,9 @@
                                                                     <i class="fas fa-edit"></i>
                                                                     Edit
                                                             </button> --}}
-                                                        </td>
+                                                        {{-- </td>
                                                     </tr>
-                                                @endforeach
+                                                @endforeach --}} --}}
                                             </tbody>
                                         </table>
                                     </form>
@@ -211,7 +209,7 @@
             });
         });
 
-        
+
         $(document).on('click', '.hapus', function(e) {
             e.preventDefault();
              //console.log();
@@ -247,6 +245,34 @@
         });
 
 
+        $(document).on('click', '#search', function(e) {
+            e.preventDefault()
+            let cname      = $('#cekNama').is(":checked")
+            let nama       = $('#nama').val()
+            let cekAlamat  = $('#cekAlamat').is(":checked")
+            let jalan      = $('#jalan').val()
+            let gang       = $('#gang').val()
+            let nomor      = $('#nomor').val()
+            let noTambahan = $('#noTambahan').val()
+            $.ajax({
+                type: "POST",
+                url: `{{ url('master/monitoringPelanggan/filter') }}`,
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    _method: 'POST',
+                    cname: cname,
+                    name: name,
+                    cekAlamat: cekAlamat,
+                    jalan: jalan,
+                    gang: gang,
+                    nomor: nomor,
+                    noTambahan: noTambahan,
+                },
+                success: function(response){
+                    console.log(response)
+                }
+            })
+        })
 
         // Kalo pake API
         // function filter() {
@@ -292,6 +318,6 @@
         //     })
         // }
 
-       
+
     </script>
 @endpush

@@ -22,8 +22,13 @@ class SurveyTarif extends Model
                     ->orderBy('zona','asc')
                     ->limit(900)
                     ->get();
-                
-                
+    }
+
+    public static function getByPlg($no_plg)
+    {
+        return DB::table("SURVEY_TARIF")
+                    ->whereRaw("NO_PLG = ".$no_plg."")
+                    ->first();
     }
 
     public static function getDataEntri()
@@ -37,20 +42,7 @@ class SurveyTarif extends Model
                     // ->orderBy('no_bundel','asc')
                     ->limit(500)
                     ->get();
-                    
     }
-
-    public static function getData($periode, $no_bundel, $zona, $jns_pelanggan)
-    {
-        return DB::table("SURVEY_TARIF")
-                    ->where('periode', 'LIKE', $periode)
-                    ->where('no_bundel', 'LIKE', $no_bundel)
-                    ->where('zona', 'LIKE', $zona)
-                    ->where('jns_pelanggan', 'LIKE', $jns_pelanggan)
-                    ->join ('REKENING', 'REKENING.no_plg', '=', 'SURVEY_TARIF.no_plg')
-                    // ->join ('PB_DATA', 'PB_DATA.listrik', '=', 'SURVEY_TARIF.listrik')
-                    ->first();
-                }
 
     public function getByNopel($nopel)
     {

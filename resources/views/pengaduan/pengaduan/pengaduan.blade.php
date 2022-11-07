@@ -292,11 +292,28 @@
             })
         }
 
-        var cariPlg = $('#f-pelanggan').submit(function(e){
-                e.preventDefault()
-                let params = $('#no_pelanggan').val();
-                console.log("Test Button");
+        $(document).on('click', '.cari', function(e){
+            e.preventDefault()
+            let form = $('#f-pelanggan').serialize()
+            console.log(data)
+            $.ajax({
+                type: "POST",
+                dataType: "JSON",
+                url: `{{ url('pengaduan/pengaduan') }}`,
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    _method: "POST",
+
+                },
+                beforeSend: function() {
+                    showLoading()
+                },
+                success: function(response) {
+
+                    swal.close();
+                }
             })
+        })
 
         $('#no_pelanggan_c').on('click', function() {
             if($(this).is(":checked")) {
@@ -312,7 +329,6 @@
                 $('#gang').prop("disabled", true)
                 $('#no').prop("disabled", true)
                 $('#no_tambahan').prop("disabled", true)
-                cariPlg;
             }else{
                 $('#no_pelanggan').prop("disabled", true)
             }
