@@ -51,7 +51,7 @@
                                                         <i class="far fa-save"></i>
                                                         Simpan
                                                 </button>
-                                                <button type="submit"
+                                                <button type="reset"
                                                         class="btn btn-danger btn-sm">
                                                         <i class="fas fa-undo"></i>
                                                         Reset

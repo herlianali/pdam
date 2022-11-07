@@ -59,9 +59,9 @@
                                             <button class="btn btn-info btn-mt-2" id="cari" type="button">
                                                 <i class="fa fa-search"></i>
                                             </button>&nbsp;
-                                            <button class="btn btn-danger btn-mt-2" id="clear">
-                                                <i class="fa fa-trash"></i>
-                                                Bersihkan
+                                            <button type="reset" class="btn btn-danger btn-mt-2">
+                                                <i class="fa fa-undo"></i>
+                                                Reset
                                             </button>
                                         </div>
 
@@ -245,21 +245,6 @@
                     swal.close();
                 }
             })
-        })
-
-        $(document).on('click', '#clear', function(e) {
-            e.preventDefault();
-            $('#no_bonc').val()
-            $('#no_plg').val()
-            $('#nama').val()
-            $('#alamat').val()
-            $('#kd_tarif').val()
-            $('#ukuran_mtr').val()
-            $('#biaya_tera').val()
-            $('#total_biaya').val()
-            $('#nama_pengadu').val()
-            $('#alamat_pengadu').val()
-            $('#telp_pengadu').val()
         })
     </script>
 @endpush
