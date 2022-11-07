@@ -71,11 +71,11 @@
                                         </div>
                                         <div class="form-group row mt-2">
                                             <label for="" class="col-md-6 col-form-label"></label>
-                                            <div class="col-md-6">
-                                                <button type="submit" class="btn btn-success btn-sm mt-3" id="simpan"><i
+                                            <div class="col-md-5">
+                                                <button class="btn btn-success btn-sm" type="submit"><i
                                                         class="far fa-save"></i> Simpan</button>
-                                                <button type="reset" class="btn btn-danger btn-sm mt-3" id="batal"><i
-                                                        class="far fa-times-circle"></i> Batal</button>
+                                                <button type="reset" class="btn btn-danger btn-sm"><i
+                                                        class="fas fa-undo"></i> Reset</button>
                                             </div>
                                         </div>
                                     </form>

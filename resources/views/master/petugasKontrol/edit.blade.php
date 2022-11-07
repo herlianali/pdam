@@ -27,9 +27,8 @@
                         <input type="checkbox" name="is_satgas" id="is_satgas">
                         <label class="col-form-label" for="is_satgas">Is Satgas</label>
                     </div>
-                
                     <button class="btn btn-success btn-sm" type="submit"><i class="far fa-save"></i> Simpan</button>
-                    <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-undo"></i> Batal</button>
+                    <button type="cancel" class="btn btn-danger btn-sm"><i class="fas fa-times"></i> Batal</button>
                 </form>
             </div>
         </div>

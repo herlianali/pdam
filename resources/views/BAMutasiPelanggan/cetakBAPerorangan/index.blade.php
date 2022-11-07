@@ -24,7 +24,7 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-4 col-sm-12">
+                <div class="col-md-6 col-sm-12">
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Cetak BA Perorangan</h3>
