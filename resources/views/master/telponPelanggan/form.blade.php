@@ -32,8 +32,8 @@
                     <div class="form-group row ">
                         <label for="nomor" class="col-md-2 col-form-label"></label>
                         <div class="col-md-8">
-                            <button class="btn btn-success btn-sm "  type="submit"><i class="far fa-save"></i> Simpan</button>
-
+                            <button class="btn btn-success btn-sm" type="submit"><i class="far fa-save"></i> Simpan</button>
+                            <button type="cancel" class="btn btn-danger btn-sm"><i class="fas fa-times"></i> Batal</button>
                         </div>
                     </div>
                  

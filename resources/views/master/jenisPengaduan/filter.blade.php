@@ -36,8 +36,8 @@
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-info btn-sm">Preview</button>
-                    <button class="btn btn-danger btn-sm">Batal</button>
+                    <button class="btn btn-success btn-sm" type="submit">Preview</button>
+                    <button type="cancel" class="btn btn-danger btn-sm"> Batal</button>
                 </form>
             </div>
         </div>

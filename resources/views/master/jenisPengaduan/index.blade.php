@@ -37,7 +37,7 @@
                             <div class="row mb-4">
                                 <div class="col-md-1"></div>
                                 <div class="col-md-12">
-                                    <form class="form-horizontal" action="{{ route('jenisPengaduan.store') }}" method="POST">
+                                    <form class="form-horizontal" action="{{ route('jenisPengaduan.store') }}" method="POST" id="myForm">
                                         @csrf
                                       
                                         <div class="form-group row ">
@@ -69,11 +69,11 @@
                                         </div>
                                         <div class="form-group row ">
                                             <label for="" class="col-md-5 col-form-label"></label>
-                                            <div class="col-md-4">
+                                            <div class="col-md-5">
                                                 <button class="btn btn-success btn-sm" type="submit"><i
                                                         class="far fa-save"></i> Simpan</button>
-                                                <button type="submit" class="btn btn-danger btn-sm"><i
-                                                        class="fas fa-undo"></i> Batal</button>
+                                                <button type="reset" class="btn btn-danger btn-sm"><i
+                                                        class="fas fa-undo"></i> Reset</button>
                                             </div>
                                         </div>
                                     </form>
@@ -180,6 +180,8 @@
                 },
             })
         }
+
+   
 
         $(document).on('click', '.edit', function(e) {
             e.preventDefault();

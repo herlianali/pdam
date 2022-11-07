@@ -57,19 +57,20 @@
                                 <div class="form-group row mt-2 ">
                                     <label for="tarif" class="col-md-3 col-form-label">Tarif</label>
                                     <div class="col-md-7">
-                                        <select class="form-control" id="tarif" onkeyup="valueing()">
-                                            <option value=""> </option>
-                                            <option value=""> </option>
+                                        <select class="form-control" onkeyup="valueing()" name="tarif">
+                                            @foreach ($dataS as $tarif)
+                                                <option value="{{ $tarif->kd_tarif }}">{{ $tarif->kd_tarif }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
 
                                 <p>Urut Berdasarkan : </p>
                                 <div class="form-check">
-                                    <input type="radio" class="form-check-input" id="no_pelanggan" name="no_pelanggan">
+                                    <input type="radio" class="form-check-input" id="no_pelanggan" name="urutan">
                                     <label class="form-check-label">No Pelanggan</label>
                                     <br>
-                                    <input type="radio" class="form-check-input" id="alamat"name="alamat">
+                                    <input type="radio" class="form-check-input" id="alamat"name="urutan">
                                     <label class="form-check-label">Alamat</label>
                                 </div>
                                 <div class="form-group row mt-2 ">
