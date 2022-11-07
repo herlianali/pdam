@@ -30,9 +30,12 @@
     </ol>
     <br>
     <br>
-    <a href="{{ route('printpanggilanDinas') }}" class="btn btn-sm btn-success float-right"><i class=" fa fa-download"></i>
-        Download</a>
-
+    <!-- <a href="{{ route('printpanggilanDinas') }}" class="btn btn-sm btn-success float-right"><i class=" fa fa-download"></i>
+        Download</a> -->
+    <button type="submit"
+        class="btn btn-sm float-right btn-success print">
+        Print
+    </button>
 @endsection
 
 
@@ -55,10 +58,8 @@
                                 <label for="wilayah" class="col-form-label"> Petugas</label>
                                 <div class="col-md-10">
                                     <select class="form-control" id="wilayah" onkeyup="valueing()">
-
                                         <option value="wilayah T"> Wilayah T </option>
                                         <option value="wilayah B"> Wilayah B </option>
-
                                     </select>
                                 </div>
                                 <br>

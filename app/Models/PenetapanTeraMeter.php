@@ -26,4 +26,12 @@ class PenetapanTeraMeter extends Model
                 ->orderBy('ukuran_mtr')
                 ->get();
     }
+
+    // public function cetak() {
+    //     return DB::table($this->table)
+    //             ->select('')
+    //             ->join('DIP', 'DIP.nip', '=', 'PET_KHUSUS.nip')
+    //             ->get();
+
+    // }
 }

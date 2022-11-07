@@ -20,7 +20,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Survey Tarif</title>
+    <title>Panggilan Dinas</title>
 </head>
 <body>
     <div class="card-body priview">
@@ -29,24 +29,24 @@
             PERUSAHAAN DAERAH AIR <br>
         </p>
         <div class="mx-auto mb-3" style="width: 250px;">
-            <p>Table Master Survey Tarif</p> <br>
+            <p>Table Master Panggilan Dinas</p> <br>
         </div>
         <table class="table">
             <thead>
                 <tr>
                     <th>Kode</th>
                     <th>Keterangan</th>
-                    <th>Sif</th>
+                    
                 </tr>
             </thead>
             <tbody>
-                @foreach ($filter as $jenis)
+                @foreach ($filter as $p)
                 <tr>
-                    <td>{{ $jenis->jns_pengaduan }}</td>
-                    <td>{{ $jenis->keterangan }}</td>
-                    <td>{{ $jenis->sifat }}</td>
+                    <td>{{ $p->jns_pdinas }}</td>
+                    <td>{{ $p->keterangan }}</td>
+
                 </tr>
-                @endforeach
+            @endforeach
             </tbody>
         </table>
 </body>

@@ -20,7 +20,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Survey Tarif</title>
+    <title>Wilayah Distribusi</title>
 </head>
 <body>
     <div class="card-body priview">
@@ -29,25 +29,24 @@
             PERUSAHAAN DAERAH AIR <br>
         </p>
         <div class="mx-auto mb-3" style="width: 250px;">
-            <p>Table Master Survey Tarif</p> <br>
+            <p>Table Master Wilayah Distribusi</p> <br>
         </div>
         <table class="table">
             <thead>
                 <tr>
-                    <th>Kode</th>
-                    <th>Keterangan</th>
-                    <th>Sif</th>
+                    <th width="20%">Kode Wilayah</th>
+                    <th>Nama</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($filter as $jenis)
-                <tr>
-                    <td>{{ $jenis->jns_pengaduan }}</td>
-                    <td>{{ $jenis->keterangan }}</td>
-                    <td>{{ $jenis->sifat }}</td>
-                </tr>
+                @foreach ($wilDist as $wilDistribusi)
+                    <tr>
+                        <td>{{ $wilDistribusi->kd_wilayah }}</td>
+                        <td>{{ $wilDistribusi->nama }}</td>
+                    </tr>
                 @endforeach
             </tbody>
         </table>
+    </div>
 </body>
 </html>

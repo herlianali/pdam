@@ -25,12 +25,12 @@
                         <div class="card-header">
                             <h3 class="card-title">Jenis Pengaduan</h3>
                             <button type="button"
-                            class="btn btn-xs btn-success filter float-right"
-                            data-toggle="modal"
-                            data-target="#filter">
-                            <i class="fas fa-print"></i>
-                            Print
-                    </button>
+                                class="btn btn-xs btn-success filter float-right"
+                                data-toggle="modal"
+                                data-target="#filter">
+                                <i class="fas fa-print"></i>
+                                Print
+                            </button>
                           
                         </div>
                         <div class="card-body">
