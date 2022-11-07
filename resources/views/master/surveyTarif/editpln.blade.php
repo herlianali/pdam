@@ -29,75 +29,81 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-12">
-                    <div class="card">
+                <div class="col-6">
+                    <div class="card ">
                         <div class="card-header">
                             <h3 class="card-title"> Jalan PLN </h3>
                         </div>
                         <div class="card-body">
-                            <div class="row mb-4">
-                            
-                                <div class="col-md-12">
+                            {{-- <div class="row mb-4"> --}}
+
+                                {{-- <div class="col-md-12"> --}}
                                     <div class="form-group row mt-2">
                                         <label for="nomor" class="col-md-2 col-form-label">Zona </label>
-                                        <div class="col-md-4">
-                                            <input type="text" class="form-control" id="no_plg" name="no_plg">
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" id="zona" name="zona">
                                         </div>
                                     </div>
                                     <div class="form-group row mt-2">
                                         <label for="nomor" class="col-md-2 col-form-label">No Bundel </label>
-                                        <div class="col-md-4">
-                                            <input type="text" class="form-control" id="no_plg" name="no_plg">
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" id="no_bundel" name="no_bundel">
                                         </div>
 
-                                        <button class="btn btn-info btn-mt-2" id="cari" type="button">
+                                        {{-- <button class="btn btn-info btn-mt-2" id="cari" type="button">
                                             <i class="fa fa-search"></i>
                                         </button>
-                                        &nbsp;
+                                        &nbsp; --}}
 
+
+                                    </div>
+
+                                {{-- </div> --}}
+                            {{-- </div> --}}
+                            <form class="form-horizontal" id="form-pln">
+                                @csrf
+                                <div class="form-group row ">
+                                    <label for="nama" class="col-md-2 col-form-label">Nama</label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" id="nama" name="nama" readonly>
+                                    </div>
+                                </div>
+                                <div class="form-group row ">
+                                    <label for="alamat" class="col-md-2 col-form-label">Alamat</label>
+                                    <div class="col-md-8">
+                                        <textarea class="form-control" id="alamat" name="alamat" readonly></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group row ">
+                                    <label for="nomor" class="col-md-2 col-form-label">Jalan</label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" id="jalan" name="jalan">
+                                    </div>
+
+                                </div>
+                                <div class="form-group row ">
+                                    <label for="nomor" class="col-md-2 col-form-label">PLN</label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" id="pln" name="pln">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-8 text-right">
+                                        {{-- <button type="button" class="btn btn-xs btn-success edit" data-toggle="modal"
+                                        data-target="#pln">
+
+                                        </button> --}}
+                                        <button class="btn btn-success btn-mt-2" id="edit">
+                                            <i class="fas fa-edit"></i>
+                                            Edit
+                                        </button>
                                         <button class="btn btn-danger btn-mt-2" id="clear">
                                             <i class="fa fa-trash"></i>
                                             Bersihkan
                                         </button>
                                     </div>
-
-                                </div>
-                            </div>
-                            <form class="form-horizontal" action="" method="POST">
-                                @csrf
-                                <div class="form-group row ">
-                                    <label for="nama" class="col-md-2 col-form-label">Nama</label>
-                                    <div class="col-md-4">
-                                        <input type="text" class="form-control" id="nama" name="nama"
-                                            onkeyup="valueing()" readonly value="">
-                                    </div>
-                                </div>
-                                <div class="form-group row ">
-                                    <label for="alamat" class="col-md-2 col-form-label">Alamat</label>
-                                    <div class="col-md-4">
-                                        <textarea class="form-control" id="alamat" name="alamat" onkeyup="valueing()" readonly value=""></textarea>
-                                    </div>
-                                </div>
-                                <div class="form-group row ">
-                                    <label for="nomor" class="col-md-2 col-form-label">Jalan</label>
-                                    <div class="col-md-2">
-                                        <input type="text" class="form-control" id="jalan" name="jalan"
-                                            onkeyup="valueing()">
-                                    </div>
-                                    <div class="form-group row ">
-                                        <label for="nomor" class="col-md-2 col-form-label">PLN</label>
-                                        <div class="col-md-5">
-                                            <input type="text" class="form-control" id="pln" name="pln"
-                                                onkeyup="valueing()">
-                                        </div>
-
-                                    <button type="button" class="btn btn-xs btn-success edit" data-toggle="modal"
-                                        data-target="#pln">
-                                        <i class="fas fa-edit"></i>
-                                        Edit
-                                    </button>
-
-
                                 </div>
                             </form>
                         </div>
@@ -128,16 +134,6 @@
             });
         });
 
-        function valueing() {
-            // if(document.getElementById('kode').value==="" || document.getElementById('keterangan').value==="") {
-            //     document.getElementById('batal').disabled = true
-            //     document.getElementById('simpan').disabled = true
-            // }else{
-            //     document.getElementById('batal').disabled = false
-            //     document.getElementById('simpan').disabled = false
-            // }
-        }
-
         var showLoading = function() {
             swal.fire({
                 title: "Mohon Tunggu !",
@@ -150,11 +146,18 @@
             })
         }
 
+        $('#no_bundel').keypress(function(e){
+            var key = e.which
+            if(key == 13){
+                console.log("enter")
+            }
+        })
+
         $(document).on('click', '#cari', function(e) {
             e.preventDefault();
             // let no_plg = $('#no_plg').val();
             $.ajax({
-                type: "GET",
+                type: "post",
                 url: `{{ url('master/') }}/` + no_plg,
                 data: {
                     id: no_plg,

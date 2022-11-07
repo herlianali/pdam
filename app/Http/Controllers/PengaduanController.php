@@ -8,7 +8,6 @@ use App\Models\JenisPengaduan;
 use Illuminate\Http\Request;
 use App\Models\Pengaduan;
 use App\Models\PetugasPengaduan;
-use Illuminate\Support\Facades\DB;
 
 class PengaduanController extends Controller
 {

@@ -8,8 +8,8 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('cariPelanggan') }}" method="POST" class="form-horizontal mr-3" id="f-pelanggan">
-                    @csrf
+                <form class="form-horizontal mr-3" id="f-pelanggan">
+
                     <div class="form-group row">
                         <div class="col-md-2">
                             <input type="checkbox" id="no_pelanggan_c" name="no_pelanggan_c">
@@ -61,10 +61,10 @@
                             </div>
                         </div>
                     </div>
-                    <button class="btn btn-success btn-sm cari" type="submit">
+                    <button class="btn btn-success btn-sm cari" type="button">
                         <i class="fas fa-search"></i> Cari
                     </button>
-                    <button class="btn btn-danger btn-sm">
+                    <button class="btn btn-danger btn-sm" type="button">
                         <i class="fas fa-undo"></i> Kembali
                     </button>
                 </form>
