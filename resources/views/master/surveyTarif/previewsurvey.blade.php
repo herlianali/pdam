@@ -14,22 +14,16 @@
     </style>
 @endpush
 
-@section('title', 'Print Jenis Panggilan Dinas')
+@section('title', 'Print Survey Tarif')
 
 @section('namaHal', 'Master')
 
 @section('breadcrumb')
     <ol class="breadcrumb float-sm-right">
         <li class="breadcrumb-item"><a href="#">Master</a></li>
-        <li class="breadcrumb-item active">Jenis Panggilan Dinas</li>
-        <li class="breadcrumb-item active">Print Jenis Panggilan Dinas</li>
+        <li class="breadcrumb-item active">Survey Tarif</li>
+        <li class="breadcrumb-item active">Cetak Survey</li>
     </ol>
-    <br>
-    <br>
-    <button type="submit"
-        class="btn btn-sm float-right btn-success print">
-        Print
-    </button>
 @endsection
 
 @section('content')
@@ -39,8 +33,9 @@
                 <div class="col-sm-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Print preview Jenis Panggilan Dinass</h3>
-                            {{-- <a href="{{ route('printpanggilanDinas') }}" class="btn btn-sm btn-success float-right"><i class="fas fa-print"></i> Cetak</a> --}}
+                            <h3 class="card-title">Print preview Cetak Survey</h3>
+                            <a href="" class="btn btn-sm btn-success float-right"><i class="fas fa-print"></i>
+                                Cetak</a>
                         </div>
                         <div class="card-body priview">
                             <p> Pemerintah Kota <br>
@@ -48,23 +43,52 @@
                                 PERUSAHAAN DAERAH AIR <br>
                             </p>
                             <div class="mx-auto mb-3" style="width: 250px;">
-                                <span>Table Master Jenis Panggilan Dinas</span> <br>
+                                <span>Survey Tarif</span> <br>
                             </div>
                             <table class="table">
                                 <thead>
                                     <tr>
                                         <th>Kode</th>
                                         <th>Keterangan</th>
-                                        
+                                        <th>Sif</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($filter as $p)
                                     <tr>
-                                        <td>{{ $p->jns_pdinas }}</td>
-                                        <td>{{ $p->keterangan }}</td>
+                                        <td>01</td>
+                                        <td>METER. TIDAK ADA</td>
+                                        <td>T</td>
                                     </tr>
-                                @endforeach
+                                    <tr>
+                                        <td>02</td>
+                                        <td>DAFTARR ADA METER TIDAK ADA</td>
+                                        <td>A</td>
+                                    </tr>
+                                    <tr>
+                                        <td>03</td>
+                                        <td>DAFTARR TIDAK ADA METER ADA</td>
+                                        <td>A</td>
+                                    </tr>
+                                    <tr>
+                                        <td>04</td>
+                                        <td>METER BARU</td>
+                                        <td>T</td>
+                                    </tr>
+                                    <tr>
+                                        <td>05</td>
+                                        <td>SEGEL METER TIDAK ADA</td>
+                                        <td>T</td>
+                                    </tr>
+                                    <tr>
+                                        <td>06</td>
+                                        <td>SGL MTR & SGL KOPL TDK ADA</td>
+                                        <td>T</td>
+                                    </tr>
+                                    <tr>
+                                        <td>07</td>
+                                        <td>SEGEL ROPLING</td>
+                                        <td>T</td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
