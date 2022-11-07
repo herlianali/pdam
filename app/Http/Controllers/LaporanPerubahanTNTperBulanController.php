@@ -11,8 +11,8 @@ class LaporanPerubahanTNTperBulanController extends Controller
         return view('BAMutasiPelanggan.laporanPerubahanTNTperBulan.index');
     }
 
-    public function print()
+    public function preview()
     {
-        return view('BAMutasiPelanggan.laporanPerubahanTNTperBulan.print');
+        return view('BAMutasiPelanggan.laporanPerubahanTNTperBulan.preview');
     }
 }

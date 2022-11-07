@@ -11,12 +11,12 @@ class MutasiKolektifController extends Controller
     {
         return view('BAMutasiPelanggan.mutasiKolektif.index');
     }
-    public function cetakBA()
+    public function previewBA()
     {
-        return view('BAMutasiPelanggan.mutasiKolektif.cetakBA');
+        return view('BAMutasiPelanggan.mutasiKolektif.previewBA');
     }
-    public function cetakLampiran()
+    public function previewLampiran()
     {
-        return view('BAMutasiPelanggan.mutasiKolektif.cetakLampiran');
+        return view('BAMutasiPelanggan.mutasiKolektif.previewLampiran');
     }
 }

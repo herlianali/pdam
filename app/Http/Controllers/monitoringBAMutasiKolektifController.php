@@ -29,18 +29,18 @@ class MonitoringBAMutasiKolektifController extends Controller
         return view('BAMutasiPelanggan.monitoringBAMutasiKolektif.preview');
     }
 
-    public function cetakUsulan()
+    public function previewUsulan()
     {
-        return view('BAMutasiPelanggan.monitoringBAMutasiKolektif.cetakUsulan');
+        return view('BAMutasiPelanggan.monitoringBAMutasiKolektif.previewUsulan');
     }
 
-    public function cetakLampiran()
+    public function previewLampiran()
     {
-        return view('BAMutasiPelanggan.monitoringBAMutasiKolektif.cetakLampiran');
+        return view('BAMutasiPelanggan.monitoringBAMutasiKolektif.previewLampiran');
     }
 
-    public function pdinas()
+    public function previewPdinas()
     {
-        return view('BAMutasiPelanggan.monitoringBAMutasiKolektif.pdinas');
+        return view('BAMutasiPelanggan.monitoringBAMutasiKolektif.previewPdinas');
     }
 }
