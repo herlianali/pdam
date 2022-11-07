@@ -12,8 +12,8 @@ class LaporanRekapitulasiNaikTurunController extends Controller
         return view('BAMutasiPelanggan.laporanRekapitulasiNaikTurun.index');
     }
 
-    public function print()
+    public function preview()
     {
-        return view('BAMutasiPelanggan.laporanRekapitulasiNaikTurun.print');
+        return view('BAMutasiPelanggan.laporanRekapitulasiNaikTurun.preview');
     }
 }

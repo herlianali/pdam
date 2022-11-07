@@ -16,9 +16,9 @@ class MonitoringGunaPersilController extends Controller
     {
         return view('BAMutasiPelanggan.monitoringGunaPersil.index');
     }
-    public function print()
+    public function preview()
     {
-        return view('BAMutasiPelanggan.monitoringGunaPersil.print');
+        return view('BAMutasiPelanggan.monitoringGunaPersil.preview');
     }
 
 
