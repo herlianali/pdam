@@ -26,8 +26,12 @@
     </ol>
     <br>
     <br>
-    <a href="{{ route('printmerekMeter') }}" class="btn btn-sm btn-success float-right"><i class="fas fa-download"></i>
-        Download</a>
+    <!-- <a href="{{ route('printmerekMeter') }}" class="btn btn-sm btn-success float-right"><i class="fas fa-download"></i>
+        Download</a> -->
+    <button type="submit"
+        class="btn btn-sm float-right btn-success print">
+        Print
+    </button>
 @endsection
 
 @section('content')

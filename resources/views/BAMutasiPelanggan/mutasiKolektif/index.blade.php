@@ -201,7 +201,7 @@
                                     <input type="date" class="form-control" id="bln_terbit" name="bln_terbit"onkeyup="valueing()">
                                 </div>
                                 <div class="col-md-2">
-                                    <a href="{{ route('cetakBA') }}" class="btn btn-md btn-info float-right"><i class="fas fa-print"></i> Cetak BA</a>
+                                    <a href="{{ route('previewBA') }}" class="btn btn-md btn-info float-right"><i class="fas fa-print"></i> Cetak BA</a>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -214,7 +214,7 @@
                                     <input type="date" class="form-control" id="tgl_kabag" name="tgl_kabag"onkeyup="valueing()">
                                 </div>
                                 <div class="col-md-2">
-                                    <a href="{{ route('cetakLampiran') }}" class="btn btn-md btn-info float-right"><i class="fas fa-print"></i> Cetak Lampiran</a>
+                                    <a href="{{ route('previewLampiran') }}" class="btn btn-md btn-info float-right"><i class="fas fa-print"></i> Cetak Lampiran</a>
                                 </div>
                             </div>
                         </div>

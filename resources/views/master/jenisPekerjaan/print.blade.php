@@ -37,6 +37,10 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Preview Jenis Pekerjaan</h3>
+                            <button type="submit"
+                            class="btn btn-xs float-right btn-success print">
+                            Print
+                            </button>
                         </div>
                         <div class="card-body priview">
                             <p> Pemerintah Kota <br>

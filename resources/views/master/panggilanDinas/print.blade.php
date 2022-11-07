@@ -24,6 +24,12 @@
         <li class="breadcrumb-item active">Jenis Panggilan Dinas</li>
         <li class="breadcrumb-item active">Print Jenis Panggilan Dinas</li>
     </ol>
+    <br>
+    <br>
+    <button type="submit"
+        class="btn btn-sm float-right btn-success print">
+        Print
+    </button>
 @endsection
 
 @section('content')
@@ -57,10 +63,9 @@
                                     <tr>
                                         <td>{{ $p->jns_pdinas }}</td>
                                         <td>{{ $p->keterangan }}</td>
-
                                     </tr>
                                 @endforeach
-                                                            </tbody>
+                                </tbody>
                             </table>
                         </div>
                     </div>

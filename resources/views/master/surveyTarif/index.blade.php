@@ -21,8 +21,13 @@
                                 data-target="#jalan"><i class=""></i> Jalan PLN</button>
                         </div>
                         <div class="card-body">
-                            <a href="{{ route('cetaksurvey') }}" class="btn btn-xs btn-info float-right"><i
-                                    class="fas fa-print"></i> Cetak Survey</a>
+                        <button type="button"
+                            class="btn btn-xs btn-info filter float-right"
+                            data-toggle="modal"
+                            data-target="#filter">
+                            <i class="fas fa-print"></i>
+                            Cetak Survey
+                        </button>
                             <a href="{{ route('lebihentri')}}" class="btn btn-xs btn-info float-right"><i class=""></i> Lebih Entri</a>
                             <a href="{{ route('dataKosong') }}" class="btn btn-xs btn-info float-right"><i
                                     class="fas "></i> Data Kosong</a>
@@ -136,6 +141,7 @@
                         </div>
     </section>
     @include('master.surveyTarif.pln')
+    @include('master.surveyTarif.filter')
 @endsection
 
 @push('js')

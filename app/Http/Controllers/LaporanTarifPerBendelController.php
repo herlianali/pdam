@@ -11,4 +11,9 @@ class LaporanTarifPerBendelController extends Controller
     {
         return view('BAMutasiPelanggan.laporanTarifPerBendel.index');
     }
+
+    public function preview()
+    {
+        return view('BAMutasiPelanggan.laporanTarifPerBendel.preview');
+    }
 }

@@ -54,16 +54,13 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                   
                                         <th width="30%">Kode</th>
                                         <th width="30%">Keterangan</th>
-
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($stAir as $statusAir)
                                     <tr>
-                                    
                                         <td>{{ $statusAir->kd_statusair }}</td>
                                         <td>{{ $statusAir->keterangan }}</td>
                                     </tr>
