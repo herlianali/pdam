@@ -38,8 +38,10 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Print preview Tabel Petugas Kontrol</h3>
-                            {{-- <a href="{{ route('petugasKontrol') }}" class="btn btn-sm btn-success float-right"><i --}}
-                                    class="fas fa-backward"></i> Kembali</a>
+                            <button type="submit"
+                            class="btn btn-xs float-right btn-success print">
+                            Print
+                            </button>
                         </div>
                         <div class="card-body priview">
                             <p>
