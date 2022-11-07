@@ -30,7 +30,7 @@
                             <h3 class="card-title">Halaman Persetujuan</h3>
                         </div>
                         <div class="card-body">
-                            <form class="form-horizontal" action="{{ url('/panggilanDinas') }}" method="post">
+                            <form class="form-horizontal" action="{{ url('/previewPanggilan') }}" method="post">
                                 @csrf
                                 <div class="form-group row mt-2 ">
                                     <label for="no_ba" class="col-md-2 col-form-label">Nomor BA</label>
@@ -607,10 +607,10 @@
                                         <input type="date" class="form-control" name="bulan_terbit" id="bulan_terbit" onkeyup="valueing()">
                                     </div>
                                     <div class="col-md-2">
-                                        <a href="{{ route('cetakBATarif') }}" class="btn btn-md btn-info ">Cetak BA Tarif</a>
+                                        <a href="{{ route('previewBATarif') }}" class="btn btn-md btn-info ">Cetak BA Tarif</a>
                                     </div>
                                     <div class="col-md-2">
-                                        <a href="{{ route('panggilanDinas') }}" class="btn btn-md btn-info ">Panggilan Dinas</a>
+                                        <a href="{{ route('previewPanggilan') }}" class="btn btn-md btn-info ">Panggilan Dinas</a>
                                     </div>
                                 </div>
                                 <div class="form-group row mt-2 ">
@@ -624,15 +624,15 @@
                                         <label for="tombol" class="col-md-6 col-form-label"></label>
                                     </div>
                                     <div class="col-md-2">
-                                        <a href="{{ route('cetakBA') }}" class="btn btn-md btn-info ">Cetak BA</a>
+                                        <a href="{{ route('previewBA') }}" class="btn btn-md btn-info ">Cetak BA</a>
                                     </div>
                                     <div class="col-md-2">
-                                        <a href="{{ route('cetakUsulan') }}" class="btn btn-md btn-info ">Cetak Usulan</a>
+                                        <a href="{{ route('previewUsulan') }}" class="btn btn-md btn-info ">Cetak Usulan</a>
                                     </div>
                                 </div>
                                 <div class="form-group row mt-2 ">
                                     <div class="col-md-12">
-                                        <a href="{{ route('cetakPenolakanUsulan') }}" class="btn btn-md btn-info float-right">Cetak Penolakan Tarif</a>
+                                        <a href="{{ route('previewPenolakan') }}" class="btn btn-md btn-info float-right">Cetak Penolakan Tarif</a>
                                     </div>
                                 </div>
                         </div>

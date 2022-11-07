@@ -11,4 +11,9 @@ class CetakBAPeroranganController extends Controller
     {
         return view('BAMutasiPelanggan.cetakBAPerorangan.index');
     }
+
+    public function preview()
+    {
+        return view('BAMutasiPelanggan.cetakBAPerorangan.preview');
+    }
 }

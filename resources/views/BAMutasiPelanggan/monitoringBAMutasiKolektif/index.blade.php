@@ -128,7 +128,7 @@
                                             </div>
                                             <button type="submit" class="btn btn-success btn-sm float-right"><i class="fa fa-filter"></i> Filter</button> <br>
                                             <br>
-                                            <a href="{{ route('previewmonitoringBAMutasiKolektif') }}"class="btn btn-sm btn-info float-right"><i class="fas fa-print"></i> Preview</a>
+                                            <a href="{{ route('preview') }}"class="btn btn-sm btn-info float-right"><i class="fas fa-print"></i> Preview</a>
                                     </form>
                                     <table id="table"
                                         class="table table-bordered table-responsive-md table-condensed">

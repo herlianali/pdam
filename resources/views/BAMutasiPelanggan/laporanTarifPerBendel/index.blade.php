@@ -31,7 +31,7 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-4 col-sm-12">
+                <div class="col-sm-12">
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Laporan Tarif Per Bendel</h3>
@@ -80,69 +80,7 @@
                                         <button class="btn btn-danger btn-sm float-right">Batal</button>
                                     </div>
                                 </div>
-
-
-
                             </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-8 col-sm-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Print Preview Tarif per Bendel</h3>
-                            <a href="" class="btn btn-xs btn-success float-right"><i class="fas fa-print"></i>
-                                Cetak</a>
-                        </div>
-                        <div class="card-body priview">
-                            <p> Pemerintah Kota <br>
-                                Surabaya <br>
-                                PERUSAHAAN DAERAH AIR <br>
-                            </p>
-                            <div class="mx-auto mb-3" style="width: 250px;">
-                                <span>Laporan Tarif Per Bendel</span> <br>
-                                <div class="row">
-                                    <div class="col">
-                                        No
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col">
-                                        No Bundel
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col">
-                                        Tanggal Cetak
-                                    </div>
-
-                                    <div class="col-mr-1">
-                                        Hal :
-                                    </div>
-                                </div>
-                            </div>
-
-
-
-                            <table class="table">
-                                <thead>
-
-                                    <tr>
-                                        <th>No</th>
-                                        <th>No Pelanggan</th>
-
-                                        <th>Nama</th>
-                                        <th>Alamat</th>
-                                        <th>Tarif Retribusi</th>
-
-                                    </tr>
-                                </thead>
-                                <tbody>
-
-                                </tbody>
-                            </table>
-
                         </div>
                     </div>
                 </div>

@@ -122,10 +122,8 @@
         <div class="ttd">
             <div class="row text-center">
                 <div class="col justify-content-between">
-
                 </div>
                 <div class="col">
-
                 </div>
                 <div class="col">
                     <p class="mb-1">a.n Direksi Perusahaan</p>
@@ -140,5 +138,9 @@
                 </div>
             </div>
         </div>
+        <br>
+        <br>
+        <br>
+    </div>
 </body>
 </html>
