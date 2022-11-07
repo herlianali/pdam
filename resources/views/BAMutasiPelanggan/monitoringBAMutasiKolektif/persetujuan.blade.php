@@ -28,7 +28,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Halaman Persetujuan</h3>
-                            <a href="{{ route('pdinasmonitoringBAMutasiKolektif') }}"class="btn btn-xs btn-info float-right"> Panggilan Dinas</a>
+                            <a href="{{ route('previewPdinas') }}"class="btn btn-xs btn-info float-right"> Panggilan Dinas</a>
                         </div>
                         <div class="card-body">
                             <form class="form-horizontal" action="" method="post">
@@ -443,7 +443,7 @@
                                         <input type="date" class="form-control" name="bulan_terbit" id="bulan_terbit"onkeyup="valueing()">
                                     </div>
                                     <div class="col-md-2">
-                                        <a href="{{ route('cetakUsulan') }}"class="btn btn-sm btn-info float-right"><i  class="fas fa-print"></i> Cetak BA Usulan</a>
+                                        <a href="{{ route('previewUsulan') }}"class="btn btn-sm btn-info float-right"><i  class="fas fa-print"></i> Cetak BA Usulan</a>
                                     </div>
                                 </div>
                                 <div class="form-group row mt-2 ">
@@ -457,7 +457,7 @@
                                         <input type="date" class="form-control" name="tgl_kabag" id="tgl_kabag"onkeyup="valueing()">
                                     </div>
                                     <div class="col-md-2">
-                                        <a href="{{ route('cetakLampiran') }}"class="btn btn-sm btn-info float-right"><i class="fas fa-print"></i> Cetak BA Lampiran</a>
+                                        <a href="{{ route('previewLampiran') }}"class="btn btn-sm btn-info float-right"><i class="fas fa-print"></i> Cetak BA Lampiran</a>
                                     </div>
                                     &nbsp;
                                 </div>
