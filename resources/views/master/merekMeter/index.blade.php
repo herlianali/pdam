@@ -56,8 +56,10 @@
                                             <div class="col-md-6">
                                                 <button type="submit" class="btn btn-success btn-sm mt-3" id="simpan"><i
                                                         class="far fa-save"></i> Simpan</button>
-                                                <button type="reset" class="btn btn-danger btn-sm mt-3" id="batal"><i
-                                                        class="far fa-times-circle"></i> Batal</button>
+                                                <button type="reset" class="btn btn-danger btn-sm mt-3">
+                                                    <i class="fa fa-undo"></i>
+                                                    Reset
+                                                </button>
                                             </div>
                                         </div>
                                     </form>
