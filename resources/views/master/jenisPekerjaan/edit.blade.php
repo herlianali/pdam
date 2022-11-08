@@ -8,7 +8,9 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="">
+                <form action="" class="form-horizontal" id="form-edit" method="POST">
+                    @csrf
+                    @method('PUT')
                     <div class="form-group">
                         <label for="jns_pekerjaan">Jenis Pekerjaan</label>
                         <input type="text" class="form-control" id="jns_pekerjaan" name="jns-pekerjaan" value="">
@@ -52,7 +54,7 @@
                         </select>
                     </div>
                     <button class="btn btn-success btn-sm" type="submit"><i class="far fa-save"></i> Simpan</button>
-                    <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-undo"></i> Batal</button>
+                    <button type="cancel" class="btn btn-danger btn-sm"><i class="fas fa-times"></i> Batal</button>
                 </form>
             </div>
         </div>

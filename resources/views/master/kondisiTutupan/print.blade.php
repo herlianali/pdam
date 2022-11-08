@@ -26,8 +26,7 @@
     </ol>
     <br>
     <br>
-    <a href="{{ route('printkondisiTutupan') }}" class="btn btn-sm btn-success float-right"><i class="fas fa-download"></i>
-        Download</a>
+   
 @endsection
 
 @section('content')
@@ -37,8 +36,11 @@
                 <div class="col-sm-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Print preview Tabel Kondisi Tutupan</h3>
-                            <a href="{{ route('kondisiTutupan') }}" class="btn btn-sm btn-success float-right"><i class="fas fa-backward"></i> Kembali</a>
+                            <h3 class="card-title">Preview Kondisi Tutupan</h3>
+                            <button type="submit"
+                            class="btn btn-xs float-right btn-success print">
+                            Print
+                            </button>
                         </div>
                         <div class="card-body priview">
                             <p>
@@ -59,6 +61,15 @@
                                         <th width="60%">Keterangan</th>
                                     </tr>
                                 </thead>
+                                <tbody>
+                                    @foreach ($kondTutupan as $KT)
+                                    <tr>
+                                        <td>{{ ++$i }}</td>
+                                        <td>{{ $KT->kd_kondisi }}</td>
+                                        <td>{{ $KT->keterangan }}</td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
                             </table>
                         </div>
                     </div>
@@ -68,6 +79,8 @@
     </section>
 @endsection
 
+
+{{-- 
 @push('js')
     <script type="text/javascript">
         const box = document.getElementById('startEnd');
@@ -85,4 +98,4 @@
             radio.addEventListener('click', clickRadio)
         });
     </script>
-@endpush
+@endpush --}}

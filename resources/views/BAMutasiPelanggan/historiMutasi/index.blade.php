@@ -32,7 +32,7 @@
                                         <div class="form-group row mt-2 ">
                                             <label for="no_pelanggan" class="col-md-3 col-form-label">No Pelanggan</label>
                                             <div class="col-md-6">
-                                                <input type="text" class="form-control" name="no_pelanggan" id="no_pelanggan" onkeyup="valueing()">
+                                                <input type="text" class="form-control" name="no_plg" id="no_plg" onkeyup="valueing()">
                                             </div>
                                         </div>
                                         <div class="form-group row mt-2 ">
@@ -51,7 +51,7 @@
                                         <div class="form-group row mt-2 ">
                                             <label for="tarif" class="col-md-3 col-form-label">Tarif</label>
                                             <div class="col-md-2">
-                                                <input type="text" class="form-control" name="tarif" id="tarif" onkeyup="valueing()">
+                                                <input type="text" class="form-control" name="kd_tarif" id="kd_tarif" onkeyup="valueing()">
                                             </div>
                                             <label for="jns_pelanggan" class="col-form-label">Jenis Pelanggan</label>
                                             <div class="col-md-2">
@@ -59,7 +59,7 @@
                                             </div>
                                             <label for="subzona" class="col-form-label">Subzona</label>
                                             <div class="col-md-2">
-                                                <input type="text" class="form-control" name="subzona" id="subzona"onkeyup="valueing()">
+                                                <input type="text" class="form-control" name="zona" id="zona"onkeyup="valueing()">
                                             </div>
                                         </div>
                                     </form>
@@ -78,6 +78,7 @@
                                         <th>Ukuran Meter</th>
                                         <th>Retribusi</th>
                                         <th>Nama</th>
+                                        <th>Jalan</th>
                                         <th>Gang</th>
                                         <th>Nomor</th>
                                         <th>No Tmbhn</th>
@@ -86,9 +87,40 @@
                                         <th>Jns Plg</th>
                                         <th>KD Retribusi</th>
                                         <th>No Bundel</th>
+                                        <th>TGL_KABAG</th>
+                                        <th>TGL_KIRIMREKENING</th>
+                                        <th>TGL_PEREMAJAAN</th>
+                                        <th>BLNTERBIT</th>
+                                        <th>MUTASI</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <tr>
+                                        <td>No Bamutasi</td>
+                                        <td>Tgl Bamutasi</td>
+                                        <td>Jns Mutasi</td>
+                                        <td>No BonC</td>
+                                        <td>No_Plg</td>
+                                        <td>Guna Persil</td>
+                                        <td>Zona</td>
+                                        <td>Ukuran Meter</td>
+                                        <td>Retribusi</td>
+                                        <td>Nama</td>
+                                        <td>Jalan</td>
+                                        <td>Gang</td>
+                                        <td>Nomor</td>
+                                        <td>No Tambahan</td>
+                                        <td>DA</td>
+                                        <td>No PA</td>
+                                        <td>Jns Plg</td>
+                                        <td>KD Retribusi</td>
+                                        <td>No Bundel</td>
+                                        <td>TGL_KABAG</td>
+                                        <td>TGL_KIRIMREKENING</td>
+                                        <td>TGL_PEREMAJAAN</td>
+                                        <td>BLNTERBIT</td>
+                                        <td>MUTASI</td>
+                                    </tr>
 
                                 </tbody>
                             </table>
@@ -131,48 +163,5 @@
             });
         });
 
-        function deletePanggilanDinas(id) {
-            console.log(id)
-            swal.fire({
-                title: "Hapus Data?",
-                icon: 'question',
-                text: "Apakah Anda Yakin Ingin Menghapus",
-                type: "warning",
-                showCancelButton: !0,
-                confirmButtonColor: "#e74c3c",
-                confirmButtonText: "Iya",
-                cancelButtonText: "Tidak",
-                reverseButtons: !0
-            }).then(function(e) {
-                if (e.value === true) {
-                    let token = "{{ csrf_token() }}"
-                    let _url = `/master/deletePanggilanDinas/${id}`
-                    console.log(_url)
-
-                    $.ajax({
-                        type: 'DELETE',
-                        url: _url,
-                        data: {
-                            _token: token
-                        },
-                        success: function(resp) {
-                            if (resp.success) {
-                                swal.fire("Selesai!", resp.message, "success");
-                                location.reload();
-                            } else {
-                                swal.fire("Gagal!", "Terjadi Anjayy.", "error");
-                            }
-                        },
-                        error: function(resp) {
-                            swal.fire("Gagal!", "Terjadi Kesalahan.", "error")
-                        }
-                    })
-                } else {
-                    e.dismiss;
-                }
-            }, function(dismiss) {
-                return false;
-            });
-        }
     </script>
 @endpush

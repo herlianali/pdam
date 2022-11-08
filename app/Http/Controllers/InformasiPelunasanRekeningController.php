@@ -14,8 +14,8 @@ class InformasiPelunasanRekeningController extends Controller
      */
     public function index()
     {
-        $IPS = InformasiPelunasanRekening::all();
-        return view('pengaduan.informasiPelunasanRekening.index', compact('IPS'))->with('i');
+        // $IPS = InformasiPelunasanRekening::all();
+        return view('pengaduan.informasiPelunasanRekening.index')->with('i');
     }
 
     /**

@@ -23,7 +23,12 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Guna Persil</h3>
-                            <a href="{{ route('printgunaPersil') }}" class="btn btn-xs btn-success float-right"><i class="fas fa-print"></i> Cetak Tabel</a>
+                            <button type="button"
+                                class="btn btn-xs btn-success float-right"
+                                data-toggle="modal"
+                                data-target="#filter">
+                                <i class="fas fa-print"></i> Cetak
+                            </button>
                         </div>
                         <div class="card-body">
                             <div class="row mb-4">
@@ -33,7 +38,7 @@
                                         <div class="form-group row mt-2">
                                             <label for="kd_gunapersil" class="col-md-2 col-form-label">Kode Merek </label>
                                             <div class="col-md-7">
-                                                <input type="text" class="form-control" id="kd_gunapersil" name="kd_gunapersil" onkeyup="valueing()">
+                                                <input type="text" class="form-control" name="kd_gunapersil" onkeyup="valueing()">
                                             </div>
                                         </div>
                                         <div class="form-group row ">
@@ -45,19 +50,19 @@
                                         <div class="form-group row ">
                                             <label for="kd_gunapersil_i" class="col-md-2 col-form-label">Induk</label>
                                             <div class="col-md-7">
-                                                <select class="form-control" id="induk" name="induk" onkeyup="valueing()">
-                                                    <option value="1"> 1 - Kelompok I </option>
-                                                    <option value="2"> 2 - Kelompok II </option>
-                                                    <option value="3"> 3 - Kelompok III </option>
-                                                    <option value="4"> 4 - Kelompok IV </option>
-                                                    <option value="5"> 5 - Kelompok V </option>
+                                                <select class="form-control" onkeyup="valueing()" name="kd_gunapersil_i">
+                                                    <option value="1 "> 1 - Kelompok I </option>
+                                                    <option value="2 "> 2 - Kelompok II </option>
+                                                    <option value="3 "> 3 - Kelompok III </option>
+                                                    <option value="4 "> 4 - Kelompok IV </option>
+                                                    <option value="5 "> 5 - Kelompok V </option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="form-group row ">
                                             <label for="kd_tarif" class="col-md-2 col-form-label">Kode Tarif</label>
                                             <div class="col-md-7">
-                                                <select class="custom-select" id="kode_tarif" name="kode_tarif">
+                                                <select class="custom-select" onkeyup="valueing()" name="kd_tarif">
                                                     @foreach ($kd_tarif as $kode)
                                                         <option value="{{ $kode->kd_tarif }}">{{ $kode->kd_tarif }} - {{ $kode->jns_tarif }}</option>
                                                     @endforeach
@@ -66,11 +71,11 @@
                                         </div>
                                         <div class="form-group row mt-2">
                                             <label for="" class="col-md-6 col-form-label"></label>
-                                            <div class="col-md-6">
-                                                <button type="submit" class="btn btn-success btn-sm mt-3" id="simpan"><i
+                                            <div class="col-md-5">
+                                                <button class="btn btn-success btn-sm" type="submit"><i
                                                         class="far fa-save"></i> Simpan</button>
-                                                <button type="reset" class="btn btn-danger btn-sm mt-3" id="batal"><i
-                                                        class="far fa-times-circle"></i> Batal</button>
+                                                <button type="reset" class="btn btn-danger btn-sm"><i
+                                                        class="fas fa-undo"></i> Reset</button>
                                             </div>
                                         </div>
                                     </form>
@@ -112,6 +117,7 @@
                             </table>
                         </div>
                         @include('master.gunaPersil.form')
+                        @include('master.gunaPersil.filter')
                     </div>
                 </div>
     </section>
@@ -132,7 +138,7 @@
                 //   "autoWidth": false,
                 //   "responsive": true,
                 "oLanguage": {
-                    "sSearch": "Kode/Keterangan : "
+                    "sSearch": "Search : "
                 },
                 "pageLength": 5
             }).buttons().container().appendTo('#table_wrapper .col-md-6:eq(0)');
@@ -166,12 +172,24 @@
                     $('#form-edit').attr('action', "{{ url('master/gunaPersil') }}/"+kd_gunapersil)
                     $('#kd_gunapersil').val(response.kd_gunapersil)
                     $('#keterangan').val(response.keterangan)
-                    $('#induk').val(response.induk)
-                    $('#kode_tarif').val(response.kode_tarif)
+                    $('#kd_gunapersil_i').val(response.kd_gunapersil_i.trim()).change()
+                    $('#kd_tarif').val(response.kd_tarif)
                     swal.close();
                 }
             })
         })
+
+        var showLoading = function() {
+            swal.fire({
+                title: "Mohon Tunggu !",
+                html: "Sedang Memproses...",
+                allowOutsideClick: false,
+                showConfirmButton: false,
+                willOpen: () => {
+                    swal.showLoading()
+                },
+            })
+        }
 
         $(document).on('click', '.hapus', function(e) {
             e.preventDefault();
@@ -193,6 +211,9 @@
                         url: `{{ url('master/gunaPersil') }}/`+kd_gunapersil,
                         data: {
                                 _token: token
+                            },
+                            beforeSend: function() {
+                                showLoading()
                             },
                             success: function(resp) {
                                 swal.fire(

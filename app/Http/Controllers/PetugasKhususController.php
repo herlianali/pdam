@@ -6,6 +6,7 @@ use App\Models\Dip;
 use App\Models\JenisPelanggan;
 use App\Models\PetugasKhusus;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PetugasKhususController extends Controller
 {
@@ -16,13 +17,10 @@ class PetugasKhususController extends Controller
         $jenis_pelanggan = new PetugasKhusus;
         $jenis = $jenis_pelanggan->getData();
         return view('master.petugasKhusus.index', compact(['jns_pelanggan', 'jenis', 'c_pegawai']))->with('i');
-        //dd($ZZ);
     }
-
+    
     public function store(Request $request)
     {
-        // dd($request->post());
-
         PetugasKhusus::insert([
             'nip'       => $request->nip,
             'tugas'     => $request->tugas,
@@ -30,12 +28,12 @@ class PetugasKhususController extends Controller
             'jenis2'    => "S"
         ]);
 
-        return redirect()->route('petugasKhusus');
+        return redirect()->route('petugasKhusus.index');
     }
 
     public function show($nip)
     {
-        $petugasKhusus = Dip::where('nip', $nip)->first();
+        $petugasKhusus = DB::select("select nip, tugas, jenis, jenis2 from PET_KHUSUS where REPLACE(nip,' ','') = ? order by nip desc", [$nip]);
         return response()->json($petugasKhusus);
     }
 
@@ -54,12 +52,17 @@ class PetugasKhususController extends Controller
 
     public function destroy($nip)
     {
-        PetugasKhusus::where('nip', $nip)->delete();
+        $petugasK = PetugasKhusus::where(DB::raw("REPLACE(nip,' ','')"), $nip)->delete();
         return response()->json([
             'success' => true,
             'message' => 'Data Petugas Khusus Berhasil Dihapus',
+            'data'    => $petugasK
         ]);
     }
+
+    // validasi nip petugas khusu
+    // public function check(){}
+
     
     public function print()
     {

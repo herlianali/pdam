@@ -1,5 +1,5 @@
 @extends('layout.app')
-@section('title', 'Survey Pelanggan')
+@section('title', 'Cek Survey Tarif')
 
 @push('css')
     <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
@@ -30,30 +30,41 @@
                                 <div class="col-md-9">
                                     <form class="form-horizontal">
                                         <div class="form-group row mt-2 ">
-                                            <label for="nopelanggan" class="col-md-3 col-form-label"> Nomor Pelanggan</label>
-                                            <div class="col-md-7">
-                                                <input type="text" class="form-control" id="nopelanggan" name="nopelanggan" onkeyup="valueing()"
-                                                data-id="{{ $cekSurveyTarif->nopelanggan }}" placeholder="Ketik Nomor Pelanggan Lalu Tekan Enter">
+                                            <label for="no_plg" class="col-md-3 col-form-label"> Nomor Pelanggan</label>
+                                            <div class="col-md-5">
+                                                <input type="text" class="form-control" id="nopel" name="nopel" onkeyup="valueing()" placeholder="Ketik Nomor Pelanggan">
                                             </div>
+                                            <button class="btn btn-info btn-mt-2"
+                                            id="cari"
+                                            type="button">
+                                            <i class="fa fa-search"></i>
+                                    </button>
+                                    &nbsp;
+                                    <button type="reset" class="btn btn-danger btn-mt-2" id="clear">
+                                        <i class="fa fa-trash"></i>
+                                        Reset
+                                    </button>
                                         </div>
+                                      
                                         <div class="form-group row mt-2">
                                             <label for="njop" class="col-md-3 col-form-label"> NJOP</label>
                                             <div class="col-md-7">
-                                                <input type="text" class="form-control" id="njop" name="name" onkeyup="valueing()" readonly value="">
+                                                <input type="text" class="form-control" id="njop" name="njop" onkeyup="valueing()"  readonly value="">
                                             </div>
                                         </div>
                                         <div class="form-group row mt-2">
                                             <label for="listrik" class="col-md-3 col-form-label">Listrik</label>
                                             <div class="col-md-7">
-                                                <input type="text" class="form-control" id="listrik" name="listrik" onkeyup="valueing()"readonly value="">
+                                                <input type="text" class="form-control" id="listrik" name="listrik" onkeyup="valueing()" readonly value="">
                                             </div>
                                         </div>
                                         <div class="form-group row ">
                                             <label for="lebarjalan" class="col-md-3 col-form-label">Lebar Jalan</label>
                                             <div class="col-md-7">
-                                                <input type="text" class="form-control" id="lebarjln" name="lebarjln" onkeyup="valueing()"readonly value="">
+                                                <input type="text" class="form-control" id="lebarjalan" name="lebarjalan" onkeyup="valueing()" readonly value="">
                                             </div>
                                         </div>
+                                    
                                 </div>
                             </div>
                             </form>
@@ -67,6 +78,7 @@
 @endsection
 
 @push('js')
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
@@ -85,15 +97,75 @@
                 "pageLength": 5
             });
         });
-
-        function valueing() {
-            if (document.getElementById('kode').value === "" || document.getElementById('keterangan').value === "") {
-                document.getElementById('batal').disabled = true
-                document.getElementById('simpan').disabled = true
-            } else {
-                document.getElementById('batal').disabled = false
-                document.getElementById('simpan').disabled = false
-            }
+        var showLoading = function() {
+            swal.fire({
+                title: "Mohon Tunggu !",
+                html: "Sedang Memproses...",
+                allowOutsideClick: false,
+                showConfirmButton: false,
+                willOpen: () => {
+                    swal.showLoading()
+                },
+            })
         }
+
+        
+        // $(document).on('click', '#clear', function(e) {
+        //     e.preventDefault();
+        //     $('#njop').val()
+        //     $('#listrik').val()
+        //     $('#lebarjalan').val()
+        // })
+
+        $(document).on('click','#cari',function(e) {
+            e.preventDefault();
+            let nopel = $('#nopel').val();
+            $.ajax({
+                type: "GET",
+                url: `{{ url('master/cekSurveyTarif') }}/`+nopel,
+                data: {
+                    id: nopel,
+                    _token: '{{ csrf_token() }}'
+                },
+                beforeSend: function() {
+                    showLoading()
+                },
+            
+                success: function(response) {
+                //   console.log(response,'ini responnya')
+                    $('#njop').val(response.njop)
+                    $('#listrik').val(response.listrik)
+                    $('#lebarjalan').val(response.lebarjalan)
+                    swal.close();
+                }
+            })
+        })
+
+
+        
+        function clear() {
+            document.getElementById('nopel').value = ''
+        }
+        document.getElementById("clear").addEventListener("click", clear);
+
+        $(document).on('click', '#clear', function(e) {
+            e.preventDefault();
+            console.log("clear data")
+            $('#nopelanggan').val()
+            $('#njop').val()
+            $('#listrik').val()
+            $('#lebarjln').val()
+        })
+
+
+        // function valueing() {
+        //     if (document.getElementById('kode').value === "" || document.getElementById('keterangan').value === "") {
+        //         document.getElementById('batal').disabled = true
+        //         document.getElementById('simpan').disabled = true
+        //     } else {
+        //         document.getElementById('batal').disabled = false
+        //         document.getElementById('simpan').disabled = false
+        //     }
+        // }
     </script>
 @endpush

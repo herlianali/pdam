@@ -23,24 +23,24 @@ class MonitoringBAMutasiPeroranganController extends Controller
     {
         return view('BAMutasiPelanggan.monitoringBAMutasiPerorangan.edit');
     }
-    public function cetakBA()
+    public function previewBA()
     {
-        return view('BAMutasiPelanggan.monitoringBAMutasiPerorangan.cetakBA');
+        return view('BAMutasiPelanggan.monitoringBAMutasiPerorangan.previewBA');
     }
-    public function cetakUsulan()
+    public function previewUsulan()
     {
-        return view('BAMutasiPelanggan.monitoringBAMutasiPerorangan.cetakUsulan');
+        return view('BAMutasiPelanggan.monitoringBAMutasiPerorangan.previewUsulan');
     }
-    public function cetakPenolakanUsulan()
+    public function previewPenolakan()
     {
-        return view('BAMutasiPelanggan.monitoringBAMutasiPerorangan.cetakPenolakanUsulan');
+        return view('BAMutasiPelanggan.monitoringBAMutasiPerorangan.previewPenolakan');
     }
-    public function cetakBATarif()
+    public function previewBATarif()
     {
-        return view('BAMutasiPelanggan.monitoringBAMutasiPerorangan.cetakBATarif');
+        return view('BAMutasiPelanggan.monitoringBAMutasiPerorangan.previewBATarif');
     }
-    public function cetakpanggilanDinas()
+    public function previewPanggilan()
     {
-        return view('BAMutasiPelanggan.monitoringBAMutasiPerorangan.cetakpanggilanDinas');
+        return view('BAMutasiPelanggan.monitoringBAMutasiPerorangan.previewPanggilan');
     }
 }

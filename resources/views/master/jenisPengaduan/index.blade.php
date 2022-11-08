@@ -24,30 +24,38 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Jenis Pengaduan</h3>
-                            <a href="{{ route('printPengaduan') }}" class="btn btn-sm btn-success float-right"><i class="fas fa-print"></i> Cetak</a>
+                            <button type="button"
+                                class="btn btn-xs btn-success filter float-right"
+                                data-toggle="modal"
+                                data-target="#filter">
+                                <i class="fas fa-print"></i>
+                                Print
+                            </button>
+                          
                         </div>
                         <div class="card-body">
                             <div class="row mb-4">
                                 <div class="col-md-1"></div>
                                 <div class="col-md-12">
-                                    <form class="form-horizontal" action="{{ route('jenisPengaduan.store') }}" method="POST">
+                                    <form class="form-horizontal" action="{{ route('jenisPengaduan.store') }}" method="POST" id="myForm">
                                         @csrf
+                                      
                                         <div class="form-group row ">
                                             <label for="kode" class="col-md-3 col-form-label">Kode</label>
                                             <div class="col-md-4">
-                                                <input type="text" class="form-control" id="jns_pengaduan" name="jns_pengaduan" onkeyup="valueing()">
+                                                <input type="text" class="form-control"  name="jns_pengaduan" onkeyup="valueing()">
                                             </div>
                                         </div>
                                         <div class="form-group row ">
                                             <label for="jns_keterangan" class="col-md-3 col-form-label">Jenis Keterangan</label>
                                             <div class="col-md-4">
-                                                <input type="text" class="form-control" id="keterangan" name="keterangan" onkeyup="valueing()">
+                                                <input type="text" class="form-control"  name="keterangan" onkeyup="valueing()">
                                             </div>
                                         </div>
                                         <div class="form-group row ">
                                             <label for="sifat_pengaduan" class="col-md-3 col-form-label">Sifat Pengaduan</label>
                                             <div class="col-md-4">
-                                                <select class="form-control" id="sifat" name="sifat" onkeyup="valueing()">
+                                                <select class="form-control"  name="sifat" onkeyup="valueing()">
                                                     <option value="T"> T- Teknis </option>
                                                     <option value="A"> A- Administrasi </option>
                                                 </select>
@@ -56,20 +64,21 @@
                                         <div class="form-group row ">
                                             <label for="reward" class="col-md-3 col-form-label">Reward</label>
                                             <div class="col-md-4">
-                                                <input type="text" class="form-control" id="reward" name="reward" onkeyup="valueing()">
+                                                <input type="text" class="form-control"  name="reward" onkeyup="valueing()">
                                             </div>
                                         </div>
                                         <div class="form-group row ">
                                             <label for="" class="col-md-5 col-form-label"></label>
-                                            <div class="col-md-4">
+                                            <div class="col-md-5">
                                                 <button class="btn btn-success btn-sm" type="submit"><i
                                                         class="far fa-save"></i> Simpan</button>
-                                                <button type="submit" class="btn btn-danger btn-sm"><i
-                                                        class="fas fa-undo"></i> Batal</button>
+                                                <button type="reset" class="btn btn-danger btn-sm"><i
+                                                        class="fas fa-undo"></i> Reset</button>
                                             </div>
                                         </div>
                                     </form>
                                     <br>
+                                   
                                     &nbsp;
                                     <table id="table" class="table table-bordered table-responsive-md table-condensed"
                                         style="width: 100%">
@@ -98,16 +107,20 @@
                                                         @endif
                                                     </td>
                                                     <td>
-
-                                                        <form action="{{ route('jenisPengaduan.destroy', $jenisPengaduan->jns_pengaduan) }}" method="POST">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit" class="btn btn-xs btn-danger"><i
-                                                                class="fas fa-trash-alt"></i> Hapus</button>
-                                                            <button type="button" class="btn btn-success btn-xs"
-                                                                data-toggle="modal" data-target="#edit{{ $jenisPengaduan->jns_pengaduan }}"><i
-                                                                    class="fas fa-edit"></i> Edit</button>
-                                                        </form>
+                                                            <button type="submit"
+                                                                    class="btn btn-xs btn-danger hapus"
+                                                                    data-id="{{ $jenisPengaduan->jns_pengaduan }}">
+                                                                    <i class="fas fa-trash-alt"></i>
+                                                                    Hapus
+                                                            </button>
+                                                            <button type="button"
+                                                                    class="btn btn-xs btn-success edit"
+                                                                    data-id="{{ $jenisPengaduan->jns_pengaduan}} "
+                                                                    data-toggle="modal"
+                                                                    data-target="#form">
+                                                                    <i class="fas fa-edit"></i>
+                                                                    Edit
+                                                            </button>
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -122,6 +135,7 @@
 
     {{-- Edit Form --}}
     @include('master.jenisPengaduan.edit')
+    @include('master.jenisPengaduan.filter')
 @endsection
 
 @push('js')
@@ -139,7 +153,7 @@
                 //   "autoWidth": false,
                 //   "responsive": true,
                 "oLanguage": {
-                    "sSearch": "Keterangan : "
+                    "sSearch": "Search : "
                 },
                 "pageLength": 5
             }).buttons().container().appendTo('#table_wrapper .col-md-6:eq(0)');
@@ -155,63 +169,79 @@
 
             });
         });
+        var showLoading = function() {
+            swal.fire({
+                title: "Mohon Tunggu !",
+                html: "Sedang Memproses...",
+                allowOutsideClick: false,
+                showConfirmButton: false,
+                willOpen: () => {
+                    swal.showLoading()
+                },
+            })
+        }
 
-        // function deletejenisPengaduan(jns_pengaduan) {
-            // console.log(jns_pengaduan)
-            // swal.fire({
-            //     title: "Hapus Data?",
-            //     icon: 'question',
-            //     text: "Apakah Anda Yakin Ingin Menghapus",
-            //     type: "warning",
-            //     showCancelButton: !0,
-            //     confirmButtonColor: "#e74c3c",
-            //     confirmButtonText: "Iya",
-            //     cancelButtonText: "Tidak",
-            //     reverseButtons: !0
-            // }).then(function(e) {
-            //     if (e.value === true) {
-            //         let token = "{{ csrf_token() }}"
-            //         let _url = `/master/jenisPengaduan/${id}`
-            //         console.log(_url)
+   
 
-            //         $.ajax({
-            //             type: 'DELETE',
-            //             url: _url,
-            //             data: {
-            //                 _token: token
-            //             },
-            //             success: function(resp) {
-            //                 if (resp.success) {
-            //                     swal.fire("Selesai!", resp.message, "success");
-            //                     location.reload();
-            //                 } else {
-            //                     swal.fire("Gagal!", "Terjadi Kesalahan.", "error");
-            //                 }
-            //             },
-            //             error: function(resp) {
-            //                 swal.fire("Gagal!", "Terjadi Kesalahan.", "error")
-            //             }
-            //         })
-            //     } else {
-            //         e.dismiss;
-            //     }
-            // }, function(dismiss) {
-            //     return false;
-            // });
-        // }
+        $(document).on('click', '.edit', function(e) {
+            e.preventDefault();
+            let jns_pengaduan = $(this).attr("data-id").trim()
+            // console.log("0")
+            $.ajax({
+                type: "GET",
+                url: `{{ url('master/jenisPengaduan') }}/`+jns_pengaduan,
+                data: {
+                    id: jns_pengaduan,
+                    _token: '{{ csrf_token() }}'
+                },
+                beforeSend: function() {
+                    showLoading()
+                },
+                success: function(response) {
+                    console.log(response)
+                    $('#form-edit').attr('action', "{{ url('master/jenisPengaduan') }}/"+jns_pengaduan)
+                    $('#jns_pengaduan').val(response.jns_pengaduan)
+                    $('#keterangan').val(response.keterangan)
+                    $('#sifat').val(response.sifat)
+                    $('#pelayanan').val(response.pelayanan)
+                    $('#reward').val(response.reward)
+                    swal.close();
+                }
+            })
+        })
 
-        // $(document).ready(function($) {
-        //     $.ajaxSetup({
-        //         headers: {
-        //             'X-CSRF-TOKEN': "{{ csrf_token() }}"
-        //         }
-        //     });
+        $(document).on('click', '.hapus', function(e) {
+            e.preventDefault();
+            let jns_pengaduan = $(this).data('id');
+            let token = "{{ csrf_token() }}";
+            swal.fire({
+                title: "Apakah Anda Yakin ?",
+                icon: 'warning',
+                text: "Anda Tidak Akan Bisa Mengembalikan Data Ini",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Iya, Hapus!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: "DELETE",
+                        url: `{{ url('master/jenisPengaduan') }}/`+jns_pengaduan,
+                        data: {
+                                _token: token
+                            },
+                            success: function(resp) {
+                                swal.fire(
+                                    'Deleted!',
+                                    'Your file has been deleted.',
+                                    'success'
+                                )
+                                location.reload();
+                            }
+                    });
+                }
+            });
+        });
 
-        //     $('body').on('click', '.edit', function() {
-        //         var id = $(this).data('id');
-
-        //
-        //     })
-        // })
     </script>
 @endpush

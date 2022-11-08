@@ -49,7 +49,7 @@
                                             <div class="col-md-5">
                                                 <button class="btn btn-success btn-sm" type="submit"><i
                                                         class="far fa-save"></i> Simpan</button>
-                                                <button type="submit" class="btn btn-danger btn-sm"><i
+                                                <button type="reset" class="btn btn-danger btn-sm"><i
                                                         class="fas fa-undo"></i> Reset</button>
                                             </div>
                                         </div>
@@ -117,7 +117,7 @@
                 //   "autoWidth": false,
                 //   "responsive": true,
                 "oLanguage": {
-                    "sSearch": "Keterangan : "
+                    "sSearch": "Search : "
                 },
                 "pageLength": 5
             }).buttons().container().appendTo('#table_wrapper .col-md-6:eq(0)');

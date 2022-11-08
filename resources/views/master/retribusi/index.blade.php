@@ -24,6 +24,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Retribusi</h3>
+                         
                             <a href="{{ route('printretribusi') }}" class="btn btn-xs btn-success float-right"><i class="fas fa-print"></i> Cetak Tabel</a>
 
                         </div>
@@ -92,6 +93,7 @@
                             </table>
                         </div>
                         @include('master.retribusi.form')
+                      
                     </div>
                 </div>
     </section>
@@ -112,7 +114,7 @@
                 //   "autoWidth": false,
                 //   "responsive": true,
                 "oLanguage": {
-                    "sSearch": "Kode Retribusi : "
+                    "sSearch": "Search : "
                 },
                 "pageLength": 5
             }).buttons().container().appendTo('#table_wrapper .col-md-6:eq(0)');
@@ -146,7 +148,7 @@
             let kd_retribusi = $(this).data('id')
             $.ajax({
                 type: "GET",
-                url: `{{ url('api/dip') }}/`+kd_retribusi,
+                url: `{{ url('master/retribusi') }}/`+kd_retribusi,
                 data: {
                     id: kd_retribusi,
                     _token: '{{ csrf_token() }}'
@@ -162,24 +164,7 @@
             })
         })
 
-        $('#edit-form').submit(function(e) {
-            e.preventDefault();
-            const fd = new FormData(this);
-            $.ajax({
-                type: "PUT",
-                url: `{{ url('master/retribusi') }}/`+kd_retribusi,
-                data: fd,
-                cache: false,
-                contentType: false,
-                processData: false,
-                dataType: 'json',
-                success: function(resp) {
-                    if(resp.success) {
 
-                    }
-                }
-            })
-        })
 
         $(document).on('click', '.hapus', function(e) {
             e.preventDefault();
@@ -202,6 +187,9 @@
                         data: {
                                 _token: token
                             },
+                //             beforeSend: function() {
+                //     showLoading()
+                // },
                             success: function(resp) {
                                 swal.fire(
                                     'Deleted!',
@@ -214,8 +202,6 @@
                 }
             });
         });
-
-
 
         function valueing() {
             if (document.getElementById('rp_retribusi').value == "") {

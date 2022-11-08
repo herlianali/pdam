@@ -24,8 +24,18 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Jenis Panggilan Dinas</h3>
-                            <a href="{{ route('settingPrintPanggilan') }}" class="btn btn-xs btn-success float-right"><i
-                                    class="fas fa-print"></i> Cetak</a>
+                           
+                              
+                            <button type="button"
+                            class="btn btn-xs btn-success filter float-right"
+                            data-toggle="modal"
+                            data-target="#filter">
+                            <i class="fas fa-print"></i>
+                            Print
+                    </button> 
+                    
+                            {{-- <a href="{{ route('settingPrintPanggilan') }}" class="btn btn-xs btn-success float-right"><i
+                                    class="fas fa-print"></i> Cetak</a> --}}
                         </div>
                         <div class="card-body">
                             <div class="row mb-4">
@@ -53,10 +63,9 @@
                                                         <i class="far fa-save"></i>
                                                         Simpan
                                                 </button>
-                                                <button type="submit"
-                                                        class="btn btn-danger btn-sm">
-                                                        <i class="fas fa-undo"></i>
-                                                        Reset
+                                                <button type="reset" class="btn btn-danger btn-sm">
+                                                    <i class="fa fa-undo"></i>
+                                                    Reset
                                                 </button>
                                             </div>
                                         </div>
@@ -107,6 +116,10 @@
 
     {{-- Edit Form --}}
     @include('master.panggilanDinas.form')
+    
+    @include('master.panggilanDinas.filter')
+    
+
 @endsection
 
 @push('js')
@@ -124,7 +137,7 @@
                 //   "autoWidth": false,
                 //   "responsive": true,
                 "oLanguage": {
-                    "sSearch": "Keterangan : "
+                    "sSearch": "Search : "
                 },
                 "pageLength": 5
             }).buttons().container().appendTo('#table_wrapper .col-md-6:eq(0)');

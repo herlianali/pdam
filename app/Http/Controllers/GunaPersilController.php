@@ -31,11 +31,11 @@ class GunaPersilController extends Controller
         GunaPersil::insert([
             'kd_gunapersil'     => $request->kd_gunapersil,
             'keterangan'        => $request->keterangan,
-            'kd_gunapersil_i'   => $request->induk,
-            'kd_tarif'          => $request->kode_tarif,
+            'kd_gunapersil_i'   => $request->kd_gunapersil_i,
+            'kd_tarif'          => $request->kd_tarif,
             'jns_persil'        => "a"
         ]);
-        
+
         return redirect()->route('gunaPersil');
     }
 
@@ -47,27 +47,46 @@ class GunaPersilController extends Controller
 
     public function update(Request $request, $kd_gunapersil)
     {
-        StatusAir::where('kd_gunapersil', $kd_gunapersil)
+        //dd($request->post());
+        GunaPersil::where('kd_gunapersil', $kd_gunapersil)
                     ->update([
-                        'kd_gunapersil' => $request->kd_gunapersil,
-                        'keterangan'    => $request->keterangan,
-                        'induk'         => $request->guna_persil,
-                        'kode_tarif'    => $request->kode_tarif
+                        'kd_gunapersil'     => $request->kd_gunapersil,
+                        'keterangan'        => $request->keterangan,
+                        'kd_gunapersil_i'   => $request->kd_gunapersil_i,
+                        'kd_tarif'          => $request->kd_tarif
                     ]);
 
-        return redirect()->route('gunaPersil.index');
+        return redirect()->route('gunaPersil');
     }
 
-    public function destroy($id)
+    public function destroy($kd_gunapersil)
     {
-        $gunaPersil = GunaPersil::findOrFail($id)->delete();
+        GunaPersil::where('kd_gunapersil', $kd_gunapersil)->delete();
         return response()->json([
             'success' => true,
             'message' => 'Data Guna Persil Berhasil Dihapus',
         ]);
     }
+
+    public function printPreview(Request $request)
+    {
+        if($request->filter == "semua"){
+            $filter = GunaPersil::all();
+        }else{
+            $filter = GunaPersil::filter($request->start, $request->end);
+        }
+
+        return view('master.gunaPersil.print', compact('filter'));
+    }
+
     public function print()
     {
-        return view('master.gunaPersil.print');
+        // $kd_gunapersil = GunaPersil::select('kd_gunapersil', 'keterangan')->get();
+        // $guna_persil = new GunaPersil;
+        // $guna = $guna_persil->getData();
+        // $kd_tarif = JenisTarif::select('kd_tarif', 'jns_tarif')->get();
+        // $kode_tarif = new GunaPersil;
+        // $kode = $kode_tarif->getData();
+        return view('master.gunaPersil.print')->with('i');
     }
 }

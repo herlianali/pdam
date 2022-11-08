@@ -30,50 +30,14 @@
     <section class="container">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-4 col-sm-12">
+                <div class="col-sm-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Filter Jenis Pengaduan</h3>
-                        </div>
-                        <div class="card-body">
-                            <form action="">
-                                <div class="form-group">
-                                    <div class="form-check">
-                                        <input type="radio" name="filter" id="semuakd" value="semua">
-                                        <label for="">Semua Kode</label>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-3 col-sm-3">
-                                        <div class="form-group">
-                                            <div class="form-check">
-                                                <input type="radio" name="filter" id="kode" value="kode">
-                                                <label for="">Kode</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3 col-sm-4" id="startEnd">
-                                        <div class="form-group">
-                                            <input class="form-control" type="text" name="start" id="start">
-                                        </div>
-                                    </div>
-                                    <span class="font-weight-bold mt-1" style="font-size: 15px;" id="startEnd">S/D</span>
-                                    <div class="col-md-3 col-sm-4" id="startEnd">
-                                        <div class="form-group">
-                                            <input class="form-control" type="text" name="end" id="end">
-                                        </div>
-                                    </div>
-                                </div>
-                                <button type="submit" class="btn btn-info btn-sm">Preview</button>
-                                <button class="btn btn-danger btn-sm">Batal</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-8 col-sm-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Print preview Jenis Pengaduan</h3>
+                            <h3 class="card-title">Preview Jenis Pengaduan</h3>
+                            <button type="submit"
+                            class="btn btn-xs float-right btn-success print">
+                            Print
+                            </button>
                         </div>
                         <div class="card-body priview">
                             <p> Pemerintah Kota <br>
@@ -92,41 +56,6 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>01</td>
-                                        <td>METER. TIDAK ADA</td>
-                                        <td>T</td>
-                                    </tr>
-                                    <tr>
-                                        <td>02</td>
-                                        <td>DAFTARR ADA METER TIDAK ADA</td>
-                                        <td>A</td>
-                                    </tr>
-                                    <tr>
-                                        <td>03</td>
-                                        <td>DAFTARR TIDAK ADA METER ADA</td>
-                                        <td>A</td>
-                                    </tr>
-                                    <tr>
-                                        <td>04</td>
-                                        <td>METER BARU</td>
-                                        <td>T</td>
-                                    </tr>
-                                    <tr>
-                                        <td>05</td>
-                                        <td>SEGEL METER TIDAK ADA</td>
-                                        <td>T</td>
-                                    </tr>
-                                    <tr>
-                                        <td>06</td>
-                                        <td>SGL MTR & SGL KOPL TDK ADA</td>
-                                        <td>T</td>
-                                    </tr>
-                                    <tr>
-                                        <td>07</td>
-                                        <td>SEGEL ROPLING</td>
-                                        <td>T</td>
-                                    </tr>
                                     @foreach ($jenisPengaduans as $jenis)
                                     <tr>
                                         <td>{{ $jenis->jns_pengaduan }}</td>
@@ -143,22 +72,3 @@
         </div>
     </section>
 @endsection
-
-@push('js')
-    <script type="text/javascript">
-        const box = document.getElementById('startEnd');
-
-        function clickRadio() {
-            if (document.getElementById('semuakd').checked) {
-                box.style.display = "none"
-            } else {
-                box.style.display = "block"
-            }
-        }
-
-        const radioButtons = document.querySelectorAll('input[name="filter"]');
-        radioButtons.forEach(radio => {
-            radio.addEventListener('click', clickRadio)
-        });
-    </script>
-@endpush

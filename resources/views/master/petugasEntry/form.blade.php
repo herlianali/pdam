@@ -8,32 +8,30 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="">
+                <form action="" class="form-horizontal" id="form-edit" method="POST">
+                    @csrf
+                    @method('PUT')
                     <div class="form-group">
                         <label>Kode Petugas</label>
-                        <input type="text" class="form-control" id="kode_ptgs" name="kode_ptgs" disabled>
+                        <input type="text" class="form-control" id="kd_ptgentry1" name="kd_ptgentry" disabled>
                     </div>
                     <div class="form-group">
                         <label>NIP</label>
-                        <input type="text" class="form-control" id="nip" name="nip" disabled>
+                        <input type="text" class="form-control" id="nip1" name="nip" >
                     </div>
                     <div class="form-group">
                         <label>Nama</label>
-                        <input type="text" class="form-control" id="nama" name="nama">
+                        <input type="text" class="form-control" id="nama1" name="nama">
                     </div>
                     <div class="form-group">
-                        <label> Status</label>
-                        <select class="form-control" id="status" name="status" onkeyup="valueing()">
-                            <option value="">  </option>
-                            <option value="">  </option>
+                        <label> Aktif</label>
+                        <select class="form-control" id="aktif" name="aktif" onkeyup="valueing()">
+                            <option value="0"> 0 </option>
+                            <option value="1"> 1 </option>
                         </select>
                     </div>
-                    <div class="form-group">
-                        <label>ISCS</label>
-                        <input type="text" class="form-control" id="iscs" name="iscs">
-                    </div>
                     <button class="btn btn-success btn-sm" type="submit"><i class="far fa-save"></i> Simpan</button>
-                    <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-undo"></i> Batal</button>
+                    <button type="cancel" class="btn btn-danger btn-sm"><i class="fas fa-times"></i> Batal</button>
                 </form>
             </div>
         </div>

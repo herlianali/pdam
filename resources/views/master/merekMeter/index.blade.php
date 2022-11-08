@@ -23,7 +23,15 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Merek Meter</h3>
-                            <a href="{{ route('printmerekMeter') }}" class="btn btn-xs btn-success float-right"><i class="fas fa-print"></i> Cetak Tabel</a>
+                          
+                            {{-- <button type="button"
+                            class="btn btn-xs btn-success filter float-right"
+                            data-toggle="modal"
+                            data-target="#filter">
+                            <i class="fas fa-print"></i>
+                            Print
+                    </button>   --}}
+                    <a href="{{ route('printmerekMeter') }}" class="btn btn-xs btn-success float-right"><i class="fas fa-print"></i> Cetak Tabel</a>
                         </div>
                         <div class="card-body">
                             <div class="row mb-4">
@@ -48,8 +56,10 @@
                                             <div class="col-md-6">
                                                 <button type="submit" class="btn btn-success btn-sm mt-3" id="simpan"><i
                                                         class="far fa-save"></i> Simpan</button>
-                                                <button type="reset" class="btn btn-danger btn-sm mt-3" id="batal"><i
-                                                        class="far fa-times-circle"></i> Batal</button>
+                                                <button type="reset" class="btn btn-danger btn-sm mt-3">
+                                                    <i class="fa fa-undo"></i>
+                                                    Reset
+                                                </button>
                                             </div>
                                         </div>
                                     </form>
@@ -95,6 +105,7 @@
                             </table>
                         </div>
                         @include('master.merekMeter.form')
+                        {{-- @include('master.merekMeter.filter') --}}
                     </div>
                 </div>
     </section>
@@ -115,7 +126,7 @@
                 //   "autoWidth": false,
                 //   "responsive": true,
                 "oLanguage": {
-                    "sSearch": "Kode/Keterangan : "
+                    "sSearch": "Search : "
                 },
                 "pageLength": 5
             }).buttons().container().appendTo('#table_wrapper .col-md-6:eq(0)');

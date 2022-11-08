@@ -23,7 +23,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Laporan Rekapitulasi Perubahan Naik Turun</h3>
-                            <a href="{{ route('printlaporanRekapitulasiNaikTurun') }}"class="btn btn-xs btn-success float-right"><i class="fas fa-print"></i> Cetak</a>
+                            <a href="{{ route('preview') }}"class="btn btn-xs btn-success float-right"><i class="fas fa-print"></i> Cetak</a>
                         </div>
                         <div class="card-body">
                             <div class="row mb-4">

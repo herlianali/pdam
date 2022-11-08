@@ -51,7 +51,7 @@
                                                         <i class="far fa-save"></i>
                                                         Simpan
                                                 </button>
-                                                <button type="submit"
+                                                <button type="reset"
                                                         class="btn btn-danger btn-sm">
                                                         <i class="fas fa-undo"></i>
                                                         Reset
@@ -121,7 +121,7 @@
                 //   "autoWidth": false,
                 //   "responsive": true,
                 "oLanguage": {
-                    "sSearch": "Keterangan : "
+                    "sSearch": "Search : "
                 },
                 "pageLength": 5
             }).buttons().container().appendTo('#table_wrapper .col-md-6:eq(0)');

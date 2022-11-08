@@ -69,14 +69,23 @@ class JenisPekerjaanController extends Controller
 
     public function destroy($jns_pekerjaan)
     {
-        $jenisPekerjaan = JenisPekerjaan::findOrFail($jns_pekerjaan)->delete();
-        return redirect()->route('jenisPekerjaan.index');
+        JenisPekerjaan::where('jns_pekerjaan', $jns_pekerjaan)->delete();
+        return response()->json([
+            'success' => true,
+            'message' => 'Data Jenis Pekerjaan Berhasil Dihapus',
+        ]);
     }
 
-    public function print()
-    {
-        $jnsPekerjaan = JenisPekerjaan::all();
-        return view('master.jenisPekerjaan.print', compact('jnsPekerjaan'))->with('i');
+    public function printPreview(Request $request){
+        if($request->filter == "semua"){
+            $filter = JenisPekerjaan::all();
+        }else {
+        
+        
+        $filter = JenisPekerjaan::filter($request->start, $request->end);
+    }
+        // dd($filter);
+         return view('master.jenisPekerjaan.print', compact('filter'));
     }
 
 }

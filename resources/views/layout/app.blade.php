@@ -147,7 +147,7 @@
           <img src="{{ asset('assets/img/user.png') }}" class="img-circle elevation-2" alt="">
         </div>
         <div class="info">
-          <p class="d-block" href="#">User Name</p>
+          <p class="d-block" href="#">{{ Session::get('username') }}</p>
         </div>
       </div>
 
@@ -192,7 +192,7 @@
                 </div>
                 <div class="modal-body">
                   <a href="" class="btn btn-default col-md-12" disabled="">LogIn</a>
-                  <a href="" class="btn btn-default col-md-12 mb-2 mt-2">LogOut</a>
+                  <a href="{{ route('logout') }}" class="btn btn-default col-md-12 mb-2 mt-2">LogOut</a>
                   <a href="" class="btn btn-default col-md-12">Ganti Password</a>
                 </div>
                 {{-- <div class="modal-footer">

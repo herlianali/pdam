@@ -26,7 +26,7 @@
     </ol>
     <br>
     <br>
-    <a href="{{ route('printpanggilanDinas') }}" class="btn btn-sm btn-success float-right"><i class="fas fa-download"></i>
+    {{-- <a href="{{ route('printpanggilanDinas') }}" class="btn btn-sm btn-success float-right"><i class="fas fa-download"></i> --}}
         Download</a>
 @endsection
 
@@ -37,8 +37,11 @@
                 <div class="col-sm-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Print preview Tabel Retribusi</h3>
-                            <a href="{{ route('retribusi') }}" class="btn btn-sm btn-success float-right"><i class="fas fa-backward"></i> Kembal</a>
+                            <h3 class="card-title">Preview Retribusi</h3>
+                            <button type="submit"
+                            class="btn btn-xs float-right btn-success print">
+                            Print
+                            </button>
                         </div>
                         <div class="card-body priview">
                             <p>
@@ -55,9 +58,19 @@
                                 <thead>
                                     <tr>
                                         <th width="30%">No</th>
-                                        <th width="70%">Nilai Retribusi</th>
+                                        <th width="40%">Kode Retribusi</th>
+                                        <th width="30%">Nilai Retribusi</th>
                                     </tr>
                                 </thead>
+                                <tbody>
+                                    @foreach ($retribus as $retribusi)
+                                        <tr>
+                                            <td>{{ ++$i }}</td>
+                                            <td>{{ $retribusi->kd_retribusi }}</td>
+                                            <td>{{ $retribusi->rp_retribusi }}</td>
+                                        </tr>
+                                        @endforeach
+                                </tbody>
                             </table>
                         </div>
                     </div>

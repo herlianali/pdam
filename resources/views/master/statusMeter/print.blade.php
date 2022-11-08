@@ -33,7 +33,7 @@
                 <div class="col-sm-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Print preview Tabel Status Meter</h3>
+                            <h3 class="card-title">Preview Status Meter</h3>
                             <a href="{{ route('printpanggilanDinas') }}" class="btn btn-sm btn-success float-right"><i class="fas fa-print"></i> Cetak</a>
                         </div>
                         <div class="card-body priview">
@@ -53,9 +53,18 @@
                                         <th width="20%">No</th>
                                         <th width="30%">Kode</th>
                                         <th width="30%">Keterangan</th>
-
                                     </tr>
                                 </thead>
+                                <tbody>
+                                    @foreach ($stMeter as $statusMeter)
+                                        <tr>
+                                            <td>{{ ++$i }}</td>
+                                            <td>{{ $statusMeter->kd_statusmtr }}</td>
+                                            <td>{{ $statusMeter->keterangan }}</td>
+                                        </tr>
+                                    @endforeach
+
+                                </tbody>
                             </table>
                         </div>
                     </div>

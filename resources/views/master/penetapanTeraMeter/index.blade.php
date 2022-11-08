@@ -24,34 +24,45 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Penetapan Tera Meter </h3>
-                            <a href="{{ route('printpenetapanTeraMeter') }}" class="btn btn-sm btn-success float-right"><i
-                                    class="fas fa-print"></i> Cetak</a>
+                            <!-- <a href="{{ route('printpenetapanTeraMeter') }}" class="btn btn-sm btn-success float-right"><i
+                                    class="fas fa-print"></i> Cetak</a> -->
+                            <button type="button"
+                                class="btn btn-xs btn-success filter float-right"
+                                data-toggle="modal"
+                                data-target="#filter">
+                                <i class="fas fa-print"></i>
+                                Print
+                            </button>
                         </div>
                         <div class="card-body">
                             <div class="row mb-5">
                                 <div class="col-md-1"></div>
                                 <div class="col-md-9">
-                                    <form class="form-horizontal">
-
+                                    <form class="form-horizontal" action="" method="POST">
+                                    @csrf
                                         <div class="form-group row mt-2 ">
                                             <label for="nopenetapan" class="col-md-3 col-form-label"> Nomor
                                                 Penetapan</label>
                                             <div class="col-md-4">
-                                                <input type="text" class="form-control" id="nomor"
-                                                    onkeyup="valueing()">
+                                                <input type="text" class="form-control" value="TTRA{{ $no }}" name="no_tera" readonly>
                                             </div>
                                             <label for="tanggal" class="col-md-0 col-form-label"> Tanggal</label>
                                             <div class="col-md-4">
-                                                <input type="date" class="form-control" id="tanggal"
-                                                    onkeyup="valueing()">
+                                                <input type="date" class="form-control" id="date" name="date" value="{{ $date }}" readonly>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="nobon" class="col-md-3 col-form-label"> No Bon C</label>
                                             <div class="col-md-4">
-                                                <input type="text" class="form-control" id="nomorbon"
-                                                    onkeyup="valueing()">
+                                                <input type="text" class="form-control" id="no_bonc" name="no_bonc">
                                             </div>
+                                            <button class="btn btn-info btn-mt-2" id="cari" type="button">
+                                                <i class="fa fa-search"></i>
+                                            </button>&nbsp;
+                                            <button type="reset" class="btn btn-danger btn-mt-2">
+                                                <i class="fa fa-undo"></i>
+                                                Reset
+                                            </button>
                                         </div>
 
                                         <br>
@@ -59,105 +70,90 @@
                                         <div class="form-group row mt-2">
                                             <label for="nopel" class="col-md-3 col-form-label">Nopel</label>
                                             <div class="col-md-9">
-                                                <input type="text" class="form-control" id="nopel"
-                                                    onkeyup="valueing()">
+                                                <input type="text" class="form-control" id="no_plg" name="no_plg" onkeyup="valueing()" readonly>
                                             </div>
                                         </div>
                                         <div class="form-group row ">
                                             <label for="nama" class="col-md-3 col-form-label">Nama </label>
                                             <div class="col-md-9">
-                                                <input type="text" class="form-control" id="nama"
-                                                    onkeyup="valueing()">
+                                                <input type="text" class="form-control" id="nama" name="nama" onkeyup="valueing()" readonly>
                                             </div>
                                         </div>
                                         <div class="form-group row ">
                                             <label for="alamat" class="col-md-3 col-form-label">Alamat</label>
                                             <div class="col-md-9">
-                                                <textarea class="form-control" id="alamat" onkeyup="valueing()"></textarea>
+                                                <textarea class="form-control" id="alamat" name="alamat" onkeyup="valueing()" readonly></textarea>
                                             </div>
                                         </div>
                                         <div class="form-group row ">
-                                            <label for="tarif" class="col-md-3 col-form-label">Tarif</label>
+                                            <label for="kd_tarif" class="col-md-3 col-form-label">Tarif</label>
                                             <div class="col-md-9">
-                                                <input type="text" class="form-control" id="tarif"
-                                                    onkeyup="valueing()">
+                                                <input type="text" class="form-control" id="kd_tarif" name="kd_tarif" onkeyup="valueing()" readonly>
                                             </div>
                                         </div>
                                         <div class="form-group row ">
-                                            <label for="UKMeter" class="col-md-3 col-form-label">UK Meter</label>
-                                            <div class="col-md-2">
-                                                <input type="text" class="form-control" id="ukuranmeter"
-                                                    onkeyup="valueing()">
+                                            <label for="ukuran_mtr" class="col-md-3 col-form-label">UK Meter</label>
+                                            <div class="col-md-1">
+                                                <input type="text" class="form-control" id="ukuran_mtr" name="ukuran_mtr" onkeyup="valueing()" readonly>
                                             </div>
                                             <label for="biaya" class="col-form-label">Biaya</label>
                                             <div class="col-md-2">
-                                                <input type="text" class="form-control" id="biaya"
-                                                    onkeyup="valueing()">
+                                                <input type="text" class="form-control" id="biaya_tera" name="biaya_tera" onkeyup="valueing()" readonly>
                                             </div>
 
                                             <label for="ppn" class="col-form-label">PPN</label>
-                                            <div class="col-md-1">
-                                                <input type="text" class="form-control" id="ppn"
-                                                    onkeyup="valueing()">
+                                            <div class="col-md-2">
+                                                <input type="text" class="form-control" id="ppn" name="ppn" onkeyup="valueing()" readonly>
                                             </div>
                                             <label for="total" class="col-form-label"> Total </label>
                                             <div class="col-md-2">
-                                                <input type="text" class="form-control" id="total"
-                                                    onkeyup="valueing()">
+                                                <input type="text" class="form-control" id="total_biaya" name="total_biaya" onkeyup="valueing()" readonly>
                                             </div>
-
                                         </div>
                                         <br>
                                         <br>
                                         <p> <b> Yang Mengajukan : </b></p>
                                         <div class="form-group row mt-2">
-                                            <label for="nama" class="col-md-3 col-form-label">Nama</label>
+                                            <label for="nama_pengadu" class="col-md-3 col-form-label">Nama</label>
                                             <div class="col-md-9">
-                                                <input type="text" class="form-control" id="nama"
+                                                <input type="text" class="form-control" name="nama_pengadu"
                                                     onkeyup="valueing()">
                                             </div>
                                         </div>
                                         <div class="form-group row ">
-                                            <label for="alamat" class="col-md-3 col-form-label">Alamat</label>
+                                            <label for="alamat_pengadu" class="col-md-3 col-form-label">Alamat</label>
                                             <div class="col-md-9">
-                                                <textarea class="form-control" id="alamat" onkeyup="valueing()"></textarea>
+                                                <textarea class="form-control" name="alamat_pengadu" onkeyup="valueing()"></textarea>
 
                                             </div>
                                         </div>
                                         <div class="form-group row ">
-                                            <label for="telepon" class="col-md-3 col-form-label">Telepon</label>
+                                            <label for="telp_pengadu" class="col-md-3 col-form-label">Telepon</label>
                                             <div class="col-md-9">
-                                                <input type="text" class="form-control" id="telepon"
+                                                <input type="text" class="form-control" name="telp_pengadu"
                                                     onkeyup="valueing()">
                                             </div>
                                         </div>
                                         <div class="col-sm-12">
 
                                             <button type="submit" class="btn btn-success float-right" id="simpan"><i
-                                                    class="far fa-save"></i>Simpan</button>
-
-
+                                                class="far fa-save"></i>Simpan
+                                            </button>
                                         </div>
                                 </div>
-
-
                                 </form>
                             </div>
-
                             <div class="col-md-1"></div>
                         </div>
-
                     </div>
-
+                    @include('master.penetapanTeraMeter.filter')
                 </div>
             </div>
     </section>
-
-  
-
 @endsection
 
 @push('js')
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
@@ -188,47 +184,67 @@
             });
         });
 
-        function deletepDinas(id) {
+        var showLoading = function() {
             swal.fire({
-                title: "Hapus Data?",
-                icon: 'question',
-                text: "Apakah Anda Yakin Ingin Menghapus",
-                type: "warning",
-                showCancelButton: !0,
-                confirmButtonColor: "#e74c3c",
-                confirmButtonText: "Iya",
-                cancelButtonText: "Tidak",
-                reverseButtons: !0
-            }).then(function(e) {
-                if (e.value === true) {
-                    let token = "{{ csrf_token() }}"
-                    let _url = `/panggilanDinas/${id}`
-                    console.log(_url)
-
-                    $.ajax({
-                        type: 'DELETE',
-                        url: _url,
-                        data: {
-                            _token: token
-                        },
-                        success: function(resp) {
-                            if (resp.success) {
-                                swal.fire("Selesai!", resp.message, "Berhasil");
-                                location.reload();
-                            } else {
-                                swal.fire("Gagal!", "Terjadi Kesalahan.", "error");
-                            }
-                        },
-                        error: function(resp) {
-                            swal.fire("Gagal!", "Terjadi Kesalahan.", "error")
-                        }
-                    })
-                } else {
-                    e.dismiss;
-                }
-            }, function(dismiss) {
-                return false;
-            });
+                title: "Mohon Tunggu !",
+                html: "Sedang Memproses...",
+                allowOutsideClick: false,
+                showConfirmButton: false,
+                willOpen: () => {
+                    swal.showLoading()
+                },
+            })
         }
+
+        $(document).on('click', '#cari', function(e) {
+            e.preventDefault();
+            let no_bonc = $('#no_bonc').val();
+            $.ajax({
+                type: "GET",
+                url: `{{ url('master/penetapanTeraMeter') }}/` + no_bonc,
+                data: {
+                    id: no_bonc,
+                    _token: '{{ csrf_token() }}'
+                },
+                beforeSend: function() {
+                    showLoading()
+                },
+                success: function(response) {
+                    var mtr = parseFloat(response.ukuran_mtr);
+                    if (mtr==0.5 || mtr==0.75) {
+                        var biaya_tera=45000
+                    } else if (mtr==1 || mtr==1.5) {
+                        var biaya_tera=60000
+                    }else if (mtr==2) {
+                        var biaya_tera=75000
+                    }else if (mtr==3) {
+                        var biaya_tera=120000
+                    }else if (mtr==4) {
+                        var biaya_tera=225000
+                    }else if (mtr==6) {
+                        var biaya_tera=300000
+                    }else if (mtr==8) {
+                        var biaya_tera=300000
+                    }else if (mtr==10) {
+                        var biaya_tera=450000
+                    }else if (mtr==12) {
+                        var biaya_tera=600000
+                    }else if (mtr==16) {
+                        var biaya_tera=750000
+                    }
+                    var ppn = biaya_tera * 0.1
+                    var total_biaya = biaya_tera + biaya_tera * 0.1
+                    $('#no_plg').val(response.no_plg)
+                    $('#nama').val(response.nama)
+                    $('#alamat').val(response.jalan.trim()+' '+response.gang.trim()+' '+response.nomor.trim()+' '+response.notamb)
+                    $('#kd_tarif').val(response.kd_tarif)
+                    $('#ukuran_mtr').val(mtr)
+                    $('#biaya_tera').val(biaya_tera)
+                    $('#ppn').val(ppn)
+                    $('#total_biaya').val(total_biaya)
+                    swal.close();
+                }
+            })
+        })
     </script>
 @endpush

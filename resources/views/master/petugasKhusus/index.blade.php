@@ -68,10 +68,10 @@
                                 <div class="form-group row mt-2 ">
                                     <label for="tombol" class="col-md-6 col-form-label"></label>
                                     <div class="col-md-5">
-                                        <button class="btn btn-success btn-sm" type="submit"><i class="far fa-save"></i>
-                                            Simpan</button>
-                                        <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-undo"></i>
-                                            Reset</button>
+                                        <button class="btn btn-success btn-sm" type="submit"><i
+                                                class="far fa-save"></i> Simpan</button>
+                                        <button type="reset" class="btn btn-danger btn-sm"><i
+                                                class="fas fa-undo"></i> Reset</button>
                                     </div>
                                 </div>
                             </form>
@@ -178,11 +178,15 @@
             })
         }
 
+        // validasi nip petugas khusu
+        // $(document).on('click', '.simpan', function() {
+        //     e.preventDefault()
+        // })
+
         $(document).on('click', '.hapus', function(e) {
             e.preventDefault();
-            // console.log();
-            let nip = $(this).data('id');
-            let token = "{{ csrf_token() }}";
+            let nip = $(this).data('id').trim().replace(/\s/g, '');
+            let token = '{{ csrf_token() }}';
             swal.fire({
                 title: "Apakah Anda Yakin ?",
                 icon: 'warning',
@@ -194,22 +198,27 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
+                        data: {
+                            _token: token
+                        },
                         type: "DELETE",
                         url: `{{ url('master/petugasKhusus') }}/`+nip,
-                        data: {
-                                _token: token
-                            },
-                            success: function(resp) {
-                                swal.fire(
+                        beforeSend: function() {
+                            showLoading()
+                        },
+                        success: function(response) {
+                            console.log(response);
+                            swal.fire(
                                     'Deleted!',
                                     'Your file has been deleted.',
                                     'success'
                                 )
                                 location.reload();
-                            }
-                    });
+                        }
+                    })
                 }
-            });
+            })
+
         });
     </script>
 @endpush

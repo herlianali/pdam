@@ -23,7 +23,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Wilayah Distribusi</h3>
-                            <a href="{{ route('printwilayahDistribusi') }}" class="btn btn-xs btn-success float-right"><i class="fas fa-print"></i> Cetak Tabel</a>
+                            <a href="{{ route('printwilayahDistribusi') }}" class="btn btn-xs btn-success float-right"><i class="fas fa-print"></i> Cetak </a>
                         </div>
                         <div class="card-body">
                             <div class="row mb-4">
@@ -48,7 +48,7 @@
                                             <div class="col-md-5">
                                                 <button class="btn btn-success btn-sm" type="submit"><i
                                                         class="far fa-save"></i> Simpan</button>
-                                                <button type="submit" class="btn btn-danger btn-sm"><i
+                                                <button type="reset" class="btn btn-danger btn-sm"><i
                                                         class="fas fa-undo"></i> Reset</button>
                                             </div>
                                         </div>
@@ -115,7 +115,7 @@
                 //   "autoWidth": false,
                 //   "responsive": true,
                 "oLanguage": {
-                    "sSearch": "Keterangan : "
+                    "sSearch": "Search : "
                 },
                 "pageLength": 5
             }).buttons().container().appendTo('#table_wrapper .col-md-6:eq(0)');
@@ -187,6 +187,9 @@
                         url: `{{ url('master/wilayahDistribusi') }}/`+kd_wilayah,
                         data: {
                                 _token: token
+                            },
+                            beforeSend: function() {
+                                showLoading()
                             },
                             success: function(resp) {
                                 swal.fire(

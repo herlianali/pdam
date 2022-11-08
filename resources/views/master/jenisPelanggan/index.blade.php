@@ -24,7 +24,15 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Jenis Pelanggan</h3>
-                        </div>
+                            {{-- <button type="button"
+                            class="btn btn-xs btn-success filter float-right"
+                            data-toggle="modal"
+                            data-target="#filter">
+                            <i class="fas fa-print"></i>
+                            Print
+                    </button>                         --}}
+                    <a href="{{ route('printjenisPelanggan') }}" class="btn btn-xs btn-success float-right"><i class="fas fa-print"></i> Cetak</a>
+                </div>
                         <div class="card-body">
                             <div class="row mb-4">
                                 <div class="col-md-9">
@@ -33,13 +41,13 @@
                                         <div class="form-group row">
                                             <label for="jns_pelanggan" class="col-md-2 col-form-label">Jenis Pelanggan</label>
                                             <div class="col-md-8">
-                                                <input type="text" class="form-control" name="jns_pelanggan" onkeyup="valueing()">
+                                                <input type="text" class="form-control" name="jns_pelanggan" >
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="keterangan" class="col-md-2 col-form-label">Keterangan</label>
                                             <div class="col-md-8">
-                                                <input type="text" class="form-control" name="keterangan" onkeyup="valueing()">
+                                                <input type="text" class="form-control" name="keterangan" >
                                             </div>
                                         </div>
                                         <div class="form-group row mt-2 ">
@@ -47,7 +55,7 @@
                                             <div class="col-md-5">
                                                 <button class="btn btn-success btn-sm" type="submit"><i
                                                         class="far fa-save"></i> Simpan</button>
-                                                <button type="submit" class="btn btn-danger btn-sm"><i
+                                                <button type="reset" class="btn btn-danger btn-sm"><i
                                                         class="fas fa-undo"></i> Reset</button>
                                             </div>
                                         </div>
@@ -101,6 +109,7 @@
     </section>
 
     @include('master.jenisPelanggan.form')
+    @include('master.jenisPelanggan.filter')
 @endsection
 
 @push('js')
@@ -118,7 +127,7 @@
                 //   "autoWidth": false,
                 //   "responsive": true,
                 "oLanguage": {
-                    "sSearch": "Keterangan : "
+                    "sSearch": "Search : "
                 },
                 "pageLength": 5
             }).buttons().container().appendTo('#table_wrapper .col-md-6:eq(0)');
@@ -162,7 +171,7 @@
                 },
                 success: function(response) {
                     $('#form-edit').attr('action', "{{ url('master/jenisPelanggan') }}/"+jns_pelanggan)
-                    $('#jns_pelanggan').val(response.jns_pelanggan)
+                    $('#jns_pelanggan').val(response.jns_pelanggan.trim()).change()
                     $('#keterangan').val(response.keterangan)
                     $('#jns_rekswasta').val(response.jns_rekswasta)
                     swal.close();
@@ -172,7 +181,8 @@
 
         $(document).on('click', '.hapus', function(e) {
             e.preventDefault();
-            let jns_pelanggan = $(this).data('id');
+            let jns_pelanggan = $(this).data('id').trim().replace(/\s/g, '');
+            console.log(jns_pelanggan.length)
             let token = "{{ csrf_token() }}";
             swal.fire({
                 title: "Apakah Anda Yakin ?",
@@ -190,7 +200,9 @@
                         data: {
                                 _token: token
                             },
+                           
                             success: function(resp) {
+                                // console.log('respon');
                                 swal.fire(
                                     'Deleted!',
                                     'Your file has been deleted.',

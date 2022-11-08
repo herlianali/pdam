@@ -31,7 +31,7 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-4 col-sm-12">
+                <div class="col-sm-12">
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Laporan Tarif Per Bendel</h3>
@@ -57,19 +57,20 @@
                                 <div class="form-group row mt-2 ">
                                     <label for="tarif" class="col-md-3 col-form-label">Tarif</label>
                                     <div class="col-md-7">
-                                        <select class="form-control" id="tarif" onkeyup="valueing()">
-                                            <option value=""> </option>
-                                            <option value=""> </option>
+                                        <select class="form-control" onkeyup="valueing()" name="tarif">
+                                            @foreach ($dataS as $tarif)
+                                                <option value="{{ $tarif->kd_tarif }}">{{ $tarif->kd_tarif }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
 
                                 <p>Urut Berdasarkan : </p>
                                 <div class="form-check">
-                                    <input type="radio" class="form-check-input" id="no_pelanggan" name="no_pelanggan">
+                                    <input type="radio" class="form-check-input" id="no_pelanggan" name="urutan">
                                     <label class="form-check-label">No Pelanggan</label>
                                     <br>
-                                    <input type="radio" class="form-check-input" id="alamat"name="alamat">
+                                    <input type="radio" class="form-check-input" id="alamat"name="urutan">
                                     <label class="form-check-label">Alamat</label>
                                 </div>
                                 <div class="form-group row mt-2 ">
@@ -80,69 +81,7 @@
                                         <button class="btn btn-danger btn-sm float-right">Batal</button>
                                     </div>
                                 </div>
-
-
-
                             </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-8 col-sm-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Print Preview Tarif per Bendel</h3>
-                            <a href="" class="btn btn-xs btn-success float-right"><i class="fas fa-print"></i>
-                                Cetak</a>
-                        </div>
-                        <div class="card-body priview">
-                            <p> Pemerintah Kota <br>
-                                Surabaya <br>
-                                PERUSAHAAN DAERAH AIR <br>
-                            </p>
-                            <div class="mx-auto mb-3" style="width: 250px;">
-                                <span>Laporan Tarif Per Bendel</span> <br>
-                                <div class="row">
-                                    <div class="col">
-                                        No
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col">
-                                        No Bundel
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col">
-                                        Tanggal Cetak
-                                    </div>
-
-                                    <div class="col-mr-1">
-                                        Hal :
-                                    </div>
-                                </div>
-                            </div>
-
-
-
-                            <table class="table">
-                                <thead>
-
-                                    <tr>
-                                        <th>No</th>
-                                        <th>No Pelanggan</th>
-
-                                        <th>Nama</th>
-                                        <th>Alamat</th>
-                                        <th>Tarif Retribusi</th>
-
-                                    </tr>
-                                </thead>
-                                <tbody>
-
-                                </tbody>
-                            </table>
-
                         </div>
                     </div>
                 </div>
