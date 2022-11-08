@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\MonitoringGunaPersil;
+use App\Models\Rekening;
 use Carbon\Carbon;
 
 class MonitoringGunaPersilController extends Controller
@@ -18,11 +19,17 @@ class MonitoringGunaPersilController extends Controller
         $date = Carbon::now()->format('m/Y');
         return view('BAMutasiPelanggan.monitoringGunaPersil.index', compact('date'))->with('i');
     }
+
     public function preview()
     {
         return view('BAMutasiPelanggan.monitoringGunaPersil.preview');
     }
 
+    public function filter(Request $request)
+    {
+        $data = Rekening::filter($request->thbl, $request->periode);
+        return response()->json($data);
+    }
 
     /**
      * Show the form for creating a new resource.

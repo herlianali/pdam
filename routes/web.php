@@ -199,6 +199,7 @@ Route::prefix('pengaduan')->group(function() {
 
 Route::prefix('mutasipelanggan')->group(function() {
     Route::get('monitoringGunaPersil', [MonitoringGunaPersilController::class, 'index'])->name('monitoringGunaPersil');
+    Route::post('monitoringGunaPersil', [MonitoringGunaPersilController::class, 'filter'])->name('monitoringGunaPersil');
     Route::get('preview', [MonitoringGunaPersilController::class, 'preview'])->name('preview');
 
     Route::get('historiMutasi', [HistoriMutasiController::class, 'index'])->name('historiMutasi');
