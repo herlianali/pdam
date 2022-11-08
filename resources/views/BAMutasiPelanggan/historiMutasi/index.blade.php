@@ -69,25 +69,25 @@
                             <table class="table table-bordered table-responsive">
                                 <thead>
                                     <tr>
-                                        <th>No Bamutasi</th>
-                                        <th>Tgl Bamutasi</th>
-                                        <th>Jns Mutasi</th>
-                                        <th>No BonC</th>
+                                        <th>No_Bamutasi</th>
+                                        <th>Tgl_Bamutasi</th>
+                                        <th>Jns_Mutasi</th>
+                                        <th>No_BonC</th>
                                         <th>No_Plg</th>
-                                        <th>Guna Persil</th>
+                                        <th>Guna_Persil</th>
                                         <th>Zona</th>
-                                        <th>Ukuran Meter</th>
+                                        <th>Ukuran_Meter</th>
                                         <th>Retribusi</th>
                                         <th>Nama</th>
                                         <th>Jalan</th>
                                         <th>Gang</th>
                                         <th>Nomor</th>
-                                        <th>No Tmbhn</th>
+                                        <th>No_Tambahan</th>
                                         <th>DA</th>
-                                        <th>No PA</th>
-                                        <th>Jns Plg</th>
-                                        <th>KD Retribusi</th>
-                                        <th>No Bundel</th>
+                                        <th>No_PA</th>
+                                        <th>Jns_Pel</th>
+                                        <th>KD_Retribusi</th>
+                                        <th>No_Bundel</th>
                                         <th>TGL_KABAG</th>
                                         <th>TGL_KIRIMREKENING</th>
                                         <th>TGL_PEREMAJAAN</th>
