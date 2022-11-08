@@ -184,7 +184,7 @@ Route::prefix('master')->group(function () {
 Route::prefix('pengaduan')->group(function() {
 
     Route::get('pengaduan', [PengaduanController::class, 'index'])->name('pengaduan');
-    Route::get('cariPelanggan', [PengaduanController::class, 'cariPelanggan'])->name('cariPelanggan');
+    Route::post('cariPelanggan', [PengaduanController::class, 'cariPelanggan'])->name('cariPelanggan');
 
     Route::get('riwayatPemakaian', [RiwayatPemakaianController::class, 'index'])->name('riwayatPemakaian');
     Route::get('infoPelanggaran', [RiwayatPemakaianController::class, 'infoPelanggaran'])->name('infoPelanggaran');
