@@ -32,40 +32,41 @@
                                         <div class="form-group row mt-2 ">
                                             <label for="no_pelanggan" class="col-md-3 col-form-label">No Pelanggan</label>
                                             <div class="col-md-6">
-                                                <input type="text" class="form-control" name="no_plg" id="no_plg" onkeyup="valueing()">
+                                                <input type="text" class="form-control" id="no_plg" name="no_plg"
+                                                onkeydown="javascript: return ['Backspace','Delete','ArrowLeft','ArrowRight', 'Enter'].includes(event.code) ? true : !isNaN(Number(event.key)) && event.code!=='Space'">
                                             </div>
                                         </div>
                                         <div class="form-group row mt-2 ">
                                             <label for="nama" class="col-md-3 col-form-label">Nama</label>
                                             <div class="col-md-6">
-                                                <input type="text" class="form-control" name="nama" id="nama" onkeyup="valueing()">
+                                                <input type="text" class="form-control" name="nama" id="nama"  >
                                             </div>
                                         </div>
 
                                         <div class="form-group row mt-2 ">
                                             <label for="alamat" class="col-md-3 col-form-label">Alamat </label>
                                             <div class="col-md-6">
-                                                <textarea class="form-control" id="alamat" onkeyup="valueing()" name="alamat"></textarea>
+                                                <textarea class="form-control" id="alamat" name="alamat" readonly value=""></textarea>
                                             </div>
                                         </div>
                                         <div class="form-group row mt-2 ">
                                             <label for="tarif" class="col-md-3 col-form-label">Tarif</label>
                                             <div class="col-md-2">
-                                                <input type="text" class="form-control" name="kd_tarif" id="kd_tarif" onkeyup="valueing()">
+                                                <input type="text" class="form-control" name="kd_tarif" id="kd_tarif" readonly value="">
                                             </div>
                                             <label for="jns_pelanggan" class="col-form-label">Jenis Pelanggan</label>
                                             <div class="col-md-2">
-                                                <input type="text" class="form-control" name="jns_pelanggan" id="jns_pelanggan" onkeyup="valueing()">
+                                                <input type="text" class="form-control" name="jns_pelanggan" id="jns_pelanggan" readonly value="" >
                                             </div>
                                             <label for="subzona" class="col-form-label">Subzona</label>
                                             <div class="col-md-2">
-                                                <input type="text" class="form-control" name="zona" id="zona"onkeyup="valueing()">
+                                                <input type="text" class="form-control" name="zona" id="zona" readonly value="">
                                             </div>
                                         </div>
                                     </form>
                                 </div>
                             </div>
-                            <table id="table" class="table table-bordered table-responsive-md table-condensed">
+                            <table class="table table-bordered table-responsive">
                                 <thead>
                                     <tr>
                                         <th>No Bamutasi</th>
@@ -162,6 +163,33 @@
 
             });
         });
+
+        $('#no_plg').keypress(function(e) {
+            var key = e.which
+            let no_plg = $('#no_plg').val();
+            if (key == 13) {
+                $.ajax({
+                    type: "GET",
+                    url: `{{ url('mutasipelanggan/historiMutasi') }}/`+no_plg,
+                    data: {
+                        id: no_plg,
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function(response) {
+                        // console.log(response);
+                        $('#nama').val(response.nama)
+                        $('#alamat').val(response.jalan.trim()+' '+response.gang.trim()+' '+response.nomor.trim()+' '+response.notamb)
+                        $('#kd_tarif').val(response.kd_tarif)
+                        $('#jns_pelanggan').val(response.jns_pelanggan)
+                        $('#zona').val(response.zona)
+                        swal.close();
+                    }
+                })
+            }
+        })
+
+      
+
 
     </script>
 @endpush

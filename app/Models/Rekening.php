@@ -24,4 +24,16 @@ class Rekening extends Model
                     ->orderByRaw('JNS_PELANGGAN, NO_BUNDEL, JALAN, GANG, GENAP, TO_NUMBER(NOMOR), NOTAMB, NO_PLG')
                     ->first();
     }
+
+    
+    public static function filter () {
+        return DB::table('REKENING')
+        ->select("no_plg","nama","jalan","gang","nomor","notamb","da","kd_tarif","kd_verifikator")
+        ->join('REKENING','REKENING.Zona', '=', 'ZONA_PERIODE.Zona')
+        ->where('REKENING.TIPE_VERIFIKATOR', '=' , '1')
+        ->where('REKENING.TIPE_VERIFIKATOR', '=' , '2')
+        ->orderBy("no_plg","nama","jalan","gang","nomor","notamb","da","kd_tarif")
+        ->first();
+    }
+
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\MonitoringGunaPersil;
+use Carbon\Carbon;
 
 class MonitoringGunaPersilController extends Controller
 {
@@ -14,7 +15,8 @@ class MonitoringGunaPersilController extends Controller
      */
     public function index()
     {
-        return view('BAMutasiPelanggan.monitoringGunaPersil.index');
+        $date = Carbon::now()->format('m/Y');
+        return view('BAMutasiPelanggan.monitoringGunaPersil.index', compact('date'))->with('i');
     }
     public function preview()
     {
