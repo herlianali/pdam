@@ -12,6 +12,13 @@ class DilM extends Model
 
     protected $table = "DIL";
 
+    public static function getByPlg($param) {
+        return DB::table('DIL')
+                ->select('no_plg','nama','jalan','gang','nomor','notamb','kd_tarif','jns_pelanggan','zona')
+                ->whereRaw("TRIM(no_plg) = '".$param."'")
+                ->first();
+    }
+
     public static function getByNama($param)
     {
         return DB::table("DIL")->select('no_plg', DB::raw("REPLACE('ukuran_mtr', '.', ',')"))->where(DB::raw("TRIM(nama)"), 'LIKE', $param)->orderByDesc('no_plg')->first();
@@ -28,6 +35,7 @@ class DilM extends Model
 
     }
 
+    
     public static function getDataKosong()
     {
         return DB::table("DIL")
@@ -36,4 +44,5 @@ class DilM extends Model
                     ->orderBy('DIL.zona', 'asc')
                     ->first();
     }
+
 }

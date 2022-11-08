@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class MonitoringGunaPersil extends Model
 {
     use HasFactory;
+
+    
+    
 }

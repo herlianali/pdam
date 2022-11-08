@@ -1,3 +1,3 @@
 software for pdam surabaya
 
-version : v1.1.21
+version : v1.1.22

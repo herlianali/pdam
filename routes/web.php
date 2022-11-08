@@ -42,6 +42,7 @@ use App\Http\Controllers\MutasiKolektifController;
 use App\Http\Controllers\PengaduanController;
 use App\Http\Controllers\RiwayatPemakaianController;
 use App\Http\Controllers\UsulanMutasiTarifController;
+use App\Models\HistoriMutasi;
 use App\Models\LaporanTarifPerBendel;
 use Illuminate\Support\Facades\Route;
 
@@ -201,6 +202,7 @@ Route::prefix('mutasipelanggan')->group(function() {
     Route::get('preview', [MonitoringGunaPersilController::class, 'preview'])->name('preview');
 
     Route::get('historiMutasi', [HistoriMutasiController::class, 'index'])->name('historiMutasi');
+    Route::get('/historiMutasi/{no_plg}', [HistoriMutasiController::class,'show'])->name('historiMutasi.show');
 
     Route::get('monitoringBAMutasiKolektif', [MonitoringBAMutasiKolektifController::class, 'index'])->name('monitoringBAMutasiKolektif');
     Route::get('createmonitoringBAMutasiKolektif', [MonitoringBAMutasiKolektifController::class, 'create'])->name('createmonitoringBAMutasiKolektif');

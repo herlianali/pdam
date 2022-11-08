@@ -34,15 +34,15 @@
                                         <div class="form-group row ">
                                             <label for="thbl" class="col-md-2 col-form-label">THBL</label>
                                             <div class="col-md-4">
-                                                <input type="date" class="form-control" name="thbl" id="thbl"onkeyup="valueing()">
+                                                <input type="text" class="form-control" name="thbl" id="thbl"onkeyup="valueing()" value="{{$date}}">
                                             </div>
                                         </div>
                                         <div class="form-group row ">
                                             <label for="periode" class="col-md-2 col-form-label">Periode</label>
                                             <div class="col-md-4">
                                                 <select class="form-control" id="periode" onkeyup="valueing()">
-                                                    <option value=""> </option>
-                                                    <option value=""> </option>
+                                                    <option value="1"> 1</option>
+                                                    <option value="2"> 2 </option>
                                                 </select>
                                             </div>
                                         </div>
@@ -52,11 +52,11 @@
                                                 <div class="form-check">
                                                     <div class="row">
                                                         <div class="col-ml-1">
-                                                            <input type="radio" name="stansesuai_persilsesuai" id="stansesuai_persilsesuai" value="stansesuai_persilsesuai">
+                                                            <input type="radio" name="stan_persil" id="stansesuai_persilsesuai" value="stansesuai_persilsesuai">
                                                             <label for="">STAN Sesuai GUNA PERSIL Sesuai</label>
                                                         </div>
                                                         <div class="col-ml-1">
-                                                            <input type="radio" name="stansesuai_persiltidak" id="stansesuai_persiltidak" value="stansesuai_persiltidak">
+                                                            <input type="radio" name="stan_persil" id="stansesuai_persiltidak" value="stansesuai_persiltidak">
                                                             <label for="">STAN Sesuai GUNA PERSIL Tidak Sesuai</label>
                                                         </div>
                                                     </div>
