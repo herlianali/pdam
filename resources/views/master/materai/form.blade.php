@@ -24,15 +24,8 @@
                             <input type="text" class="form-control" name="rp_materai" id="rp_materai" onkeyup="valueing()">
                         </div>
                     </div>
-                    <div class="form-group row ">
-                        <label for="" class="col-md-7 col-form-label"> </label>
-                        <div class="col-md-5">
-                            <button class="btn btn-success btn-sm" type="submit"><i class="far fa-save"></i>
-                                Simpan</button>
-                            <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-undo"></i>
-                                Batal</button>
-                        </div>
-                    </div>
+                    <button class="btn btn-success btn-sm" type="submit"><i class="far fa-save"></i> Simpan</button>
+                    <button type="cancel" class="btn btn-danger btn-sm"><i class="fas fa-times"></i> Batal</button>
                 </form>
             </div>
         </div>

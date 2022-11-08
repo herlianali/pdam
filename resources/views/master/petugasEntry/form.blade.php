@@ -30,9 +30,8 @@
                             <option value="1"> 1 </option>
                         </select>
                     </div>
-                
                     <button class="btn btn-success btn-sm" type="submit"><i class="far fa-save"></i> Simpan</button>
-                    <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-undo"></i> Batal</button>
+                    <button type="cancel" class="btn btn-danger btn-sm"><i class="fas fa-times"></i> Batal</button>
                 </form>
             </div>
         </div>

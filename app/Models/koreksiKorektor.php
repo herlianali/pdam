@@ -19,10 +19,6 @@ class koreksiKorektor extends Model
         ->join ('DIP','DIP.nip','=', 'PTGKOREKTOR_NEW.nip')
         ->limit(900)
         ->get();
-   
-    
-
-    
     }
 
 

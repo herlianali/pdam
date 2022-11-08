@@ -40,9 +40,9 @@
                                             <i class="fa fa-search"></i>
                                     </button>
                                     &nbsp;
-                                    <button class="btn btn-danger btn-mt-2" id="clear">
+                                    <button type="reset" class="btn btn-danger btn-mt-2" id="clear">
                                         <i class="fa fa-trash"></i>
-                                        Clear
+                                        Reset
                                     </button>
                                         </div>
                                       
