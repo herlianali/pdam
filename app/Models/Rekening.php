@@ -25,15 +25,16 @@ class Rekening extends Model
                     ->first();
     }
 
-    
-    public static function filter () {
+
+    public static function filter ($thbl, $param) {
         return DB::table('REKENING')
-        ->select("no_plg","nama","jalan","gang","nomor","notamb","da","kd_tarif","kd_verifikator")
-        ->join('REKENING','REKENING.Zona', '=', 'ZONA_PERIODE.Zona')
-        ->where('REKENING.TIPE_VERIFIKATOR', '=' , '1')
-        ->where('REKENING.TIPE_VERIFIKATOR', '=' , '2')
-        ->orderBy("no_plg","nama","jalan","gang","nomor","notamb","da","kd_tarif")
-        ->first();
+                ->select("no_plg","nama","jalan","gang","nomor","notamb","da","kd_tarif","kd_verifikator")
+                ->join('ZONA_PERIODE','REKENING.Zona', '=', 'ZONA_PERIODE.Zona')
+                ->where('thbl', '=', $thbl)
+                ->where('ZONA_PERIODE.periode', '=' , $param)
+                ->where('tipe_verifikator', '=' , $param)
+                ->orderByRaw("no_plg, nama, jalan, gang, nomor, notamb, da, kd_tarif")
+                ->get();
     }
 
 }
