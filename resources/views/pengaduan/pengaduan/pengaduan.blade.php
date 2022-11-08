@@ -330,7 +330,7 @@
                     showLoading()
                 },
                 success: function(response) {
-                    $('table').each(response, function(i, data) {
+                    $('').each(response, function(i, data) {
                         console.log(data.no_bonc)
                     })
                     swal.close();
