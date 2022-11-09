@@ -11,7 +11,7 @@
 @section('breadcrumb')
     <ol class="breadcrumb float-sm-right">
         <li class="breadcrumb-item"><a href="#">BA Mutasi Pelanggan</a></li>
-        <li class="breadcrumb-item active">Laporan Rekapitulasi Mutasi Naik/Turun</li>
+        <li class="breadcrumb-item active">Laporan Mutasi Tarif Naik/Turun</li>
     </ol>
 @endsection
 
@@ -23,39 +23,55 @@
                 <div class="col-6">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title"> Laporan Rekapitulasi Mutasi Naik/Turun</h3>
+                            <h3 class="card-title"> Laporan Mutasi Tarif Naik/Turun</h3>
                         </div>
                         <div class="card-body">
                             <div class="row mb-4">
                                 <div class="col-md-12">
                                     <form class="form-horizontal" action="" method="post">
                                         @csrf
-                                        <div class="form-group ">
-                                            <label for="jp_dinas" class="col-md-2 col-form-label"> </label>
-                                            <div class="col-md-3">
-                                                <div class="form-check">
-                                                    <input type="radio" name="tarifnaik" id="tarifnaik" value="naik">
-                                                    <label for="">Tarif Naik</label>
-                                                    <input type="radio" name="tarifturun" id="tarifturun" value="turun">
-                                                    <label for="">Tarif Turun</label>
+                                        <div class="form-group row">
+                                            <label for="" class="col-md-1 col-form-label"></label>
+                                            <div class="col-md-8">
+                                                <div class="form-group row">
+                                                    <div class="form-check">
+                                                        <input type="radio" class="form-check-input" id="naik" name="level" value="naik">
+                                                        <label class="form-check-label">Tarif Naik</label>
+                                                    </div>
+                                                    &nbsp;
+                                                    <div class="form-check">
+                                                        <input type="radio" class="form-check-input" id="turun" name="level" value="turun">
+                                                        <label class="form-check-label">Tarif Turun</label>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-group  ">
-                                            <label for="dasar" class="col-md-2 col-form-label">Dasar</label>
-                                            <div class="col-md-3">
-                                                <div class="form-check">
-                                                    <input type="radio" name="sah" id="sah" value="sah">
-                                                    <label for="">Sah</label>
-                                                    <input type="radio" name="terbit" id="terbit" value="terbit">
-                                                    <label for="">Terbit</label>
+                                        <div class="form-group row">
+                                        <div class="col-md-1">
+                                            <label class="col-form-label col-form-label-sm"></label>
+                                        </div>
+                                        <div class="card col-md-4">
+                                            <div class="card-body">
+                                                <div class="col-md-1">
+                                                <label class="col-form-label col-form-label-sm" for="nama">Dasar</label>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="form-check">
+                                                        <input type="radio" class="form-check-input" id="sah" name="dasar" value="sah">
+                                                        <label class="form-check-label">Sah</label>
+                                                    </div>
+                                                    &nbsp;
+                                                    <div class="form-check">
+                                                        <input type="radio" class="form-check-input" id="terbit" name="dasar" value="terbit">
+                                                        <label class="form-check-label">Terbit</label>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-
-                                        <div class="form-group row mt-2 ">
+                                        </div>
+                                        <div class="form-group row mt-2">
                                             <label for="periode" class="col-form-label">Periode</label>
-                                            <div class="col-md-2">
+                                            <div class="col-md-4">
                                                 <input type="date" class="form-control" name="periode" id="periode"onkeyup="valueing()">
                                             </div>
                                         </div>
