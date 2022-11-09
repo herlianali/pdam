@@ -51,6 +51,11 @@
                                             <i class="fas fa-search"></i>
                                             Cari Pengaduan
                                     </button>
+                                    &nbsp;
+                                    <button type="reset" class="btn btn-danger btn-sm">
+                                            <i class="fa fa-undo"></i>
+                                            Reset
+                                    </button>
                                 </div>
                                 <div class="form-group row">
                                     <label for="jns_pengadu" class="col-md-2 col-form-label col-form-label-sm"> Jenis Pengadu </label>

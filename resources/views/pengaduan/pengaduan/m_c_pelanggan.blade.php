@@ -64,8 +64,8 @@
                     <button class="btn btn-success btn-sm cari" type="button">
                         <i class="fas fa-search"></i> Cari
                     </button>
-                    <button class="btn btn-danger btn-sm" type="button">
-                        <i class="fas fa-undo"></i> Kembali
+                    <button class="btn btn-danger btn-sm" type="reset">
+                        <i class="fas fa-undo"></i> Reset
                     </button>
                 </form>
             </div>

@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
 @endpush
 
-@section('namaHal', 'Pengaduan')
+@section('namaHal', 'BA Mutasi Pelanggan')
 @section('breadcrumb')
     <ol class="breadcrumb float-sm-right">
         <li class="breadcrumb-item"><a href="#">BA Mutasi Pelanggan</a></li>
@@ -56,7 +56,7 @@
                                 </div>
                                 <div class="form-group row mt-2 ">
                                     <label for="tarif" class="col-md-3 col-form-label">Tarif</label>
-                                    <div class="col-md-7">
+                                    <div class="col-md-4">
                                         <select class="form-control" onkeyup="valueing()" name="tarif">
                                             @foreach ($dataS as $tarif)
                                                 <option value="{{ $tarif->kd_tarif }}">{{ $tarif->kd_tarif }}</option>
@@ -65,13 +65,23 @@
                                     </div>
                                 </div>
 
-                                <p>Urut Berdasarkan : </p>
-                                <div class="form-check">
-                                    <input type="radio" class="form-check-input" id="no_pelanggan" name="urutan">
-                                    <label class="form-check-label">No Pelanggan</label>
-                                    <br>
-                                    <input type="radio" class="form-check-input" id="alamat"name="urutan">
-                                    <label class="form-check-label">Alamat</label>
+                                <div class="card col-md-6">
+                                    <div class="card-body">
+                                        <div class="col-md-4">
+                                        <label class="col-form-label col-form-label-sm" for="urut">Urut berdasarkan</label>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="form-check">
+                                                <input type="radio" class="form-check-input" id="noplg" name="urut" value="noplg">
+                                                <label class="form-check-label">No Pelanggan</label>
+                                            </div>
+                                            &nbsp;
+                                            <div class="form-check">
+                                                <input type="radio" class="form-check-input" id="alamat" name="urut" value="alamat">
+                                                <label class="form-check-label">Alamat</label>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="form-group row mt-2 ">
                                     <label for="" class="col-md-3 col-form-label">
