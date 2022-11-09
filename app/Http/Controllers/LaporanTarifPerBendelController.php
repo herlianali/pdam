@@ -29,7 +29,7 @@ class LaporanTarifPerBendelController extends Controller
         }
 
         if(!$request->bundel_all){
-            $query2 = $query1->where('no_bundel', '=', $request->bundle);
+            $query2 = $query1->where(DB::raw('trim(no_bundel)'), '=', $request->bundel);
             $tester2 = $tester1."Dengan no bundel";
         }else{
             $query2 = $query1;
