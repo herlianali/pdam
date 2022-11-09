@@ -41,6 +41,7 @@ use App\Http\Controllers\MonitoringGunaPersilController;
 use App\Http\Controllers\MutasiKolektifController;
 use App\Http\Controllers\PengaduanController;
 use App\Http\Controllers\RiwayatPemakaianController;
+use App\Http\Controllers\SuratPemberitahuanController;
 use App\Http\Controllers\UsulanMutasiTarifController;
 use App\Models\HistoriMutasi;
 use App\Models\LaporanTarifPerBendel;
@@ -239,8 +240,8 @@ Route::prefix('mutasipelanggan')->group(function() {
     Route::post('laporanTarifPerBendel', [LaporanTarifPerBendelController::class, 'showLaporanBendel'])->name('laporanTarifPerBendel');
     Route::get('previewBendel', [LaporanTarifPerBendelController::class, 'preview'])->name('previewBendel');
 
-    Route::get('entriSurat', [LaporanTarifPerBendelController::class, 'index'])->name('entriSurat');
-    Route::get('printlaporan', [LaporanTarifPerBendelController::class, 'print'])->name('printlaporan');
+    Route::get('entriSurat', [SuratPemberitahuanController::class, 'entriSurat'])->name('entriSurat');
+    Route::get('printlaporan', [SuratPemberitahuanController::class, 'print'])->name('printlaporan');
     Route::get('usulanMutasiTarif', [UsulanMutasiTarifController::class, 'index'])->name('usulanMutasiTarif');
 
     Route::get('cetakBAPerorangan', [CetakBAPeroranganController::class, 'index'])->name('cetakBAPerorangan');

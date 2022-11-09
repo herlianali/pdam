@@ -56,6 +56,31 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>3140319</td>
+                                        <td>12</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>3140320</td>
+                                        <td>50</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>3143021</td>
+                                        <td>20</td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td>3143022</td>
+                                        <td>200</td>
+                                    </tr>
+                                    <tr>
+                                        <td>5</td>
+                                        <td>3043023</td>
+                                        <td>600</td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>

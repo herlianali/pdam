@@ -8,7 +8,7 @@
                 </button>
             </div>
             <div class="modal-body">
-               <form class="form-horizontal" action="{{ route('printmerekMeter') }}" method="POST">
+               <form class="form-horizontal" action="{{ route('printpanggilanDinas') }}" method="POST">
                 @csrf
                     <div class="form-group">
                         <div class="form-check">

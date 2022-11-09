@@ -24,10 +24,6 @@
         <li class="breadcrumb-item active">Status Air</li>
         <li class="breadcrumb-item active">Print Status Air</li>
     </ol>
-    <br>
-    <br>
-    <a href="{{ route('printstatusAir') }}" class="btn btn-sm btn-success float-right"><i class="fas fa-download"></i>
-        Download</a>
 @endsection
 
 @section('content')
@@ -38,7 +34,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Preview Status Air</h3>
-                            {{-- <a href="{{ route('statusAir.index') }}" class="btn btn-sm btn-success float-right"><i class="fas fa-backward"></i> Kembali</a> --}}
+                            <a href="" class="btn btn-sm btn-success float-right"> Print</a>
                         </div>
                         <div class="card-body priview">
                             <p>

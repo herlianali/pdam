@@ -31,7 +31,7 @@
                             <i class="fas fa-print"></i>
                             Print
                     </button> --}}
-                            <a href="{{ route('printstatusAir') }}" class="btn btn-xs btn-success float-right"><i class="fas fa-print"></i> Cetak Tabel</a>
+                            <a href="{{ route('printstatusAir') }}" class="btn btn-xs btn-success float-right"><i class="fas fa-print"></i> Cetak</a>
                         </div>
                         <div class="card-body">
                             <div class="row mb-4">

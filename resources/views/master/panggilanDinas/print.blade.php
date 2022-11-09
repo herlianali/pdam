@@ -24,12 +24,6 @@
         <li class="breadcrumb-item active">Jenis Panggilan Dinas</li>
         <li class="breadcrumb-item active">Print Jenis Panggilan Dinas</li>
     </ol>
-    <br>
-    <br>
-    <button type="submit"
-        class="btn btn-sm float-right btn-success print">
-        Print
-    </button>
 @endsection
 
 @section('content')
@@ -39,8 +33,8 @@
                 <div class="col-sm-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Print preview Jenis Panggilan Dinass</h3>
-                            {{-- <a href="{{ route('printpanggilanDinas') }}" class="btn btn-sm btn-success float-right"><i class="fas fa-print"></i> Cetak</a> --}}
+                            <h3 class="card-title">Preview Jenis Panggilan Dinass</h3>
+                            <a href="" class="btn btn-xs btn-success float-right">Print </a>
                         </div>
                         <div class="card-body priview">
                             <p> Pemerintah Kota <br>

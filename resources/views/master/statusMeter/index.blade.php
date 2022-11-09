@@ -24,7 +24,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Status Meter</h3>
-                            <a href="{{ route('printstatusMeter') }}" class="btn btn-xs btn-success float-right"><i class="fas fa-print"></i> Cetak Tabel</a>
+                            <a href="{{ route('printstatusMeter') }}" class="btn btn-xs btn-success float-right"><i class="fas fa-print"></i> Cetak </a>
                         </div>
                         <div class="card-body">
                             <div class="row mb-4">
