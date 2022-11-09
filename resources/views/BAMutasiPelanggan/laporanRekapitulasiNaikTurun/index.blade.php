@@ -11,7 +11,7 @@
 @section('breadcrumb')
     <ol class="breadcrumb float-sm-right">
         <li class="breadcrumb-item"><a href="#">BA Mutasi Pelanggan</a></li>
-        <li class="breadcrumb-item active"> Laporan Rekapitulasi Perubahan Naik Turun</li>
+        <li class="breadcrumb-item active"> Laporan Rekapitulasi Naik Turun</li>
     </ol>
 @endsection
 
@@ -22,7 +22,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Laporan Rekapitulasi Perubahan Naik Turun</h3>
+                            <h3 class="card-title">Laporan Rekapitulasi Naik Turun</h3>
                             <a href="{{ route('preview') }}"class="btn btn-xs btn-success float-right"><i class="fas fa-print"></i> Cetak</a>
                         </div>
                         <div class="card-body">
@@ -33,42 +33,59 @@
                                         <div class="form-group row mt-2 ">
                                             <label for="periode" class="col-md-2 col-form-label">Periode
                                             </label>
-                                            <div class="col-md-2">
+                                            <div class="col-md-3">
                                                 <input type="date" class="form-control" name="periode"id="periode"onkeyup="valueing()">
                                             </div>
                                             <label for="sd" class="col-form-label">S.D </label>
-                                            <div class="col-md-2">
+                                            <div class="col-md-3">
                                                 <input type="date" class="form-control" name="periode1" id="periode1"onkeyup="valueing()">
                                             </div>
+                                            <button type="submit" class="btn btn-success btn-sm float-right" id="search"><i class="fa fa-filter"></i>Filter</button>
                                         </div>
-                                        <div class="form-group row mt-2 ">
-                                            <label for="Dasar" class="col-md-2 col-form-label">Dasar </label>
-                                            <div class="col-md-3">
-                                                <div class="form-check">
-                                                    <input type="radio" class="form-check-input" id="penerbitan"name="penerbitan" value="penerbitan">
-                                                    <label class="form-check-label">Penerbitan</label>
-                                                    <br>
-                                                    <input type="radio" class="form-check-input" id="pengesahan" name="pengesahan" value="pengesahan">
-                                                    <label class="form-check-label">Pengesahan</label>
+                                        
+                                        <div class="form-group row">
+                                        <div class="col-md-2">
+                                            <label class="col-form-label col-form-label-sm"></label>
+                                        </div>
+                                        <div class="card col-md-6">
+                                            <div class="card-body">
+                                                <div class="col-md-1">
+                                                <label class="col-form-label col-form-label-sm" for="nama">Dasar</label>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="form-check">
+                                                        <input type="radio" class="form-check-input" id="penerbitan" name="dasar" value="penerbitan">
+                                                        <label class="form-check-label">Penerbitan</label>
+                                                    </div>
+                                                    &nbsp;
+                                                    <div class="form-check">
+                                                        <input type="radio" class="form-check-input" id="pengesahan" name="dasar" value="pengesahan">
+                                                        <label class="form-check-label">Pengesahan</label>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-group row mt-2 ">
+                                    </div>
+                                        <div class="form-group row">
                                             <label for="" class="col-md-2 col-form-label"></label>
-                                            <div class="col-md-3">
-                                                <div class="form-check">
-                                                    <input type="radio" class="form-check-input" id="naik" name="naik" value="naik">
-                                                    <label class="form-check-label">Naik</label>
-                                                    <br>
-                                                    <input type="radio" class="form-check-input" id="turun" name="turun" value="turun">
-                                                    <label class="form-check-label">Turun</label>
+                                            <div class="col-md-2">
+                                                <div class="form-group row">
+                                                    <div class="form-check">
+                                                        <input type="radio" class="form-check-input" id="naik" name="level" value="naik">
+                                                        <label class="form-check-label">Naik</label>
+                                                    </div>
+                                                    &nbsp;
+                                                    <div class="form-check">
+                                                        <input type="radio" class="form-check-input" id="turun" name="level" value="turun">
+                                                        <label class="form-check-label">Turun</label>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </form>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-success btn-sm float-right" id="search"><i class="fa fa-filter"></i>Filter</button>
+                            
                             <table id="table" class="table table-bordered table-responsive-md table-condensed">
                                 <thead>
                                     <tr>
