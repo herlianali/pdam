@@ -24,10 +24,6 @@
         <li class="breadcrumb-item active">Materai</li>
         <li class="breadcrumb-item active">Print Materai</li>
     </ol>
-    <br>
-    <br>
-    <a href="{{ route('printmaterai') }}" class="btn btn-sm btn-success float-right"><i class="fa fa-download"></i> Download
-    </a>
 @endsection
 
 @section('content')
@@ -37,8 +33,9 @@
                 <div class="col-sm-12">
                     <div class="card">
                         <div class="card-header">
-                            <a href="{{ route('materai.index') }}" class="btn btn-xs btn-success float-right"><i class="fas fa-backward"></i> Kembali</a>
+                        
                             <h3 class="card-title">Preview Daftar Materai</h3>
+                            <a href="{{ route('printpanggilanDinas') }}" class="btn btn-sm btn-success float-right">Print</a>
                         </div>
                         <div class="card-body priview">
                             <p> Pemerintah Kota <br>

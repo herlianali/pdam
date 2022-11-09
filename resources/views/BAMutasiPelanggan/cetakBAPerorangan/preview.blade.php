@@ -28,7 +28,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Print preview BA Perorangan</h3>
-                            <a href="" class="btn btn-xs btn-success float-right"><i class="fas fa-print"></i> Cetak</a>
+                            <a href="" class="btn btn-xs btn-success float-right"> Print</a>
                         </div>
                         <div class="card-body priview">
                             <div class="row">
@@ -52,8 +52,8 @@
                                             </div>
                                         </div>
                                         <div class="atas">
-                                            <div class="row"> NOMOR : </div>
-                                            <div class="row"> TANGGAL :</div>
+                                            <div class="row"> NOMOR : T20020000110  </div>
+                                            <div class="row"> TANGGAL : 20/08/2002</div>
                                         </div>
                                     </div>
                                 </div>
@@ -67,15 +67,15 @@
                                 <table>
                                     <tr>
                                         <td>No Pelanggan</td>
-                                        <td>:</td>
+                                        <td>: 3101164</td>
                                     </tr>
                                     <tr>
                                         <td>Nama</td>
-                                        <td>:</td>
+                                        <td>: 102002</td>
                                     </tr>
                                     <tr>
                                         <td>Alamat</td>
-                                        <td>:</td>
+                                        <td>: 01/10/2002 RUMAH / 780 725</td>
                                     </tr>
                                 </table>
                             </div>
@@ -87,8 +87,9 @@
                                     klasifikasi tarif air minum sebagai berikut :
                                 </p>
                             </div>
-                            Kode Tarif <span> :</span> <br>
-                            Tabel Tarif <span>:</span>
+                            Kode Tarif <span> : 42 /0</span> <br>
+                            Tabel Tarif <span>: 0 - 10 Rp. 750-/mb-n3</span> <span> 11 - 20 Rp.1300,-M3 </span>
+
                             <br>
                             <br>
                             <div class="row">
@@ -96,15 +97,15 @@
                                     <table>
                                         <tr>
                                             <td>Pemakaian Minumum </td>
-                                            <td>:</td>
+                                            <td>: 10 M3</td>
                                         </tr>
                                         <tr>
                                             <td>Berlaku mulai penerbitan rekening bulan</td>
-                                            <td>:</td>
+                                            <td></td>
                                         </tr>
                                         <tr>
                                             <td> Yang akan ditagihkan pada bulan</td>
-                                            <td>:</td>
+                                            <td>: PE/RUMAH</td>
                                         </tr>
                                     </table>
                                 </div>
@@ -116,7 +117,7 @@
                                         <h5><b>KETERANGAN</h5>
                                         <tr>
                                             <td>1. Dasar</td>
-                                            <td>:</td>
+                                            <td>: 694.2/T0000110/402.7.01/TTU/VIII/2002</td>
                                         </tr>
                                         <tr>
                                             <td>2. Kontrol No/Tanggal</td>
@@ -128,11 +129,11 @@
                                         </tr>
                                         <tr>
                                             <td>4. Jenis Pelanggan</td>
-                                            <td>:</td>
+                                            <td>: PERUMAHAN A-2</td>
                                         </tr>
                                         <tr>
                                             <td>5. Kode Tarif Lama</td>
-                                            <td>:</td>
+                                            <td>: 32</td>
                                         </tr>
                                         <tr>
                                             <td>6. Ukuran Meter</td>

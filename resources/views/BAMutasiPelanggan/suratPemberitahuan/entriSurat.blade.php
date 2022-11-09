@@ -21,51 +21,19 @@
 
 @section('namaHal', 'BA Mutasi Pelanggan')
 @section('breadcrumb')
-    <ol class="breadcrumb float-sm-right">
-        <li class="breadcrumb-item">Monitoring Surat Pemberitahuan</li>
-        <li class="breadcrumb-item active">Entri Surat Pemberitahuan Dari Berita Acara</li>
-        <li class="breadcrumb-item "><a href="{{route('entriSuratAwal')}}">Entri Surat Pemberitahuan Pemberitahuan Awal</a></li>
-    </ol>
 @endsection
 
+
 @section('content')
+
     <section class="content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Entri Surat Pemberitahuan</h3>
-                        </div>
-                        <div class="card-body">
-                            <form action="">
-                                <div class="form-group row  ">
-                                    <label for="periode" class="col-md-3 col-form-label">Asal Surat Pemberitahuan</label>
-                                    <div class="col-md-2">
-                                        <div class="form-check">
-                                            <input type="radio" id="pemberitahuan_awal"name="pilihan">
-                                            <label class="form-check-label">Pemberitahuan Awal</label>
-                                            <br>
-                                            <input type="radio" id="dari_berita_acara" name="pilihan">
-                                            <label class="form-check-label">Dari Berita Acara</label>
-                                        </div>
-                                    </div>
-                                </div>
-                        </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-    </section>
-    
-    <section class="content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Pemberitahuan Awal</h3>
-                        </div>
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" href="">Entri Surat</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="">Pemberitahuan Awal</a>
+            </li>
                         <div class="card-body">
                             <form action="">
                                 <div class="form-group row mt-2 ">
@@ -181,6 +149,7 @@
                             </div>
                         </div>
                     </div>
+                </div>
                 </div>
             </div>
         </div>

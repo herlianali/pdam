@@ -24,14 +24,6 @@
         <li class="breadcrumb-item active">Merk Meter</li>
         <li class="breadcrumb-item active">Print Merk Meter</li>
     </ol>
-    <br>
-    <br>
-    <!-- <a href="{{ route('printmerekMeter') }}" class="btn btn-sm btn-success float-right"><i class="fas fa-download"></i>
-        Download</a> -->
-    <button type="submit"
-        class="btn btn-sm float-right btn-success print">
-        Print
-    </button>
 @endsection
 
 @section('content')
@@ -42,9 +34,9 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Preview Merk Meter</h3>
-                            {{-- <a href="{{ route('merekMeter') }}" class="btn btn-sm btn-success float-right"><i class="fas fa-backward"></i> Kembali</a> --}}
+                            <a href="{{ route('printmerekMeter') }}" class="btn btn-xs btn-success float-right">Print </a>
                         </div>
-                        <div class="card-body priview">
+                            <div class="card-body priview">
                             <p> Pemerintah Kota <br>
                                 Surabaya <br>
                                 PERUSAHAAN DAERAH AIR <br>
