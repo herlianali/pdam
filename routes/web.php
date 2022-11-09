@@ -42,6 +42,7 @@ use App\Http\Controllers\MutasiKolektifController;
 use App\Http\Controllers\PengaduanController;
 use App\Http\Controllers\RiwayatPemakaianController;
 use App\Http\Controllers\UsulanMutasiTarifController;
+use App\Models\HistoriMutasi;
 use App\Models\LaporanTarifPerBendel;
 use Illuminate\Support\Facades\Route;
 
@@ -184,7 +185,7 @@ Route::prefix('master')->group(function () {
 Route::prefix('pengaduan')->group(function() {
 
     Route::get('pengaduan', [PengaduanController::class, 'index'])->name('pengaduan');
-    Route::get('cariPelanggan', [PengaduanController::class, 'cariPelanggan'])->name('cariPelanggan');
+    Route::post('cariPelanggan', [PengaduanController::class, 'cariPelanggan'])->name('cariPelanggan');
 
     Route::get('riwayatPemakaian', [RiwayatPemakaianController::class, 'index'])->name('riwayatPemakaian');
     Route::get('infoPelanggaran', [RiwayatPemakaianController::class, 'infoPelanggaran'])->name('infoPelanggaran');
@@ -198,9 +199,11 @@ Route::prefix('pengaduan')->group(function() {
 
 Route::prefix('mutasipelanggan')->group(function() {
     Route::get('monitoringGunaPersil', [MonitoringGunaPersilController::class, 'index'])->name('monitoringGunaPersil');
+    Route::post('monitoringGunaPersil', [MonitoringGunaPersilController::class, 'filter'])->name('monitoringGunaPersil');
     Route::get('preview', [MonitoringGunaPersilController::class, 'preview'])->name('preview');
 
     Route::get('historiMutasi', [HistoriMutasiController::class, 'index'])->name('historiMutasi');
+    Route::post('historiMutasi', [HistoriMutasiController::class,'show'])->name('historiMutasi.show');
 
     Route::get('monitoringBAMutasiKolektif', [MonitoringBAMutasiKolektifController::class, 'index'])->name('monitoringBAMutasiKolektif');
     Route::get('createmonitoringBAMutasiKolektif', [MonitoringBAMutasiKolektifController::class, 'create'])->name('createmonitoringBAMutasiKolektif');

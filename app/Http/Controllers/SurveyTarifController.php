@@ -21,12 +21,12 @@ class SurveyTarifController extends Controller
     public function show(Request $request)
     {
         $periodeSplit = explode("/", $request->periode);
-        $periode = $periodeSplit[1].$periodeSplit[0];
-        $rekening = Rekening::getData($periode, $request->no_bundel, $request->zona, $request->jns_pelanggan);
-        $no_plg = $rekening->no_plg;
-        $alamat = trim($rekening->jalan, ' ').' '.trim($rekening->gang, ' ').' '.trim($rekening->nomor, ' ');
+        $periode      = $periodeSplit[1].$periodeSplit[0];
+        $rekening     = Rekening::getData($periode, $request->no_bundel, $request->zona, $request->jns_pelanggan);
+        $no_plg       = $rekening->no_plg;
+        $alamat       = trim($rekening->jalan, ' ').' '.trim($rekening->gang, ' ').' '.trim($rekening->nomor, ' ');
         $survey_tarif = SurveyTarif::getByPlg($no_plg);
-        $lebar  = number_format($survey_tarif->jalan, 2);
+        $lebar        = number_format($survey_tarif->jalan, 2);
         $data = array(
             "no_plg"      => $no_plg,
             "nama"        => $rekening->nama,
@@ -42,7 +42,7 @@ class SurveyTarifController extends Controller
 
     public function create(Request $request)
     {
-        $foo = $request->jalan;
+        $foo   = $request->jalan;
         $jalan = number_format((float)$foo, 2, '.', '');
         // dd($jalan);
         return view('master.surveyTarif.create', compact('jalan'));

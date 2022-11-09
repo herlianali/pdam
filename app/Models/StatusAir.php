@@ -20,4 +20,5 @@ class StatusAir extends Model
     //                 ->orderBy("kd_statusair","asc")
     //                 ->get();
     // }
+
 }

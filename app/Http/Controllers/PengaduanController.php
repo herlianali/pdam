@@ -23,18 +23,18 @@ class PengaduanController extends Controller
 
     public function cariPelanggan(Request $request)
     {
-        if($request->no_pelanggan_c == "on") {
-            $no_plg = $request->no_pelanggan;
-        }elseif($request->nama_c == "on") {
-            $no_plg = DilM::getByNama($request->nama);
-        }elseif($request->no_pa_c == "on") {
+        if ($request->no_pelanggan_c) {
+            // $data = DilM::getByNoPlg($request->no_pelanggan);
+            $data = Pengaduan::getDataNative($request->no_pelanggan);
 
-        }elseif($request->alamat_c == "on") {
-
+        }elseif ($request->no_pa_c) {
+            $data = "no_pa_c benar";
+        }elseif ($request->nama_c) {
+            $data = "nama_c benar";
+        }elseif ($request->alamat_c) {
+            $data = "alamat_c benar";
         }
-        // $query = Pengaduan::getDataNative($no_plg);
-        // return response()->json($query);
-        dd($no_plg->ukuran_mtr);
+        return response()->json($data);
     }
 
     public function detail()

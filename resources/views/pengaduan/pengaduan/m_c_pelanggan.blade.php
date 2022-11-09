@@ -12,11 +12,11 @@
 
                     <div class="form-group row">
                         <div class="col-md-2">
-                            <input type="checkbox" id="no_pelanggan_c" name="no_pelanggan_c">
+                            <input type="checkbox" id="no_pelanggan_c" name="no_pelanggan_c" >
                             <label class="col-form-label col-form-label-sm" for="nama">No Pelanggan</label>
                         </div>
                         <div class="col-md-8">
-                            <input type="text" class="form-control form-control-sm" id="no_pelanggan" name="no_pelanggan" disabled>
+                            <input type="text" class="form-control form-control-sm" id="no_pelanggan" name="no_pelanggan" onkeydown="javascript: return ['Backspace','Delete','ArrowLeft','ArrowRight', 'Enter'].includes(event.code) ? true : !isNaN(Number(event.key)) && event.code!=='Space'" disabled>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -61,7 +61,7 @@
                             </div>
                         </div>
                     </div>
-                    <button class="btn btn-success btn-sm cari" type="button">
+                    <button class="btn btn-success btn-sm cariP" type="button">
                         <i class="fas fa-search"></i> Cari
                     </button>
                     <button class="btn btn-danger btn-sm" type="reset">

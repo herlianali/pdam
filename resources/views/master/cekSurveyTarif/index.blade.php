@@ -132,7 +132,6 @@
                 },
             
                 success: function(response) {
-                //   console.log(response,'ini responnya')
                     $('#njop').val(response.njop)
                     $('#listrik').val(response.listrik)
                     $('#lebarjalan').val(response.lebarjalan)

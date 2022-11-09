@@ -297,24 +297,47 @@
             })
         }
 
-        $(document).on('click', '.cari', function(e){
+        $(document).on('click', '.cariP', function(e){
             e.preventDefault()
-            let form = $('#f-pelanggan').serialize()
-            console.log(data)
+            let no_pelanggan_c = $('#no_pelanggan_c').is(':checked')
+            let no_pelanggan = $('#no_pelanggan').val()
+            let nama_c = $('#nama_C').is(':checked')
+            let nama = $('#nama').val()
+            let no_pa_c = $('#no_pa_c').is(':checked')
+            let no_pa = $('#no_pa').val()
+            let alamat_c = $('#alamat_c').is(':checked')
+            let jalan = $('#jalan').val()
+            let gang = $('#gang').val()
+            let no = $('#no').val()
+            let no_tambahan = $('#no_tambahan').val()
+
             $.ajax({
                 type: "POST",
                 dataType: "JSON",
-                url: `{{ url('pengaduan/pengaduan') }}`,
+                url: `{{ url('pengaduan/cariPelanggan') }}`,
                 data: {
                     _token: '{{ csrf_token() }}',
                     _method: "POST",
-
+                    no_pelanggan_c: no_pelanggan_c,
+                    no_pelanggan: no_pelanggan,
+                    no_pelanggan: no_pelanggan,
+                    nama_c: nama_c,
+                    nama: nama,
+                    no_pa_c: no_pa_c,
+                    no_pa: no_pa,
+                    alamat_c: alamat_c,
+                    jalan: jalan,
+                    gang: gang,
+                    no: no,
+                    no_tambahan: no_tambahan,
                 },
                 beforeSend: function() {
                     showLoading()
                 },
                 success: function(response) {
-
+                    $('').each(response, function(i, data) {
+                        console.log(data.no_bonc)
+                    })
                     swal.close();
                 }
             })
@@ -325,15 +348,21 @@
                 $('#no_pelanggan').prop("disabled", false)
                 $('#nama_c').prop("checked", false)
                 $('#nama').prop("disabled", true)
+                $('#nama').val(" ")
 
                 $('#no_pa_c').prop("checked", false)
                 $('#no_pa').prop("disabled", true)
+                $('#no_pa').val(" ")
 
                 $('#alamat_c').prop("checked", false)
                 $('#jalan').prop("disabled", true)
+                $('#jalan').val(" ")
                 $('#gang').prop("disabled", true)
+                $('#gang').val(" ")
                 $('#no').prop("disabled", true)
+                $('#no').val(" ")
                 $('#no_tambahan').prop("disabled", true)
+                $('#no_tambahan').val(" ")
             }else{
                 $('#no_pelanggan').prop("disabled", true)
             }
@@ -344,16 +373,22 @@
                 $('#nama').prop("disabled", false)
                 $('#no_pelanggan_c').prop("checked", false)
                 $('#no_pelanggan').prop("disabled", true)
+                $('#no_pelanggan').val(" ")
 
                 $('#no_pa_c').prop("checked", false)
                 $('#no_pa').prop("disabled", true)
+                $('#no_pa').val(" ")
 
 
                 $('#alamat_c').prop("checked", false)
                 $('#jalan').prop("disabled", true)
+                $('#jalan').val(" ")
                 $('#gang').prop("disabled", true)
+                $('#gang').val(" ")
                 $('#no').prop("disabled", true)
+                $('#no').val(" ")
                 $('#no_tambahan').prop("disabled", true)
+                $('#no_tambahan').val(" ")
             }else{
                 $('#nama').prop("disabled", true)
             }
@@ -364,15 +399,21 @@
                 $('#no_pa').prop("disabled", false)
                 $('#nama_c').prop("checked", false)
                 $('#nama').prop("disabled", true)
+                $('#nama').val(" ")
 
                 $('#no_pelanggan_c').prop("checked", false)
                 $('#no_pelanggan').prop("disabled", true)
+                $('#no_pelanggan').val(" ")
 
                 $('#alamat_c').prop("checked", false)
                 $('#jalan').prop("disabled", true)
+                $('#jalan').val(" ")
                 $('#gang').prop("disabled", true)
+                $('#gang').val(" ")
                 $('#no').prop("disabled", true)
+                $('#no').val(" ")
                 $('#no_tambahan').prop("disabled", true)
+                $('#no_tambahan').val(" ")
             }else{
                 $('#no_pa').prop("disabled", true)
             }
@@ -387,12 +428,15 @@
 
                 $('#nama_c').prop("checked", false)
                 $('#nama').prop("disabled", true)
+                $('#nama').val(" ")
 
                 $('#no_pelanggan_c').prop("checked", false)
                 $('#no_pelanggan').prop("disabled", true)
+                $('#no_pelanggan').val(" ")
 
                 $('#no_pa_c').prop("checked", false)
                 $('#no_pa').prop("disabled", true)
+                $('#no_pa').val(" ")
             }else{
                 $('#jalan').prop("disabled", true)
                 $('#gang').prop("disabled", true)
