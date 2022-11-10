@@ -31,7 +31,7 @@
                                 data-toggle="modal"
                                 data-target="#filter">
                                 <i class="fas fa-print"></i>
-                                Print
+                                Cetak
                             </button>
                         </div>
                         <div class="card-body">

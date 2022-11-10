@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
 @endpush
 
-@section('namaHal', 'Pengaduan')
+@section('namaHal', 'BA Mutasi Pelanggan')
 @section('breadcrumb')
     <ol class="breadcrumb float-sm-right">
         <li class="breadcrumb-item"><a href="#">BA Mutasi Pelanggan</a></li>
@@ -28,11 +28,11 @@
                             <form action="">
                                 <div class="form-group row">
                                     <div class="form-check">
-                                        <input type="radio" name="pembuatan" id="pembuatan" value="pembuatan">
+                                        <input type="radio" name="cek" id="pembuatan" value="pembuatan">
                                         <label for="">Pembuatan</label>
-                                        <input type="radio" name="pengesahan" id="pengesahan" value="pengesahan">
+                                        <input type="radio" name="cek" id="pengesahan" value="pengesahan">
                                         <label for="">Pengesahan</label>
-                                        <input type="radio" name="penerbitan" id="penerbitan" value="penerbitan">
+                                        <input type="radio" name="cek" id="penerbitan" value="penerbitan">
                                         <label for="">Penerbitan</label>
                                     </div>
                                 </div>
@@ -62,14 +62,16 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-7 col-sm-12">
+                <!-- <div class="col-md-7 col-sm-12">
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Print preview Laporan Rekapitulasi Perubahan Tarif</h3>
                             <a href="" class="btn btn-xs btn-success float-right"><i class="fas fa-print"></i>Cetak</a>
                         </div>
                     </div>
-                </div>
+                </div> -->
+            </div>
+        </div>
     </section>
 @endsection
 @push('js')

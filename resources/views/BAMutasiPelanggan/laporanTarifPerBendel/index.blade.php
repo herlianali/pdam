@@ -41,17 +41,17 @@
                                 <div class="form-group row mt-2 ">
                                     <label for="jp_dinas" class="col-md-3 col-form-label">Zona </label>
                                     <div class="col-md-4">
-                                        <input type="text" class="form-control" name="zona" id="zona" onkeyup="valueing()">
+                                        <input type="text" class="form-control" name="zona" id="zona">
                                     </div>
-                                    <input type="checkbox" name="all" id="all">
+                                    <input type="checkbox" name="zona_all" id="zona_all">
                                     <label for="all" class="col-md-3 col-form-label">All</label>
                                 </div>
                                 <div class="form-group row mt-2 ">
                                     <label for="bundel" class="col-md-3 col-form-label">Bundel</label>
                                     <div class="col-md-4">
-                                        <input type="text" class="form-control" name="bundel" id="bundel"onkeyup="valueing()">
+                                        <input type="text" class="form-control" name="bundel" id="bundel">
                                     </div>
-                                    <input type="checkbox" name="all" id="all">
+                                    <input type="checkbox" name="bundel_all" id="bundel_all">
                                     <label for="all" class="col-md-3 col-form-label">All</label>
                                 </div>
                                 <div class="form-group row mt-2 ">
@@ -65,9 +65,13 @@
                                     </div>
                                 </div>
 
-                                <div class="card col-md-6">
+                                <div class="form-group row">
+                                    <div class="col-md-3">
+                                        <label class="col-form-label col-form-label-sm"></label>
+                                    </div>
+                                <div class="card col-md-4">
                                     <div class="card-body">
-                                        <div class="col-md-4">
+                                        <div class="col-md-5">
                                         <label class="col-form-label col-form-label-sm" for="urut">Urut berdasarkan</label>
                                         </div>
                                         <div class="form-group row">
@@ -83,6 +87,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                </div>
                                 <div class="form-group row mt-2 ">
                                     <label for="" class="col-md-3 col-form-label">
                                     </label>
@@ -91,12 +96,12 @@
                                         <button class="btn btn-danger btn-sm float-right">Batal</button>
                                     </div>
                                 </div>
+                                
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
         </div>
     </section>
 @endsection
