@@ -147,7 +147,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
+                                            {{-- <tr>
                                                 <td>1</td>
                                                 <td>1</td>
                                                 <td>1</td>
@@ -161,7 +161,7 @@
                                                     <a href="{{ route('persetujuan')}}" class="btn btn-xs btn-success ">Persetujuan</a>
                                                     <a href="" class="btn btn-xs btn-success "><i class="fas fa-edit"></i>Edit</a>
                                                 </td>
-                                            </tr>
+                                            </tr> --}}
                                         </tbody>
                                     </table>
                                 </div>

@@ -84,7 +84,7 @@
                                         <div class="form-group row mt-2 ">
                                             <label for="periode" class="col-md-3 col-form-label"> Dari Periode </label>
                                             <div class="col-md-2">
-                                                <input type="year" class="form-control" id="periode" name="periode"
+                                                <input type="year" class="form-control" id="periode" name="periode" 
                                                     onkeyup="valueing()">
                                             </div>
                                             <label for="s.d" class="col-form-label"> s.d. </label>
@@ -96,7 +96,7 @@
                                         <div class="form-group row ">
                                             <label for="no_pelanggan" class="col-md-3 col-form-label">No Pelanggan </label>
                                             <div class="col-md-4">
-                                                <input type="text" class="form-control" id="nopelanggan"
+                                                <input type="text" class="form-control" id="nopelanggan" value="2072678"
                                                     onkeyup="valueing()"
                                                     placeholder="Masukkan No Pelanggan Lalu Tekan Enter">
                                             </div>
@@ -105,20 +105,20 @@
                                         <div class="form-group row ">
                                             <label for="nama" class="col-md-3 col-form-label">Nama</label>
                                             <div class="col-md-4">
-                                                <input type="text" class="form-control" id="nama" name="nama"
+                                                <input type="text" class="form-control" id="nama" name="nama" value="HALAIM PRANATA"
                                                     onkeyup="valueing()" readonly value="">
                                             </div>
                                         </div>
                                         <div class="form-group row ">
                                             <label for="alamat" class="col-md-3 col-form-label">Alamat</label>
                                             <div class="col-md-4">
-                                                <textarea class="form-control" id="alamat"  onkeyup="valueing()" name="alamat" readonly value=""></textarea>
+                                                <textarea class="form-control" id="alamat"  onkeyup="valueing()" name="alamat"  value =" " readonly value="">MANYAR KERTOARJO 5/4</textarea>
                                             </div>
                                         </div>
                                         <div class="form-group row ">
                                             <label for="kondisi" class="col-md-3 col-form-label">Kondisi</label>
                                             <div class="col-md-4">
-                                                <input type="text" class="form-control" name="kondisi" id="kondisi"
+                                                <input type="text" class="form-control" name="kondisi" id="kondisi" value =" 05 - Rumah Kosong"
                                                     onkeyup="valueing()" readonly value="">
                                             </div>
                                         </div>
@@ -143,7 +143,28 @@
 
                                             </tr>
                                         </thead>
-
+                                                <tbody>
+                                                    <tr>
+                                                        <td>LUNAS</td>
+                                                        <td>21/01/2020</td>
+                                                        <td>01-2020</td>
+                                                        <td>N</td>
+                                                        <td>3.956.900</td>
+                                                        <td>0</td>
+                                                        <td>0</td>
+                                                        <td>3.956.900</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>LUNAS</td>
+                                                        <td>02/03ph/2020</td>
+                                                        <td>02-2020</td>
+                                                        <td>N</td>
+                                                        <td>1.439.400</td>
+                                                        <td>0</td>
+                                                        <td>202.000</td>
+                                                        <td>1.642.000</td>
+                                                    </tr>
+                                                </tbody>
                                     </table>
 
                                 </div>

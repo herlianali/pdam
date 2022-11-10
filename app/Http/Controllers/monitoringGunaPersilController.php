@@ -17,10 +17,6 @@ class MonitoringGunaPersilController extends Controller
         return view('BAMutasiPelanggan.monitoringGunaPersil.index', compact('data'));
     }
 
-    public function preview()
-    {
-        return view('BAMutasiPelanggan.monitoringGunaPersil.preview');
-    }
 
     public function filter(Request $request)
     {
@@ -34,4 +30,19 @@ class MonitoringGunaPersilController extends Controller
 
         // return response()->json($data);
         return view('BAMutasiPelanggan.monitoringGunaPersil.index', compact('data'));
-    }}
+    }
+
+    public function preview(Request $request)
+    {
+        // $thbl = date_format($request->thbl, 'm/Y');
+        $param = [
+            'periode' => $request->periode,
+            'stan_persil' => $request->stan_persil
+        ];
+        
+        $data = Rekening::filter($request->thbl, $param);
+
+        // return response()->json($data);
+        return view('BAMutasiPelanggan.monitoringGunaPersil.preview', compact('data'));
+    }
+}

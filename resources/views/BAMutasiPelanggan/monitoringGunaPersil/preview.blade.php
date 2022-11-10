@@ -62,29 +62,21 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @if (count($data) > 0)
+                                        @foreach ($data as $row)
                                         <tr>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                    </tr>
-                                    
+                                            <td>{{ $row->no_plg }}</td>
+                                            <td>{{ $row->nama }}</td>
+                                            <td>{{ $row->jalan }}</td>
+                                            <td>{{ $row->gang}}</td>
+                                            <td>{{ $row->nomor}}</td>
+                                            <td>{{ $row->notamb}}</td>
+                                            <td>{{ $row->da}}</td>
+                                            <td>{{ $row->kd_tarif}}</td>
+                                            <td>{{ $row->kd_verifikator}}</td>
+                                        </tr>
+                                        @endforeach
+                                    @endif
                                     </tbody>
                                 </table>
                             </div>

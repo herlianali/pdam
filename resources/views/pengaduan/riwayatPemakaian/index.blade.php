@@ -136,35 +136,32 @@
                                 width="100%">
                                 <thead>
                                     <tr>
-                                        <th>No_Plgn</th>
-                                        <th>Tgl_Transaksi</th>
-                                        <th>NO_BAMUTASI</th>
-                                        <th>NO_BA_MUTASI</th>
-                                        <th>NO_BAPAKAI</th>
-                                        <th>NO_Pengesahan</th>
-                                        <th>Tgl_Pengesahan</th>
-                                        <th>NO_BONBUKAAN</th>
-                                        <th>Aksi</th>
+                                        <th>Periode</th>
+                                        <th>Meter Lalu</th>
+                                        <th>Meter Kini</th>
+                                        <th>Pakai</th>
+                                        <th>M Code</th>
+                                        <th>L Code</th>
+                                        <th>Estimasi</th>
+                                        <th>M Code BA</th>
+                                        <th>L Code BA</th>
+                                        <th>Kategori</th>
 
                                     </tr>
                                 </thead>
                                 <tbody>
 
                                     <tr>
-                                        <td>01</td>
-                                        <td>Tanpa Meter Air</td>
-                                        <td>01</td>
-                                        <td>Tanpa Meter Air</td>
-                                        <td>01</td>
-                                        <td>Tanpa Meter Air</td>
-                                        <td>01</td>
-                                        <td>01</td>
-                                        <td>
-                                            <a href="{{ route('infoPelanggaran')}}" class="btn btn-sm btn-danger ">Info Pelanggaran</a>
-                                            <a href="{{ route('kartuPelanggan')}}" class="btn btn-sm btn-success "></i>Kartu Pelanggan</a>
-                                        </td>
-
-
+                                        <td>10-2020</td>
+                                        <td>1309</td>
+                                        <td>1342</td>
+                                        <td>33</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>0</td>
+                                        <td></td>
+                                        <td>L9R</td>
+                                        <td>R</td>
                                     </tr>
 
 
