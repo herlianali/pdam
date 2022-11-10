@@ -24,10 +24,7 @@
         <li class="breadcrumb-item active">Retribusi</li>
         <li class="breadcrumb-item active">Print Retribusi</li>
     </ol>
-    <br>
-    <br>
-    {{-- <a href="{{ route('printpanggilanDinas') }}" class="btn btn-sm btn-success float-right"><i class="fas fa-download"></i> --}}
-        Download</a>
+    
 @endsection
 
 @section('content')

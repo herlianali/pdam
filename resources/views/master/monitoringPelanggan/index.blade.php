@@ -135,6 +135,25 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                <tr>
+                                                    <td>0000771 </td>
+                                                    <td>DIDIK KRISTANTO               </td>
+                                                    <td>SLAMET JUANDA                                     </td>
+                                                    <td></td>
+                                                    <td>15</td>
+                                                    <td> </td>
+                                                    <td>4B.2</td>
+                                                    <td>
+                                                        <button type="button"
+                                                        class="btn btn-xs btn-danger hapus"
+                                                        data-toggle="modal"
+                                                        data-target="#form">
+                                                        <i class="fas fa-eye"></i>
+                                                        Detail
+                                                </button>
+                                              
+                                                    </td>
+                                                </tr>
 
                                                 {{-- @foreach ($filter as $mPelanggan)
                                                     <tr>
@@ -164,7 +183,7 @@
                                                             </button> --}}
                                                         {{-- </td>
                                                     </tr>
-                                                @endforeach --}} --}}
+                                                @endforeach --}}
                                             </tbody>
                                         </table>
                                     </form>
@@ -174,7 +193,7 @@
                     </div>
     </section>
     @include('master.monitoringPelanggan.edit')
-    @include('master.monitoringPelanggan.detail')
+ 
 @endsection
 
 @push('js')

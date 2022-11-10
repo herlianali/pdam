@@ -35,7 +35,6 @@ class DilM extends Model
 
     }
 
-    
     public static function getDataKosong()
     {
         return DB::table("DIL")
@@ -43,6 +42,14 @@ class DilM extends Model
                     ->join("(SELECT 'no_plg', 'listrik', 'jalan' FROM 'SURVEY_TARIF' WHERE trim(listrik) = '0' OR trim(jalan) = '0') as b", 'DIL.no_plg', '=', 'b.no_plg')
                     ->orderBy('DIL.zona', 'asc')
                     ->first();
+    }
+
+    // for tarif Bundel
+    public static function getDataTarifBundel()
+    {
+        return DB::table("DIL")
+                ->select('DIL.no_plg','DIL.nama','DIL.jalan','DIL.gang','DIL.nomor','DIL.notamb', 'DIL.zona', 'DIL.no_bundel', 'DIL.kd_tarif', 'RETRIBUSI.rp_retribusi')
+                ->join ('RETRIBUSI', 'DIL.kd_retribusi', '=','RETRIBUSI.kd_retribusi');
     }
 
 }

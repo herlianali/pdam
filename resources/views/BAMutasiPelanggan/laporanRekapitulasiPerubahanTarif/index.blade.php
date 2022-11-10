@@ -19,14 +19,16 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-5 col-sm-12">
+                <div class="col-sm-12">
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Laporan Rekapitulasi Perubahan Tarif</h3>
                         </div>
                         <div class="card-body">
                             <form action="">
-                                <div class="form-group row">
+            
+                                <div class="form-group row ">
+                                    <label for="wilayah" class="col-md-1 col-form-label">  </label>
                                     <div class="form-check">
                                         <input type="radio" name="cek" id="pembuatan" value="pembuatan">
                                         <label for="">Pembuatan</label>
@@ -37,19 +39,19 @@
                                     </div>
                                 </div>
                                 <div class="form-group row ">
-                                    <label for="periode" class="col-md-3 col-form-label">Periode </label>
-                                    <div class="col-md-4">
+                                    <label for="periode" class="col-md-1 col-form-label">Periode </label>
+                                    <div class="col-md-2">
                                         <input type="date" class="form-control" name="periode" id="periode"
                                             onkeyup="valueing()">
                                     </div>
                                     <label for="s.d" class=" col-form-label">S.D </label>
-                                    <div class="col-md-4">
+                                    <div class="col-md-2">
                                         <input type="date" class="form-control" name="periode1" id="periode1" onkeyup="valueing()">
                                     </div>
                                 </div>
                                 <div class="form-group row ">
-                                    <label for="wilayah" class="col-md-3 col-form-label"> Wilayah </label>
-                                    <div class="col-md-7">
+                                    <label for="wilayah" class="col-md-1 col-form-label"> Wilayah </label>
+                                    <div class="col-md-4">
                                         <select class="form-control" disabled id="wilayah" onkeyup="valueing()">
                                             <option value="wilayah T">T - Timur </option>
                                             <option value="wilayah B" disabled> B - Barat</option>
@@ -80,5 +82,5 @@
     <script src="{{ asset('assets/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
-    
+    
 @endpush

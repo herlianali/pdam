@@ -32,8 +32,8 @@
                 <div class=" col-sm-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Print preview Laporan Rekapitulasi Mutasi Tarif Naik/Turun</h3>
-                            <a href="" class="btn btn-sm btn-success float-right"><i class="fas fa-print"></i>Cetak</a>
+                            <h3 class="card-title">Preview Laporan Rekapitulasi Mutasi Tarif Naik/Turun</h3>
+                            <a href="" class="btn btn-sm btn-success float-right">Print</a>
                         </div>
                         <div class="card-body priview">
 
@@ -66,10 +66,57 @@
                                         <th>Bundel</th>
                                         <th>Nama Con</th>
                                         <th>Asal Pen</th>
-
                                     </tr>
                                 </thead>
                                 <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>10</td>
+                                            <td>10107</td>
+                                            <td>Drs. SUHARTO (RW.2)</td>
+                                            <td>KARANGREJO 10/9 AFT</td>
+                                            <td>4B</td>
+                                            <td>3B</td>
+                                            <td>TD21002</td>
+                                            <td>04/01/20</td>
+                                            <td>ALFIAN MALAKA</td>
+                                            <td>48</td>
+                                            <td>AGUS PRIYANTO</td>
+                                            <td>Lain-lain</td>
+                                            
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>10</td>
+                                            <td>10117</td>
+                                            <td>NV KUNARTO</td>
+                                            <td>KENTINTANG BARU 3/20 22</td>
+                                            <td>4B</td>
+                                            <td>3C</td>
+                                            <td>TD21009</td>
+                                            <td>03/01/20</td>
+                                            <td>SUCI KURNIAWAN</td>
+                                            <td>23</td>
+                                            <td>BAGIJO WINARDI</td>
+                                            <td>Lain-lain</td>
+                                            
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td>10</td>
+                                            <td>10117</td>
+                                            <td>DJORO AWIE SOEBANDH</td>
+                                            <td>KENTINTANG BARU 6/5</td>
+                                            <td>4B</td>
+                                            <td>3C</td>
+                                            <td>TD21009</td>
+                                            <td>03/01/20</td>
+                                            <td>SUCI KURNIAWAN</td>
+                                            <td>23</td>
+                                            <td>BAGIJO WINARDI</td>
+                                            <td>Lain-lain</td>
+                                            
+                                        </tr>
 
                                 </tbody>
                             </table>

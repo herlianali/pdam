@@ -40,7 +40,7 @@
                                             <div class="col-md-3">
                                                 <input type="date" class="form-control" name="periode1" id="periode1"onkeyup="valueing()">
                                             </div>
-                                            <button type="submit" class="btn btn-success btn-sm float-right" id="search"><i class="fa fa-filter"></i>Filter</button>
+                                           
                                         </div>
                                         
                                         <div class="form-group row">
@@ -66,6 +66,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                   
                                         <div class="form-group row">
                                             <label for="" class="col-md-2 col-form-label"></label>
                                             <div class="col-md-2">
@@ -79,12 +80,21 @@
                                                         <input type="radio" class="form-check-input" id="turun" name="level" value="turun">
                                                         <label class="form-check-label">Turun</label>
                                                     </div>
+                                                    
                                                 </div>
                                             </div>
+                                            
+                                        </div>
+                                        <div class="form-group row mt-2 ">
+                                            <label for="periode" class="col-md-2 col-form-label">
+                                            </label>
+                                            <button type="submit" class="btn btn-success btn-sm float-right" id="search"></i>Filter</button>
+                                           
                                         </div>
                                     </form>
                                 </div>
                             </div>
+                            
                             
                             <table id="table" class="table table-bordered table-responsive-md table-condensed">
                                 <thead>

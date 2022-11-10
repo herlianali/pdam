@@ -25,7 +25,7 @@
                         <div class="card-header">
                             <h3 class="card-title">Retribusi</h3>
                          
-                            <a href="{{ route('printretribusi') }}" class="btn btn-xs btn-success float-right"><i class="fas fa-print"></i> Cetak Tabel</a>
+                            <a href="{{ route('printretribusi') }}" class="btn btn-xs btn-success float-right"><i class="fas fa-print"></i> Cetak </a>
 
                         </div>
                         <div class="card-body">

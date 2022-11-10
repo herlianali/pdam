@@ -52,10 +52,10 @@
                                             Cari Pengaduan
                                     </button>
                                     &nbsp;
-                                    <button type="reset" class="btn btn-danger btn-sm">
+                                    {{-- <button type="reset" class="btn btn-danger btn-sm">
                                             <i class="fa fa-undo"></i>
                                             Reset
-                                    </button>
+                                    </button> --}}
                                 </div>
                                 <div class="form-group row">
                                     <label for="jns_pengadu" class="col-md-2 col-form-label col-form-label-sm"> Jenis Pengadu </label>
@@ -77,7 +77,7 @@
                                 <div class="form-group row">
                                     <label for="no_plg" class="col-md-2 col-form-label col-form-label-sm"> No Pelanggan </label>
                                     <div class="col-md-4">
-                                        <input type="text" class="form-control form-control-sm" name="no_plg">
+                                        <input type="text" class="form-control form-control-sm" name="no_plg" value="0000951">
                                     </div>
                                     <label for="nopel_zemp" class="col-md-2 col-form-label col-form-label-sm"> Nopel Zemp </label>
                                     <div class="col-md-4">
@@ -87,13 +87,13 @@
                                 <div class="form-group row">
                                     <label for="nama" class="col-md-2 col-form-label col-form-label-sm"> Nama </label>
                                     <div class="col-md-10">
-                                        <input type="text" class="form-control form-control-sm" name="nama" id="nama_diadukan">
+                                        <input type="text" class="form-control form-control-sm" name="nama" id="nama_diadukan" value="Suci Kurniawati">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="jalan" class="col-md-2 col-form-label col-form-label-sm"> Jalan </label>
                                     <div class="col-md-10">
-                                        <input type="text" class="form-control form-control-sm" name="jalan">
+                                        <input type="text" class="form-control form-control-sm" name="jalan" value="MANGGA/RUMDIS TRANS">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -103,7 +103,7 @@
                                     </div>
                                     <label for="no_alamat" class="col-md-1 col-form-label col-form-label-sm"> No </label>
                                     <div class="col-md-2">
-                                        <input type="text" class="form-control form-control-sm" name="no_alamat">
+                                        <input type="text" class="form-control form-control-sm" name="no_alamat" value="23">
                                     </div>
                                     <label for="no_tambahan" class="col-md-2 col-form-label col-form-label-sm"> No Tambahan </label>
                                     <div class="col-md-3">
@@ -113,13 +113,13 @@
                                 <div class="form-group row">
                                     <label for="nama_pengadu" class="col-md-2 col-form-label col-form-label-sm"> Nama </label>
                                     <div class="col-md-10">
-                                        <input type="text" class="form-control form-control-sm" name="nama_pengadu">
+                                        <input type="text" class="form-control form-control-sm" name="nama_pengadu" value="SUTOMO">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="alamat_pengadu" class="col-md-2 col-form-label col-form-label-sm"> Alamat </label>
                                     <div class="col-md-10">
-                                        <input type="text" class="form-control form-control-sm" name="alamat_pengadu">
+                                        <input type="text" class="form-control form-control-sm" name="alamat_pengadu" value="PDAM">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -142,7 +142,7 @@
                                 <div class="form-group row">
                                     <label for="no_pengaduan" class="col-md-3 col-form-label col-form-label-sm"> No Pengaduan </label>
                                     <div class="col-md-5 ml-n4">
-                                        <input type="text" class="form-control form-control-sm" name="no_pengaduan" id="no_pengaduan_f">
+                                        <input type="text" class="form-control form-control-sm" name="no_pengaduan" id="no_pengaduan_f" value="T20170142206">
                                     </div>
                                     {{-- <div class="col-md-4 row"> --}}
                                         <button type="button" class="btn btn-outline-primary btn-sm col-md-2 " data-toggle="modal" data-target="#baru" disabled> Baru </button>
@@ -152,7 +152,7 @@
                                 <div class="form-group row">
                                     <label for="tgl_pengaduan" class="col-md-3 col-form-label col-form-label-sm"> Tgl Pengaduan </label>
                                     <div class="col-md-5 ml-n4">
-                                        <input type="text" class="form-control form-control-sm" name="tgl_pengaduan" id="tgl_pengaduan_f">
+                                        <input type="text" class="form-control form-control-sm" name="tgl_pengaduan" id="tgl_pengaduan_f" value="2017-11-09 00:00:00.000">
                                     </div>
                                     <button type="button" class="btn btn-outline-primary btn-sm col-md-4" disabled> Batal Pengajuan </button>
                                 </div>
@@ -202,7 +202,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" name="status_bon_c" id="status_bon_c_f" onclick="return false;">
+                                    <input type="checkbox" class="form-check-input" name="status_bon_c" id="status_bon_c_f" >
                                     <label class="form-check-label form-check-sm"> Buat Bon C </label>
                                 </div>
                                 <div class="form-group row">
@@ -223,7 +223,7 @@
                                     </div>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" name="status_bon_c" id="" onclick="return false;">
+                                    <input type="checkbox" class="form-check-input" name="status_bon_c" id="" >
                                     <label class="form-check-label form-check-sm"> Buat Bon C </label>
                                 </div>
                                 <div class="form-group row">
@@ -276,13 +276,13 @@
     <script>
 
         $(document).ready(function() {
-            $('#nama_diadukan').prop('readonly', true)
-            $('#no_pengaduan_f').prop('readonly', true)
-            $('#tgl_pengaduan_f').prop('readonly', true)
-            $('#asal_pengaduan_f').prop('disabled', true)
-            $('#jns_pengaduan_f').prop('disabled', true)
-            $('#uraian_f').prop('readonly', true)
-            $('#u_noBonC_f').prop('readonly', true)
+            // $('#nama_diadukan').prop('readonly', true)
+            // $('#no_pengaduan_f').prop('readonly', true)
+            // $('#tgl_pengaduan_f').prop('readonly', true)
+            // $('#asal_pengaduan_f').prop('disabled', true)
+            // $('#jns_pengaduan_f').prop('disabled', true)
+            // $('#uraian_f').prop('readonly', true)
+            // $('#u_noBonC_f').prop('readonly', true)
         })
 
         var showLoading = function() {

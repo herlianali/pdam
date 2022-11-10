@@ -30,7 +30,7 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-8 col-sm-12">
+                <div class="scol-sm-12">
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Print preview Guna Persil</h3>
@@ -56,7 +56,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($kd_gunapersil as $gunaPersil)
+                                    @foreach ($filter as $gunaPersil)
                                         <tr>
                                             <td>{{ $gunaPersil->kd_gunapersil }}</td>
                                             <td>{{ $gunaPersil->keterangan }}</td>

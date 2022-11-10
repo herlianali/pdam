@@ -31,11 +31,8 @@
                             data-toggle="modal"
                             data-target="#filter">
                             <i class="fas fa-print"></i>
-                            Print
+                            Cetak
                     </button> 
-                    
-                            {{-- <a href="{{ route('settingPrintPanggilan') }}" class="btn btn-xs btn-success float-right"><i
-                                    class="fas fa-print"></i> Cetak</a> --}}
                         </div>
                         <div class="card-body">
                             <div class="row mb-4">

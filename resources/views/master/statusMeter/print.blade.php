@@ -34,7 +34,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Preview Status Meter</h3>
-                            <a href="{{ route('printpanggilanDinas') }}" class="btn btn-sm btn-success float-right"><i class="fas fa-print"></i> Cetak</a>
+                            <a href="{{ route('printpanggilanDinas') }}" class="btn btn-sm btn-success float-right">Print</a>
                         </div>
                         <div class="card-body priview">
                             <p> Pemerintah Kota <br>

@@ -24,52 +24,68 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Monitoring Guna Persil</h3>
-                            <a href="{{ route('preview') }}" class="btn btn-xs btn-info float-right"><i class="fas fa-print"></i> Cetak</a>
+                            <a href="{{ route('previewmonitoring') }}" class="btn btn-xs btn-info float-right"><i
+                                    class="fas fa-print"></i> Cetak</a>
                         </div>
                         <div class="card-body">
                             <div class="row mb-4">
                                 <div class="col-md-12">
                                     <form class="form-horizontal" action="" method="post">
                                         @csrf
+
                                         <div class="form-group row ">
                                             <label for="thbl" class="col-md-2 col-form-label">THBL</label>
                                             <div class="col-md-4">
-                                                <input type="text" class="form-control" name="thbl" id="thbl"onkeyup="valueing()" value="{{$date}}">
+                                                <input type="text" class="form-control" name="thbl" id="thbl"
+                                                    onkeyup="valueing()" value="">
                                             </div>
                                         </div>
                                         <div class="form-group row ">
                                             <label for="periode" class="col-md-2 col-form-label">Periode</label>
                                             <div class="col-md-4">
-                                                <select class="form-control" id="periode" onkeyup="valueing()">
+
+                                                <select class="form-control" id="periode" name="periode"
+                                                    onkeyup="valueing()">
                                                     <option value="1"> 1</option>
                                                     <option value="2"> 2 </option>
                                                 </select>
                                             </div>
                                         </div>
+
                                         <div class="form-group row ">
                                             <label for="" class="col-md-2 col-form-label"></label>
                                             <div class="col-md-4">
                                                 <div class="form-check">
                                                     <div class="row">
                                                         <div class="col-ml-1">
-                                                            <input type="radio" name="stan_persil" id="stansesuai_persilsesuai" value="stansesuai_persilsesuai">
+                                                            <input type="radio" name="stan_persil"
+                                                                id="stan_persil_sesuai" value="1">
                                                             <label for="">STAN Sesuai GUNA PERSIL Sesuai</label>
                                                         </div>
                                                         <div class="col-ml-1">
-                                                            <input type="radio" name="stan_persil" id="stansesuai_persiltidak" value="stansesuai_persiltidak">
-                                                            <label for="">STAN Sesuai GUNA PERSIL Tidak Sesuai</label>
+                                                            <input type="radio" name="stan_persil"
+                                                                id="stan_persil_tidak_sesuai" value="2">
+                                                            <label for="">STAN Sesuai GUNA PERSIL Tidak
+                                                                Sesuai</label>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <button type="submit" class="btn btn-success btn-sm float-right"> <i class="fa fa-filter"></i> Filter</button>
-                                        <br>
-                                        <br>
+                                        <div class="form-group row ">
+                                            <label for="button" class="col-md-2 col-form-label"></label>
+                                            <div class="col-md-4">
+
+                                                <button onclick="search()" class="btn btn-success btn-sm float-right"></i>
+                                                    Filter</button>
+
+                                            </div>
+                                        </div>
+                                     
                                     </form>
                                 </div>
                             </div>
-                            <table id="table" class="table table-bordered table-responsive-md table-condensed">
+                            <table class="table table-bordered table-responsive-md table-condensed">
                                 <thead>
                                     <tr>
                                         <th>No Pelanggan</th>
@@ -83,6 +99,23 @@
                                         <th>Verifikator</th>
                                     </tr>
                                 </thead>
+                                <tbody>
+                                    @if (count($data) > 0)
+                                        @foreach ($data as $row)
+                                        <tr>
+                                            <td>{{ $row->no_plg }}</td>
+                                            <td>{{ $row->nama }}</td>
+                                            <td>{{ $row->jalan }}</td>
+                                            <td>{{ $row->gang}}</td>
+                                            <td>{{ $row->nomor}}</td>
+                                            <td>{{ $row->notamb}}</td>
+                                            <td>{{ $row->da}}</td>
+                                            <td>{{ $row->kd_tarif}}</td>
+                                            <td>{{ $row->kd_verifikator}}</td>
+                                        </tr>
+                                        @endforeach
+                                    @endif
+                                </tbody>
                             </table>
                         </div>
                     </div>
@@ -122,5 +155,6 @@
 
             });
         });
+
     </script>
 @endpush

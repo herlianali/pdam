@@ -119,18 +119,74 @@
                             </div>
                         </form>
                     </div>
-                    <table id="example" class="table table-bordered table-responsive-md table-condensed" style="width: 100%">
-                        <thead>
-                            <tr>
-                                <th>Tanggal</th>
-                                <th>THBL</th>
-                                <th>NIP</th>
-                                <th>Periode Tagih</th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                            </tr>
-                    </table>
+                    <div class="col-md-12">
+                        <table id="example" class="table table-bordered table-responsive-md table-condensed" style="width: 100%">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Sub Zona</th>
+                                    <th>Bundel</th>
+                                    <th>Jumlah Pelanggan</th>
+                                    <th>Jumlah Anomali</th>
+                                    <th>Jumlah Pelanggan Koperasi</th>
+                                    <th>Hasil Tidak Ada</th>
+                                    <th>Keterangan</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>301</td>
+                                    <td>13</td>
+                                    <td>145</td>
+                                    <td>85</td>
+                                    <td>12</td>
+                                    <td>73</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>306</td>
+                                    <td>13</td>
+                                    <td>18</td>
+                                    <td>13</td>
+                                    <td>0</td>
+                                    <td>13</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>308</td>
+                                    <td>18</td>
+                                    <td>162</td>
+                                    <td>84</td>
+                                    <td>24</td>
+                                    <td>60</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>308</td>
+                                    <td>20</td>
+                                    <td>140</td>
+                                    <td>140</td>
+                                    <td>140</td>
+                                    <td>0</td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="3" align="center">Total</td>
+                                    <td>465</td>
+                                    <td>322</td>
+                                    <td>176</td>
+                                    <td>146</td>
+                                    <td></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
                 </div>
             </div>
     </section>

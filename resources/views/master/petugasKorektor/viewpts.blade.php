@@ -43,7 +43,7 @@
                                 <label for="periode" class="col-md-2 col-form-label">Periode</label>
                                 <div class="col-md-3">
                                     <input type="text" class="form-control" id="periode" name="periode"
-                                        onkeyup="valueing()" placeholder="/">
+                                        onkeyup="valueing()" placeholder="/" value="2016/10">
                                 </div>
                                 <label for="date" class="col-md-1 col-form-label">Tanggal</label>
                                 <div class="col-md-3">
@@ -55,7 +55,7 @@
                                 <label for="zona" class="col-md-2 col-form-label">Zona</label>
                                 <div class="col-md-3">
                                     <input type="text" class="form-control" id="zona" name="zona"
-                                        onkeyup="valueing()">
+                                        onkeyup="valueing()" value="000">
                                 </div>
                                 <label for="nip" class="col-md-1 col-form-label">NIP</label>
                                 <div class="col-md-3">
@@ -67,7 +67,7 @@
                                 <label for="no_bundel" class="col-md-2 col-form-label">No Bundel</label>
                                 <div class="col-md-3">
                                     <input type="text" class="form-control" id="no_bundel" name="no_bundel"
-                                        onkeyup="valueing()">
+                                        onkeyup="valueing()" value="02">
                                 </div>
                             </div>
                             <div class="form-group row ">
@@ -91,6 +91,32 @@
                                             class="fas fa-search"></i> Cari</button> &nbsp;
                                 </div>
                         </form>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-12">
+                            <table id="example2" class="table table-bordered table-responsive-md table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th >ZONA</th>
+                                        <th >NO BUNDEL</th>
+                                        <th >JMLPLG </th>
+                                        <th >TGL ASSIGN</th>
+                                        <th >NAMA</th>
+                                        <th >USERAKSES</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>000</td>
+                                        <td>02</td>
+                                        <td>45</td>
+                                        <td>19/09/2016</td>
+                                        <td>Sururi</td>
+                                        <td>19500849</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

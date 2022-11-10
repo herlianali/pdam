@@ -45,27 +45,43 @@
                             <table id="table" class="table table-bordered table-responsive-md table-condensed">
                                 <thead>
                                     <tr>
-                                        <th>No_Pengadu</th>
-                                        <th>Status</th>
-                                        <th>No_Pelanggan</th>
-                                        <th>Jns_Pengadu</th>
-                                        <th>Nama Pengadu</th>
-                                        <th>Aksi</th>
+                                        <th>No Pelanggan </th>
+                                        <th>Tanggal</th>
+                                        <th>Zona</th>
+                                        <th>Kode Tarif Lama</th>
+                                        <th>Kode Tarif Baru</th>
+                                      
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>01</td>
-                                        <td>Tanpa Meter Air</td>
-                                        <td>01</td>
-                                        <td>Tanpa Meter Air</td>
-                                        <td>01</td>
-                                        <td>
-                                            <button type="submit" class="btn btn-danger btn-xs" onclick=""><i class="fas fa-trash-alt"></i> Hapus</button>
-                                            <a href="" class="btn btn-xs btn-success"><i class="fas fa-eye"></i> Info</a>
-                                            <a href="" class="btn btn-xs btn-warning"><i class="fas fa-edit"></i> Edit</a>
-                                        </td>
+                                    {{-- <tr>
+                                        <td>1031864</td>
+                                        <td>08/10/2020</td>
+                                        <td>103</td>
+                                        <td>4B.2</td>
+                                        <td>3C.2</td>
                                     </tr>
+                                    <tr>
+                                        <td>1031865</td>
+                                        <td>09/10/2020</td>
+                                        <td>104</td>
+                                        <td>4B.2</td>
+                                        <td>3C.2</td>
+                                    </tr>
+                                    <tr>
+                                        <td>1031866</td>
+                                        <td>10/10/2020</td>
+                                        <td>108</td>
+                                        <td>4B.2</td>
+                                        <td>3C.2</td>
+                                    </tr>
+                                    <tr>
+                                        <td>1031870</td>
+                                        <td>08/10/2020</td>
+                                        <td>103</td>
+                                        <td>4A.2</td>
+                                        <td>3C.2</td>
+                                    </tr> --}}
                                 </tbody>
                             </table>
                         </div>
