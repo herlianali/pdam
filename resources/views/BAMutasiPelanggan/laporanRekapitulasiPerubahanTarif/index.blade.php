@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
 @endpush
 
-@section('namaHal', 'Pengaduan')
+@section('namaHal', 'BA Mutasi Pelanggan')
 @section('breadcrumb')
     <ol class="breadcrumb float-sm-right">
         <li class="breadcrumb-item"><a href="#">BA Mutasi Pelanggan</a></li>
@@ -19,37 +19,39 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-5 col-sm-12">
+                <div class="col-sm-12">
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Laporan Rekapitulasi Perubahan Tarif</h3>
                         </div>
                         <div class="card-body">
                             <form action="">
-                                <div class="form-group row">
+            
+                                <div class="form-group row ">
+                                    <label for="wilayah" class="col-md-1 col-form-label">  </label>
                                     <div class="form-check">
-                                        <input type="radio" name="pembuatan" id="pembuatan" value="pembuatan">
+                                        <input type="radio" name="cek" id="pembuatan" value="pembuatan">
                                         <label for="">Pembuatan</label>
-                                        <input type="radio" name="pengesahan" id="pengesahan" value="pengesahan">
+                                        <input type="radio" name="cek" id="pengesahan" value="pengesahan">
                                         <label for="">Pengesahan</label>
-                                        <input type="radio" name="penerbitan" id="penerbitan" value="penerbitan">
+                                        <input type="radio" name="cek" id="penerbitan" value="penerbitan">
                                         <label for="">Penerbitan</label>
                                     </div>
                                 </div>
                                 <div class="form-group row ">
-                                    <label for="periode" class="col-md-3 col-form-label">Periode </label>
-                                    <div class="col-md-4">
+                                    <label for="periode" class="col-md-1 col-form-label">Periode </label>
+                                    <div class="col-md-2">
                                         <input type="date" class="form-control" name="periode" id="periode"
                                             onkeyup="valueing()">
                                     </div>
                                     <label for="s.d" class=" col-form-label">S.D </label>
-                                    <div class="col-md-4">
+                                    <div class="col-md-2">
                                         <input type="date" class="form-control" name="periode1" id="periode1" onkeyup="valueing()">
                                     </div>
                                 </div>
                                 <div class="form-group row ">
-                                    <label for="wilayah" class="col-md-3 col-form-label"> Wilayah </label>
-                                    <div class="col-md-7">
+                                    <label for="wilayah" class="col-md-1 col-form-label"> Wilayah </label>
+                                    <div class="col-md-4">
                                         <select class="form-control" disabled id="wilayah" onkeyup="valueing()">
                                             <option value="wilayah T">T - Timur </option>
                                             <option value="wilayah B" disabled> B - Barat</option>
@@ -62,14 +64,16 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-7 col-sm-12">
+                <!-- <div class="col-md-7 col-sm-12">
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Print preview Laporan Rekapitulasi Perubahan Tarif</h3>
                             <a href="" class="btn btn-xs btn-success float-right"><i class="fas fa-print"></i>Cetak</a>
                         </div>
                     </div>
-                </div>
+                </div> -->
+            </div>
+        </div>
     </section>
 @endsection
 @push('js')
@@ -78,5 +82,5 @@
     <script src="{{ asset('assets/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
-    
+    
 @endpush

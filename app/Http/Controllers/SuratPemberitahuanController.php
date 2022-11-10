@@ -19,6 +19,10 @@ class SuratPemberitahuanController extends Controller
     {
         return view('BAMutasiPelanggan.SuratPemberitahuan.previewAcara');
     }
+    public function monitoring()
+    {
+        return view('BAMutasiPelanggan.SuratPemberitahuan.monitoring');
+    }
     public function previewAwal()
     {
         return view('BAMutasiPelanggan.SuratPemberitahuan.previewAwal');

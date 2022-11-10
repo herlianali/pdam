@@ -24,7 +24,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Monitoring Guna Persil</h3>
-                            <a href="{{ route('preview') }}" class="btn btn-xs btn-info float-right"><i
+                            <a href="{{ route('previewmonitoring') }}" class="btn btn-xs btn-info float-right"><i
                                     class="fas fa-print"></i> Cetak</a>
                         </div>
                         <div class="card-body">
@@ -75,6 +75,7 @@
                                         <div class="form-group row ">
                                             <label for="button" class="col-md-2 col-form-label"></label>
                                             <div class="col-md-4">
+
                                                 <button onclick="search()" class="btn btn-success btn-sm float-right"></i>
                                                     Filter</button>
 

@@ -201,7 +201,7 @@ Route::prefix('pengaduan')->group(function() {
 Route::prefix('mutasipelanggan')->group(function() {
     Route::get('monitoringGunaPersil', [MonitoringGunaPersilController::class, 'index'])->name('monitoringGunaPersil');
     Route::post('monitoringGunaPersil', [MonitoringGunaPersilController::class, 'filter'])->name('monitoringGunaPersil');
-    Route::get('preview', [MonitoringGunaPersilController::class, 'preview'])->name('preview');
+    Route::get('previewmonitoring', [MonitoringGunaPersilController::class, 'preview'])->name('previewmonitoring');
 
     Route::get('historiMutasi', [HistoriMutasiController::class, 'index'])->name('historiMutasi');
     Route::post('historiMutasi', [HistoriMutasiController::class,'show'])->name('historiMutasi.show');
@@ -231,17 +231,20 @@ Route::prefix('mutasipelanggan')->group(function() {
     Route::get('laporanRekapitulasiPerubahanTarif', [LaporanRekapitulasiPerubahanTarifController::class, 'index'])->name('laporanRekapitulasiPerubahanTarif');
 
     Route::get('laporanPerubahanTNTperBulan', [LaporanPerubahanTNTperBulanController::class, 'index'])->name('laporanPerubahanTNTperBulan');
-    Route::get('preview', [LaporanPerubahanTNTperBulanController::class, 'preview'])->name('preview');
+    Route::get('previewBulan', [LaporanPerubahanTNTperBulanController::class, 'preview'])->name('previewBulan');
 
     Route::get('laporanRekapitulasiNaikTurun', [LaporanRekapitulasiNaikTurunController::class, 'index'])->name('laporanRekapitulasiNaikTurun');
-    Route::get('preview', [LaporanRekapitulasiNaikTurunController::class, 'preview'])->name('preview');
+    Route::get('previewNaikTurun', [LaporanRekapitulasiNaikTurunController::class, 'preview'])->name('previewNaikTurun');
 
     Route::get('laporanTarifPerBendel', [LaporanTarifPerBendelController::class, 'index'])->name('laporanTarifPerBendel');
-    Route::post('laporanTarifPerBendel', [LaporanTarifPerBendelController::class, 'showLaporanBendel'])->name('laporanTarifPerBendel');
-    Route::get('previewBendel', [LaporanTarifPerBendelController::class, 'preview'])->name('previewBendel');
+    // Route::post('laporanTarifPerBendel', [LaporanTarifPerBendelController::class, 'showLaporanBendel'])->name('laporanTarifPerBendel');
+    Route::post('previewBendel', [LaporanTarifPerBendelController::class, 'preview'])->name('previewBendel');
 
     Route::get('entriSurat', [SuratPemberitahuanController::class, 'entriSurat'])->name('entriSurat');
     Route::get('printlaporan', [SuratPemberitahuanController::class, 'print'])->name('printlaporan');
+    Route::get('monitoring', [SuratPemberitahuanController::class, 'monitoring'])->name('monitoring');
+    
+    
     Route::get('usulanMutasiTarif', [UsulanMutasiTarifController::class, 'index'])->name('usulanMutasiTarif');
 
     Route::get('cetakBAPerorangan', [CetakBAPeroranganController::class, 'index'])->name('cetakBAPerorangan');
