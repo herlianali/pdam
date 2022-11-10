@@ -41,21 +41,21 @@
                                 <label for="periode" class="col-md-2 col-form-label">Periode</label>
                                 <div class="col-md-3">
                                     <input type="text" class="form-control" id="periode" name="periode"
-                                        onkeyup="valueing()"placeholder="/">
+                                        onkeyup="valueing()"placeholder="/" value="2016/10">
                                 </div>
                             </div>
                             <div class="form-group row ">
                                 <label for="zona" class="col-md-2 col-form-label">Zona</label>
                                 <div class="col-md-3">
                                     <input type="text" class="form-control" id="zona" name="zona"
-                                        onkeyup="valueing()">
+                                        onkeyup="valueing()" value="000">
                                 </div>
                             </div>
                             <div class="form-group row ">
                                 <label for="no_bundel" class="col-md-2 col-form-label">No Bundel</label>
                                 <div class="col-md-3">
                                     <input type="text" class="form-control" id="no_bundel" name="no_bundel"
-                                        onkeyup="valueing()">
+                                        onkeyup="valueing()" value="02">
                                 </div>
                             </div>
                             <div class="form-group row ">
@@ -79,8 +79,196 @@
                                             class=""></i> Tampil</button> &nbsp;
                                 </div>
                             </div>
+                        </form>
                     </div>
-                    </form>
+                    <div class="col-md-12">
+                        <table id="example2" class="table table-bordered table-responsive-md table-condensed">
+                            <thead>
+                                <tr>
+                                    <th >THBL </th>
+                                    <th >ZONA</th>
+                                    <th >NO BUNDEL</th>
+                                    <th >TGL CATAT</th>
+                                    <th >TGL UPLOAD</th>
+                                    <th >TGL RANDOM</th>
+                                    <th >TGL ASSIGN</th>
+                                    <th >USER AKSES</th>
+                                    <th >POTENSIAL</th>
+                                    <th >NAMA</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>201610</td>
+                                    <td>000</td>
+                                    <td>02</td>
+                                    <td>14/09/2016</td>
+                                    <td>14/09/2016</td>
+                                    <td>14/09/2016 2:50:22 PM</td>
+                                    <td>14/09/2016</td>
+                                    <td>10701467</td>
+                                    <td>02</td>
+                                    <td>Bhirowo Agung Subroto</td>
+                                </tr>
+                                <tr>
+                                    <td>201610</td>
+                                    <td>000</td>
+                                    <td>02</td>
+                                    <td>14/09/2016</td>
+                                    <td>14/09/2016</td>
+                                    <td>14/09/2016 2:50:22 PM</td>
+                                    <td>14/09/2016</td>
+                                    <td>19500849</td>
+                                    <td>01</td>
+                                    <td>Sururi</td>
+                                </tr>
+                                <tr>
+                                    <td>201610</td>
+                                    <td>000</td>
+                                    <td>03</td>
+                                    <td>14/09/2016</td>
+                                    <td>14/09/2016</td>
+                                    <td>14/09/2016 2:50:22 PM</td>
+                                    <td>14/09/2016</td>
+                                    <td>10601407</td>
+                                    <td>02</td>
+                                    <td>Bambang Budiono</td>
+                                </tr>
+                                <tr>
+                                    <td>201610</td>
+                                    <td>000</td>
+                                    <td>03</td>
+                                    <td>14/09/2016</td>
+                                    <td>14/09/2016</td>
+                                    <td>14/09/2016 2:50:22 PM</td>
+                                    <td>14/09/2016</td>
+                                    <td>10701467</td>
+                                    <td>01</td>
+                                    <td>Bhirowo Agung Subroto</td>
+                                </tr>
+                                <tr>
+                                    <td>201610</td>
+                                    <td>000</td>
+                                    <td>04</td>
+                                    <td>14/09/2016</td>
+                                    <td>14/09/2016</td>
+                                    <td>14/09/2016 2:50:22 PM</td>
+                                    <td>14/09/2016</td>
+                                    <td>10601407</td>
+                                    <td>02</td>
+                                    <td>Bambang Budiono</td>
+                                </tr>
+                                <tr>
+                                    <td>201610</td>
+                                    <td>000</td>
+                                    <td>05</td>
+                                    <td>14/09/2016</td>
+                                    <td>14/09/2016</td>
+                                    <td>14/09/2016 2:50:22 PM</td>
+                                    <td>14/09/2016</td>
+                                    <td>10701467</td>
+                                    <td>01</td>
+                                    <td>Bhirowo Agung Subroto</td>
+                                </tr>
+                                <tr>
+                                    <td>201610</td>
+                                    <td>000</td>
+                                    <td>05</td>
+                                    <td>14/09/2016</td>
+                                    <td>14/09/2016</td>
+                                    <td>14/09/2016 2:50:22 PM</td>
+                                    <td>14/09/2016</td>
+                                    <td>19500849</td>
+                                    <td>02</td>
+                                    <td>Sururi</td>
+                                </tr>
+                                <tr>
+                                    <td>201610</td>
+                                    <td>000</td>
+                                    <td>06</td>
+                                    <td>14/09/2016</td>
+                                    <td>14/09/2016</td>
+                                    <td>14/09/2016 2:50:22 PM</td>
+                                    <td>14/09/2016</td>
+                                    <td>01812</td>
+                                    <td>01</td>
+                                    <td>Noval Yudha Baruna</td>
+                                </tr>
+                                <tr>
+                                    <td>201610</td>
+                                    <td>000</td>
+                                    <td>06</td>
+                                    <td>14/09/2016</td>
+                                    <td>14/09/2016</td>
+                                    <td>14/09/2016 2:50:22 PM</td>
+                                    <td>14/09/2016</td>
+                                    <td>10601411</td>
+                                    <td>02</td>
+                                    <td>Dadang Ariyanto</td>
+                                </tr>
+                                <tr>
+                                    <td>201610</td>
+                                    <td>000</td>
+                                    <td>07</td>
+                                    <td>14/09/2016</td>
+                                    <td>14/09/2016</td>
+                                    <td>14/09/2016 2:50:22 PM</td>
+                                    <td>14/09/2016</td>
+                                    <td>10601426</td>
+                                    <td>01</td>
+                                    <td>Khoirul Anwar</td>
+                                </tr>
+                                <tr>
+                                    <td>201610</td>
+                                    <td>000</td>
+                                    <td>07</td>
+                                    <td>14/09/2016</td>
+                                    <td>14/09/2016</td>
+                                    <td>14/09/2016 2:50:22 PM</td>
+                                    <td>14/09/2016</td>
+                                    <td>10601411</td>
+                                    <td>02</td>
+                                    <td>Dadang Ariyanto</td>
+                                </tr>
+                                <tr>
+                                    <td>201610</td>
+                                    <td>000</td>
+                                    <td>08</td>
+                                    <td>14/09/2016</td>
+                                    <td>14/09/2016</td>
+                                    <td>14/09/2016 2:50:22 PM</td>
+                                    <td>14/09/2016</td>
+                                    <td>01704</td>
+                                    <td>01</td>
+                                    <td>Agus Sofyan</td>
+                                </tr>
+                                <tr>
+                                    <td>201610</td>
+                                    <td>000</td>
+                                    <td>08</td>
+                                    <td>14/09/2016</td>
+                                    <td>14/09/2016</td>
+                                    <td>14/09/2016 2:50:22 PM</td>
+                                    <td>14/09/2016</td>
+                                    <td>10701467</td>
+                                    <td>02</td>
+                                    <td>Bhirowo Agung Subroto</td>
+                                </tr>
+                                <tr>
+                                    <td>201610</td>
+                                    <td>000</td>
+                                    <td>09</td>
+                                    <td>14/09/2016</td>
+                                    <td>14/09/2016</td>
+                                    <td>14/09/2016 2:50:22 PM</td>
+                                    <td>14/09/2016</td>
+                                    <td>19500849</td>
+                                    <td>01</td>
+                                    <td>Sururi</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

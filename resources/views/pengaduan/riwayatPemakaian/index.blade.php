@@ -23,7 +23,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Riwayat Pemakaian</h3>
-                        
+
                         </div>
 
                         <div class="card-body">
@@ -31,32 +31,30 @@
                                 <div class="col-md-1"></div>
                                 <div class="col-md-9">
                                     <form class="form-horizontal">
-                                    
+
                                         <div class="form-group row mt-2 ">
                                             <label for="nopelanggan" class="col-md-3 col-form-label"> Dari Periode </label>
                                             <div class="col-md-2">
-                                                <input type="text" class="form-control" id="nopelanggan"
-                                                    onkeyup="valueing()">
+                                                <input type="text" class="form-control" id="nopelanggan">
                                             </div>
                                             <label for="nopelanggan" class="col-form-label"> s.d. </label>
                                             <div class="col-md-2">
-                                                <input type="text" class="form-control" id="nopelanggan"
-                                                    onkeyup="valueing()">
+                                                <input type="text" class="form-control" id="nopelanggan">
                                             </div>
                                         </div>
-                                   
+
                                         <div class="form-group row">
                                             <label for="njop" class="col-md-3 col-form-label"> No Pelanggan </label>
                                             <div class="col-md-2">
                                                 <input type="text" class="form-control" id="njop"
-                                                    onkeyup="valueing()">
+                                                    >
                                             </div>
                                         </div>
                                         <div class="form-group row mt-2">
                                             <label for="listrik" class="col-md-3 col-form-label">Nama</label>
                                             <div class="col-md-7">
                                                 <input type="text" class="form-control" id="listrik"
-                                                    onkeyup="valueing()">
+                                                    >
                                             </div>
                                         </div>
 
@@ -64,60 +62,60 @@
                                             <label for="lebarjalan" class="col-md-3 col-form-label">Alamat</label>
                                             <div class="col-md-2">
                                                 <input type="text" class="form-control" id="lebarjln"
-                                                    placeholder="Jalan" onkeyup="valueing()">
+                                                    placeholder="Jalan" >
                                             </div>
                                             <label for="lebarjalan" class="col-form-label">Gang</label>
                                             <div class="col-md-1">
                                                 <input type="text" class="form-control" id="lebarjln"
-                                                    onkeyup="valueing()">
+                                                    >
                                             </div>
                                             <label for="lebarjalan" class="col-form-label">No</label>
                                             <div class="col-md-1">
                                                 <input type="text" class="form-control" id="lebarjln"
-                                                    onkeyup="valueing()">
+                                                    >
                                             </div>
                                             <label for="lebarjalan" class="col-form-label">No Tambahan</label>
                                             <div class="col-md-2">
                                                 <input type="text" class="form-control" id="lebarjln"
-                                                    onkeyup="valueing()">
+                                                    >
                                             </div>
                                         </div>
                                         <div class="form-group row ">
                                             <label for="lebarjalan" class="col-md-3 col-form-label">Tarif</label>
                                             <div class="col-md-3">
                                                 <input type="text" class="form-control" id="lebarjln"
-                                                    onkeyup="valueing()">
+                                                    >
                                             </div>
                                         </div>
                                         <div class="form-group row ">
                                             <label for="lebarjalan" class="col-md-3 col-form-label">Ukuran Meter</label>
                                             <div class="col-md-2">
                                                 <input type="text" class="form-control" id="lebarjln"
-                                                    onkeyup="valueing()">
+                                                    >
                                             </div>
                                             <label for="lebarjalan" class="col-form-label">No Meter</label>
                                             <div class="col-md-2">
                                                 <input type="text" class="form-control" id="lebarjln"
-                                                    onkeyup="valueing()">
+                                                    >
                                             </div>
                                         </div>
                                         <div class="form-group row ">
                                             <label for="lebarjalan" class="col-md-3 col-form-label">No Bundel</label>
                                             <div class="col-md-2">
                                                 <input type="text" class="form-control" id="lebarjln"
-                                                    onkeyup="valueing()">
+                                                    >
                                             </div>
                                             <label for="lebarjalan" class="col-form-label">No Telepon</label>
                                             <div class="col-md-3">
                                                 <input type="text" class="form-control" id="lebarjln"
-                                                    onkeyup="valueing()">
+                                                    >
                                             </div>
                                         </div>
                                         <div class="form-group row ">
                                             <label for="lebarjalan" class="col-md-3 col-form-label">Nopel</label>
                                             <div class="col-md-2">
                                                 <input type="text" class="form-control" id="lebarjln"
-                                                    onkeyup="valueing()">
+                                                    >
                                             </div>
                                         </div>
 
@@ -129,7 +127,7 @@
                                             Pelanggan</button>
                                         </div>
                                     </div>
-                                 
+
                                 </div>
                             </div>
                             <table id="table" class="table table-bordered table-responsive-md table-condensed"
@@ -151,18 +149,22 @@
                                 </thead>
                                 <tbody>
 
-                                    <tr>
-                                        <td>10-2020</td>
-                                        <td>1309</td>
-                                        <td>1342</td>
-                                        <td>33</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>0</td>
-                                        <td></td>
-                                        <td>L9R</td>
-                                        <td>R</td>
-                                    </tr>
+                                    {{-- <tr>
+                                        <td>01</td>
+                                        <td>Tanpa Meter Air</td>
+                                        <td>01</td>
+                                        <td>Tanpa Meter Air</td>
+                                        <td>01</td>
+                                        <td>Tanpa Meter Air</td>
+                                        <td>01</td>
+                                        <td>01</td>
+                                        <td>
+                                            <a href="{{ route('infoPelanggaran')}}" class="btn btn-sm btn-danger ">Info Pelanggaran</a>
+                                            <a href="{{ route('kartuPelanggan')}}" class="btn btn-sm btn-success "></i>Kartu Pelanggan</a>
+                                        </td>
+
+
+                                    </tr> --}}
 
 
                                 </tbody>
