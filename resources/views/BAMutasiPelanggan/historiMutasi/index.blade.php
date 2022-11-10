@@ -27,7 +27,7 @@
                         <div class="card-body">
                             <div class="row mb-4">
                                 <div class="col-md-8">
-                                    <form class="form-horizontal" action="" method="post">
+                                    <form class="form-horizontal" action="" method="post" id="formHistori">
                                         @csrf
                                         <div class="form-group row mt-2 ">
                                             <label for="no_pelanggan" class="col-md-3 col-form-label">No Pelanggan</label>
@@ -35,32 +35,37 @@
                                                 <input type="text" class="form-control" id="no_plg" name="no_plg"
                                                 onkeydown="javascript: return ['Backspace','Delete','ArrowLeft','ArrowRight', 'Enter'].includes(event.code) ? true : !isNaN(Number(event.key)) && event.code!=='Space'">
                                             </div>
+                                            <button type="reset" class="btn btn-danger btn-mt-2" id="clear">
+                                                <i class="fa fa-trash"></i>
+                                                Reset
+                                            </button>
                                         </div>
                                         <div class="form-group row mt-2 ">
                                             <label for="nama" class="col-md-3 col-form-label">Nama</label>
                                             <div class="col-md-6">
-                                                <input type="text" class="form-control" name="nama" id="nama"  >
+                                                <input type="text" class="form-control" name="nama" id="nama" readonly value="{{ count($data) ? $data['formHistory']['nama'] : ''}}" >
                                             </div>
+                                            
                                         </div>
 
                                         <div class="form-group row mt-2 ">
                                             <label for="alamat" class="col-md-3 col-form-label">Alamat </label>
                                             <div class="col-md-6">
-                                                <textarea class="form-control" id="alamat" name="alamat" readonly value=""></textarea>
+                                                <textarea class="form-control" id="alamat" name="alamat" readonly>{{ count($data) ? $data['formHistory']['alamat'] : ''}}</textarea>
                                             </div>
                                         </div>
                                         <div class="form-group row mt-2 ">
                                             <label for="tarif" class="col-md-3 col-form-label">Tarif</label>
                                             <div class="col-md-2">
-                                                <input type="text" class="form-control" name="kd_tarif" id="kd_tarif" readonly value="">
+                                                <input type="text" class="form-control" name="kd_tarif" id="kd_tarif" readonly value="{{ count($data) ? $data['formHistory']['tarif'] : ''}}">
                                             </div>
                                             <label for="jns_pelanggan" class="col-form-label">Jenis Pelanggan</label>
                                             <div class="col-md-2">
-                                                <input type="text" class="form-control" name="jns_pelanggan" id="jns_pelanggan" readonly value="" >
+                                                <input type="text" class="form-control" name="jns_pelanggan" id="jns_pelanggan" readonly value="{{ count($data) ? $data['formHistory']['jns_pelanggan'] : ''}}" >
                                             </div>
                                             <label for="subzona" class="col-form-label">Subzona</label>
                                             <div class="col-md-2">
-                                                <input type="text" class="form-control" name="zona" id="zona" readonly value="">
+                                                <input type="text" class="form-control" name="zona" id="zona" readonly value="{{ count($data) ? $data['formHistory']['zona'] : ''}}">
                                             </div>
                                         </div>
                                     </form>
@@ -70,7 +75,7 @@
                                 <thead>
                                     <tr>
                                         <th>No_Bamutasi</th>
-                                        <th>Tgl_Bamutasi</th>
+                                        <th width="50%">Tgl_Bamutasi</th>
                                         <th>Jns_Mutasi</th>
                                         <th>No_BonC</th>
                                         <th>No_Plg</th>
@@ -96,33 +101,36 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>No Bamutasi</td>
-                                        <td>Tgl Bamutasi</td>
-                                        <td>Jns Mutasi</td>
-                                        <td>No BonC</td>
-                                        <td>No_Plg</td>
-                                        <td>Guna Persil</td>
-                                        <td>Zona</td>
-                                        <td>Ukuran Meter</td>
-                                        <td>Retribusi</td>
-                                        <td>Nama</td>
-                                        <td>Jalan</td>
-                                        <td>Gang</td>
-                                        <td>Nomor</td>
-                                        <td>No Tambahan</td>
-                                        <td>DA</td>
-                                        <td>No PA</td>
-                                        <td>Jns Plg</td>
-                                        <td>KD Retribusi</td>
-                                        <td>No Bundel</td>
-                                        <td>TGL_KABAG</td>
-                                        <td>TGL_KIRIMREKENING</td>
-                                        <td>TGL_PEREMAJAAN</td>
-                                        <td>BLNTERBIT</td>
-                                        <td>MUTASI</td>
-                                    </tr>
-
+                                    @if (count($data) > 0)
+                                        @foreach ($data['tablehistory'] as $item)
+                                            <tr>
+                                                <td>{{$item->no_bamutasi}}</td>
+                                                <td width="50%">{{$item->tgl_bamutasi}}</td>
+                                                <td>{{$item->jns_mutasi}}</td>
+                                                <td>{{$item->no_bonc}}</td>
+                                                <td>{{$item->no_plg}}</td>
+                                                <td>{{$item->gunapersil}}</td>
+                                                <td>{{$item->zona}}</td>
+                                                <td>{{$item->ukuranmtr}}</td>
+                                                <td>{{$item->retribusi}}</td>
+                                                <td>{{$item->nama}}</td>
+                                                <td>{{$item->jalan}}</td>
+                                                <td>{{$item->gang}}</td>
+                                                <td>{{$item->nomor}}</td>
+                                                <td>{{$item->notamb}}</td>
+                                                <td>{{$item->da}}</td>
+                                                <td>{{$item->no_pa}}</td>
+                                                <td>{{$item->jns_pel}}</td>
+                                                <td>{{$item->kd_retribusi}}</td>
+                                                <td>{{$item->no_bundel}}</td>
+                                                <td>{{$item->tgl_kabag}}</td>
+                                                <td>{{$item->tgl_kirimrekening}}</td>
+                                                <td>{{$item->tgl_peremajaan}}</td>
+                                                <td>{{$item->blnterbit}}</td>
+                                                <td>{{$item->mutasi}}</td>
+                                            </tr>
+                                        @endforeach
+                                    @endif
                                 </tbody>
                             </table>
                         </div>
@@ -164,32 +172,14 @@
             });
         });
 
-        $('#no_plg').keypress(function(e) {
-            var key = e.which
-            let no_plg = $('#no_plg').val();
-            if (key == 13) {
-                $.ajax({
-                    type: "GET",
-                    url: `{{ url('mutasipelanggan/historiMutasi') }}/`+no_plg,
-                    data: {
-                        id: no_plg,
-                        _token: '{{ csrf_token() }}'
-                    },
-                    success: function(response) {
-                        // console.log(response);
-                        $('#nama').val(response.nama)
-                        $('#alamat').val(response.jalan.trim()+' '+response.gang.trim()+' '+response.nomor.trim()+' '+response.notamb)
-                        $('#kd_tarif').val(response.kd_tarif)
-                        $('#jns_pelanggan').val(response.jns_pelanggan)
-                        $('#zona').val(response.zona)
-                        swal.close();
-                    }
-                })
-            }
-        })
-
+   
       
-
+        $('body').keypress(function(e){
+        if (e.keyCode == 13)
+        {
+            $('#formHistori').submit();
+        }
+        });
 
     </script>
 @endpush

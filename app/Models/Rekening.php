@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Log;
 
 class Rekening extends Model
 {
@@ -31,9 +32,10 @@ class Rekening extends Model
                 ->select("no_plg","nama","jalan","gang","nomor","notamb","da","kd_tarif","kd_verifikator")
                 ->join('ZONA_PERIODE','REKENING.Zona', '=', 'ZONA_PERIODE.Zona')
                 ->where('thbl', '=', $thbl)
-                ->where('ZONA_PERIODE.periode', '=' , $param)
-                ->where('tipe_verifikator', '=' , $param)
+                ->where('ZONA_PERIODE.periode', '=' , $param['periode'])
+                ->where('tipe_verifikator', '=' , $param['stan_persil'])
                 ->orderByRaw("no_plg, nama, jalan, gang, nomor, notamb, da, kd_tarif")
+                ->limit(400)
                 ->get();
     }
 
