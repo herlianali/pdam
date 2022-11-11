@@ -16,15 +16,15 @@
                             <input type="text" class="form-control" id="nomor" onkeyup="valueing()">
                         </div>
                     </div>
-                    <div class="row">
-                    <label for="wilayah" class="col-form-label">Petugas Tera</label>
+                    <div class="form-group">
+                    <label for="petcs" class="col-form-label">Petugas Tera</label>
                         <div class="col-md-10">
-                            <select class="form-control" id="wilayah" onkeyup="valueing()">
-                                <!-- <option value="wilayah T"> Wilayah T </option>
-                                <option value="wilayah B"> Wilayah B </option> -->
-                            </select>
+                            <!-- <select class="form-control" id="petcs" onkeyup="valueing()">
+                              <option value="wilayah T"> Wilayah T </option>
+                                <option value="wilayah B"> Wilayah B </option>
+                            </select> -->
                         </div>
-                    </div>
+                    </div><br>
                     <button type="submit" class="btn btn-info btn-sm">Preview</button>
                     <button class="btn btn-danger btn-sm">Batal</button>
                 </form>

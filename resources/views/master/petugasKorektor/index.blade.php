@@ -49,14 +49,14 @@
                         <label for="nip" class="col-md-2 col-form-label">NIP </label>
                         <div class="col-md-3">
                             <input type="text" class="form-control" id="nip" name="nip"
-                                onkeyup="valueing()">
+                                onkeyup="valueing()" readonly>
                         </div>
                     </div>
                     <div class="form-group row mt-2">
                         <label for="nama" class="col-md-2 col-form-label">Nama </label>
                         <div class="col-md-3">
                             <input type="text" class="form-control" id="nama"
-                                name="nama"onkeyup="valueing()">
+                                name="nama"onkeyup="valueing()" readonly>
                         </div>
                         <div class="col-md-3">
                             <button class="btn btn-default btn-mt-2" type="button"
@@ -89,10 +89,11 @@
                         </div>
                     </div>
                     <div class="form-group row mt-2 ">
-                        <label for="" class="col-md-6 col-form-label"></label>
-                        <div class="col-md-6">
-                            <button class="btn btn-success btn-sm float-right" type="submit">Tampil</button>
-
+                        <label for="tombol" class="col-md-6 col-form-label"></label>
+                        <div class="col-md-5">
+                            <button class="btn btn-success btn-sm" type="submit"> Simpan</button>
+                            <button type="reset" class="btn btn-danger btn-sm"><i
+                                    class="fas fa-undo"></i> Reset</button>
                         </div>
                     </div>
                 </form>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Bonc;
 use App\Models\PenetapanTeraMeter;
 use App\Models\Pengaduan;
+use App\Models\PetugasCS;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -50,6 +51,13 @@ class PenetapanTeraMeterController extends Controller
         //                                 ->first();
         return response()->json($getByBonc);
     }
+
+    // public function filter()
+    // {
+    //     $petcs  = PetugasCS::getData();
+    //     //dd($petcs);
+    //     return view('master.penetapanTeraMeter.filter', compact(['petcs']))->with('i');
+    // }
 
     public function print()
     {

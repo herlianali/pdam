@@ -71,8 +71,9 @@
                                 <div class="col-md-2">
                                     <select class="form-control" id="periode_tagih" name="periode_tagih"
                                         onkeyup="valueing()">
-                                        <option value=""> </option>
-                                        <option value=""> </option>
+                                        <option value="1"> 1 </option>
+                                        <option value="2"> 2 </option>
+                                        <option value="All"> All </option>
                                     </select>
                                 </div>
                             </div>

@@ -37,7 +37,8 @@
                             <h3 class="card-title">Laporan Tarif Per Bendel</h3>
                         </div>
                         <div class="card-body">
-                            <form action="">
+                            <form class="form-horizontal" action="{{ route('previewBendel') }}" method="POST">
+                                @csrf
                                 <div class="form-group row mt-2 ">
                                     <label for="jp_dinas" class="col-md-3 col-form-label">Zona </label>
                                     <div class="col-md-4">
@@ -67,7 +68,7 @@
 
                                 <div class="card col-md-6">
                                     <div class="card-body">
-                                        <div class="col-md-4">
+                                        <div class="col-md-5">
                                         <label class="col-form-label col-form-label-sm" for="urut">Urut berdasarkan</label>
                                         </div>
                                         <div class="form-group row">
@@ -86,17 +87,17 @@
                                 <div class="form-group row mt-2 ">
                                     <label for="" class="col-md-3 col-form-label">
                                     </label>
-                                    <div class="col-md-9">
+                                    <div class="col-md-9 justify-content-between">
                                         <button type="submit" class="btn btn-info btn-sm float-right">Preview</button>
-                                        <button class="btn btn-danger btn-sm float-right">Batal</button>
+                                        <button class="btn btn-danger btn-sm float-right mr-2">Batal</button>
                                     </div>
                                 </div>
+                                
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
         </div>
     </section>
 @endsection

@@ -44,7 +44,7 @@
                                                                 <label for="">Belum disahkan sampai tanggal</label>
                                                             </div>
                                                             <div class="col">
-                                                                <input class="ml-3" type="date" name="pilihan" id="belumdisahkan" value="" disabled>
+                                                                <input class="ml-3" type="text" name="pilihan" id="belumdisahkan" value="10/11/2022" disabled>
                                                             </div>
                                                         </div>
                                                         <div class="row">
@@ -198,35 +198,35 @@
                                     </form>
                                 </div>
                             </div>
-
-
-                            <table id="table" class="table table-bordered table-responsive-md table-condensed">
+                            <table class="table table-bordered table-responsive">
                                 <thead>
                                     <tr>
-                                        <th>No Pelanggan</th>
-                                        <th>Nama</th>
-                                        <th>Jalan</th>
-                                        <th>Gang</th>
-                                        <th>Nomor</th>
-                                        <th>No Tambahan</th>
-                                        <th>DA</th>
-                                        <th>KD Tarif</th>
-                                        <th>Verifikator</th>
+                                        <th>NO_BAMutasi</th>
+                                        <th>TGL_BAMUTASI</th>
+                                        <th>JNS_MUTASI</th>
+                                        <th>NO_BONC</th>
+                                        <th>NO_PLG</th>
+                                        <th>KD_GUNAPERSIL</th>
+                                        <th>KD_TARIF_L</th>
+                                        <th>KD_TARIF_B</th>
+                                        <th>ZONA_L</th>
+                                        <th>ZONA_B</th>
                                         <th>Aksi</th>
 
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
+                                        <td>T0500006</td>
+                                        <td>30/06/2005</td>
+                                        <td>B</td>
+                                        <td>TCL0503615</td>
+                                        <td>1160261</td>
+                                        <td>42</td>
+                                        <td></td>
+                                        <td>116</td>
+                                        <td></td>
+                                        <td></td>
                                         <td>
 
                                             <a href="{{ route('editmonitoringBAMutasiPerorangan') }}"

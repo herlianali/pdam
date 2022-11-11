@@ -44,7 +44,7 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-4 col-sm-12">
+                <!-- <div class="col-md-4 col-sm-12">
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Filter Penetapan Tera Meter</h3>
@@ -69,8 +69,8 @@
                             </form>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-8 col-sm-12">
+                </div> -->
+                <div class="col-md-12 col-sm-12">
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Print preview Penetapan Tera Meter</h3>
@@ -88,19 +88,19 @@
                                 <div class="col"> 
                                     <table >
                                         <tr>
-                                            <td>Bagian Langganan Wilayah Timur</td>
+                                            <td><b>Bagian Langganan Wilayah Timur</b></td>
                                         </tr>
                                         <tr>
                                             <td>Nomor</td>
-                                            <td>:</td>
+                                            <td>: TTRA190395</td>
                                         </tr>
                                         <tr>
-                                            <td>Nama</td>
-                                            <td>:</td>
+                                            <td>Tanggal</td>
+                                            <td>: 02-Oct-2019</td>
                                         </tr>
                                         <tr>
                                             <td>Nomor Bon</td>
-                                            <td>:</td>
+                                            <td>: TCL1916666</td>
                                         </tr>
                                         <tr></tr>
                                         
@@ -125,11 +125,11 @@
                             </div>
                             <br>
                             <br>
-                            <div class="mx-auto mb-3" style="width: 250px;">
+                            <div class="mx-auto mb-3" style="width: 300px;">
                                 <span>
-                                    <center>SURAT PENETAPAN PEMBAYARAN
+                                    <center><b>SURAT PENETAPAN PEMBAYARAN
                                 </span> <br>
-                                <span>TERA METER AIR </center></span> <br>
+                                <span>TERA METER AIR </b></center></span> <br>
                             </div>
                             <div class="atasan" >
                             <div class="row justify-content-between">
@@ -137,15 +137,15 @@
                                     <table >
                                         <tr>
                                             <td> Nama</td>
-                                            <td>:</td>
+                                            <td>: SUKONO</td>
                                         </tr>
                                         <tr>
                                             <td>Alamat</td>
-                                            <td>:</td>
+                                            <td>: BULAK BANTENG MADYA 5/14A</td>
                                         </tr>
                                         <tr>
                                             <td>Tarif</td>
-                                            <td>:</td>
+                                            <td>: 4A</td>
                                         </tr>
                                     </table>
                                 </div>
@@ -153,11 +153,11 @@
                                     <table>
                                         <tr>
                                             <td>PA</td>
-                                            <td>:</td>
+                                            <td>: 338931</td>
                                         </tr>
                                         <tr>
                                             <td>Nopel</td>
-                                            <td>:</td>
+                                            <td>: 3148160</td>
                                         </tr>
                                     </table>
                                 </div>
@@ -167,16 +167,16 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>Ukuran Meter Ai </th>
-                                    <th>Biaya Tera (Rp)</th>
-                                    <th>Bayar+ Ppn 10%</th>
+                                    <th width="15%">Ukuran Meter Ai (Inci)</th>
+                                    <th width="15%">Biaya Tera (Rp)</th>
+                                    <th width="15%">Jumlah yang harus dibayar + Ppn 10% (Rp)</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>01</td>
-                                    <td>METER. TIDAK ADA</td>
-                                    <td>T</td>
+                                    <td>0.5</td>
+                                    <td>45000</td>
+                                    <td>49500</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -206,7 +206,53 @@
                                     <p class="mt-n3">1.83.00551</p>
                                 </div>
                             </div>
-                </div>
+                        </div>
+                        <div class="atasan">
+                        <table class="table">
+                        <div class="mx-auto mb-3" style="width: 300px;">
+                                <span>
+                                    <center><b>SURAT PERNYATAAN</b></center>
+                                </span>
+                        </div>
+                        
+<div class="row">
+<div class="col">
+    <div style="font-size:15px">Yang bertanda tangan dibawah ini, </div>
+    <div style="font-size:15px">Nama            : ABC</div>
+    <div style="font-size:15px">Alamat & Telp	: 123</div>
+    <div style="font-size:15px">Sebagaai pelanggan / kuasa pelanggan PDAM Surabaya</div>
+    <div style="font-size:15px">Atas Nama	    : SUKONO</div>
+    <div style="font-size:15px">Alamat		    : BULAK BANTENG MADYA 5/14A</div>
+    <div style="font-size:15px">Nopel		    : 3148160</div>
+    <div style="font-size:15px">Tarif		    : 4A</div>
+    <div style="font-size:15px">Dengan ini menyatakan dengan sebenarnya bahwa :</div>
+    <div style="font-size:15px">1. Kami mematuhi segala peraturan yang berlaku bagi pelanggan</div>
+    <div style="font-size:15px">2. Kami bersedia menyaksikan pelaksanaaan Tera Meter Air PDAM Surabaya, di Jl. Prof. Dr. Moesto</div>
+    <div style="font-size:15px">Tera Meter Air blok A Lantai I pukul 08.00 s/d 13.00 BBWI, selambat-lambatnya 3-7 hari sete</div>
+    <div style="font-size:15px;">PDAM Surabaya.</div>
+    <div style="font-size:15px;">(Setelah lewat 7 hari, pelaksanaan tera meter air akan dilakukan pihak PDAM tanpa menunggu p</div>
+    <div style="font-size:15px;">3. Karena sesuatu hal kami tidak dapat menyaksikan pelaksanaan Tera Meter Air yang dilaksanakan</div>
+    <div style="font-size:15px;">kami menyatakan menerima sepenuhnya Hasil Tera Meter Air yang telah dilaksanakan PDAM Surabaya</div>
+    <div style="font-size:15px;">4. Apabila ternyata hasil tera meter air BAIR, maka kami bersedia membayar pemakaian air yang B</div>
+    <div style="font-size:15px;">5. Untuk meter air a" keatas tera dilaksanakan di Bengkel Meter ( Komplek Intalasi Penjernihan</div>
+    <div style="font-size:15px;">berkoordinasi dengan loker 25 / Tlp 5039373 pesawat 3111 / 3105)</div>
+</div>
+</div>
+<div class="ttd">
+                            <div class="row text-center">
+                                <div class="col justify-content-between">
+                                    <p>Surabaya, 10 November 2022</p>
+                                    <p class="mb-5">Kami yang membuat pernyataan</p>
+                                </div>
+                            </div>
+                        </div>
+<div class="col">
+    <div style="font-size:15px">No. TP      : ....................... </div>
+    <div style="font-size:15px">No. KAS     : ....................... </div>
+    <div style="font-size:15px">No. Bon P   : ....................... </div>
+    <div style="font-size:15px">Tanggal     : ....................... </div>
+</div>
+</div>
             </div>
         </div>
     </section>

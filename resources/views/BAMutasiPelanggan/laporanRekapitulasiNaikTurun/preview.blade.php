@@ -32,21 +32,22 @@
                 <div class="col-sm-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Print preview Laporan Rekapitulasi Naik Turun</h3>
-                            <a href="" class="btn btn-xs btn-warning float-right"><i class="fas fa-backward"></i> Kembali</a>
+                            <h3 class="card-title">Preview Laporan Rekapitulasi Naik Turun</h3>
+                            <a href="" class="btn btn-xs btn-success float-right"> Print</a>
                         </div>
                         <div class="card-body priview">
                             <div style="margin-left: 5px">
                                 <div style="font-size:15px">PEMERINTAH KOTA SURABAYA</div>
                                 <div style="font-size:15px">PERUSAHAAN DAERAH AIR MINUM</div>
                             </div>
-
+<br>
+<br>
                             <div style="margin-left: 5px">
-                                <div style="font-size:15px">Laporan Rekapitulasi Perubahan Tarif {{-- manggil filter naik/turun --}} Wilayah Timur</div>
+                                <div style="font-size:15px">Laporan Rekapitulasi Perubahan Tarif Naik Wilayah Timur</div>
                                 <table>
                                     <tr>
                                         <td>Periode</td>
-                                        <td>:</td>
+                                        <td>:01/01/2020 - 10/02/2020</td>
                                     </tr>
                                 </table>
                             </div>
@@ -55,17 +56,53 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>No</th>
+                                      
                                         <th>Tarif Lama</th>
                                         <th>Tarif Baru</th>
                                         <th>Jumlah</th>
                                     </tr>
+                                   
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>4B.2</td>
+                                        <td>3B.1</td>
+                                        <td>132</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3C.2</td>
+                                        <td>2A.1</td>
+                                        <td>29</td>
+                                    </tr>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>2A.1</td>
+                                        <td>3</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3A</td>
+                                        <td>3C.1</td>
+                                        <td>31</td>
+                                    </tr>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>3B.1</td>
+                                        <td>2</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3A</td>
+                                        <td>3C.2</td>
+                                        <td>4</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2A.2</td>
+                                        <td>4B.1</td>
+                                        <td>1</td>
+                                    </tr>
+                                   
                                     <tr>
                                         <th colspan="3">Total</th>
                                     </tr>
-                                </thead>
-                                <tbody>
-
                                 </tbody>
                             </table>
                             <br>

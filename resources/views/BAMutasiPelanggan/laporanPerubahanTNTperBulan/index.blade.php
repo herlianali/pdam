@@ -20,13 +20,13 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-6">
+                <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title"> Laporan Mutasi Tarif Naik/Turun</h3>
                         </div>
                         <div class="card-body">
-                            <div class="row mb-4">
+                          
                                 <div class="col-md-12">
                                     <form class="form-horizontal">
                                         <div class="form-group row">
@@ -51,8 +51,8 @@
                                         </div>
                                         <div class="card col-md-4">
                                             <div class="card-body">
-                                                <div class="col-md-1">
-                                                <label class="col-form-label col-form-label-sm" for="nama">Dasar</label>
+                                                <div class="col-md-2">
+                                                <label class="" for="nama">Dasar</label>
                                                 </div>
                                                 <div class="form-group row">
                                                     <div class="form-check">
@@ -68,10 +68,10 @@
                                             </div>
                                         </div>
                                         </div>
-                                        <div class="form-group row mt-2">
-                                            <label for="periode" class="col-form-label">Periode</label>
+                                        <div class="form-group row">
+                                            <label for="periode" class="col-md-1 col-form-label">Periode</label>
                                             <div class="col-md-4">
-                                                <input type="date" class="form-control" name="periode" id="periode"onkeyup="valueing()">
+                                                <input type="text" class="form-control" name="periode" id="periode" value="{{ $date }}">
                                             </div>
                                         </div>
 

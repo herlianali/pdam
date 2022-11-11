@@ -27,10 +27,10 @@ class PenetapanTeraMeter extends Model
                 ->get();
     }
 
-    // public function cetak() {
+    // public function getPetugas() {
     //     return DB::table($this->table)
-    //             ->select('')
-    //             ->join('DIP', 'DIP.nip', '=', 'PET_KHUSUS.nip')
+    //             ->select('TAP_TERA.no_tera', 'PETUGAS_CS.kd_ptgcs', 'PETUGAS_CS.nama')
+    //             ->where(PETUGAS_CS::raw('substr(kd_ptgentry,0,2)'), '=', 'LT')
     //             ->get();
 
     // }

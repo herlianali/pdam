@@ -150,30 +150,26 @@
                                         <th>Jns Pelanggan Baru</th>
                                         <th>No Bundel Baru</th>
                                         <th>KDRET Lama</th>
-                                        <th>RPRET Lama</th>
-                                        <th>KDRET Baru</th>
-                                        <th>RPRET Baru</th>
+                                        
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <th>1</th>
-                                    <th>2</th>
-                                    <th>3</th>
-                                    <th>4</th>
-                                    <th>5</th>
-                                    <th>6</th>
-                                    <th>7</th>
-                                    <th>8</th>
-                                    <th>9</th>
-                                    <th>10</th>
-                                    <th>11</th>
-                                    <th>12</th>
-                                    <th>13</th>
-                                    <th>
+                                    <td>1071921</th>
+                                    <td>107</th>
+                                    <td>SSS</td>
+                                    <td>16</td>
+                                    <td>BUDI SAID</td>
+                                    <td>MARGOREJO INDAH</td>
+                                    <td>107</td>
+                                    <td>SSS</td>
+                                    <td>16</td>
+                                    <td>057</td>
+                                  
+                                    <td>
                                         <a href="" class="btn btn-xs btn-info "><i class="fas fa-edit"></i> Edit</a>
                                         <a href="" class="btn btn-xs btn-warning "><i class="fas fa-trash"></i>Hapus</a>
-                                    </th>
+                                    </td>
                                 </tbody>
                             </table>
                             <div class="form-group row mt-2">
