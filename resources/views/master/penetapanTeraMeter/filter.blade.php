@@ -19,10 +19,9 @@
                     <div class="form-group">
                     <label for="petcs" class="col-form-label">Petugas Tera</label>
                         <div class="col-md-10">
-                            <!-- <select class="form-control" id="petcs" onkeyup="valueing()">
-                              <option value="wilayah T"> Wilayah T </option>
-                                <option value="wilayah B"> Wilayah B </option>
-                            </select> -->
+                            <select class="custom-select" id="petcs" name="petcs" onkeyup="valueing()">
+                                
+                            </select>
                         </div>
                     </div><br>
                     <button type="submit" class="btn btn-info btn-sm">Preview</button>

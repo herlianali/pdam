@@ -65,8 +65,11 @@
                                         </select>
                                     </div>
                                 </div>
-
-                                <div class="card col-md-6">
+                                <div class="form-group row">
+                                    <div class="col-md-3">
+                                        <label class="col-form-label col-form-label-sm"></label>
+                                    </div>
+                                <div class="card col-md-4">
                                     <div class="card-body">
                                         <div class="col-md-5">
                                         <label class="col-form-label col-form-label-sm" for="urut">Urut berdasarkan</label>
@@ -84,12 +87,14 @@
                                         </div>
                                     </div>
                                 </div>
+                                </div>
                                 <div class="form-group row mt-2 ">
                                     <label for="" class="col-md-3 col-form-label">
                                     </label>
                                     <div class="col-md-9 justify-content-between">
                                         <button type="submit" class="btn btn-info btn-sm float-right">Preview</button>
-                                        <button class="btn btn-danger btn-sm float-right mr-2">Batal</button>
+                                        <button type="reset" class="btn btn-danger btn-sm float-right mr-2"><i
+                                                class="fas fa-undo"></i> Reset</button>
                                     </div>
                                 </div>
                                 
