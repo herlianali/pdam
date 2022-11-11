@@ -28,8 +28,7 @@
                         <div class="card-body">
                           
                                 <div class="col-md-12">
-                                    <form class="form-horizontal" action="" method="post">
-                                        @csrf
+                                    <form class="form-horizontal">
                                         <div class="form-group row">
                                             <label for="" class="col-md-1 col-form-label"></label>
                                             <div class="col-md-8">
@@ -76,7 +75,7 @@
                                             </div>
                                         </div>
 
-                                        <button type="submit" class=" btn-info btn-sm float-right">Preview</button>
+                                        <button class="btn-info btn-sm float-right preview">Preview</button>
                                         <button class="btn-danger btn-sm float-right">Batal</button>
                                     </form>
                                 </div>
@@ -102,7 +101,6 @@
                 //  "lengthChange": false,
                 //   "autoWidth": false,
                 //   "responsive": true,
-
                 "oLanguage": {
                     "sSearch": "Keterangan : "
                 },
@@ -122,47 +120,6 @@
             });
         });
 
-        function deletepanggilanDinas(id) {
-            swal.fire({
-                title: "Hapus Data?",
-                icon: 'question',
-                text: "Apakah Anda Yakin Ingin Menghapus",
-                type: "warning",
-                showCancelButton: !0,
-                confirmButtonColor: "#e74c3c",
-                confirmButtonText: "Iya",
-                cancelButtonText: "Tidak",
-                reverseButtons: !0
-            }).then(function(e) {
-                if (e.value === true) {
-                    let token = "{{ csrf_token() }}"
-                    let _url = `/pDinas/${id}`
-                    console.log(_url)
 
-                    $.ajax({
-                        type: 'DELETE',
-                        url: _url,
-                        data: {
-                            _token: token
-                        },
-                        success: function(resp) {
-                            if (resp.success) {
-                                swal.fire("Selesai!", resp.message, "Berhasil");
-                                location.reload();
-                            } else {
-                                swal.fire("Gagal!", "Terjadi Kesalahan.", "error");
-                            }
-                        },
-                        error: function(resp) {
-                            swal.fire("Gagal!", "Terjadi Kesalahan.", "error")
-                        }
-                    })
-                } else {
-                    e.dismiss;
-                }
-            }, function(dismiss) {
-                return false;
-            });
-        }
     </script>
 @endpush
