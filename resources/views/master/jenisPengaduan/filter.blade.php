@@ -11,7 +11,7 @@
                 <form action="">
                     <div class="form-group">
                         <div class="form-check">
-                            <input type="radio" name="filter" id="semuakd" value="semua">
+                            <input type="radio" name="filter" id="semua" value="semua">
                             <label for="">Semua Kode</label>
                         </div>
                     </div>
@@ -47,19 +47,20 @@
 
 @push('js')
     <script type="text/javascript">
-        const box = document.getElementById('startEnd');
-
-        function clickRadio() {
-            if (document.getElementById('semuakd').checked) {
-                box.style.display = "none"
-            } else {
-                box.style.display = "block"
+    $(document).ready(function(){
+        $('input[type="radio"]').on('click', function(){
+            if($(this).attr("value") == "semua") {
+                $('#start').prop('disabled', true)
+                $('#end').prop('disabled', true)
+                console.log("hidup");
             }
-        }
-
-        const radioButtons = document.querySelectorAll('input[name="filter"]');
-        radioButtons.forEach(radio => {
-            radio.addEventListener('click', clickRadio)
-        });
+            if($(this).attr("value") == "kode"){
+                console.log("mati");
+                $('#start').prop('disabled',false)
+                $('#end').prop('disabled',false)
+            }
+        })
+        $('input[type="radio"]').trigger('click');
+    })
     </script>
 @endpush
