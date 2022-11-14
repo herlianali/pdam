@@ -17,6 +17,8 @@ class PenetapanTeraMeterController extends Controller
         $getlast = new PenetapanTeraMeter;
         $no = (int)$getlast->getLast()+1;
         $getByBonc = new Bonc;
+        // $ptg = new PetugasCS;
+        // $petcs  = $ptg->getData();
         $bonc = $getByBonc->getByBonc('BCL-95');
         // dd($bonc);
         $getUkuran = new PenetapanTeraMeter;
@@ -52,15 +54,16 @@ class PenetapanTeraMeterController extends Controller
         return response()->json($getByBonc);
     }
 
-    // public function filter()
-    // {
-    //     $petcs  = PetugasCS::getData();
-    //     //dd($petcs);
-    //     return view('master.penetapanTeraMeter.filter', compact(['petcs']))->with('i');
-    // }
+    public function filter()
+    {
+        $petcs  = PetugasCS::getData();
+        //dd($petcs);
+        // return view('master.penetapanTeraMeter.filter', compact(['petcs']))->with('i');
+    }
 
     public function print()
     {
+        // $petcs  = PetugasCS::getData();
         return view('master.penetapanTeraMeter.print');
     }
     public function create()
