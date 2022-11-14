@@ -34,12 +34,12 @@
                                             <div class="col-md-8">
                                                 <div class="form-group row">
                                                     <div class="form-check">
-                                                        <input type="radio" class="form-check-input" id="naik" name="level" value="naik">
+                                                        <input type="radio" class="form-check-input" id="naik" name="level" value="N">
                                                         <label class="form-check-label">Tarif Naik</label>
                                                     </div>
                                                     &nbsp;
                                                     <div class="form-check">
-                                                        <input type="radio" class="form-check-input" id="turun" name="level" value="turun">
+                                                        <input type="radio" class="form-check-input" id="turun" name="level" value="R">
                                                         <label class="form-check-label">Tarif Turun</label>
                                                     </div>
                                                 </div>

@@ -28,8 +28,7 @@
                         <div class="card-body">
                             <div class="row mb-4">
                                 <div class="col-md-8">
-                                    <form class="form-horizontal" action="" method="post">
-                                        @csrf
+                                    <form class="form-horizontal">
                                         <div class="form-group row mt-2 ">
                                             <label for="periode" class="col-md-2 col-form-label">Periode
                                             </label>
@@ -72,12 +71,12 @@
                                             <div class="col-md-2">
                                                 <div class="form-group row">
                                                     <div class="form-check">
-                                                        <input type="radio" class="form-check-input" id="naik" name="level" value="naik">
+                                                        <input type="radio" class="form-check-input" id="naik" name="level" value="N">
                                                         <label class="form-check-label">Naik</label>
                                                     </div>
                                                     &nbsp;
                                                     <div class="form-check">
-                                                        <input type="radio" class="form-check-input" id="turun" name="level" value="turun">
+                                                        <input type="radio" class="form-check-input" id="turun" name="level" value="R">
                                                         <label class="form-check-label">Turun</label>
                                                     </div>
                                                     
@@ -88,7 +87,7 @@
                                         <div class="form-group row mt-2 ">
                                             <label for="periode" class="col-md-2 col-form-label">
                                             </label>
-                                            <button type="submit" class="btn btn-success btn-sm float-right" id="search"></i>Filter</button>
+                                            <button type="button" class="btn btn-success btn-sm float-right" id="search"></i>Filter</button>
                                            
                                         </div>
                                     </form>
@@ -190,5 +189,51 @@
                 return false;
             });
         }
+
+        $(document).on('click', '.filter', function(e){
+            e.preventDefault()
+            let no_pelanggan_c = $('#no_pelanggan_c').is(':checked')
+            let no_pelanggan = $('#no_pelanggan').val()
+            let nama_c = $('#nama_C').is(':checked')
+            let nama = $('#nama').val()
+            let no_pa_c = $('#no_pa_c').is(':checked')
+            let no_pa = $('#no_pa').val()
+            let alamat_c = $('#alamat_c').is(':checked')
+            let jalan = $('#jalan').val()
+            let gang = $('#gang').val()
+            let no = $('#no').val()
+            let no_tambahan = $('#no_tambahan').val()
+
+            $.ajax({
+                type: "POST",
+                dataType: "JSON",
+                url: `{{ url('pengaduan/cariPelanggan') }}`,
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    _method: "POST",
+                    no_pelanggan_c: no_pelanggan_c,
+                    no_pelanggan: no_pelanggan,
+                    no_pelanggan: no_pelanggan,
+                    nama_c: nama_c,
+                    nama: nama,
+                    no_pa_c: no_pa_c,
+                    no_pa: no_pa,
+                    alamat_c: alamat_c,
+                    jalan: jalan,
+                    gang: gang,
+                    no: no,
+                    no_tambahan: no_tambahan,
+                },
+                beforeSend: function() {
+                    showLoading()
+                },
+                success: function(response) {
+                    $('').each(response, function(i, data) {
+                        console.log(data.no_bonc)
+                    })
+                    swal.close();
+                }
+            })
+        })
     </script>
 @endpush

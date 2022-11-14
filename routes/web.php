@@ -235,12 +235,8 @@ Route::prefix('mutasipelanggan')->group(function() {
     Route::get('previewBulan', [LaporanPerubahanTNTperBulanController::class, 'preview'])->name('previewBulan');
 
     Route::get('laporanRekapitulasiNaikTurun', [LaporanRekapitulasiNaikTurunController::class, 'index'])->name('laporanRekapitulasiNaikTurun');
-<<<<<<< HEAD
     Route::post('laporanRekapitulasiNaikTurun', [LaporanRekapitulasiNaikTurunController::class, 'show'])->name('laporanRekapitulasiNaikTurun');
     Route::get('preview', [LaporanRekapitulasiNaikTurunController::class, 'preview'])->name('preview');
-=======
-    Route::get('previewNaikTurun', [LaporanRekapitulasiNaikTurunController::class, 'preview'])->name('previewNaikTurun');
->>>>>>> b99fccb1331ff0f066ad6bbc9ac5317d171d3260
 
     Route::get('laporanTarifPerBendel', [LaporanTarifPerBendelController::class, 'index'])->name('laporanTarifPerBendel');
     // Route::post('laporanTarifPerBendel', [LaporanTarifPerBendelController::class, 'showLaporanBendel'])->name('laporanTarifPerBendel');
