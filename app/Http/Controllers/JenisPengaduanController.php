@@ -73,9 +73,15 @@ class JenisPengaduanController extends Controller
         ]);
     }
 
-    public function print()
+    public function preview()
     {
         $jenisPengaduans = JenisPengaduan::all();
         return view('master.jenisPengaduan.print', compact('jenisPengaduans'))->with('i');
+    }
+
+    public function cetak()
+    {
+        $jenisPengaduans = JenisPengaduan::all();
+        return view('master.jenisPengaduan.cetak', compact('jenisPengaduans'))->with('i');
     }
 }

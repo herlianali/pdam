@@ -31,7 +31,7 @@
                                 <i class="fas fa-print"></i>
                                 Print
                             </button>
-                          
+
                         </div>
                         <div class="card-body">
                             <div class="row mb-4">
@@ -39,7 +39,7 @@
                                 <div class="col-md-12">
                                     <form class="form-horizontal" action="{{ route('jenisPengaduan.store') }}" method="POST" id="myForm">
                                         @csrf
-                                      
+
                                         <div class="form-group row ">
                                             <label for="kode" class="col-md-3 col-form-label">Kode</label>
                                             <div class="col-md-4">
@@ -78,7 +78,7 @@
                                         </div>
                                     </form>
                                     <br>
-                                   
+
                                     &nbsp;
                                     <table id="table" class="table table-bordered table-responsive-md table-condensed"
                                         style="width: 100%">
@@ -148,10 +148,6 @@
     <script>
         $(function() {
             $('#table').DataTable({
-
-                //  "lengthChange": false,
-                //   "autoWidth": false,
-                //   "responsive": true,
                 "oLanguage": {
                     "sSearch": "Search : "
                 },
@@ -181,7 +177,7 @@
             })
         }
 
-   
+
 
         $(document).on('click', '.edit', function(e) {
             e.preventDefault();

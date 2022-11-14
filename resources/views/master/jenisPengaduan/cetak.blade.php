@@ -40,7 +40,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($filter as $jenis)
+                @foreach ($jenisPengaduans as $jenis)
                 <tr>
                     <td>{{ $jenis->jns_pengaduan }}</td>
                     <td>{{ $jenis->keterangan }}</td>
@@ -49,5 +49,9 @@
                 @endforeach
             </tbody>
         </table>
+
+        {{-- <script>
+            window.print();
+        </script> --}}
 </body>
 </html>

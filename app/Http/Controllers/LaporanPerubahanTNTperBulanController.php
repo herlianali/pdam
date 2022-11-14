@@ -4,18 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\LaporanPerubahanTNTperBulan;
-use Carbon\Carbon;
+use App\Models\BaMutasi;
 class LaporanPerubahanTNTperBulanController extends Controller
 {
     public function index()
     {
-        $date = Carbon::now()->format('m/Y');
-        return view('BAMutasiPelanggan.laporanPerubahanTNTperBulan.index',compact('date'))->with('i');
+        return view('BAMutasiPelanggan.laporanPerubahanTNTperBulan.index');
     }
 
     public function show(Request $request)
     {
-
         return response()->json($request->post());
     }
 

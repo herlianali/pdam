@@ -34,12 +34,9 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Preview Jenis Pengaduan</h3>
-                            <button type="submit"
-                            class="btn btn-xs float-right btn-success print">
-                            Print
-                            </button>
+                            <a href="{{ route('cetakPengaduan') }}" class="btn btn-xs float-right btn-success print">Print</a>
                         </div>
-                        <div class="card-body priview">
+                        <div class="card-body priview" id="priview">
                             <p> Pemerintah Kota <br>
                                 Surabaya <br>
                                 PERUSAHAAN DAERAH AIR <br>
@@ -72,3 +69,12 @@
         </div>
     </section>
 @endsection
+
+@push('js')
+    <script src="{{ asset('assets/jquery.printPage.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(".print").printPage();
+        });
+    </script>
+@endpush
