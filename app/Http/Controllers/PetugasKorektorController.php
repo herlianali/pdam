@@ -22,16 +22,14 @@ class PetugasKorektorController extends Controller
 
     public function store(Request $request)
     {
-        
+
         $aktif = isset($request->aktif) ? 1 : 0;
-        PetugasKorektor::insert([          
+        PetugasKorektor::insert([
             'nip'           => $request->nip,
-            'nama'          => $request->nama,
             'jabatan'       => $request->jabatan,
-            'aktif'         => $aktif
-         
+            'status'         => $aktif
+
         ]);
-       
 
         return redirect()->route('petugasKontrol.index');
     }
@@ -41,10 +39,9 @@ class PetugasKorektorController extends Controller
         $aktif = isset($request->aktif) ? 1 : 0;
 
         PetugasKorektor::where(DB::raw("REPLACE(recid,' ','')"), $recid)->update([
-                            'nip' => $request->nip,
-                            'nama'        => $request->nama,
-                            'jabatan'       => $request->jabatan,
-                            'aktif'  => $aktif
+                            'nip'       => $request->nip,
+                            'jabatan'   => $request->jabatan,
+                            'aktif'     => $aktif
                         ]);
 
         return redirect()->route('petugasKorektor.index');
@@ -53,17 +50,15 @@ class PetugasKorektorController extends Controller
 
     public function show($recid)
     {
-        
-        // $petKorektor = DB::select("select nip, nama, jabatan, aktif from PTGKOREKTOR_NEW where REPLACE(nip,' ','') = ? order by nip desc", [$nip]);
-        $petKorektor = PetugasKorektor::where('nip', $recid)->first();
+        $petKorektor = PetugasKorektor::getByRecid($recid);
         return response()->json($petKorektor);
     }
 
 
-    public function destroy($nip)
+    public function destroy($recid)
     {
-       
-        $pKorektor = PetugasKorektor::where(DB::raw("REPLACE(nip,' ','')"), $nip)->delete();
+
+        $pKorektor = PetugasKorektor::where('recid', $recid)->delete();
         return response()->json($pKorektor);
     }
 
@@ -93,7 +88,7 @@ class PetugasKorektorController extends Controller
         return view('master.petugasKorektor.koreksi', compact('cS', 'koreksi'))->with('i');
     }
 
-    
+
 
 
     public function viewpts()

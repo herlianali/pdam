@@ -12,6 +12,13 @@ class PetugasKorektor extends Model
     protected $table = 'PTGKOREKTOR_NEW';
     public $timestamps = false;
 
+    public static function getByRecid($recid){
+        return DB::table("PTGKOREKTOR_NEW")
+                ->select('PTGKOREKTOR_NEW.nip','DIP.nama','PTGKOREKTOR_NEW.aktif','PTGKOREKTOR_NEW.jabatan','PTGKOREKTOR_NEW.recid','PTGKOREKTOR_NEW.userakses')
+                ->join('DIP', 'DIP.nip', '=', 'PTGKOREKTOR_NEW.nip')
+                ->where('recid', '=', $recid)
+                ->first();
+    }
 
     public function showKorektor()
     {

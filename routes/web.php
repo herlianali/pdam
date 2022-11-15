@@ -93,8 +93,8 @@ Route::prefix('master')->group(function () {
     Route::get('/printkondisiTutupan', [KondisiTutupanController::class, 'print'])->name('printkondisiTutupan');
 
 
-    // Route::resource('petugasKorektor', PetugasKorektorController::class)->parameters(['petugasKorektor' => 'nip'])->except(['create','edit']);
-    Route::get('/petugasKorektor', [PetugasKorektorController::class, 'index'])->name('petugasKorektor');
+    Route::resource('petugasKorektor', PetugasKorektorController::class)->parameters(['petugasKorektor' => 'nip'])->except(['create','edit']);
+    // Route::get('/petugasKorektor', [PetugasKorektorController::class, 'index'])->name('petugasKorektor');
     Route::get('/laporanpetugasKorektor',[PetugasKorektorController::class,'laporan'])->name('laporanpetugasKorektor');
     Route::get('/viewsisapetugasKorektor', [PetugasKorektorController::class, 'viewsisa'])->name('viewsisapetugasKorektor');
     Route::get('/randompetugasKorektor', [PetugasKorektorController::class, 'random'])->name('randompetugasKorektor');
@@ -155,7 +155,7 @@ Route::prefix('master')->group(function () {
     Route::get('/penetapanTeraMeter', [PenetapanTeraMeterController::class, 'index'])->name('penetapanTeraMeter');
     Route::get('/penetapanTeraMeter/{no_bonc}', [PenetapanTeraMeterController::class, 'show'])->name('penetapanTeraMeter.show');
     //Route::get('/penetapanTeraMeter/{no_bonc}', [PenetapanTeraMeterController::class, 'getData']);
-    
+
     Route::get('/printpenetapanTeraMeter', [PenetapanTeraMeterController::class, 'print'])->name('printpenetapanTeraMeter');
 
     Route::get('/insertPosisiMeter', [InsertPosisiMeterController::class, 'index'])->name('insertPosisiMeter');
