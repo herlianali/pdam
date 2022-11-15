@@ -14,6 +14,9 @@ class LaporanPerubahanTNTperBulanController extends Controller
 
     public function show(Request $request)
     {
+        if($request->daasar == "sah"){
+            
+        }
         return response()->json($request->post());
     }
 

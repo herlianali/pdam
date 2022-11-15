@@ -8,7 +8,7 @@
                 </button>
             </div>
             <div class="modal-body">
-               <form class="form-horizontal" action="{{ route('printjenisPekerjaan') }}">
+               <form class="form-horizontal" action="{{ route('printjenisPekerjaan') }}" method="POST">
                 @csrf
                     <div class="form-group">
                         <div class="form-check">
@@ -53,10 +53,8 @@
             if($(this).attr("value") == "semuakd") {
                 $('#start').prop('disabled', true)
                 $('#end').prop('disabled', true)
-                console.log("hidup");
             }
             if($(this).attr("value") == "kode"){
-                console.log("mati");
                 $('#start').prop('disabled',false)
                 $('#end').prop('disabled',false)
             }

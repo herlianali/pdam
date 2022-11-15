@@ -28,6 +28,7 @@
 @endsection
 
 @section('content')
+
     <section class="content">
         <div class="container-fluid">
             <div class="row">
@@ -35,14 +36,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Preview Jenis Pekerjaan</h3>
-                            <a href="{{ route('cetakPekerjaan') }}" class="btn btn-xs float-right btn-success print">Print</a>
-                            <form class="form-horizontal" action="{{ route('cetakPekerjaan') }}">
-                            @csrf
-                            <input type="" name="filter" id="semuakd" value="semuakd">
-                            <input type="" name="filter" id="kode" value="kode">
-                            <input class="form-control" type="" name="start" id="start" placeholder="001">
-                            <input class="form-control" type="" name="end" id="end" placeholder="040">
-                            </form>
+                            <a href="" class="btn btn-xs float-right btn-success print">Print</a>
                         </div>
                         <div class="card-body priview">
                             <p> Pemerintah Kota <br>
@@ -63,7 +57,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($filter as $jenis)
+                                    @foreach ($data['query'] as $jenis)
                                     <tr>
                                         <td>{{ $jenis->jns_pekerjaan }}</td>
                                         <td>{{ $jenis->keterangan }}</td>
@@ -89,10 +83,49 @@
 @endsection
 
 @push('js')
-    <script src="{{ asset('assets/jquery.printPage.js') }}"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="text/javascript">
-        $(document).ready(function() {
-            $(".print").printPage();
-        });
+
+        var loadingPrint = function() {
+            swal.fire({
+                title: "Mohon Tunggu !",
+                html: "Sedang Menyiapkan Data...",
+                allowOutsideClick: false,
+                showConfirmButton: false,
+                willOpen: () => {
+                    swal.showLoading()
+                },
+            })
+        }
+
+        $(document).on('click', '.print', function(e) {
+            e.preventDefault();
+            var filter = `{{ $data['filter'] }}`
+            var start = `{{ $data['start'] }}`
+            var end = `{{ $data['end'] }}`
+            $.ajax({
+                type: "POST",
+                url: `{{ url('master/cetakPekerjaan') }}`,
+                dataType: 'html',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    filter: filter,
+                    start: start,
+                    end: end
+                },
+                beforeSend: function() {
+                    loadingPrint()
+                },
+                success: function(res){
+                    var w = window.open(`{{ url('master/cetakPekerjaan') }}`,'_blank');
+                    w.document.open();
+                    w.document.write(res);
+                    w.document.close();
+                    w.window.print();
+                    w.window.close();
+                    swal.close();
+                }
+            })
+        })
     </script>
 @endpush

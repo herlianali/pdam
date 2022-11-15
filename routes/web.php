@@ -86,8 +86,9 @@ Route::prefix('master')->group(function () {
     // Route::delete('/deletePetugasKontrol/{id}', [PetugasKontrolController::class, 'destroy']);
 
     Route::resource('jenisPekerjaan', JenisPekerjaanController::class)->parameters(['jenisPekerjaan' => 'jns_pekerjaan'])->except(['create','edit']);
-    Route::get('/printjenisPekerjaan', [JenisPekerjaanController::class, 'printPreview'])->name('printjenisPekerjaan');
-    Route::get('/cetakPekerjaan', [JenisPekerjaanController::class, 'cetak'])->name('cetakPekerjaan');
+    Route::post('/printjenisPekerjaan', [JenisPekerjaanController::class, 'printPreview'])->name('printjenisPekerjaan');
+    Route::get('/showPrint', [JenisPekerjaanController::class, 'showPrint'])->name('showPrint');
+    Route::post('/cetakPekerjaan', [JenisPekerjaanController::class, 'cetak'])->name('cetakPekerjaan');
 
     // Route::delete('/deletejenisPekerjaan/{id}', [JenisPekerjaanController::class, 'destroy']);
 
