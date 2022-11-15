@@ -8,42 +8,29 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="" class="form-horizontal" id="form-edit" method="POST">
-                    @csrf
-                    @method('PUT')
+                <form class="form-horizontal" id="form-edit">
                     <div class="form-group row mt-2">
                         <label for="nip" class="col-md-2 col-form-label">NIP</label>
-                        <div class="col-md-5">
-                            <input type="text" class="form-control" id="nip1" name="nip1"
-                                onkeyup="valueing()">
+                        <div class="col-md-7">
+                            <input type="text" class="form-control" id="nipE" name="nipE" readonly>
                         </div>
                     </div>
                     <div class="form-group row mt-2">
                         <label for="nama" class="col-md-2 col-form-label">Nama</label>
-                        <div class="col-md-5">
-                            <input type="text" class="form-control" id="nama1" name="nama1"
-                                onkeyup="valueing()">
-                        </div>
-                        <div class="col-md-3">
-                            <button class="btn btn-default btn-mt-2" type="button"
-                                data-toggle="modal"data-target="#cs"><i class="fas fa-search fa-fw"></i> Pilih
-                                Pegawai</button>
+                        <div class="col-md-7">
+                            <input type="text" class="form-control" id="namaE" name="namaE" readonly>
                         </div>
                     </div>
-                    
+
                     <div class="form-group row mt-2 ">
                         <label for="jabatan" class="col-md-2 col-form-label">Jabatan</label>
-                        <div class="col-md-4">
-                            <div class="form-check">
-                                <input type="radio" class="form-check-input" id="konektor" name="jabatan" value="0">
-                                <label class="form-check-label">Konektor</label>
-                                <br>
-                                <input type="radio" class="form-check-input" id="senior_staf " name="jabatan" value="1">
-                                <label class="form-check-label">Senior Staf</label>
-                                <br>
-                                <input type="radio" class="form-check-input" id="supervisor " name="jabatan" value="2">
-                                <label class="form-check-label">Supervisor</label>
-                            </div>
+                        <div class="col-md-7">
+                            <select name="jabatanE" id="jabatanE" class="form-control">
+                                <option value="0">Konektor</option>
+                                <option value="1">Senior Staf</option>
+                                <option value="2">Supervisor</option>
+                            </select>
+
                         </div>
                     </div>
                     <div class="form-group row mt-2 ">
