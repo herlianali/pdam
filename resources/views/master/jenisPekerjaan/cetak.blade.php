@@ -61,3 +61,12 @@
         </table>
 </body>
 </html>
+
+@push('js')
+    <script src="{{ asset('assets/jquery.printPage.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(".print").printPage();
+        });
+    </script>
+@endpush

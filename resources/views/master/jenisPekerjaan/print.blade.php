@@ -25,8 +25,6 @@
         <li class="breadcrumb-item active">Print Jenis Pekerjaan</li>
     </ol>
     <br>
-    <br>
-    <a href="{{ route('printjenisPekerjaan') }}" class="btn btn-sm btn-success float-right"><i class="fas fa-download"></i>Download</a>
 @endsection
 
 @section('content')
@@ -37,10 +35,14 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Preview Jenis Pekerjaan</h3>
-                            <button type="submit"
-                            class="btn btn-xs float-right btn-success print">
-                            Print
-                            </button>
+                            <a href="{{ route('cetakPekerjaan') }}" class="btn btn-xs float-right btn-success print">Print</a>
+                            <form class="form-horizontal" action="{{ route('cetakPekerjaan') }}">
+                            @csrf
+                            <input type="" name="filter" id="semuakd" value="semuakd">
+                            <input type="" name="filter" id="kode" value="kode">
+                            <input class="form-control" type="" name="start" id="start" placeholder="001">
+                            <input class="form-control" type="" name="end" id="end" placeholder="040">
+                            </form>
                         </div>
                         <div class="card-body priview">
                             <p> Pemerintah Kota <br>
@@ -63,17 +65,17 @@
                                 <tbody>
                                     @foreach ($filter as $jenis)
                                     <tr>
-                                            <td>{{ $jenis->jns_pekerjaan }}</td>
-                                            <td>{{ $jenis->keterangan }}</td>
-                                            <td>{{ $jenis->jenis_bonp }}</td>
-                                            <td>
-                                                @if ($jenis->beban_plg == "0")
-                                                    Tidak
-                                                @else
-                                                    Ya
-                                                @endif
-                                            </td>
-                                            <td>{{ $jenis->kel_bonp }}</td>
+                                        <td>{{ $jenis->jns_pekerjaan }}</td>
+                                        <td>{{ $jenis->keterangan }}</td>
+                                        <td>{{ $jenis->jenis_bonp }}</td>
+                                        <td>
+                                            @if ($jenis->beban_plg == "0")
+                                                Tidak
+                                            @else
+                                                Ya
+                                            @endif
+                                        </td>
+                                        <td>{{ $jenis->kel_bonp }}</td>
                                     </tr>
                                     @endforeach
                                 </tbody>
@@ -87,20 +89,10 @@
 @endsection
 
 @push('js')
+    <script src="{{ asset('assets/jquery.printPage.js') }}"></script>
     <script type="text/javascript">
-        const box = document.getElementById('startEnd');
-
-        function clickRadio() {
-            if (document.getElementById('semuakd').checked) {
-                box.style.display = "none"
-            } else {
-                box.style.display = "block"
-            }
-        }
-
-        const radioButtons = document.querySelectorAll('input[name="filter"]');
-        radioButtons.forEach(radio => {
-            radio.addEventListener('click', clickRadio)
+        $(document).ready(function() {
+            $(".print").printPage();
         });
     </script>
 @endpush

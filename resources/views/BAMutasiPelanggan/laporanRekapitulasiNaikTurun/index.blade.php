@@ -192,8 +192,8 @@
 
         $(document).on('click', '.filter', function(e){
             e.preventDefault()
-            let no_pelanggan_c = $('#no_pelanggan_c').is(':checked')
-            let no_pelanggan = $('#no_pelanggan').val()
+            let periode = $('#periode').is(':checked')
+            let periode1 = $('#periode1').val()
             let nama_c = $('#nama_C').is(':checked')
             let nama = $('#nama').val()
             let no_pa_c = $('#no_pa_c').is(':checked')
@@ -211,9 +211,8 @@
                 data: {
                     _token: '{{ csrf_token() }}',
                     _method: "POST",
-                    no_pelanggan_c: no_pelanggan_c,
-                    no_pelanggan: no_pelanggan,
-                    no_pelanggan: no_pelanggan,
+                    periode: periode,
+                    periode1: periode1,
                     nama_c: nama_c,
                     nama: nama,
                     no_pa_c: no_pa_c,

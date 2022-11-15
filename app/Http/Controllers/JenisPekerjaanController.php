@@ -77,15 +77,25 @@ class JenisPekerjaanController extends Controller
     }
 
     public function printPreview(Request $request){
-        if($request->filter == "semua"){
+        //$data = $request
+        if($request->filter == "semuakd"){
             $filter = JenisPekerjaan::all();
         }else {
-        
-        
-        $filter = JenisPekerjaan::filter($request->start, $request->end);
+            $filter = JenisPekerjaan::filter($request->start, $request->end);
+        }
+        dd($request->post());
+         return view('master.jenisPekerjaan.print', compact('filter'))->with('i');
     }
-        // dd($filter);
-         return view('master.jenisPekerjaan.print', compact('filter'));
+
+    public function cetak(Request $request)
+    {
+        if($request->filter == "semuakd"){
+            $filter = JenisPekerjaan::all();
+        }else {
+            $filter = JenisPekerjaan::filter($request->start, $request->end);
+        }
+        //dd($filter);
+        return view('master.jenisPekerjaan.cetak', compact('filter'))->with('i');
     }
 
 }
