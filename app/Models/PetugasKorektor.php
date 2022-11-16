@@ -20,6 +20,13 @@ class PetugasKorektor extends Model
                 ->first();
     }
 
+    public function getLast() {
+        return DB::table($this->table)
+                ->select("recid")
+                ->orderBy('recid', 'desc')->first()->{'recid'};
+                // ->get();
+    }
+
     public function showKorektor()
     {
         return DB::table($this->table)

@@ -8,7 +8,9 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" id="form-edit">
+                <form action="" class="form-horizontal" id="form-edit" method="POST">
+                @csrf
+                @method('PUT')
                     <div class="form-group row mt-2">
                         <label for="nip" class="col-md-2 col-form-label">NIP</label>
                         <div class="col-md-7">
@@ -51,6 +53,5 @@
             </div>
         </div>
     </div>
-@include('master.petugasKorektor.petCs')
 </div>
 

@@ -43,7 +43,7 @@
                 <div class="row mb-9">
                     <div class="col-md-12">
 
-                <form class="form-horizontal" action="{{ route('petugasEntry.store') }}" method="post">
+                <form class="form-horizontal" action="{{ route('petugasKorektor.store') }}" method="post">
                     @csrf
                     <div class="form-group row mt-2">
                         <label for="nip" class="col-md-2 col-form-label">NIP </label>
@@ -64,28 +64,21 @@
                                 Pegawai</button>
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <label for="beban" class="col-md-2 col-form-label">Jabatan </label>
-                        <div class="col ml-3 row">
+                    <div class="form-group row mt-2 ">
+                        <label for="jabatan" class="col-md-2 col-form-label">Jabatan</label>
+                        <div class="col-md-3">
+                            <select name="jabatan" id="jabatan" class="form-control">
+                                <option value="0">Konektor</option>
+                                <option value="1">Senior Staf</option>
+                                <option value="2">Supervisor</option>
+                            </select>
 
-                            <div class="col-md-1">
-                                <input type="radio" class="form-check-input" name="jabatan" value="0">
-                                <label class="form-check-label">Konektor</label>
-                            </div>
-                            <div class="col-md-6">
-                                <input type="radio" class="form-check-input" name="jabatan" value="1">
-                                <label class="form-check-label">Senior Staf</label>
-                            </div>
-                            <div class="col-md-6">
-                                <input type="radio" class="form-check-input" name="jabatan" value="2">
-                                <label class="form-check-label">Supervisor</label>
-                            </div>
                         </div>
                     </div>
                     <div class="form-group row mt-2">
                         <label for="" class="col-md-2 col-form-label"></label>
                         <div class="col-md-7">
-                            <input type="checkbox" name="status" id="status">
+                            <input type="checkbox" name="aktif" id="aktif">
                             <label for="potensial" class="col-md-2 col-form-label">Aktif</label>
                         </div>
                     </div>
@@ -125,16 +118,16 @@
                                         <span class="badge badge-danger"><i class="fas fa-times-circle"></i></span>
                                     @endif
                                 </td>
-                                <td>{{ $petKorektor->aktif }}</td>
+                                <td>{{ $petKorektor->jabatan }}</td>
                                 <td>{{ $petKorektor->recid }}</td>
                                 <td>{{ $petKorektor->userakses }}</td>
                                 <td>
-                                    <button type="submit"
+                                    <!-- <button type="submit"
                                     class="btn btn-danger btn-sm hapus"
                                     data-id="{{ $petKorektor->nip }}">
                                     <i class="fas fa-trash-alt"></i>
                                     Hapus
-                                    </button>
+                                    </button> -->
 
                                     <button type="button"
                                     class="btn btn-success btn-sm edit"
@@ -286,9 +279,9 @@
                     $('#namaE').val(response.nama)
                     $('#jabatanE').val(response.jabatan)
                     if(response.aktif == 1){
-                        $('#aktif').attr('checked', 'checked')
+                        $('#aktif').prop('checked', true)
                     }else{
-                        $('#aktif').removeAttr('checked', ' ')
+                        $('#aktif').prop('checked', false)
                     }
                     swal.close();
                 }
@@ -299,7 +292,7 @@
             $('#nip').val('')
             $('#nama').val('')
             $("input:radio").removeAttr('checked')
-            $('#status').removeAttr("checked");
+            $('#aktif').removeAttr("checked");
         })
     </script>
 @endpush

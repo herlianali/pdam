@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\PetugasKorektor;
 use App\Models\RandomPetugas;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Session;
 use \Illuminate\Support\Facades\DB;
 
 class PetugasKorektorController extends Controller
@@ -22,27 +23,30 @@ class PetugasKorektorController extends Controller
 
     public function store(Request $request)
     {
-
+        $getLast = new PetugasKorektor;
+        $no = (int)$getLast->getLast()+1;
         $aktif = isset($request->aktif) ? 1 : 0;
         PetugasKorektor::insert([
             'nip'           => $request->nip,
             'jabatan'       => $request->jabatan,
-            'status'         => $aktif
+            'userakses'     => Session::get('username'),
+            'aktif'         => $aktif,
+            'recid'         => $no
 
         ]);
 
-        return redirect()->route('petugasKontrol.index');
+        return redirect()->route('petugasKorektor.index');
     }
 
     public function update(Request $request, $recid)
     {
         $aktif = isset($request->aktif) ? 1 : 0;
-
         PetugasKorektor::where(DB::raw("REPLACE(recid,' ','')"), $recid)->update([
-                            'nip'       => $request->nip,
-                            'jabatan'   => $request->jabatan,
-                            'aktif'     => $aktif
-                        ]);
+            'nip'       => $request->nipE,
+            'jabatan'   => $request->jabatanE,
+            'userakses' => Session::get('username'),
+            'aktif'     => $aktif
+        ]);
 
         return redirect()->route('petugasKorektor.index');
     }
