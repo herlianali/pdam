@@ -150,7 +150,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        
+
                         @include('master.jenisPekerjaan.edit')
                         @include('master.jenisPekerjaan.filter')
                     </div>
@@ -226,7 +226,6 @@
                         $('#Tidak').attr('checked', '')
                     }
                     $('#kel_bonp').val(response.kel_bonp.trim()).change()
-                    console.log(response.beban_plg.trim());
                     swal.close();
                 }
             })
