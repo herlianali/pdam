@@ -36,7 +36,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Preview Jenis Pekerjaan</h3>
-                            <a href="" class="btn btn-xs float-right btn-success print">Print</a>
+                            <a href="{{ route('cetakPekerjaan') }}" class="btn btn-xs float-right btn-success print">Print</a>
                         </div>
                         <div class="card-body priview">
                             <p> Pemerintah Kota <br>

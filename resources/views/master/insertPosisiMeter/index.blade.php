@@ -40,7 +40,7 @@
                                                     File
                                                 </label>
                                             </div>&nbsp;
-                                            <button class="btn btn-info btn-mt-2" id="download" type="button" alt title="Download Format File Excel" href="{% static 'Data Item Master.csv' %}">
+                                            <button class="btn btn-info btn-mt-2" id="download" type="button" alt title="Download Format File Excel" href="{% app 'upload.xls' %}" download>
                                                 <i class="fas fa-file-excel"></i>
                                             </button>
                                         </div>
