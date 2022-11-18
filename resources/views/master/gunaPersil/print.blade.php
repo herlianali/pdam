@@ -34,10 +34,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Print preview Guna Persil</h3>
-                            <button type="submit"
-                            class="btn btn-xs float-right btn-success print">
-                            Print
-                            </button>
+                            <a href="{{ route('cetakgunaPersil') }}" class="btn btn-xs float-right btn-success print">Print</a>
                         </div>
                         <div class="card-body priview">
                             <p> Pemerintah Kota <br>
@@ -52,11 +49,10 @@
                                     <tr>
                                         <th width="15%">Kode Guna Persil</th>
                                         <th width="50%">Keterangan</th>
-                                        <th width="10%">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($filter as $gunaPersil)
+                                    @foreach ($data['query'] as $gunaPersil)
                                         <tr>
                                             <td>{{ $gunaPersil->kd_gunapersil }}</td>
                                             <td>{{ $gunaPersil->keterangan }}</td>
@@ -67,26 +63,55 @@
                         </div>
                     </div>
                 </div>
-            {{-- </div> --}}
+            </div>
         </div>
     </section>
 @endsection
 
 @push('js')
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="text/javascript">
-        const box = document.getElementById('startEnd');
 
-        function clickRadio() {
-            if (document.getElementById('semuakd').checked) {
-                box.style.display = "none"
-            } else {
-                box.style.display = "block"
-            }
+        var loadingPrint = function() {
+            swal.fire({
+                title: "Mohon Tunggu !",
+                html: "Sedang Menyiapkan Data...",
+                allowOutsideClick: false,
+                showConfirmButton: false,
+                willOpen: () => {
+                    swal.showLoading()
+                },
+            })
         }
 
-        const radioButtons = document.querySelectorAll('input[name="filter"]');
-        radioButtons.forEach(radio => {
-            radio.addEventListener('click', clickRadio)
-        });
+        $(document).on('click', '.print', function(e) {
+            e.preventDefault();
+            var filter = `{{ $data['filter'] }}`
+            var start = `{{ $data['start'] }}`
+            var end = `{{ $data['end'] }}`
+            $.ajax({
+                type: "POST",
+                url: `{{ url('master/cetakgunaPersil') }}`,
+                dataType: 'html',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    filter: filter,
+                    start: start,
+                    end: end
+                },
+                beforeSend: function() {
+                    loadingPrint()
+                },
+                success: function(res){
+                    var w = window.open(`{{ url('master/cetakgunaPersil') }}`,'_blank');
+                    w.document.open();
+                    w.document.write(res);
+                    w.document.close();
+                    w.window.print();
+                    w.window.close();
+                    swal.close();
+                }
+            })
+        })
     </script>
 @endpush

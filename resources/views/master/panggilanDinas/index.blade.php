@@ -37,7 +37,7 @@
                         <div class="card-body">
                             <div class="row mb-4">
                                 <div class="col-md-8">
-                                    <form class="form-horizontal" action="{{ route('panggilanDinas.store') }}" method="POST">
+                                    <form class="form-horizontal" action="{{ route('panggilanDinas.store') }}" method="POST" id="myForm">
                                         @csrf
                                         <div class="form-group row mt-2 ">
                                             <label for="jns_pdinas" class="col-md-4 col-form-label">Jenis Panggilan Dinas
@@ -107,16 +107,14 @@
                                 </tbody>
                             </table>
                         </div>
+                        @include('master.panggilanDinas.form')
+                        @include('master.panggilanDinas.filter')
                     </div>
                 </div>
+            </div>
+        </div>
     </section>
-
-    {{-- Edit Form --}}
-    @include('master.panggilanDinas.form')
     
-    @include('master.panggilanDinas.filter')
-    
-
 @endsection
 
 @push('js')

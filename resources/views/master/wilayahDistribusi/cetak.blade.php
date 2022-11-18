@@ -39,7 +39,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($wilDist as $wilDistribusi)
+                @foreach ($filter as $wilDistribusi)
                     <tr>
                         <td>{{ $wilDistribusi->kd_wilayah }}</td>
                         <td>{{ $wilDistribusi->nama }}</td>
@@ -50,3 +50,12 @@
     </div>
 </body>
 </html>
+
+@push('js')
+    <script src="{{ asset('assets/jquery.printPage.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(".print").printPage();
+        });
+    </script>
+@endpush

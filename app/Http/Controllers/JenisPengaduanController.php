@@ -73,15 +73,31 @@ class JenisPengaduanController extends Controller
         ]);
     }
 
-    public function preview()
+    public function preview(Request $request)
     {
-        $jenisPengaduans = JenisPengaduan::all();
-        return view('master.jenisPengaduan.print', compact('jenisPengaduans'))->with('i');
+        $filter = $request->filter;
+        if($filter == "semuakd"){
+            $query = JenisPengaduan::all();
+        }else {
+            $query = JenisPengaduan::filter($request->start, $request->end);
+        }
+        $data = array(
+            'filter' => $request->filter,
+            'query'  => $query,
+            'start'  => $request->start,
+            'end'    => $request->end,
+        );
+        return view('master.jenisPengaduan.print', compact('data'))->with('i');
     }
 
-    public function cetak()
+    public function cetak(Request $request)
     {
-        $jenisPengaduans = JenisPengaduan::all();
-        return view('master.jenisPengaduan.cetak', compact('jenisPengaduans'))->with('i');
+        if($request->filter == "semuakd"){
+            $filter = JenisPengaduan::all();
+        }else {
+            $filter = JenisPengaduan::filter($request->start, $request->end);
+        }
+
+        return view('master.jenisPengaduan.cetak', compact('filter'))->with('i');
     }
 }

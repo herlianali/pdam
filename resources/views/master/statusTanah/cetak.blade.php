@@ -20,7 +20,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Status Meter</title>
+    <title>Status Tanah</title>
 </head>
 <body>
     <div class="card-body priview">
@@ -29,27 +29,32 @@
             PERUSAHAAN DAERAH AIR <br>
         </p>
         <div class="mx-auto mb-3" style="width: 250px;">
-            <p>Table Master Status Meter</p> <br>
+            <p>Table Master Status Tanah</p> <br>
         </div>
         <table class="table">
             <thead>
                 <tr>
-                    <th width="20%">No</th>
-                    <th width="30%">Kode</th>
-                    <th width="30%">Keterangan</th>
+                    <th width="30%">Status Tanah</th>
+                    <th width="70%">Keterangan</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($stMeter as $statusMeter)
+                @foreach ($stTanah as $statusTanah)
                     <tr>
-                        <td>{{ ++$i }}</td>
-                        <td>{{ $statusMeter->kd_statusmtr }}</td>
-                        <td>{{ $statusMeter->keterangan }}</td>
+                        <td>{{ $statusTanah->status_tanah }}</td>
+                        <td>{{ $statusTanah->keterangan }}</td>
                     </tr>
                 @endforeach
-
             </tbody>
         </table>
-    </div>
 </body>
 </html>
+
+@push('js')
+    <script src="{{ asset('assets/jquery.printPage.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(".print").printPage();
+        });
+    </script>
+@endpush

@@ -38,7 +38,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Print Preview Tarif per Bendel</h3>
-                            <a href="" class="btn btn-xs btn-success float-right"> Print</a>
+                            <a href="{{ route('cetakBendel') }}" class="btn btn-xs float-right btn-success print">Print</a>
                         </div>
                         <div class="card-body priview">
                             <p> Pemerintah Kota <br>
@@ -102,3 +102,46 @@
         </div>
     </section>
 @endsection
+
+@push('js')
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript">
+
+        var loadingPrint = function() {
+            swal.fire({
+                title: "Mohon Tunggu !",
+                html: "Sedang Menyiapkan Data...",
+                allowOutsideClick: false,
+                showConfirmButton: false,
+                willOpen: () => {
+                    swal.showLoading()
+                },
+            })
+        }
+
+        $(document).on('click', '.print', function(e) {
+            e.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: `{{ url('master/cetakBendel') }}`,
+                dataType: 'html',
+                data: {
+                    _token: '{{ csrf_token() }}'
+                },
+                beforeSend: function() {
+                    loadingPrint()
+                },
+                success: function(res){
+                    console.log(res)
+                    var w = window.open(`{{ url('master/cetakBendel') }}`,'_blank');
+                    w.document.open();
+                    w.document.write(res);
+                    w.document.close();
+                    w.window.print();
+                    w.window.close();
+                    swal.close();
+                }
+            })
+        })
+        </script>
+@endpush

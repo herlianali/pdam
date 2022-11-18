@@ -61,4 +61,10 @@ class WilayahDistribusiController extends Controller
         $wilDist = WilayahDistribusi::all();
         return view('master.wilayahDistribusi.print', compact('wilDist'))->with('i');
     }
+
+    public function cetak()
+    {
+        $filter = WilayahDistribusi::all();
+        return view('master.wilayahDistribusi.cetak', compact('filter'))->with('i');
+    }
 }

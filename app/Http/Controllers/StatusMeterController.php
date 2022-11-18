@@ -48,9 +48,16 @@ class StatusMeterController extends Controller
             'message' => 'Data Status Meter Berhasil Dihapus',
         ]);
     }
+    
     public function print()
     {
         $stMeter = StatusMeter::all();
         return view('master.statusMeter.print', compact('stMeter'))->with('i');
+    }
+
+    public function cetak()
+    {
+        $stMeter = StatusMeter::all();
+        return view('master.statusMeter.cetak', compact('stMeter'))->with('i');
     }
 }

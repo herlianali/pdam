@@ -68,25 +68,29 @@ class GunaPersilController extends Controller
         ]);
     }
 
-    public function printPreview(Request $request)
-    {
-        if($request->filter == "semua"){
-            $filter = GunaPersil::all();
-        }else{
-            $filter = GunaPersil::filter($request->start, $request->end);
+    public function printPreview(Request $request){
+        $filter = $request->filter;
+        if($filter == "semuakd"){
+            $query = GunaPersil::all();
+        }else {
+            $query = GunaPersil::filter($request->start, $request->end);
         }
-
-        return view('master.gunaPersil.print', compact('filter'));
+        $data = array(
+            'filter' => $request->filter,
+            'query'  => $query,
+            'start'  => $request->start,
+            'end'    => $request->end,
+        );
+        return view('master.gunaPersil.print', compact('data'))->with('i');
     }
 
-    public function print()
+    public function cetak(Request $request)
     {
-        // $kd_gunapersil = GunaPersil::select('kd_gunapersil', 'keterangan')->get();
-        // $guna_persil = new GunaPersil;
-        // $guna = $guna_persil->getData();
-        // $kd_tarif = JenisTarif::select('kd_tarif', 'jns_tarif')->get();
-        // $kode_tarif = new GunaPersil;
-        // $kode = $kode_tarif->getData();
-        return view('master.gunaPersil.print')->with('i');
+        if($request->filter == "semuakd"){
+            $filter = GunaPersil::all();
+        }else {
+            $filter = GunaPersil::filter($request->start, $request->end);
+        }
+        return view('master.gunaPersil.cetak', compact('filter'))->with('i');
     }
 }

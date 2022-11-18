@@ -64,16 +64,10 @@ class KondisiTutupanController extends Controller
         return view('master.kondisiTutupan.print', compact('kondTutupan'))->with('i');
     }
 
-    // public function printPreview(Request $request){
-    //     if($request->filter == "semua"){
-    //         $filter = KondisiTutupan::all();
-    //     }else {
-        
-        
-    //     $filter = KondisiTutupan::filter($request->start, $request->end);
-    // }
-    //     // dd($filter);
-    //      return view('master.kondisiTutupan.print', compact('filter'));
-    // }
+    public function cetak()
+    {
+        $kondTutupan = KondisiTutupan::all();
+        return view('master.kondisiTutupan.cetak', compact('kondTutupan'))->with('i');
+    }
 
 }

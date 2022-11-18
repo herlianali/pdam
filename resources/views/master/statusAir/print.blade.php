@@ -34,7 +34,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Preview Status Air</h3>
-                            <a href="" class="btn btn-sm btn-success float-right"> Print</a>
+                            <a href="{{ route('cetakstatusAir') }}" class="btn btn-sm btn-success float-right print"> Print</a>
                         </div>
                         <div class="card-body priview">
                             <p>
@@ -71,4 +71,44 @@
     </section>
 @endsection
 
+@push('js')
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript">
 
+        var loadingPrint = function() {
+            swal.fire({
+                title: "Mohon Tunggu !",
+                html: "Sedang Menyiapkan Data...",
+                allowOutsideClick: false,
+                showConfirmButton: false,
+                willOpen: () => {
+                    swal.showLoading()
+                },
+            })
+        }
+
+        $(document).on('click', '.print', function(e) {
+            e.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: `{{ url('master/cetakstatusAir') }}`,
+                dataType: 'html',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                },
+                beforeSend: function() {
+                    loadingPrint()
+                },
+                success: function(res){
+                    var w = window.open(`{{ url('master/cetakstatusAir') }}`,'_blank');
+                    w.document.open();
+                    w.document.write(res);
+                    w.document.close();
+                    w.window.print();
+                    w.window.close();
+                    swal.close();
+                }
+            })
+        })
+    </script>
+@endpush

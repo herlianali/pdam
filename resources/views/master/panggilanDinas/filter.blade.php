@@ -12,7 +12,7 @@
                 @csrf
                     <div class="form-group">
                         <div class="form-check">
-                            <input type="radio" name="filter" id="semuakd" value="semua">
+                            <input type="radio" name="filter" id="semuakd" value="semuakd">
                             <label for="">Semua Kode</label>
                         </div>
                     </div>
@@ -50,7 +50,7 @@
     <script type="text/javascript">
     $(document).ready(function(){
         $('input[type="radio"]').on('click', function(){
-            if($(this).attr("value") == "semua") {
+            if($(this).attr("value") == "semuakd") {
                 $('#start').prop('disabled', true)
                 $('#end').prop('disabled', true)
                 console.log("hidup");

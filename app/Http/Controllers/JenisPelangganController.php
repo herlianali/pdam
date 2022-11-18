@@ -14,12 +14,6 @@ class JenisPelangganController extends Controller
         return view('master.jenisPelanggan.index', compact('jenisPelanggans'))->with('i');
     }
 
-    public function print()
-    {
-        $jenisPelanggans = JenisPelanggan::all();
-        return view('master.jenisPelanggan.print', compact('jenisPelanggans'))->with('i');
-    }
-
     public function store(Request $request)
     {
         $request->validate([
@@ -68,5 +62,17 @@ class JenisPelangganController extends Controller
             'success' => true,
             'message' => 'Data Jenis Pelanggan Berhasil Dihapus',
         ]);
+    }
+
+    public function print()
+    {
+        $jenisPelanggans = JenisPelanggan::all();
+        return view('master.jenisPelanggan.print', compact('jenisPelanggans'))->with('i');
+    }
+
+    public function cetak()
+    {
+            $filter = JenisPelanggan::all();
+        return view('master.jenisPelanggan.cetak', compact('filter'))->with('i');
     }
 }

@@ -70,11 +70,12 @@ Route::prefix('master')->group(function () {
     Route::resource('petugasPengaduan', PetugasPengaduanController::class)->parameters(['petugasPengaduan' => 'kd_ptgcs'])->except(['create','edit']);
 
     Route::resource('jenisPengaduan', JenisPengaduanController::class)->parameters(['jenisPengaduan' => 'jns_pengaduan'])->except(['create','edit']);
-    Route::get('/printPengaduan', [JenisPengaduanController::class, 'preview'])->name('printPengaduan');
-    Route::get('/cetakPengaduan', [JenisPengaduanController::class, 'cetak'])->name('cetakPengaduan');
+    Route::post('/printPengaduan', [JenisPengaduanController::class, 'preview'])->name('printPengaduan');
+    Route::post('/cetakPengaduan', [JenisPengaduanController::class, 'cetak'])->name('cetakPengaduan');
 
     Route::resource('jenisPelanggan', JenisPelangganController::class)->parameters(['jenisPelanggan' => 'jns_pelanggan'])->except(['create','edit']);
     Route::get('/printjenisPelanggan', [JenisPelangganController::class, 'print'])->name('printjenisPelanggan');
+    Route::post('/cetakjenisPelanggan', [JenisPelangganController::class, 'cetak'])->name('cetakjenisPelanggan');
 
     Route::resource('petugasKhusus', PetugasKhususController::class)->parameters(['petugasKhusus' => 'nip'])->except(['create','edit']);
     // Route::get('/petugasKhusus', [PetugasKhususController::class, 'index'])->name('petugasKhusus');
@@ -82,7 +83,8 @@ Route::prefix('master')->group(function () {
     // Route::post('/petugasKhusus', [PetugasKhususController::class, 'store'])->name('petugasKhusus.store');
 
     Route::resource('petugasKontrol', PetugasKontrolController::class)->parameters(['petugasKontrol' => 'kd_ptgktrl'])->except(['create','edit']);
-    Route::get('/printpetugasKontrol', [PetugasKontrolController::class, 'print'])->name('printpetugasKontrol');
+    Route::post('/printpetugasKontrol', [PetugasKontrolController::class, 'print'])->name('printpetugasKontrol');
+    Route::post('/cetakpetugasKontrol', [PetugasKontrolController::class, 'cetak'])->name('cetakpetugasKontrol');
     // Route::delete('/deletePetugasKontrol/{id}', [PetugasKontrolController::class, 'destroy']);
 
     Route::resource('jenisPekerjaan', JenisPekerjaanController::class)->parameters(['jenisPekerjaan' => 'jns_pekerjaan'])->except(['create','edit']);
@@ -94,6 +96,7 @@ Route::prefix('master')->group(function () {
 
     Route::resource('kondisiTutupan', KondisiTutupanController::class)->parameters(['kondisiTutupan' => 'kd_kondisi'])->except(['create','edit']);
     Route::get('/printkondisiTutupan', [KondisiTutupanController::class, 'print'])->name('printkondisiTutupan');
+    Route::post('/cetakkondisiTutupan', [KondisiTutupanController::class, 'cetak'])->name('cetakkondisiTutupan');
 
 
     Route::resource('petugasKorektor', PetugasKorektorController::class)->parameters(['petugasKorektor' => 'nip'])->except(['create','edit']);
@@ -112,39 +115,48 @@ Route::prefix('master')->group(function () {
     Route::resource('gunaPersil', GunaPersilController::class)->parameters(['gunaPersil' => 'kd_gunapersil'])->except(['create','edit']);
     Route::get('/gunaPersil', [GunaPersilController::class, 'index'])->name('gunaPersil');
     Route::delete('/deletegunaPersil/{id}', [GunaPersilController::class, 'destroy']);
-    Route::post('/printgunaPersil',[GunaPersilController::class,'printPreview'])->name('printgunaPersil');
+    Route::post('/printgunaPersil', [GunaPersilController::class, 'printPreview'])->name('printgunaPersil');
+    Route::post('/cetakgunaPersil', [GunaPersilController::class, 'cetak'])->name('cetakgunaPersil');
 
     Route::resource('retribusi', RetribusiController::class)->parameters(['retribusi' => 'kd_retribusi'])->except(['create', 'edit']);
     Route::get('/printretribusi', [RetribusiController::class, 'print'])->name('printretribusi');
+    Route::post('/cetakretribusi', [RetribusiController::class, 'cetak'])->name('cetakretribusi');
     // Route::delete('/deleteRetribusi/{id}',[RetribusiController::class,'destroy']);
 
     Route::resource('/wilayahDistribusi', WilayahDistribusiController::class)->parameters(['wilayahDistribusi' => 'kd_wilayah'])->except(['create', 'edit']);
     Route::get('/printwilayahDistribusi', [WilayahDistribusiController::class, 'print'])->name('printwilayahDistribusi');
+    Route::post('/cetakwilayahDistribusi', [WilayahDistribusiController::class, 'cetak'])->name('cetakwilayahDistribusi');
     // Route::delete('/deleteWilayahDistribusi/{id}',[WilayahDistribusiController::class,'destroy']);
 
     Route::resource('/statusTanah', StatusTanahController::class)->parameters(['statusTanah' => 'status_tanah'])->except(['create', 'edit']);
     Route::get('/printstatusTanah', [StatusTanahController::class, 'print'])->name('printstatusTanah');
+    Route::post('/cetakstatusTanah', [StatusTanahController::class, 'cetak'])->name('cetakstatusTanah');
     // Route::delete('/deleteStatusTanah/{id}',[StatusTanahController::class,'destroy']);
 
     Route::resource('/statusAir', StatusAirController::class)->parameters(['statusAir' => 'kd_statusair'])->except(['create', 'edit']);
     Route::get('/printstatusAir', [StatusAirController::class, 'print'])->name('printstatusAir');
+    Route::post('/cetakstatusAir', [StatusAirController::class, 'cetak'])->name('cetakstatusAir');
     // Route::delete('/deleteStatusAir/{id}', [StatusAirController::class, 'destroy']);
 
     Route::resource('/statusMeter', StatusMeterController::class)->parameters(['statusMeter' => 'kd_statusair'])->except(['create', 'edit']);
     Route::get('/printstatusMeter', [StatusMeterController::class, 'print'])->name('printstatusMeter');
+    Route::post('/cetakstatusMeter', [StatusMeterController::class, 'cetak'])->name('cetakstatusMeter');
     // Route::delete('/deleteStatusMeter/{id}', [StatusMeterController::class, 'destroy']);
 
     Route::resource('/merekMeter', MerekMeterController::class)->parameters(['merekMeter' => 'kd_merk'])->except(['create', 'edit']);
     Route::get('/printmerekMeter', [MerekMeterController::class, 'print'])->name('printmerekMeter');
+    Route::post('/cetakmerekMeter', [MerekMeterController::class, 'cetak'])->name('cetakmerekMeter');
     // Route::delete('/deleteMerekMeter/{id}', [MerekMeterController::class, 'destroy']);
 
     Route::resource('materai', MateraiController::class)->parameters(['materai' => 'nominal'])->except(['create', 'edit']);
-    Route::get('/printmaterai', [MateraiController::class, 'print'])->name('printmaterai');
+    Route::get('/printMaterai', [MateraiController::class, 'print'])->name('printMaterai');
+    Route::post('/cetakMaterai', [MateraiController::class, 'cetak'])->name('cetakMaterai');
     // Route::delete('/deletematerai/{id}', [MateraiController::class, 'destroy']);
 
     Route::resource('/panggilanDinas', PanggilanDinasController::class)->parameters(['panggilanDinas' => 'jns_pdinas'])->except(['create', 'edit']);
     // Route::get('/printpanggilanDinas/setting', [PanggilanDinasController::class, 'settingPrint'])->name('settingPrintPanggilan');
-    Route::post('/printpanggilanDinas', [PanggilanDinasController::class, 'printPreview'])->name('printpanggilanDinas');
+    Route::post('/printpanggilanDinas', [PanggilanDinasController::class, 'print'])->name('printpanggilanDinas');
+    Route::post('/cetakpanggilanDinas', [PanggilanDinasController::class, 'cetak'])->name('cetakpanggilanDinas');
 
 
     Route::resource('/telponPelanggan', TelponPelangganController::class)->parameters(['telponPelanggan' => 'no_plg'])->except(['create','destroy', 'store']);
@@ -246,6 +258,7 @@ Route::prefix('mutasipelanggan')->group(function() {
     Route::get('laporanTarifPerBendel', [LaporanTarifPerBendelController::class, 'index'])->name('laporanTarifPerBendel');
     // Route::post('laporanTarifPerBendel', [LaporanTarifPerBendelController::class, 'showLaporanBendel'])->name('laporanTarifPerBendel');
     Route::post('previewBendel', [LaporanTarifPerBendelController::class, 'preview'])->name('previewBendel');
+    Route::post('/cetakBendel', [LaporanTarifPerBendelController::class, 'cetak'])->name('cetakBendel');
 
     Route::get('entriSurat', [SuratPemberitahuanController::class, 'entriSurat'])->name('entriSurat');
     Route::get('printlaporan', [SuratPemberitahuanController::class, 'print'])->name('printlaporan');

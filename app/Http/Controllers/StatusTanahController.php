@@ -49,10 +49,17 @@ class StatusTanahController extends Controller
             'message' => 'Data Status Tanah Berhasil Dihapus',
         ]);
     }
+
     public function print()
     {
         $stTanah = StatusTanah::all();
         return view('master.statusTanah.print', compact('stTanah'))->with('i');
+    }
+
+    public function cetak()
+    {
+        $stTanah = StatusTanah::all();
+        return view('master.statusTanah.cetak', compact('stTanah'))->with('i');
     }
 
 }
