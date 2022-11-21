@@ -34,10 +34,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Preview Jenis Pelanggan</h3>
-                            <button type="submit"
-                            class="btn btn-xs float-right btn-success print">
-                            Print
-                            </button>
+                            <a href="{{ route('cetakjenisPelanggan') }}" class="btn btn-xs float-right btn-success print">Print</a>
                         </div>
                         <div class="card-body priview">
                             <form class="form-horizontal">
@@ -75,5 +72,44 @@
     </section>
 @endsection
 
+@push('js')
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript">
 
+        var loadingPrint = function() {
+            swal.fire({
+                title: "Mohon Tunggu !",
+                html: "Sedang Menyiapkan Data...",
+                allowOutsideClick: false,
+                showConfirmButton: false,
+                willOpen: () => {
+                    swal.showLoading()
+                },
+            })
+        }
 
+        $(document).on('click', '.print', function(e) {
+            e.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: `{{ url('master/cetakjenisPelanggan') }}`,
+                dataType: 'html',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                },
+                beforeSend: function() {
+                    loadingPrint()
+                },
+                success: function(res){
+                    var w = window.open(`{{ url('master/cetakjenisPelanggan') }}`,'_blank');
+                    w.document.open();
+                    w.document.write(res);
+                    w.document.close();
+                    w.window.print();
+                    w.window.close();
+                    swal.close();
+                }
+            })
+        })
+    </script>
+@endpush

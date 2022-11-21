@@ -32,45 +32,59 @@
             <span>Laporan Tarif Per Bendel</span> <br>
             <div class="row">
                 <div class="col">
-                    No : {{$no}}
+                    No : {{ ++$i }}
                 </div>
             </div>
             <div class="row">
                 <div class="col">
-                    No Bundel : {{$no_bundel}}
+                    No Bundel : {{ $data[0]->no_bundel }}
                 </div>
             </div>
 
             <div class="row">
                 <div class="col">
-                    Tanggal Cetak : {{$tgl_cetak}}
+                    Tanggal Cetak : {{ date('Y-m-d') }}
                 </div>
 
                 <div class="col-mr-1">
-                    Hal : 1
+                    Hal : 
                 </div>
             </div>
         </div>
         <table class="table">
             <thead>
                 <tr>
+                    <th>No</th>
                     <th>No Pelanggan</th>
                     <th>Nama</th>
                     <th>Alamat</th>
                     <th>Tarif Retribusi</th>
+
                 </tr>
             </thead>
             <tbody>
-                @foreach ($tarif_bendel as $bendel)
-                <tr>
-                    <td>{{ $bendel->no_plg }}</td>
-                    <td>{{ $bendel->nama }}</td>
-                    <td>{{ $bendel->alamat }}</td>
-                    <td>{{ $bendel->kd_retribusi }}</td>
-                </tr>
-                @endforeach
+                @if ($data)
+                    @foreach ($data as $item)
+                        <tr>
+                            <td>{{ ++$i }}</td>
+                            <td>{{ $item->no_plg }}</td>
+                            <td>{{ $item->nama }}</td>
+                            <td>{{ $item->jalan }}{{ $item->gang}}{{ $item->nomor}}{{$item->notamb}}</td>
+                            <td>{{ $item->rp_retribusi }}</td>
+                        </tr>
+                    @endforeach
+                @endif
             </tbody>
         </table>
-
+    </div>
 </body>
 </html>
+
+@push('js')
+    <script src="{{ asset('assets/jquery.printPage.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(".print").printPage();
+        });
+    </script>
+@endpush

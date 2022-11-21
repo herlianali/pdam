@@ -29,7 +29,7 @@
                                 data-toggle="modal"
                                 data-target="#filter">
                                 <i class="fas fa-print"></i>
-                                Print
+                                Cetak
                             </button>
 
                         </div>
@@ -127,15 +127,14 @@
                                         </tbody>
                                     </table>
                                 </div>
+                                @include('master.jenisPengaduan.edit')
+                                @include('master.jenisPengaduan.filter')
                             </div>
                         </div>
                     </div>
                 </div>
     </section>
 
-    {{-- Edit Form --}}
-    @include('master.jenisPengaduan.edit')
-    @include('master.jenisPengaduan.filter')
 @endsection
 
 @push('js')

@@ -58,4 +58,10 @@ class RetribusiController extends Controller
         return view('master.retribusi.print', compact('retribus'))->with('i');
     }
 
+    public function cetak()
+    {
+        $filter = Retribusi::all();
+        return view('master.retribusi.cetak', compact('filter'))->with('i');
+    }
+
 }

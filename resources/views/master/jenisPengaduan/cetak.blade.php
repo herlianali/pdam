@@ -40,7 +40,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($jenisPengaduans as $jenis)
+                @foreach ($filter as $jenis)
                 <tr>
                     <td>{{ $jenis->jns_pengaduan }}</td>
                     <td>{{ $jenis->keterangan }}</td>
@@ -51,3 +51,12 @@
         </table>
 </body>
 </html>
+
+@push('js')
+    <script src="{{ asset('assets/jquery.printPage.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(".print").printPage();
+        });
+    </script>
+@endpush

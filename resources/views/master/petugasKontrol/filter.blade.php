@@ -8,15 +8,16 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal">
+                <form action="{{ route('printpetugasKontrol') }}" class="form-horizontal" method="POST">
+                @csrf
                     <div class="form-group row mt-2">
                         <label for="wilayah" class="col-md-3 col-form-label"> Wilayah </label>
                         <div class="col-md-7">
-                            <select class="form-control" id="wilayah" onkeyup="valueing()">
+                            <select class="form-control" id="wilayah" name="wilayah" onkeyup="valueing()">
 
-                                <option value="wilayah T"> Semua Wilayah </option>
-                                <option value="wilayah B"> Langganan Timur</option>
-                                <option value="wilayah B"> Langganan Barat</option>
+                                <option value="semua"> Semua Wilayah </option>
+                                <option value="timur"> Langganan Timur</option>
+                                <option value="barat"> Langganan Barat</option>
                             </select>
                         </div>
                     </div>
@@ -27,23 +28,3 @@
         </div>
     </div>
 </div>
-
-
-@push('js')
-    <script type="text/javascript">
-        const box = document.getElementById('startEnd');
-
-        function clickRadio() {
-            if (document.getElementById('semuakd').checked) {
-                box.style.display = "none"
-            } else {
-                box.style.display = "block"
-            }
-        }
-
-        const radioButtons = document.querySelectorAll('input[name="filter"]');
-        radioButtons.forEach(radio => {
-            radio.addEventListener('click', clickRadio)
-        });
-    </script>
-@endpush

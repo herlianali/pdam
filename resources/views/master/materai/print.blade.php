@@ -8,8 +8,8 @@
         }
 
         table thead tr {
-            border-bottom: 3px dotted rgb(102, 102, 102);
-            border-top: 3px dotted rgb(102, 102, 102);
+            border-bottom: 3px dashed rgb(102, 102, 102);
+            border-top: 3px dashed rgb(102, 102, 102);
         }
     </style>
 @endpush
@@ -33,19 +33,19 @@
                 <div class="col-sm-12">
                     <div class="card">
                         <div class="card-header">
-                        
-                            <h3 class="card-title">Preview Daftar Materai</h3>
-                            <a href="{{ route('printpanggilanDinas') }}" class="btn btn-sm btn-success float-right">Print</a>
+                            <h3 class="card-title">Preview Materai</h3>
+                            <a href="{{ route('cetakMaterai') }}" class="btn btn-sm btn-success float-right print"> Print</a>
                         </div>
                         <div class="card-body priview">
-                            <p> Pemerintah Kota <br>
-                                Surabaya <br>
-                                PERUSAHAAN DAERAH AIR <br>
+                            <p>
+                                <center> Pemerintah Kota Surabaya <br>
+                                    PERUSAHAAN DAERAH AIR MINUM </center>
                             </p>
+                            <br>
                             <div class="mx-auto mb-3" style="width: 250px;">
                                 <span>
-                                    <center> DAFTAR MATERAI </center>
-                                </span> <br>
+                                    <center> TABEL MASTER MATERAI </center>
+                                </span>
                             </div>
                             <table class="table">
                                 <thead>
@@ -74,20 +74,43 @@
 @endsection
 
 @push('js')
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="text/javascript">
-        const box = document.getElementById('startEnd');
 
-        function clickRadio() {
-            if (document.getElementById('semuakd').checked) {
-                box.style.display = "none"
-            } else {
-                box.style.display = "block"
-            }
+        var loadingPrint = function() {
+            swal.fire({
+                title: "Mohon Tunggu !",
+                html: "Sedang Menyiapkan Data...",
+                allowOutsideClick: false,
+                showConfirmButton: false,
+                willOpen: () => {
+                    swal.showLoading()
+                },
+            })
         }
 
-        const radioButtons = document.querySelectorAll('input[name="filter"]');
-        radioButtons.forEach(radio => {
-            radio.addEventListener('click', clickRadio)
-        });
+        $(document).on('click', '.print', function(e) {
+            e.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: `{{ url('master/cetakMaterai') }}`,
+                dataType: 'html',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                },
+                beforeSend: function() {
+                    loadingPrint()
+                },
+                success: function(res){
+                    var w = window.open(`{{ url('master/cetakMaterai') }}`,'_blank');
+                    w.document.open();
+                    w.document.write(res);
+                    w.document.close();
+                    w.window.print();
+                    w.window.close();
+                    swal.close();
+                }
+            })
+        })
     </script>
 @endpush

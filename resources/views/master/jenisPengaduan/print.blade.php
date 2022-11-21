@@ -16,7 +16,7 @@
 
 @section('title', 'Print Jenis Pengaduan')
 
-@section('namaHal', 'Petugas')
+@section('namaHal', 'Master')
 
 @section('breadcrumb')
     <ol class="breadcrumb float-sm-right">
@@ -53,7 +53,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($jenisPengaduans as $jenis)
+                                    @foreach ($data['query'] as $jenis)
                                     <tr>
                                         <td>{{ $jenis->jns_pengaduan }}</td>
                                         <td>{{ $jenis->keterangan }}</td>
@@ -71,10 +71,49 @@
 @endsection
 
 @push('js')
-    <script src="{{ asset('assets/jquery.printPage.js') }}"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="text/javascript">
-        $(document).ready(function() {
-            $(".print").printPage();
-        });
-    </script>
+
+        var loadingPrint = function() {
+            swal.fire({
+                title: "Mohon Tunggu !",
+                html: "Sedang Menyiapkan Data...",
+                allowOutsideClick: false,
+                showConfirmButton: false,
+                willOpen: () => {
+                    swal.showLoading()
+                },
+            })
+        }
+
+        $(document).on('click', '.print', function(e) {
+            e.preventDefault();
+            var filter = `{{ $data['filter'] }}`
+            var start = `{{ $data['start'] }}`
+            var end = `{{ $data['end'] }}`
+            $.ajax({
+                type: "POST",
+                url: `{{ url('master/cetakPengaduan') }}`,
+                dataType: 'html',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    filter: filter,
+                    start: start,
+                    end: end
+                },
+                beforeSend: function() {
+                    loadingPrint()
+                },
+                success: function(res){
+                    var w = window.open(`{{ url('master/cetakPengaduan') }}`,'_blank');
+                    w.document.open();
+                    w.document.write(res);
+                    w.document.close();
+                    w.window.print();
+                    w.window.close();
+                    swal.close();
+                }
+            })
+        })
+        </script>
 @endpush

@@ -56,35 +56,30 @@ class PanggilanDinasController extends Controller
             'message' => 'Jenis Panggilan Dinas Berhasil Dihapus',
         ]);
     }
-
-    // public function settingPrint(){
-        
-        
-    //     $pDinass = PanggilanDinas::all();
-    //     return view('master.panggilanDinas.index', compact('pDinass'))->with('i');
-    //     // return view('master.panggilanDinas.setting-print');
-    // }
-
     
-    public function printPreview(Request $request){
-        if($request->filter == "semua"){
+    public function print(Request $request){
+        $filter = $request->filter;
+        if($filter == "semuakd"){
+            $query = PanggilanDinas::all();
+        }else {
+            $query = PanggilanDinas::filter($request->start, $request->end);
+        }
+        $data = array(
+            'filter' => $request->filter,
+            'query'  => $query,
+            'start'  => $request->start,
+            'end'    => $request->end,
+        );
+        return view('master.panggilanDinas.print', compact('data', 'filter'))->with('i');
+    }
+
+    public function cetak(Request $request)
+    {
+        if($request->filter == "semuakd"){
             $filter = PanggilanDinas::all();
         }else {
-        
-        
-        $filter = PanggilanDinas::filter($request->start, $request->end);
+            $filter = PanggilanDinas::filter($request->start, $request->end);
+        }
+        return view('master.panggilanDinas.cetak', compact('filter'))->with('i');
     }
-        // dd($filter);
-         return view('master.panggilanDinas.print', compact('filter'));
-    }
-
-    // public function print()
-    // {
-
-
-    //     $pDinas = PanggilanDinas::all()->except(['created_at', 'updated_at']);
-
-    //     $pdf = PDF::loadview('master.panggilanDinas.print', compact('pDinas'));
-    //     return $pdf->download('jenis-panggilan-dinas.pdf');
-    // }
 }

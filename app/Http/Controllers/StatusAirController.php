@@ -56,17 +56,10 @@ class StatusAirController extends Controller
         return view('master.statusAir.print', compact('stAir'))->with('i');
     }
 
-  
-    // public function printPreview(Request $request){
-    //     if($request->filter == "semua"){
-    //         $filter = StatusAir::all();
-    //     }else {
-        
-        
-    //     $filter = StatusAir::filter($request->start, $request->end);
-    // }
-    //     // dd($filter);
-    //      return view('master.statusAir.print', compact('filter'));
-    // }
+    public function cetak()
+    {
+            $stAir = StatusAir::all();
+        return view('master.statusAir.cetak', compact('stAir'))->with('i');
+    }
 
 }

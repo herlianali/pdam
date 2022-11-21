@@ -29,9 +29,7 @@
                             data-target="#filter">
                             <i class="fas fa-print"></i>
                             Print
-                    </button>
-                            {{-- <a href="{{ route('printpetugasKontrol') }}" class="btn btn-xs btn-success float-right"><i
-                                    class="fas fa-print"></i> Cetak</a> --}}
+                            </button>
                         </div>
                         <div class="card-body">
                             <div class="row">

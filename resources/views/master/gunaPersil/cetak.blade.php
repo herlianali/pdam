@@ -36,11 +36,10 @@
                     <tr>
                         <th width="15%">Kode Guna Persil</th>
                         <th width="50%">Keterangan</th>
-                        <th width="10%">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($kd_gunapersil as $gunaPersil)
+                    @foreach ($filter as $gunaPersil)
                         <tr>
                             <td>{{ $gunaPersil->kd_gunapersil }}</td>
                             <td>{{ $gunaPersil->keterangan }}</td>

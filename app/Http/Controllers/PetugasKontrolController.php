@@ -64,13 +64,32 @@ class PetugasKontrolController extends Controller
     }
 
    
-        public function print()
+    public function print(Request $request)
     {
-        
+        //dd($request->post());
+        // $cPegawai    = Dip::getData();
+        // $petugaskontrol = new PetugasKontrol();
+        // $petugas = $petugaskontrol->showPetugas();
+        // $wilayah = $petugaskontrol->getSemua();
+        if ($request->wilayah='semua'){
+            $wil = Dip::getSemua();
+        }elseif($request->wilayah='timur'){
+            $wil = Dip::getTimur();
+        }elseif($request->wilayah='barat'){
+            $wil = Dip::getBarat();
+        }
+        // dd($wil);
+        return view('master.petugasKontrol.print', compact('wil'))->with('i');
+    
+    }
+    
+
+    public function cetak()
+    {
         $cPegawai    = Dip::getData();
         $petugaskontrol = new PetugasKontrol();
         $petugas = $petugaskontrol->showPetugas();
-        return view('master.petugasKontrol.print', compact(['petugas','cPegawai']))->with('i');
+        $wilayah = $petugaskontrol->getSemua();
+        return view('master.petugasKontrol.cetak', compact(['petugas','cPegawai','wilayah']))->with('i');
     }
-    
 }

@@ -54,4 +54,10 @@ class MateraiController extends Controller
         $matrai = Materai::all();
         return view('master.materai.print', compact('matrai'))->with('i');
     }
+
+    public function cetak()
+    {
+        $matrai = Materai::all();
+        return view('master.materai.cetak', compact('matrai'))->with('i');
+    }
 }

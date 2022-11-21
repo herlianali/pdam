@@ -23,8 +23,6 @@ class PetugasKontrol extends Model
                     ->get();
     }
 
-
-
     public function getLastKode()
     {
         return DB::table($this->table)

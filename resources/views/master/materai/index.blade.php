@@ -24,7 +24,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Materai</h3>
-                            <a href="{{ route('printmaterai') }}" class="btn btn-xs btn-success float-right"><i class="fas fa-print"></i> Cetak</a>
+                            <a href="{{ route('printMaterai') }}" class="btn btn-xs btn-success float-right"><i class="fas fa-print"></i> Cetak</a>
                         </div>
                         <div class="card-body">
                             <div class="row mb-4">

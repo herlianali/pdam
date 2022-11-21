@@ -53,10 +53,13 @@ class MerekMeterController extends Controller
     
     public function print()
     {
-      
         $merkMeter = MerekMeter::all();
         return view('master.merekMeter.print', compact('merkMeter'))->with('i');
     }
 
-
+    public function cetak()
+    {
+        $filter = MerekMeter::all();
+        return view('master.merekMeter.cetak', compact('filter'))->with('i');
+    }
 }

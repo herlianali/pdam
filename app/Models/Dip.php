@@ -32,4 +32,26 @@ class Dip extends Model
                     ->where('status_pegawai', '=', 'P')
                     ->first();
     }
+
+    public static function getSemua() 
+    {
+        return DB::table('DIP')
+                    ->select('PTGKONTROL.kd_ptgktrl', 'PTGKONTROL.nip', 'DIP.nama', 'UNIT_KERJA.kd_unitkrj')
+                    ->join('PTGKONTROL', 'PTGKONTROL.nip', '=', 'DIP.nip')
+                    ->join('UNIT_KERJA', 'UNIT_KERJA.kd_unitkrj', '=', 'DIP.kd_unitkrj')
+                    ->where('UNIT_KERJA.kd_unitkrj',['F08','F09'])
+                    ->get();
+
+    }
+
+    public static function getTimur() 
+    {
+        return DB::table('DIP')
+                    ->select('PTGKONTROL.kd_ptgktrl', 'PTGKONTROL.nip', 'DIP.nama', 'UNIT_KERJA.kd_unitkrj')
+                    ->join('PTGKONTROL', 'PTGKONTROL.nip', '=', 'DIP.nip')
+                    ->join('UNIT_KERJA', 'UNIT_KERJA.kd_unitkrj', '=', 'DIP.kd_unitkrj')
+                    ->where('UNIT_KERJA.kd_unitkrj', '=', 'F08')
+                    ->get();
+
+    }
 }
