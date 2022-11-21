@@ -35,4 +35,14 @@ class PetugasKorektor extends Model
         ->limit(900)
         ->get();
     }
+
+    // untuk dropdown petugas korektor / laporan
+    public static function getNipAndName()
+    {
+        return DB::table("PTGKOREKTOR_NEW")
+                    ->selectRaw('TRIM(nama) AS nama, TRIM(userakses) AS userakses, PTGKOREKTOR_NEW.nip')
+                    ->join('DIP', 'PTGKOREKTOR_NEW.nip', '=', 'DIP.nip')
+                    ->where('PTGKOREKTOR_NEW.aktif', '=', 1)
+                    ->get();
+    }
 }

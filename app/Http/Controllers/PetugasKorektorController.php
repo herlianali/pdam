@@ -68,8 +68,14 @@ class PetugasKorektorController extends Controller
 
     public function laporan()
     {
-        $date   = Carbon::now()->format('Y-m-d');
-        return view('master.petugasKorektor.laporan', compact('date'))->with('i');
+        $date = Carbon::now()->format('Y-m-d');
+        $nip  = PetugasKorektor::getNipAndName();
+        return view('master.petugasKorektor.laporan', compact('date', 'nip'))->with('i');
+    }
+
+    public function showLaporan(Request $request)
+    {
+        return response()->json($request->post());
     }
 
     public function viewsisa()

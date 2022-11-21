@@ -17,7 +17,7 @@
     <section class="content">
         <ul class="nav nav-tabs">
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('petugasKorektor') }}">Master Petugas</a>
+                <a class="nav-link" href="{{ route('petugasKorektor.index') }}">Master Petugas</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link active" href="{{ route('laporanpetugasKorektor') }}">Laporan</a>
@@ -49,28 +49,29 @@
                                 <label for="date" class="col-md-2 col-form-label">Tanggal </label>
                                 <div class="col-md-2">
                                     <input type="date" class="form-control" id="date" name="date"
-                                        onkeyup="valueing()" value="{{ $date }}">
+                                     value="{{ $date }}">
                                 </div>
                                 <label for="thbl" class="col-form-label">THBL </label>
                                 <div class="col-md-2">
-                                    <input type="month" class="form-control" id="thbl" name="thbl"
-                                        onkeyup="valueing()">
+                                    <input type="month" class="form-control" id="thbl" name="thbl">
                                 </div>
                             </div>
                             <div class="form-group row mt-2">
                                 <label for="nip" class="col-md-2 col-form-label">NIP </label>
                                 <div class="col-md-2">
-                                    <select class="form-control" name="nip" id="nip" onkeyup="valueing()">
+                                    <select class="form-control" name="nip" id="nip">
                                         <option value=""> </option>
-                                        <option value=""> </option>
+                                        @foreach ($nip as $data)
+                                            <option value="{{ $data->nip }}"> {{ $data->userakses }} - {{ $data->nama }} </option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group row mt-2">
                                 <label for="periode_tagih" class="col-md-2 col-form-label">Periode Tagih </label>
                                 <div class="col-md-2">
-                                    <select class="form-control" id="periode_tagih" name="periode_tagih"
-                                        onkeyup="valueing()">
+                                    <select class="form-control" id="periode_tagih" name="periode_tagih">
+                                        <option value=""></option>
                                         <option value="1"> 1 </option>
                                         <option value="2"> 2 </option>
                                         <option value="All"> All </option>
@@ -80,8 +81,10 @@
                             <div class="form-group row mt-2">
                                 <label for="" class="col-md-2 col-form-label"></label>
                                 <div class="col-md-10">
-                                    <input type="checkbox">
+                                    <input type="checkbox" name="potensial" id="potensial">
                                     <label for="potensial" class="col-form-label">Potensial</label>
+                                    <input type="checkbox" name="pKhusus" id="pKhusus">
+                                    <label for="pKhusus" class="col-form-label" id="lpKhusus">Potensial Khusus</label>
                                     <br>
                                     <input type="checkbox">
                                     <label for="waktu" class=" col-form-label">Waktu</label>
@@ -119,7 +122,7 @@
                             </div>
                         </form>
                     </div>
-                    <div class="col-md-12">
+                    <div class="col-md-12" id="table-section">
                         <table id="example" class="table table-bordered table-responsive-md table-condensed" style="width: 100%">
                             <thead>
                                 <tr>
@@ -200,82 +203,27 @@
     <script src="{{ asset('assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
     <script>
-        $(function() {
+        $(document).ready(function() {
             $('#example').DataTable({
-
-                //  "lengthChange": false,
-                //   "autoWidth": false,
-                //   "responsive": true,
                 "oLanguage": {
-                    "sSearch": "Kode Retribusi : "
+                    "sSearch": "Cari Data : "
                 },
                 "pageLength": 5
             }).buttons().container().appendTo('#table_wrapper .col-md-6:eq(0)');
-            $('#example1').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": false,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false,
-                "responsive": true,
-                "pageLength": 5
 
-            });
-        });
+            $('#pKhusus').hide()
+            $('#lpKhusus').hide()
+            $('#table-section').hide()
+        })
 
-        function deleteRetribusi(id) {
-            console.log(id)
-            swal.fire({
-                title: "Hapus Data?",
-                icon: 'question',
-                text: "Apakah Anda Yakin Ingin Menghapus",
-                type: "warning",
-                showCancelButton: !0,
-                confirmButtonColor: "#e74c3c",
-                confirmButtonText: "Iya",
-                cancelButtonText: "Tidak",
-                reverseButtons: !0
-            }).then(function(e) {
-                if (e.value === true) {
-                    let token = "{{ csrf_token() }}"
-                    let _url = `/master/deleteptgskorektor/${id}`
-                    console.log(_url)
-
-                    $.ajax({
-                        type: 'DELETE',
-                        url: _url,
-                        data: {
-                            _token: token
-                        },
-                        success: function(resp) {
-                            if (resp.success) {
-                                swal.fire("Selesai!", resp.message, "success");
-                                location.reload();
-                            } else {
-                                swal.fire("Gagal!", "Terjadi Kesalahan.", "error");
-                            }
-                        },
-                        error: function(resp) {
-                            swal.fire("Gagal!", "Terjadi Kesalahan.", "error")
-                        }
-                    })
-                } else {
-                    e.dismiss;
-                }
-            }, function(dismiss) {
-                return false;
-            });
-        }
-
-        function valueing() {
-            if (document.getElementById('rp_retribusi').value === "") {
-                document.getElementById('batal').disabled = true
-                document.getElementById('simpan').disabled = true
-            } else {
-                document.getElementById('batal').disabled = false
-                document.getElementById('simpan').disabled = false
+        $(document).on('click', '#potensial', function() {
+            if (!$(this).is(':checked')) {
+                $('#pKhusus').hide()
+                $('#lpKhusus').hide()
+            }else{
+                $('#pKhusus').show()
+                $('#lpKhusus').show()
             }
-        }
+        })
     </script>
 @endpush
