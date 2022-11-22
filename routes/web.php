@@ -102,6 +102,9 @@ Route::prefix('master')->group(function () {
     Route::resource('petugasKorektor', PetugasKorektorController::class)->parameters(['petugasKorektor' => 'nip'])->except(['create','edit']);
     // Route::get('/petugasKorektor', [PetugasKorektorController::class, 'index'])->name('petugasKorektor');
     Route::get('/laporanpetugasKorektor',[PetugasKorektorController::class,'laporan'])->name('laporanpetugasKorektor');
+    Route::post('/laporanpetugasKorektor',[PetugasKorektorController::class,'showLaporan'])->name('laporanpetugasKorektor');
+    Route::get('/cLapBundel',[PetugasKorektorController::class,'cLapBundel'])->name('cLapBundel');
+
     Route::get('/viewsisapetugasKorektor', [PetugasKorektorController::class, 'viewsisa'])->name('viewsisapetugasKorektor');
     Route::get('/randompetugasKorektor', [PetugasKorektorController::class, 'random'])->name('randompetugasKorektor');
     Route::get('/viewptspetugasKorektor', [PetugasKorektorController::class, 'viewpts'])->name('viewptspetugasKorektor');

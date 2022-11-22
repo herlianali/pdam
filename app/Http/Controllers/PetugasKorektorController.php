@@ -75,7 +75,24 @@ class PetugasKorektorController extends Controller
 
     public function showLaporan(Request $request)
     {
-        return response()->json($request->post());
+        $tgl = date("d-m-Y", strtotime($request->tgl));
+        $data = [
+            'tgl' => $tgl,
+            'thbl' => $request->thbl,
+            'nip' => $request->nip,
+            'pTagih' => $request->pTagih,
+            'potensial' => $request->potensial,
+            'pKhusus' => $request->pKhusus,
+            'waktu' => $request->waktu,
+        ];
+
+        $tampil = PetugasKorektor::getLaporanWaktuNc($data);
+        return redirect()->route('cLapBundel')->with(['tampil' => $tampil]);
+    }
+
+    public function cLapBundel()
+    {
+        return view('master.petugasKorektor.cetak.lapBundelPetugas')->with('tampil');
     }
 
     public function viewsisa()
