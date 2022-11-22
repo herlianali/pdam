@@ -58,7 +58,7 @@ class PenetapanTeraMeterController extends Controller
     {
         $petcs  = PetugasCS::getData();
         //dd($petcs);
-        // return view('master.penetapanTeraMeter.filter', compact(['petcs']))->with('i');
+        return view('master.penetapanTeraMeter.filter', compact(['petcs']))->with('i');
     }
 
     public function print()

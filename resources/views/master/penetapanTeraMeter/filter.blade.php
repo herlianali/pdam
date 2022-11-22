@@ -20,9 +20,7 @@
                         <label for="petcs" class="col-md-2 col-form-label">Petugas Tera</label>
                         <div class="col-md-6">
                             <select class="custom-select" name="petcs" id="petcs">
-                                @foreach ($petcs as $petugas)
-                                    <option value="{{ $petugas->petcs }}">{{ $petugas->kd_ptgcs }} - {{ $petugas->nama }}</option>
-                                @endforeach
+                                
                             </select>
                         </div>
                     </div>
