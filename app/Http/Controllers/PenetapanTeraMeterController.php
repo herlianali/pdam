@@ -19,10 +19,11 @@ class PenetapanTeraMeterController extends Controller
         $getByBonc = new Bonc;
         // $ptg = new PetugasCS;
         // $petcs  = $ptg->getData();
+        $petcs = PetugasCS::getData();
         $bonc = $getByBonc->getByBonc('BCL-95');
-        // dd($bonc);
+        // dd($petcs);
         $getUkuran = new PenetapanTeraMeter;
-        return view('master.penetapanTeraMeter.index', compact('date', 'getlast', 'no'))->with('i');
+        return view('master.penetapanTeraMeter.index', compact('date', 'getlast', 'no', 'petcs'))->with('i');
     }
 
     public function store(Request $request)
@@ -39,7 +40,7 @@ class PenetapanTeraMeterController extends Controller
             'alamat_pengadu'    => $request->alamat_pengadu,
             'telp_pengadu'      => $request->telp_pengadu
         ]);
-        
+
         return redirect()->route('penetapanTeraMeter');
     }
 
