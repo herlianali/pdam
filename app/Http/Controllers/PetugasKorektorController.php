@@ -68,8 +68,31 @@ class PetugasKorektorController extends Controller
 
     public function laporan()
     {
-        $date   = Carbon::now()->format('Y-m-d');
-        return view('master.petugasKorektor.laporan', compact('date'))->with('i');
+        $date = Carbon::now()->format('Y-m-d');
+        $nip  = PetugasKorektor::getNipAndName();
+        return view('master.petugasKorektor.laporan', compact('date', 'nip'))->with('i');
+    }
+
+    public function showLaporan(Request $request)
+    {
+        $tgl = date("d-m-Y", strtotime($request->tgl));
+        $data = [
+            'tgl' => $tgl,
+            'thbl' => $request->thbl,
+            'nip' => $request->nip,
+            'pTagih' => $request->pTagih,
+            'potensial' => $request->potensial,
+            'pKhusus' => $request->pKhusus,
+            'waktu' => $request->waktu,
+        ];
+
+        $tampil = PetugasKorektor::getLaporanWaktuNc($data);
+        return redirect()->route('cLapBundel')->with(['tampil' => $tampil]);
+    }
+
+    public function cLapBundel()
+    {
+        return view('master.petugasKorektor.cetak.lapBundelPetugas')->with('tampil');
     }
 
     public function viewsisa()

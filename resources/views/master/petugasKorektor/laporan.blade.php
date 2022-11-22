@@ -17,7 +17,7 @@
     <section class="content">
         <ul class="nav nav-tabs">
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('petugasKorektor') }}">Master Petugas</a>
+                <a class="nav-link" href="{{ route('petugasKorektor.index') }}">Master Petugas</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link active" href="{{ route('laporanpetugasKorektor') }}">Laporan</a>
@@ -49,28 +49,29 @@
                                 <label for="date" class="col-md-2 col-form-label">Tanggal </label>
                                 <div class="col-md-2">
                                     <input type="date" class="form-control" id="date" name="date"
-                                        onkeyup="valueing()" value="{{ $date }}">
+                                     value="{{ $date }}">
                                 </div>
                                 <label for="thbl" class="col-form-label">THBL </label>
                                 <div class="col-md-2">
-                                    <input type="month" class="form-control" id="thbl" name="thbl"
-                                        onkeyup="valueing()">
+                                    <input type="month" class="form-control" id="thbl" name="thbl">
                                 </div>
                             </div>
                             <div class="form-group row mt-2">
                                 <label for="nip" class="col-md-2 col-form-label">NIP </label>
                                 <div class="col-md-2">
-                                    <select class="form-control" name="nip" id="nip" onkeyup="valueing()">
+                                    <select class="form-control" name="nip" id="nip">
                                         <option value=""> </option>
-                                        <option value=""> </option>
+                                        @foreach ($nip as $data)
+                                            <option value="{{ $data->nip }}"> {{ $data->userakses }} - {{ $data->nama }} </option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group row mt-2">
                                 <label for="periode_tagih" class="col-md-2 col-form-label">Periode Tagih </label>
                                 <div class="col-md-2">
-                                    <select class="form-control" id="periode_tagih" name="periode_tagih"
-                                        onkeyup="valueing()">
+                                    <select class="form-control" id="periode_tagih" name="periode_tagih">
+                                        <option value=""></option>
                                         <option value="1"> 1 </option>
                                         <option value="2"> 2 </option>
                                         <option value="All"> All </option>
@@ -80,17 +81,19 @@
                             <div class="form-group row mt-2">
                                 <label for="" class="col-md-2 col-form-label"></label>
                                 <div class="col-md-10">
-                                    <input type="checkbox">
+                                    <input type="checkbox" name="potensial" id="potensial">
                                     <label for="potensial" class="col-form-label">Potensial</label>
+                                    <input type="checkbox" name="pKhusus" id="pKhusus">
+                                    <label for="pKhusus" class="col-form-label" id="lpKhusus">Potensial Khusus</label>
                                     <br>
-                                    <input type="checkbox">
+                                    <input type="checkbox" name="waktu" id="waktu">
                                     <label for="waktu" class=" col-form-label">Waktu</label>
                                     <div class="form-group row">
                                         <label for="" class="col-md-3 col-form-label"></label>
                                         <div class="col-md-3">
-                                            <button class="btn btn-success btn-sm" type="submit"><i class=""></i>
+                                            <button class="btn btn-success btn-sm" type="button" id="tampil"><i class=""></i>
                                                 Tampil</button>
-                                            <button type="submit" class="btn btn-danger btn-sm"><i class=""></i>
+                                            <button type="button" class="btn btn-danger btn-sm" id="pantau"><i class=""></i>
                                                 Pantau</button>
                                         </div>
                                     </div>
@@ -119,74 +122,6 @@
                             </div>
                         </form>
                     </div>
-                    <div class="col-md-12">
-                        <table id="example" class="table table-bordered table-responsive-md table-condensed" style="width: 100%">
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Sub Zona</th>
-                                    <th>Bundel</th>
-                                    <th>Jumlah Pelanggan</th>
-                                    <th>Jumlah Anomali</th>
-                                    <th>Jumlah Pelanggan Koperasi</th>
-                                    <th>Hasil Tidak Ada</th>
-                                    <th>Keterangan</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>301</td>
-                                    <td>13</td>
-                                    <td>145</td>
-                                    <td>85</td>
-                                    <td>12</td>
-                                    <td>73</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>306</td>
-                                    <td>13</td>
-                                    <td>18</td>
-                                    <td>13</td>
-                                    <td>0</td>
-                                    <td>13</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>308</td>
-                                    <td>18</td>
-                                    <td>162</td>
-                                    <td>84</td>
-                                    <td>24</td>
-                                    <td>60</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td>308</td>
-                                    <td>20</td>
-                                    <td>140</td>
-                                    <td>140</td>
-                                    <td>140</td>
-                                    <td>0</td>
-                                    <td></td>
-                                </tr>
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <td colspan="3" align="center">Total</td>
-                                    <td>465</td>
-                                    <td>322</td>
-                                    <td>176</td>
-                                    <td>146</td>
-                                    <td></td>
-                                </tr>
-                            </tfoot>
-                        </table>
-                    </div>
                 </div>
             </div>
     </section>
@@ -200,82 +135,72 @@
     <script src="{{ asset('assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
     <script>
-        $(function() {
+        $(document).ready(function() {
             $('#example').DataTable({
-
-                //  "lengthChange": false,
-                //   "autoWidth": false,
-                //   "responsive": true,
                 "oLanguage": {
-                    "sSearch": "Kode Retribusi : "
+                    "sSearch": "Cari Data : "
                 },
                 "pageLength": 5
             }).buttons().container().appendTo('#table_wrapper .col-md-6:eq(0)');
-            $('#example1').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": false,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false,
-                "responsive": true,
-                "pageLength": 5
 
-            });
-        });
+            $('#pKhusus').hide()
+            $('#lpKhusus').hide()
+            $('#table-section').hide()
+        })
 
-        function deleteRetribusi(id) {
-            console.log(id)
+        var showLoading = function() {
             swal.fire({
-                title: "Hapus Data?",
-                icon: 'question',
-                text: "Apakah Anda Yakin Ingin Menghapus",
-                type: "warning",
-                showCancelButton: !0,
-                confirmButtonColor: "#e74c3c",
-                confirmButtonText: "Iya",
-                cancelButtonText: "Tidak",
-                reverseButtons: !0
-            }).then(function(e) {
-                if (e.value === true) {
-                    let token = "{{ csrf_token() }}"
-                    let _url = `/master/deleteptgskorektor/${id}`
-                    console.log(_url)
-
-                    $.ajax({
-                        type: 'DELETE',
-                        url: _url,
-                        data: {
-                            _token: token
-                        },
-                        success: function(resp) {
-                            if (resp.success) {
-                                swal.fire("Selesai!", resp.message, "success");
-                                location.reload();
-                            } else {
-                                swal.fire("Gagal!", "Terjadi Kesalahan.", "error");
-                            }
-                        },
-                        error: function(resp) {
-                            swal.fire("Gagal!", "Terjadi Kesalahan.", "error")
-                        }
-                    })
-                } else {
-                    e.dismiss;
-                }
-            }, function(dismiss) {
-                return false;
-            });
+                title: "Mohon Tunggu !",
+                html: "Sedang Memproses...",
+                allowOutsideClick: false,
+                showConfirmButton: false,
+                willOpen: () => {
+                    swal.showLoading()
+                },
+            })
         }
 
-        function valueing() {
-            if (document.getElementById('rp_retribusi').value === "") {
-                document.getElementById('batal').disabled = true
-                document.getElementById('simpan').disabled = true
-            } else {
-                document.getElementById('batal').disabled = false
-                document.getElementById('simpan').disabled = false
+        $(document).on('click', '#potensial', function() {
+            if (!$(this).is(':checked')) {
+                $('#pKhusus').hide()
+                $('#lpKhusus').hide()
+            }else{
+                $('#pKhusus').show()
+                $('#lpKhusus').show()
             }
-        }
+        })
+
+        $(document).on('click', '#tampil', function(e) {
+            e.preventDefault();
+            var tgl = $('#date').val();
+            var thbl = $('#thbl').val();
+            var nip = $('#nip').val();
+            var pTagih = $('#periode_tagih').val();
+            var potensial = $('#potensial').val();
+            var pKhusus = $('#pKhusus').val();
+            var waktu = $('#waktu').val();
+            $.ajax({
+                type: "POST",
+                dataType: "JSON",
+                url: `{{ url('master/laporanpetugasKorektor') }}`,
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    tgl: tgl,
+                    thbl: thbl,
+                    nip: nip,
+                    pTagih: pTagih,
+                    potensial: potensial,
+                    pKhusus: pKhusus,
+                    waktu: waktu,
+                },
+                beforeSend: function() {
+                    showLoading()
+                },
+                success: function(res) {
+                    console.log(res);
+                    swal.close();
+                }
+            })
+        })
     </script>
 @endpush
