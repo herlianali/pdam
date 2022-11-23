@@ -17,7 +17,7 @@
     <section class="content">
         <ul class="nav nav-tabs">
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('petugasKorektor') }}">Master Petugas</a>
+                <a class="nav-link" href="{{ route('petugasKorektor.index') }}">Master Petugas</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('laporanpetugasKorektor') }}">Laporan</a>
@@ -93,7 +93,7 @@
                                 </div>
                             </div>
                         </form>
-                    
+
                     <table id="example" class="table table-bordered table-responsive-md table-condensed">
                         <thead>
                             <tr>
@@ -115,16 +115,16 @@
                                 <td>{{ $koreksiKorektor->zona }}</td>
                                 <td>{{ $koreksiKorektor->no_bundel }}</td>
                                 <td>
-                                    <button type="submit" 
+                                    <button type="submit"
                                     class="btn btn-danger btn-sm hapus"
                                     data-id="{{ $koreksiKorektor->recid }}">
                                     <i class="fas fa-trash-alt"></i>
                                     Hapus
                                     </button>
 
-                                    <button type="button" 
+                                    <button type="button"
                                     class="btn btn-success btn-sm edit"
-                                    data-id="{{ $koreksiKorektor->recid }}" 
+                                    data-id="{{ $koreksiKorektor->recid }}"
                                     data-toggle="modal"
                                     data-target="#edit">
                                     <i class="fas fa-edit"></i>
@@ -198,13 +198,13 @@
                     $('#recid1').val(response.recid)
                     $('#zona1').val(response.zona)
                     $('#no_bundel1').val(response.no_bundel)
-                  
+
                     swal.close();
                 }
             })
         })
 
-        
+
         $(document).on('click', '.hapus', function(e) {
             e.preventDefault();
             let recid = $(this).data('id')
@@ -238,7 +238,7 @@
             });
         });
 
-      
+
 
 
         // $(document).on('click', '.hapus', function(e) {
@@ -297,7 +297,7 @@
             })
         })
 
-        
+
         var showLoading = function() {
             swal.fire({
                 title: "Mohon Tunggu !",

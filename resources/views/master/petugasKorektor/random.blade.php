@@ -11,7 +11,7 @@
     <section class="content">
         <ul class="nav nav-tabs">
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('petugasKorektor') }}">Master Petugas</a>
+                <a class="nav-link" href="{{ route('petugasKorektor.index') }}">Master Petugas</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('laporanpetugasKorektor') }}">Laporan</a>
@@ -65,7 +65,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                           
+
                         </tbody>
                     </table>
                     <button type="submit" class="btn btn-info btn-sm mt-6  " id="simpan"> Clear Petugas</button> &nbsp;

@@ -20,7 +20,7 @@
                         <label for="petcs" class="col-md-2 col-form-label">Petugas Tera</label>
                         <div class="col-md-6">
                             <select class="custom-select" name="petcs" id="petcs">
-                                
+
                             </select>
                         </div>
                     </div>
@@ -28,9 +28,9 @@
                     <label for="petcs" class="col-form-label">Petugas Tera</label>
                         <div class="col-md-10">
                             <select class="custom-select" id="petcs" name="petcs" onkeyup="valueing()">
-                                @foreach ($petcs as $petugas)
-                                    <option value="{{ $petugas->petcs }}">{{ $petugas->kd_ptgcs }} - {{ $petugas->nama }}</option>
-                                @endforeach
+                                {{-- @foreach ($petcs as $petugas) --}}
+                                    {{-- <option value="{{ $petugas->petcs }}">{{ $petugas->kd_ptgcs }} - {{ $petugas->nama }}</option> --}}
+                                {{-- @endforeach --}}
                             </select>
                         </div>
                     </div><br>
