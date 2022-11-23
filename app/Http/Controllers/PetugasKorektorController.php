@@ -90,10 +90,37 @@ class PetugasKorektorController extends Controller
         return redirect()->route('cLapBundel')->with(['tampil' => $tampil]);
     }
 
-    public function cLapBundel()
+    public function tampillaporan()
     {
-        return view('master.petugasKorektor.cetak.lapBundelPetugas')->with('tampil');
+        $date = Carbon::now()->format('d-M-Y');
+        return view('master.petugasKorektor.cetak.tampillaporan', compact('date'))->with('i');
     }
+
+    public function laporanperpetugas()
+    {
+        $date = Carbon::now()->format('d-M-Y');
+        return view('master.petugasKorektor.cetak.laporanbulananperpetugas', compact('date'))->with('i');
+    }
+
+    public function laporansemuapetugas()
+    {
+        $date = Carbon::now()->format('d-M-Y');
+        return view('master.petugasKorektor.cetak.laporanbulanansemuapetugas', compact('date'))->with('i');
+    }
+
+    public function laporanhonorium()
+    {
+        return view('master.petugasKorektor.cetak.laporanhonorium');
+    }
+    public function laporanhonoriumdireksi()
+    {
+        return view('master.petugasKorektor.cetak.laporanhonoriumdireksi');
+    }
+
+    // public function cLapBundel()
+    // {
+    //     return view('master.petugasKorektor.cetak.lapBundelPetugas')->with('tampil');
+    // }
 
     public function viewsisa()
     {

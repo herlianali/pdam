@@ -102,7 +102,12 @@ Route::prefix('master')->group(function () {
     Route::resource('petugasKorektor', PetugasKorektorController::class)->parameters(['petugasKorektor' => 'nip'])->except(['create','edit']);
     // Route::get('/petugasKorektor', [PetugasKorektorController::class, 'index'])->name('petugasKorektor');
     Route::get('/laporanpetugasKorektor',[PetugasKorektorController::class,'laporan'])->name('laporanpetugasKorektor');
-    Route::post('/laporanpetugasKorektor',[PetugasKorektorController::class,'showLaporan'])->name('laporanpetugasKorektor');
+    Route::get('/tampillaporanpetugasKorektor',[PetugasKorektorController::class,'tampillaporan'])->name('tampillaporanpetugasKorektor');
+    Route::get('/laporanperpetugas',[PetugasKorektorController::class,'laporanperpetugas'])->name('laporanperpetugas');
+    Route::get('/laporansemuapetugas',[PetugasKorektorController::class,'laporansemuapetugas'])->name('laporansemuapetugas');
+    Route::get('/laporanhonorium',[PetugasKorektorController::class,'laporanhonorium'])->name('laporanhonorium');
+    Route::get('/laporanhonoriumdireksi',[PetugasKorektorController::class,'laporanhonoriumdireksi'])->name('laporanhonoriumdireksi');
+    Route::get('/showLaporan',[PetugasKorektorController::class,'showLaporan'])->name('showLaporan');
     Route::get('/cLapBundel',[PetugasKorektorController::class,'cLapBundel'])->name('cLapBundel');
 
     Route::get('/viewsisapetugasKorektor', [PetugasKorektorController::class, 'viewsisa'])->name('viewsisapetugasKorektor');

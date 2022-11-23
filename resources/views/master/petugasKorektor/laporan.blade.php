@@ -91,8 +91,7 @@
                                     <div class="form-group row">
                                         <label for="" class="col-md-3 col-form-label"></label>
                                         <div class="col-md-3">
-                                            <button class="btn btn-success btn-sm" type="button" id="tampil"><i class=""></i>
-                                                Tampil</button>
+                                        <a href="{{ route('tampillaporanpetugasKorektor') }}" class="btn btn-xs btn-success float-right"> Tampil </a>
                                             <button type="button" class="btn btn-danger btn-sm" id="pantau"><i class=""></i>
                                                 Pantau</button>
                                         </div>
@@ -117,6 +116,14 @@
                                             id="laporan_honorium_kelebihan_beban_petugas_korektor_direksi" name="pilih">
                                         <label class="form-check-label">Laporan Honorium Kelebihan Beban Petugas
                                             Korektor(Direksi)</label>
+                                        <br>
+                                        <div class="form-group row">
+                                        <label for="" class="col-md-3 col-form-label"></label>
+                                        <div class="col-md-3">
+                                            <a href="{{ route('laporanhonoriumdireksi') }}" class="btn btn-success btn-sm">
+                                                Cetak</a>
+                                        </div>
+                                    </div>
                                     </div>
                                 </div>
                             </div>
