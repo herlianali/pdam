@@ -59,7 +59,7 @@
                                     </div>
                                 </div>
                                 <button type="submit" class=" btn-info btn-sm float-right">Preview</button>
-                                <button class=" btn-danger btn-sm float-right">Batal</button>
+                                <button type="reset" class=" btn-danger btn-sm float-right">Batal</button>
                             </form>
                         </div>
                     </div>

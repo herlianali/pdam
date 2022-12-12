@@ -279,9 +279,9 @@
                     $('#namaE').val(response.nama)
                     $('#jabatanE').val(response.jabatan)
                     if(response.aktif == 1){
-                        $('#aktif').prop('checked', true)
+                        $('#aktif').attr('checked', 'checked')
                     }else{
-                        $('#aktif').prop('checked', false)
+                        $('#aktif').removeAttr('checked', ' ')
                     }
                     swal.close();
                 }

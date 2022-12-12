@@ -71,12 +71,12 @@
                                         <div class="form-group row">
                                             <label for="periode" class="col-md-1 col-form-label">Periode</label>
                                             <div class="col-md-4">
-                                                <input type="text" class="form-control" name="periode" id="periode" value="{{ $date }}">
+                                                <input type="text" class="form-control" name="periode" id="periode" value=" ">
                                             </div>
                                         </div>
 
-                                        <button class="btn-info btn-sm float-right preview">Preview</button>
-                                        <button class="btn-danger btn-sm float-right">Batal</button>
+                                        <button type="submit" class="btn-info btn-sm float-right preview">Preview</button>
+                                        <button type="reset" class="btn-danger btn-sm float-right">Reset</button>
                                     </form>
                                 </div>
                             </div>

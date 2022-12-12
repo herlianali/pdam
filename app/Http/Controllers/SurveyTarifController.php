@@ -93,6 +93,7 @@ class SurveyTarifController extends Controller
 
     public function editPln()
     {
+        
         return view('master.surveyTarif.editpln');
     }
 

@@ -33,11 +33,11 @@
                         <div class="card-body priview">
                             <div class="row">
                                 <div class="col">
-                                    <div style="font-size:15px">PEMERINTAH KOTAMADYA DAERAH II SURABAYA</div>
+                                    <div style="font-size:15px">PEMERINTAH KOTAMADYA DATI II SURABAYA</div>
                                     <div style="font-size:15px">PERUSAHAAN DAERAH AIR MINUM</div>
                                     <div style="font-size:13px">Jl.Mayjen Prof Moestopo 2 </div>
                                     <div style="font-size:13px">Tlp.(031)5039373,5039392,5039676</div>
-                                    <div style="font-size:13px">Surabaya</div>
+                                    <div style="font-size:13px">S U R A B A Y A</div>
                                 </div>
                                 <div class="col"></div>
                                 <div class="col">
@@ -52,7 +52,7 @@
                                             </div>
                                         </div>
                                         <div class="atas">
-                                            <div class="row"> NOMOR : T20020000110  </div>
+                                            <div class="row"> NOMOR : {{ $no_plg }}  </div>
                                             <div class="row"> TANGGAL : 20/08/2002</div>
                                         </div>
                                     </div>
@@ -67,15 +67,15 @@
                                 <table>
                                     <tr>
                                         <td>No Pelanggan</td>
-                                        <td>: 3101164</td>
+                                        <td>: {{ }}</td>
                                     </tr>
                                     <tr>
                                         <td>Nama</td>
-                                        <td>: 102002</td>
+                                        <td>: {{ }}</td>
                                     </tr>
                                     <tr>
                                         <td>Alamat</td>
-                                        <td>: 01/10/2002 RUMAH / 780 725</td>
+                                        <td>: {{ }}</td>
                                     </tr>
                                 </table>
                             </div>
@@ -87,7 +87,7 @@
                                     klasifikasi tarif air minum sebagai berikut :
                                 </p>
                             </div>
-                            Kode Tarif <span> : 42 /0</span> <br>
+                            Kode Tarif <span> : {{ }}</span> <br>
                             Tabel Tarif <span>: 0 - 10 Rp. 750-/mb-n3</span> <span> 11 - 20 Rp.1300,-M3 </span>
 
                             <br>
@@ -117,27 +117,27 @@
                                         <h5><b>KETERANGAN</h5>
                                         <tr>
                                             <td>1. Dasar</td>
-                                            <td>: 694.2/T0000110/402.7.01/TTU/VIII/2002</td>
+                                            <td>: {{ }}</td>
                                         </tr>
                                         <tr>
                                             <td>2. Kontrol No/Tanggal</td>
-                                            <td>:</td>
+                                            <td>: {{ }}</td>
                                         </tr>
                                         <tr>
                                             <td>3. Penggunaan Persil</td>
-                                            <td>:</td>
+                                            <td>: {{ }}</td>
                                         </tr>
                                         <tr>
                                             <td>4. Jenis Pelanggan</td>
-                                            <td>: PERUMAHAN A-2</td>
+                                            <td>: {{ }}</td>
                                         </tr>
                                         <tr>
                                             <td>5. Kode Tarif Lama</td>
-                                            <td>: 32</td>
+                                            <td>: {{ }}</td>
                                         </tr>
                                         <tr>
                                             <td>6. Ukuran Meter</td>
-                                            <td>:</td>
+                                            <td>: {{ }}</td>
                                         </tr>
                                     </table>
                                 </div>
@@ -157,18 +157,43 @@
                             <div class="ttd">
                                 <div class="row text-center">
                                     <div class="col justify-content-between">
-                                        <p>Petugas</p>
-                                        <p class="mb-5">Bagian Langganan</p>
-                                        <p class="mb-n3">Moch. Soejanto</p>
+                                        <p>A.n. Direksi Perusahaan Daerah Air</p>
+                                        <p class="mb-5">Minum</p>
+                                        <p class="mb-n3">Kotamadya Daerah Tingkat II Surabaya</p>
+                                        <p class="mb-n3">Pjs DIREKTUR ADM. & KEUANGAN</p>
                                         <hr style="width: 50%">
-                                        <p class="mt-n3">NIP: 1.96.01018</p>
+                                        <p class="mt-n3">Agung Pribadhi, SE</p>
                                     </div>
-                                    <div class="col">
-                                        <p>Mengetahui</p>
-                                        <p class="mb-5">Kepala Bagian Langganan</p>
-                                        <p class="mb-n3">Nurlillah Satria Pratama</p>
-                                        <hr style="width: 50%">
-                                        <p class="mt-n3">NIP: 1.08.01499</p>
+                                </div>
+                            </div>
+                            <div class="notes">
+                                <div class="col-ml-10">
+                                    <div>
+                                        <table>
+                                            <tr>
+                                                <td><u>Dibuat Rangkap 4:</u></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lembar 1</td>
+                                                <td>:</td>
+                                                <td> Pelanggan</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lembar 2</td>
+                                                <td>:</td>
+                                                <td> Bag. Rekening</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lembar 3</td>
+                                                <td>:</td>
+                                                <td> Bag. Akuntansi cq. Kasi Piutang</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lembar 4</td>
+                                                <td>:</td>
+                                                <td> Arsip Bag. Langganan</td>
+                                            </tr>
+                                        </table>
                                     </div>
                                 </div>
                             </div>

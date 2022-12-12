@@ -17,7 +17,7 @@
     <section class="content">
         <ul class="nav nav-tabs">
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('petugasKorektor') }}">Master Petugas</a>
+                <a class="nav-link" href="{{ route('petugasKorektor.index') }}">Master Petugas</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('laporanpetugasKorektor') }}">Laporan</a>
@@ -126,7 +126,7 @@
                                     class="btn btn-success btn-sm edit"
                                     data-id="{{ $koreksiKorektor->recid }}" 
                                     data-toggle="modal"
-                                    data-target="#edit">
+                                    data-target="#form">
                                     <i class="fas fa-edit"></i>
                                     Edit
                                     </button>

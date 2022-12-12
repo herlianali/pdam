@@ -18,7 +18,7 @@
                         <div class="card-header">
                             <h3 class="card-title"> Survey Tarif</h3>
                             <button type="button" class="btn-xs btn-success float-right " data-toggle="modal"
-                                data-target="#jalan"><i class=""></i> Jalan PLN</button>
+                                data-target="#pln"><i class=""></i> Jalan PLN</button>
                         </div>
                         <div class="card-body">
                         <button type="button"
@@ -200,6 +200,7 @@
                     showLoading()
                 },
                 success: function(response) {
+                    console.log(response);
                     $('#no_plg').val(response.no_plg)
                     $('#nama').val(response.nama)
                     $('#alamat').val(response.alamat)

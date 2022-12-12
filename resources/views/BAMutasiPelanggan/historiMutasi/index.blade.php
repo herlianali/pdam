@@ -35,8 +35,8 @@
                                                 <input type="text" class="form-control" id="no_plg" name="no_plg"
                                                 onkeydown="javascript: return ['Backspace','Delete','ArrowLeft','ArrowRight', 'Enter'].includes(event.code) ? true : !isNaN(Number(event.key)) && event.code!=='Space'">
                                             </div>
-                                            <button type="reset" class="btn btn-danger btn-mt-2" id="clear">
-                                                <i class="fa fa-trash"></i>
+                                            <button type="reset" class="btn btn-danger btn-mt-2">
+                                                <i class="fa fa-undo"></i>
                                                 Reset
                                             </button>
                                         </div>

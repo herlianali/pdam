@@ -60,7 +60,7 @@
                                                         <div class="row">
                                                             <div class="col ">
                                                                 <input type="radio" name="pilihan" id="belumdikirimkebagrek"value="">
-                                                                <label for="">Blm dikirim ke Bag.Rekening tgl</label>
+                                                                <label for="">Belum dikirim ke Bag.Rekening tgl</label>
                                                             </div>
                                                             <div class="col">
                                                                 <input class="ml-4" type="date" name="pilihan" id="belumdikirimkebagrek" value="">
@@ -190,10 +190,13 @@
                                             </div>
 
                                         </div>
-
-                                        <button type="submit" class="btn btn-success btn-sm float-right"><i
-                                                class="fa fa-filter"></i>Filter</button> <br>
-                                        <br>
+                                        <div class="form-group row mt-2 ">
+                                            <label for="" class="col-md-6 col-form-label"></label>
+                                            <div class="col-md-12">
+                                                <button type="submit" class="btn btn-success btn-sm"><i class="fa fa-filter"></i>Filter</button> 
+                                                <button type="reset" class="btn btn-danger btn-sm"><i class="fa fa-undo"></i> Reset</button>
+                                            </div>
+                                        </div>
 
                                     </form>
                                 </div>

@@ -38,4 +38,9 @@ class BaMutasi extends Model
     {
         return DB::select("SELECT * FROM (SELECT a.no_bamutasi AS no_ba,a.tgl_bamutasi,b.no_plg,b.zona,b.nama,b.jalan,b.gang,b.nomor,b.notamb,a.kd_tarif_l,a.kd_tarif_b,c.nama_pengadu,e.nama AS NamaPetugas,c.ASAL_PENGADUAN,b.no_bundel FROM ba_mutasi a,dil b,pengaduan c,bonc d,ptgkontrol e WHERE a.no_plg=b.no_plg AND a.no_bonc=d.no_bonc(+) AND d.no_pengaduan=c.no_pengaduan(+) AND d.kd_ptgktrl=e.kd_ptgktrl(+) AND a.JNS_MUTASI LIKE '%D%' AND a.FLAG_UBAHTARIF='N' AND a.BLNTERBIT ='112002' AND a.tgl_batal IS NULL UNION ALL SELECT a.no_bamutkol AS no_ba,a.tgl_bamutasi,c.no_plg,c.zona,c.nama,c.jalan,c.gang,c.nomor,c.notamb,b.kd_tarif_l,b.kd_tarif_b,d.nama_pengadu,f.nama AS NamaPetugas,d.ASAL_PENGADUAN,c.no_bundel FROM ba_mutasikol a,dba_mutasikol b,dil c,pengaduan d,bonc e,ptgkontrol f WHERE a.NO_BAMUTKOL=b.NO_BAMUTKOL AND b.no_plg=c.no_plg AND a.no_bonc=e.no_bonc(+) AND e.no_pengaduan=d.no_pengaduan(+) AND e.kd_ptgktrl=f.kd_ptgktrl(+) AND a.no_bamutkol LIKE 'T%' AND a.JNS_MUTASI LIKE '%D%' AND b.FLAG_UBAHTARIF='N' AND a.BATAL=0 AND a.TGL_BATAL IS NULL AND a.BLNTERBIT='112002' ) a ORDER BY a.no_plg");
     }
+
+    public static function getFilter()
+    {
+        return DB::select("SELECT dil.NAMA,dil.JALAN,dil.GANG,dil.NOMOR,dil.NOTAMB,wilayah_dist.KD_WILAYAH,wilayah_dist.NAMA AS NAMA_WILAYAH,ba_mutasi.*,bonc.tgl_bonc,bonc.tgl_realisasi,dil.da,ba_mutasi.da_b ,merk_meter.merk AS merkl, tmerk.merk AS merkb,ZONA_PERIODE.PERIODE FROM bonc,dil, ba_mutasi,zona,wilayah_dist, merk_meter, merk_meter tmerk,ZONA_PERIODE WHERE bonc.no_bonc(+)=ba_mutasi.no_bonc AND dil.NO_PLG = ba_mutasi.NO_PLG AND dil.zona=zona.zona AND DIL.ZONA=ZONA_PERIODE.ZONA AND zona.kd_wilayah=wilayah_dist.kd_wilayah");
+    }
 }

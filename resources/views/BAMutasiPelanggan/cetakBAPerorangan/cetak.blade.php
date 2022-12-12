@@ -26,7 +26,7 @@
     <div class="card-body priview">
         <div class="row">
             <div class="col">
-                <div style="font-size:15px">PEMERINTAH KOTAMADYA DAERAH II SURABAYA</div>
+                <div style="font-size:15px">PEMERINTAH KOTAMADYA DATI II SURABAYA</div>
                 <div style="font-size:15px">PERUSAHAAN DAERAH AIR MINUM</div>
                 <div style="font-size:13px">Jl.Mayjen Prof Moestopo 2 </div>
                 <div style="font-size:13px">Tlp.(031)5039373,5039392,5039676</div>
@@ -106,7 +106,7 @@
         <div class="row">
             <div class="col">
                 <table>
-                    <h5><b>KETERANGAN</h5>
+                    <h5><b><u>KETERANGAN</u></h5>
                     <tr>
                         <td>1. Dasar</td>
                         <td>: {{ }}</td>
@@ -135,7 +135,7 @@
             </div>
         </div>
         <br>
-        <h5><b>LAIN LAIN</h5> <br>
+        <h5><b><u>LAIN LAIN</u></h5><br>
         <div class="row">
             <div class="col">
                 <div class="d-flex justify-content-center table-left" style="text-align: justify">

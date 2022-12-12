@@ -25,10 +25,10 @@
                             <h3 class="card-title">Riwayat Pemakaian</h3>
 
                         </div>
-
                         <div class="card-body">
+                        <form class="form-horizontal" action="" method="post">
+                        @csrf
                             <div class="row mb-5">
-                                <div class="col-md-1"></div>
                                 <div class="col-md-9">
                                     <form class="form-horizontal">
 
@@ -120,14 +120,16 @@
                                         </div>
 
                                     </form>
-                                    <div class="form-group row ">
-                                        <div class="col-md-2">
-                                            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                            data-target="#pelanggan"> Cari
+                                    <div class="form-group row mt-2 ">
+                                    <label for="" class="col-md-6 col-form-label"></label>
+                                        <div class="col-md-5">
+                                            <button type="button" class="btn btn-success btn-sm" data-toggle="modal"
+                                            data-target="#pelanggan"><i class="fa fa-search"></i> Cari
                                             Pelanggan</button>
+                                            <button type="reset" class="btn btn-danger btn-sm"><i class="fas fa-undo"></i> Reset</button>
                                         </div>
                                     </div>
-
+                                </form>
                                 </div>
                             </div>
                             <table id="table" class="table table-bordered table-responsive-md table-condensed"

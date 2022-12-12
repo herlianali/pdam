@@ -30,20 +30,16 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Print preview Monitoring Guna Persil</h3>
+                            <a href="{{ route('cetakmonitoring') }}" class="btn btn-sm btn-success float-right print"> Print</a>
                         </div>
                         <div class="card-body priview">
-                            <div class="row">
-                                <div class="col">
-                                    <div style="font-size:15px">PEMERINTAH KOTA SURABAYA</div>
-                                    <div style="font-size:15px">PERUSAHAAN DAERAH AIR MINUM</div>
-                                    <div style="font-size:15px">#wilayah</div>
-                                </div>
-                            </div>
                             <h4>
                                 <center> Laporan Monitoring Guna Persil</center>
                             </h4>
                             <div class="col">
-                                <span>Stan Sesuai;Tidak Sesuai</span>
+                            <span>Stan Sesuai;
+                                
+                            </span>
                             </div>
                             <br>
                             <div class="container">
@@ -73,7 +69,6 @@
                                             <td>{{ $row->notamb}}</td>
                                             <td>{{ $row->da}}</td>
                                             <td>{{ $row->kd_tarif}}</td>
-                                            <td>{{ $row->kd_verifikator}}</td>
                                         </tr>
                                         @endforeach
                                     @endif
@@ -87,3 +82,68 @@
         </div>
     </section>
 @endsection
+
+@push('js')
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript">
+        $(function() {
+            $('#table').DataTable({
+
+                //  "lengthChange": false,
+                //   "autoWidth": false,
+                //   "responsive": true,
+                "oLanguage": {
+                    "sSearch": "No Pelanggan : "
+                },
+                "pageLength": 5
+            }).buttons().container().appendTo('#table_wrapper .col-md-6:eq(0)');
+            $('#table1').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true,
+                "pageLength": 5
+
+            });
+        });
+
+        var loadingPrint = function() {
+            swal.fire({
+                title: "Mohon Tunggu !",
+                html: "Sedang Menyiapkan Data...",
+                allowOutsideClick: false,
+                showConfirmButton: false,
+                willOpen: () => {
+                    swal.showLoading()
+                },
+            })
+        }
+
+        $(document).on('click', '.print', function(e) {
+            e.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: `{{ url('mutasipelanggan/cetakmonitoring') }}`,
+                dataType: 'html',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                },
+                beforeSend: function() {
+                    loadingPrint()
+                },
+                success: function(res){
+                    var w = window.open(`{{ url('mutasipelanggan/cetakmonitoring') }}`,'_blank');
+                    w.document.open();
+                    w.document.write(res);
+                    w.document.close();
+                    w.window.print();
+                    w.window.close();
+                    swal.close();
+                }
+            })
+        })
+    </script>
+@endpush
