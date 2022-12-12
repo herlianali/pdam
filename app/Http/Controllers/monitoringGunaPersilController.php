@@ -43,6 +43,20 @@ class MonitoringGunaPersilController extends Controller
         $data = Rekening::filter($request->thbl, $param);
 
         // return response()->json($data);
-        return view('BAMutasiPelanggan.monitoringGunaPersil.preview', compact('data'));
+        return view('BAMutasiPelanggan.monitoringGunaPersil.preview', compact('data'))->with('i');
+    }
+
+    public function cetak(Request $request)
+    {
+        // $thbl = date_format($request->thbl, 'm/Y');
+        $param = [
+            'periode' => $request->periode,
+            'stan_persil' => $request->stan_persil
+        ];
+        
+        $data = Rekening::filter($request->thbl, $param);
+
+        // return response()->json($data);
+        return view('BAMutasiPelanggan.monitoringGunaPersil.cetak', compact('data'))->with('i');
     }
 }

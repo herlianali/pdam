@@ -142,8 +142,20 @@ class PetugasKorektorController extends Controller
         return view('master.petugasKorektor.koreksi', compact('cS', 'koreksi'))->with('i');
     }
 
+    public function updatekoreksi(Request $request, $recid)
+    {
+        dd($request->post());
+        PetugasKorektor::where(DB::raw("REPLACE(recid,' ','')"), $recid)
+                    ->update([
+                        'nip' => $request->nip1,
+                        'nama' => $request->nama1,
+                        'recid' => $request->recid1,
+                        'zona' => $request->zona1,
+                        'no_bundel' => $request->no_bundel1
+                    ]);
 
-
+        //return redirect()->route('master.petugasKorektor.form');
+    }
 
     public function viewpts()
     {

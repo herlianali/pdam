@@ -226,7 +226,8 @@ Route::prefix('pengaduan')->group(function() {
 Route::prefix('mutasipelanggan')->group(function() {
     Route::get('monitoringGunaPersil', [MonitoringGunaPersilController::class, 'index'])->name('monitoringGunaPersil');
     Route::post('monitoringGunaPersil', [MonitoringGunaPersilController::class, 'filter'])->name('monitoringGunaPersil');
-    Route::get('previewmonitoring', [MonitoringGunaPersilController::class, 'preview'])->name('previewmonitoring');
+    Route::post('previewmonitoring', [MonitoringGunaPersilController::class, 'preview'])->name('previewmonitoring');
+    Route::post('cetakmonitoring', [MonitoringGunaPersilController::class, 'cetak'])->name('cetakmonitoring');
 
     Route::get('historiMutasi', [HistoriMutasiController::class, 'index'])->name('historiMutasi');
     Route::post('historiMutasi', [HistoriMutasiController::class,'show'])->name('historiMutasi.show');
@@ -249,9 +250,12 @@ Route::prefix('mutasipelanggan')->group(function() {
     Route::get('previewPenolakan', [MonitoringBAMutasiPeroranganController::class, 'previewPenolakan'])->name('previewPenolakan');
     Route::get('previewUsulan', [MonitoringBAMutasiPeroranganController::class, 'previewUsulan'])->name('previewUsulan');
 
+    Route::resource('/mutasiKolektif', MutasiKolektifController::class)->parameters(['mutasiKolektif' => 'no_plg'])->except(['create', 'edit']);
     Route::get('mutasiKolektif', [MutasiKolektifController::class, 'index'])->name('mutasiKolektif');
     Route::get('previewBA', [MutasiKolektifController::class, 'previewBA'])->name('previewBA');
     Route::get('previewLampiran', [MutasiKolektifController::class, 'previewLampiran'])->name('previewLampiran');
+    Route::post('cetakBA', [MutasiKolektifController::class, 'cetakBA'])->name('cetakBA');
+    Route::post('cetakLampiran', [MutasiKolektifController::class, 'cetakLampiran'])->name('cetakLampiran');
 
     Route::get('laporanRekapitulasiPerubahanTarif', [LaporanRekapitulasiPerubahanTarifController::class, 'index'])->name('laporanRekapitulasiPerubahanTarif');
 
@@ -261,7 +265,8 @@ Route::prefix('mutasipelanggan')->group(function() {
 
     Route::get('laporanRekapitulasiNaikTurun', [LaporanRekapitulasiNaikTurunController::class, 'index'])->name('laporanRekapitulasiNaikTurun');
     Route::post('laporanRekapitulasiNaikTurun', [LaporanRekapitulasiNaikTurunController::class, 'show'])->name('laporanRekapitulasiNaikTurun');
-    Route::get('preview', [LaporanRekapitulasiNaikTurunController::class, 'preview'])->name('preview');
+    Route::get('print', [LaporanRekapitulasiNaikTurunController::class, 'print'])->name('print');
+    Route::post('cetak',[LaporanRekapitulasiNaikTurunController::class, 'cetak'])->name('cetak');
 
     Route::get('laporanTarifPerBendel', [LaporanTarifPerBendelController::class, 'index'])->name('laporanTarifPerBendel');
     // Route::post('laporanTarifPerBendel', [LaporanTarifPerBendelController::class, 'showLaporanBendel'])->name('laporanTarifPerBendel');
@@ -276,7 +281,8 @@ Route::prefix('mutasipelanggan')->group(function() {
     Route::get('usulanMutasiTarif', [UsulanMutasiTarifController::class, 'index'])->name('usulanMutasiTarif');
 
     Route::get('cetakBAPerorangan', [CetakBAPeroranganController::class, 'index'])->name('cetakBAPerorangan');
-    Route::get('preview', [CetakBAPeroranganController::class, 'preview'])->name('preview');
+    Route::post('preview', [CetakBAPeroranganController::class, 'preview'])->name('preview');
+    Route::post('cetak', [CetakBAPeroranganController::class, 'cetak'])->name('cetak');
 
 });
 

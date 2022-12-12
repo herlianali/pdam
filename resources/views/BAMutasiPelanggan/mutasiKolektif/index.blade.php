@@ -32,14 +32,14 @@
                                         @csrf
                                         <div class="form-group row mt-2">
                                             <label for="no_ba" class="col-md-2 col-form-label">NO BA </label>
-                                            <div class="col-md-6">
-                                                <input type="text" class="form-control" id="no_ba" name="no_ba" onkeyup="valueing()">
+                                            <div class="col-md-2">
+                                                <input type="text" class="form-control" name="no_ba" value="T{{ $no }}" readonly>
                                             </div>
                                         </div>
                                         <div class="form-group row mt-2">
                                             <label for="tgl_ba" class="col-md-2 col-form-label">Tanggal BA </label>
-                                            <div class="col-md-6">
-                                                <input type="date" class="form-control" id="tgl_ba" name="tgl_ba" onkeyup="valueing()">
+                                            <div class="col-md-2">
+                                                <input type="date" class="form-control" id="tgl_ba" name="tgl_ba" value="{{ $date }}">
                                             </div>
                                         </div>
                                         <div class="form-group row mt-2">
@@ -48,13 +48,29 @@
                                                 <div class="form-check">
                                                     <input type="radio" name="filter" id="jns_pelanggan"
                                                         value="jns_pelanggan">
-                                                    <label for="">I - Jenis Pelanggan</label>
+                                                    <label for="">I - Jenis Pelanggan</label>&nbsp;&nbsp;
                                                     <input type="radio" name="filter" id="subzona" value="sub_zona">
-                                                    <label for="">J - Sub Zona</label>
+                                                    <label for="">J - Sub Zona</label>&nbsp;&nbsp;
                                                     <input type="radio" name="filter" id="no_bundel" value="no_bundel">
-                                                    <label for="">K - No Bundel</label>
+                                                    <label for="">K - No Bundel</label>&nbsp;&nbsp;
                                                     <input type="radio" name="filter" id="retribusi" value="retribusi">
                                                     <label for="">L - Retribusi</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row mt-2">
+                                            <label for="jns_mutasi" class="col-md-2 col-form-label">Jenis Mutasi </label>
+                                            <div class="form-group">
+                                                <div class="form-check">
+                                                    <input type="checkbox" name="filter" id="jns_pelanggan"
+                                                        value="jns_pelanggan">
+                                                    <label for="">Jenis Pelanggan [I]</label>&nbsp;
+                                                    <input type="checkbox" name="filter" id="subzona" value="sub_zona">
+                                                    <label for="">Sub Zona [J]</label>&nbsp;
+                                                    <input type="checkbox" name="filter" id="no_bundel" value="no_bundel">
+                                                    <label for="">No Bundel [K]</label>&nbsp;
+                                                    <input type="checkbox" name="filter" id="retribusi" value="retribusi">
+                                                    <label for="">Retribusi [L]</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -63,14 +79,21 @@
                                 <div class="col-md-12">
                                     <form action="">
                                         <div class="form-group row mt-2">
-                                            <label for="no_pelanggan" class="col-md-2 col-form-label">No Pelanggan </label>
-                                            <div class="col-md-6">
-                                                <input type="text" class="form-control" id="no_pelanggan" name="no_pelanggan" onkeyup="valueing()">
+                                            <label for="no_plg" class="col-md-2 col-form-label">No Pelanggan </label>
+                                            <div class="col-md-2">
+                                                <input type="text" class="form-control" id="no_plg" name="no_plg" onkeyup="valueing()">
                                             </div>
+                                            <button class="btn btn-info btn-mt-2" id="cari" type="button">
+                                                <i class="fa fa-search"></i>
+                                            </button>&nbsp;
+                                            <button type="reset" class="btn btn-danger btn-mt-2">
+                                                <i class="fa fa-undo"></i>
+                                                Reset
+                                            </button>
                                         </div>
                                         <div class="form-group row mt-2">
                                             <label for="nama" class="col-md-2 col-form-label"> Nama </label>
-                                            <div class="col-md-6">
+                                            <div class="col-md-4">
                                                 <input type="text" class="form-control" id="nama" name="nama"onkeyup="valueing()">
                                             </div>
                                         </div>
@@ -98,8 +121,8 @@
                                             <div class="col-md-1">
                                                 <input type="text" class="form-control" id="retribusi" name="retribusi" onkeyup="valueing()">
                                             </div>
-                                            <div class="col-md-2">
-                                                <button type="button" class="btn btn-danger btn-md float-right" data-toggle="modal" data-target="#pelanggan"><i class=""></i> Import</button>
+                                            <div class="col-md-1">
+                                                <button type="button" class="btn btn-danger btn-md float-right" data-toggle="modal" data-target="#pelanggan"><i class=""></i> Import </button>
                                                 <br>
                                             </div>
                                         </div>
@@ -127,11 +150,12 @@
                                                 <button type="submit" class="btn btn-danger btn-md float-right" data-toggle="modal" data-target="#pelanggan"><i class=""></i> Tambah</button>
                                                 <br>
                                             </div>
-                                        </div>
+                                        </div><br>
                                         <div class="form-group row mt-2 ">
-                                            <div class="col-md-12">
-                                                <button class="btn btn-success btn-sm float-right" type="submit"><i class="far fa-save"></i> Simpan</button>
-                                                <button type="submit" class="btn btn-danger btn-sm float-right"><i class="fas fa-undo"></i> Reset</button>
+                                            <label for="" class="col-md-6 col-form-label"></label>
+                                            <div class="col-md-5">
+                                                <button class="btn btn-success btn-sm" type="submit"><i class="far fa-save"></i> Simpan</button>
+                                                <button type="reset" class="btn btn-danger btn-sm"><i class="fas fa-undo"></i> Reset</button>
                                             </div>
                                         </div>
                                     </form>
@@ -296,5 +320,30 @@
                 return false;
             });
         }
+
+        $(document).on('click', '#cari', function(e) {
+            e.preventDefault();
+            let no_plg = $('#no_plg').val();
+            $.ajax({
+                type: "GET",
+                url: `{{ url('mutasipelanggan/mutasiKolektif') }}/` + no_bonc,
+                data: {
+                    id: no_plg,
+                    _token: '{{ csrf_token() }}'
+                },
+                beforeSend: function() {
+                    showLoading()
+                },
+                success: function(response) {
+                    $('#nama').val(response.nama)
+                    $('#alamat').val(response.jalan.trim()+' '+response.gang.trim()+' '+response.nomor.trim()+' '+response.notamb)
+                    $('#jns_pelanggan_l').val(response.jns_pelanggan_l)
+                    $('#zona_l').val(zona_l)
+                    $('#no_bundell').val(no_bundell)
+                    $('#rp_retribusi_l').val(rp_retribusi_l)
+                    swal.close();
+                }
+            })
+        })
     </script>
 @endpush

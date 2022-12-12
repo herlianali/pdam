@@ -25,7 +25,7 @@
     </ol>
     <br>
     <br>
-    <a href="" class="btn btn-sm btn-success float-right"><i class="fas fa-download"></i>Download</a>
+    <a href="{{ route('cetakLampiran') }}" class="btn btn-sm btn-success float-right print"> Print</a>
 @endsection
 
 @section('content')
@@ -35,12 +35,12 @@
                 <div class="col-sm-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Print preview Jenis Pekerjaan</h3>
+                            <h3 class="card-title">Print Cetak Lampiran</h3>
                         </div>
                         <div class="card-body priview">
                             <div class="row">
                                 <div class="col ">
-                                    <div style="font-size:15px">PEMERINTAH KOTAS URABAYA</div>
+                                    <div style="font-size:15px">PEMERINTAH KOTA SURABAYA</div>
                                     <div style="font-size:15px">PERUSAHAAN DAERAH AIR MINUM</div>
                                 </div>
                                 <table>
@@ -96,7 +96,7 @@
                                                 <div class="col">
                                                 </div>
                                                 <div class="col">
-                                                    Surabaya, 16-09-2022
+                                                    Surabaya, {{ $date }}
                                                 </div>
                                             </div>
                                             <br>
@@ -136,3 +136,44 @@
     </section>
 @endsection
 
+@push('js')
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript">
+
+        var loadingPrint = function() {
+            swal.fire({
+                title: "Mohon Tunggu !",
+                html: "Sedang Menyiapkan Data...",
+                allowOutsideClick: false,
+                showConfirmButton: false,
+                willOpen: () => {
+                    swal.showLoading()
+                },
+            })
+        }
+
+        $(document).on('click', '.print', function(e) {
+            e.preventDefault();
+            $.ajax({
+                type: "GET",
+                url: `{{ url('mutasiKolektif/previewLampiran') }}`,
+                dataType: 'html',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                },
+                beforeSend: function() {
+                    loadingPrint()
+                },
+                success: function(res){
+                    var w = window.open(`{{ url('mutasiKolektif/previewLampiran') }}`,'_blank');
+                    w.document.open();
+                    w.document.write(res);
+                    w.document.close();
+                    w.window.print();
+                    w.window.close();
+                    swal.close();
+                }
+            })
+        })
+    </script>
+@endpush
