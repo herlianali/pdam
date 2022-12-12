@@ -122,6 +122,12 @@
                                                     onkeyup="valueing()" readonly value="">
                                             </div>
                                         </div>
+                                        <div class="form-group row mt-2 ">
+                                        <label for="" class="col-md-6 col-form-label"></label>
+                                            <div class="col-md-5">
+                                                <button type="reset" class="btn btn-danger btn-sm"><i class="fas fa-undo"></i> Reset</button>
+                                            </div>
+                                        </div>
 
                                     </form>
 

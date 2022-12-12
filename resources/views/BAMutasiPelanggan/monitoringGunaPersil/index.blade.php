@@ -24,8 +24,17 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Monitoring Guna Persil</h3>
-                            <a href="{{ route('previewmonitoring') }}" class="btn btn-xs btn-info float-right"><i
-                                    class="fas fa-print"></i> Cetak</a>
+                            <button id="cetak" class="btn btn-xs btn-info float-right"><i
+                                    class="fas fa-print"></i> Cetak</button>
+                            <input type="hidden" class="form-control" name="thbl" id="thbl"
+                                onkeyup="valueing()" value="" placeholder="202010">
+                            <select hidden class="form-control" id="periode" name="periode"
+                                onkeyup="valueing()">
+                                <option value="1"> 1</option>
+                                <option value="2"> 2 </option>
+                            </select>
+                            <input type="hidden" name="stan_persil" id="stan_persil_sesuai" value="1">
+                            <input type="hidden" name="stan_persil" id="stan_persil_tidak_sesuai" value="2">
                         </div>
                         <div class="card-body">
                             <div class="row mb-4">
@@ -37,7 +46,7 @@
                                             <label for="thbl" class="col-md-2 col-form-label">THBL</label>
                                             <div class="col-md-4">
                                                 <input type="text" class="form-control" name="thbl" id="thbl"
-                                                    onkeyup="valueing()" value="">
+                                                    onkeyup="valueing()" value="" placeholder="202010">
                                             </div>
                                         </div>
                                         <div class="form-group row ">
@@ -76,7 +85,7 @@
                                             <label for="button" class="col-md-2 col-form-label"></label>
                                             <div class="col-md-4">
 
-                                                <button onclick="search()" class="btn btn-success btn-sm float-right"></i>
+                                                <button class="btn btn-success btn-sm float-right">
                                                     Filter</button>
 
                                             </div>
@@ -155,6 +164,31 @@
 
             });
         });
+
+        $(document).on('click', '#cetak', function(e) {
+            e.preventDefault();
+            var thbl = $('#thbl').val();
+            var periode = $('#periode').val();
+            var stan_persil = $('#stan_persil').val();
+            $.ajax({
+                type: "POST",
+                dataType: "JSON",
+                url: `{{ url('mutasipelanggan/previewmonitoring') }}`,
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    thbl: thbl,
+                    periode: periode,
+                    stan_persil: stan_persil,
+                },
+                beforeSend: function() {
+                    showLoading()
+                },
+                success: function(response) {
+                    console.log(response);
+                    swal.close();
+                }
+            })
+        })
 
     </script>
 @endpush

@@ -91,9 +91,8 @@
                                     <div class="form-group row">
                                         <label for="" class="col-md-3 col-form-label"></label>
                                         <div class="col-md-3">
-                                        <a href="{{ route('tampillaporanpetugasKorektor') }}" class="btn btn-xs btn-success float-right"> Tampil </a>
-                                            <button type="button" class="btn btn-danger btn-sm" id="pantau"><i class=""></i>
-                                                Pantau</button>
+                                        <a href="{{ route('tampillaporanpetugasKorektor') }}" class="btn btn-sm btn-success"> Tampil </a>
+                                        <button class="btn btn-danger btn-sm" disabled>Pantau</button>
                                         </div>
                                     </div>
                                     <div class="form-check">

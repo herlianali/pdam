@@ -17,6 +17,7 @@ class PetugasKorektor extends Model
                 ->select('PTGKOREKTOR_NEW.nip','DIP.nama','PTGKOREKTOR_NEW.aktif','PTGKOREKTOR_NEW.jabatan','PTGKOREKTOR_NEW.recid','PTGKOREKTOR_NEW.userakses')
                 ->join('DIP', 'DIP.nip', '=', 'PTGKOREKTOR_NEW.nip')
                 ->where('recid', '=', $recid)
+                ->limit(900)
                 ->first();
     }
 

@@ -16,6 +16,7 @@
                             <input type="text" class="form-control" id="nomor" onkeyup="valueing()">
                         </div>
                     </div>
+<<<<<<< HEAD
                     <div class="form-group row mt-2 ">
                         <label for="petcs" class="col-md-2 col-form-label">Petugas Tera</label>
                         <div class="col-md-6">
@@ -32,6 +33,11 @@
                                     {{-- <option value="{{ $petugas->petcs }}">{{ $petugas->kd_ptgcs }} - {{ $petugas->nama }}</option> --}}
                                 {{-- @endforeach --}}
                             </select>
+=======
+                    <div class="form-group">
+                    <label for="petcs" class="col-form-label">Petugas Tera</label>
+                        <div class="col-md-10">
+>>>>>>> dev-nifil
                         </div>
                     </div><br>
                     <button type="submit" class="btn btn-info btn-sm">Preview</button>

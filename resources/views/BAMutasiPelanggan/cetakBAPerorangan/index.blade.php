@@ -30,19 +30,22 @@
                             <h3 class="card-title">Cetak BA Perorangan</h3>
                         </div>
                         <div class="card-body">
-                            <form action="">
-                                <div class="form-group row ">
+                            <form class="form-horizontal" action="{{ route('preview') }}" method="POST">
+                                @csrf
+                                <div class="form-group row" id="startEnd">
                                     <label for="usulan_no_bonc" class="col-md-3 col-form-label">Nomor BA</label>
-                                    <div class="col-md-3">
-                                        <input type="text" class="form-control" id="usulan_no_bonc"name="usulan_no_bonc"onkeyup="valueing()">
-                                    </div>
-                                    <label for="usulan_no_bonc" class="col-form-label">S.D</label>
-                                    <div class="col-md-3">
-                                        <input type="text" class="form-control" id="usulan_no_bonc"name="usulan_no_bonc"onkeyup="valueing()">
+                                        <div class="col-md-3">
+                                            <input type="text" class="form-control" id="start" name="start" placeholder="T20020000248">
+                                        </div>
+                                    <span class="font-weight-bold mt-1" style="font-size: 15px;" id="startEnd">S.D</span>
+                                    <div class="col-md-3" id="startEnd">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="end" name="end" placeholder="T20020000249">
+                                        </div>
                                     </div>
                                 </div>
-                                <button type="submit" class=" btn-info btn-sm float-right">Preview</button>
-                                <button class=" btn-danger btn-sm float-right">Batal</button>
+                                <button type="submit" class="btn-info btn-sm">Preview</button>
+                                <button type="reset" class="btn-danger btn-sm">Reset</button>
                             </form>
                         </div>
                     </div>
@@ -57,4 +60,16 @@
     <script src="{{ asset('assets/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
+
+    <script type="text/javascript">
+    $(document).ready(function(){
+        $('input[type="radio"]').on('click', function(){
+            if($(this).attr("value") == "kode"){
+                $('#start').prop('disabled',false)
+                $('#end').prop('disabled',false)
+            }
+        })
+        $('input[type="radio"]').trigger('click');
+        })
+    </script>
 @endpush

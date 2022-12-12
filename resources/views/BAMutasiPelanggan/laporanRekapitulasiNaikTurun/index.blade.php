@@ -23,7 +23,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Laporan Rekapitulasi Naik Turun</h3>
-                            <a href="{{ route('preview') }}"class="btn btn-xs btn-success float-right"><i class="fas fa-print"></i> Cetak</a>
+                            <a href="{{ route('cetak') }}"class="btn btn-xs btn-success float-right"><i class="fas fa-print"></i> Cetak</a>
                         </div>
                         <div class="card-body">
                             <div class="row mb-4">
@@ -85,10 +85,11 @@
                                             
                                         </div>
                                         <div class="form-group row mt-2 ">
-                                            <label for="periode" class="col-md-2 col-form-label">
-                                            </label>
-                                            <button type="button" class="btn btn-success btn-sm float-right" id="search"></i>Filter</button>
-                                           
+                                            <label for="" class="col-md-6 col-form-label"></label>
+                                            <div class="col-md-5">
+                                                <button type="button" class="btn btn-success btn-sm" id="search"></i>Filter</button>
+                                                <button type="reset" class="btn btn-danger btn-sm"><i class="fa fa-undo"></i> Reset</button>
+                                            </div>
                                         </div>
                                     </form>
                                 </div>

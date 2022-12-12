@@ -33,8 +33,13 @@ class LaporanRekapitulasiNaikTurunController extends Controller
         return response()->json($data);
     }
 
-    public function preview()
+    public function print()
     {
-        return view('BAMutasiPelanggan.laporanRekapitulasiNaikTurun.preview');
+        return view('BAMutasiPelanggan.laporanRekapitulasiNaikTurun.print');
+    }
+
+    public function cetak()
+    {
+        return view('BAMutasiPelanggan.laporanRekapitulasiNaikTurun.cetak');
     }
 }

@@ -26,7 +26,7 @@
     <div class="card-body priview">
         <div class="row">
             <div class="col ">
-                <div style="font-size:15px">PEMERINTAH KOTAS URABAYA</div>
+                <div style="font-size:15px">PEMERINTAH KOTA SURABAYA</div>
                 <div style="font-size:15px">PERUSAHAAN DAERAH AIR MINUM</div>
             </div>
             <table>

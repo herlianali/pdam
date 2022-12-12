@@ -58,7 +58,6 @@ class LaporanTarifPerBendelController extends Controller
             $data = $query3->orderBy('jalan')->get();
             $hasil = $tester3 . "Urut Berdasarkan Jalan";
         }
-
         //  return response()->json([$data, $hasil]);
         return view('BAMutasiPelanggan.laporanTarifPerBendel.preview', compact('data', 'hasil'))->with('i');
     }

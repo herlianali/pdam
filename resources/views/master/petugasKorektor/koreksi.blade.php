@@ -126,7 +126,7 @@
                                     class="btn btn-success btn-sm edit"
                                     data-id="{{ $koreksiKorektor->recid }}"
                                     data-toggle="modal"
-                                    data-target="#edit">
+                                    data-target="#form">
                                     <i class="fas fa-edit"></i>
                                     Edit
                                     </button>
