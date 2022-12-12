@@ -27,22 +27,23 @@
                         <div class="card-body">
                             <div class="row mb-4">
                                 <div class="col-md-9">
-                                    <form class="form-horizontal">
+                                    <form method="POST" action="{{ route('insertPosisiMeter.post') }}" class="form-horizontal" enctype="multipart/form-data">
+                                        @csrf
                                         <div class="form-group row">
                                             <label for="jmlhdokumen" class="col-md-3 col-form-label">Jumlah Dokumen</label>
                                             <div class="col-md-2">
-                                                <input type="text" class="form-control" id="jmlhdokumen" onkeyup="valueing()">
+                                                <input type="text" class="form-control" name="jmlhdokumen" id="jmlhdokumen">
                                             </div>
                                             <div class="col-md-4 custom-file">
-                                                <input type="file" class="custom-file-input" name="dokumen"
-                                                    id="custom-file">
-                                                <label class="custom-file-label" for="customeFile">Choose
-                                                    File
+                                                <input type="file" class="custom-file-input" name="dokumen" id="dokumen">
+                                                <label class="custom-file-label" for="customeFile">
+                                                    Choose File
                                                 </label>
                                             </div>&nbsp;
-                                            <button class="btn btn-info btn-mt-2" id="download" type="button" alt title="Download Format File Excel" href="{% app 'upload.xls' %}" download>
+                                            <button class="btn btn-success" type="submit">Kirim</button>&nbsp;
+                                            <a class="btn btn-info btn-mt-2" id="download" title="Download Format File Excel" href="{{ asset("format_data.xlsx") }}">
                                                 <i class="fas fa-file-excel"></i>
-                                            </button>
+                                            </a>
                                         </div>
                                     </form>
                                 </div>
@@ -100,36 +101,25 @@
     <script>
         $(function() {
             $(function() {
-            $('#example').DataTable({
-
-            //  "lengthChange": false,
-            //   "autoWidth": false,
-            //   "responsive": true,
-            "oLanguage": {
-                "sSearch": "Search : "
-            },
-            "pageLength": 5
-            }).buttons().container().appendTo('#table_wrapper .col-md-6:eq(0)');
-            $('#example2').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": false,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false,
-                "responsive": true,
+                $('#example').DataTable({
+                "oLanguage": {
+                    "sSearch": "Search : "
+                },
                 "pageLength": 5
+                }).buttons().container().appendTo('#table_wrapper .col-md-6:eq(0)');
+                $('#example2').DataTable({
+                    "paging": true,
+                    "lengthChange": false,
+                    "searching": false,
+                    "ordering": true,
+                    "info": true,
+                    "autoWidth": false,
+                    "responsive": true,
+                    "pageLength": 5
+                });
             });
         });
 
-        function valueing() {
-            if (document.getElementById('kode').value === "" || document.getElementById('keterangan').value === "") {
-                document.getElementById('batal').disabled = true
-                document.getElementById('simpan').disabled = true
-            } else {
-                document.getElementById('batal').disabled = false
-                document.getElementById('simpan').disabled = false
-            }
-        }
+
     </script>
 @endpush
