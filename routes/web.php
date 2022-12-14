@@ -182,6 +182,7 @@ Route::prefix('master')->group(function () {
     Route::get('/printpenetapanTeraMeter', [PenetapanTeraMeterController::class, 'print'])->name('printpenetapanTeraMeter');
 
     Route::get('/insertPosisiMeter', [InsertPosisiMeterController::class, 'index'])->name('insertPosisiMeter');
+    Route::post('/insertPosisiMeter', [InsertPosisiMeterController::class, 'import'])->name('insertPosisiMeter.post');
 
     Route::get('/surveyTarif', [SurveyTarifController::class, 'index'])->name('surveyTarif');
     Route::post('/surveyTarif', [SurveyTarifController::class,'show'])->name('surveyTarif.show');
