@@ -28,7 +28,8 @@
                         <div class="card-body">
                             <div class="row mb-4">
                                 <div class="col-md-8">
-                                    <form class="form-horizontal">
+                                    <form action="{{ route('laporanRekapitulasiNaikTurun') }}" class="form-horizontal" method="POST">
+                                        @csrf
                                         <div class="form-group row mt-2 ">
                                             <label for="periode" class="col-md-2 col-form-label">Periode
                                             </label>
@@ -85,9 +86,9 @@
                                             
                                         </div>
                                         <div class="form-group row mt-2 ">
-                                            <label for="" class="col-md-6 col-form-label"></label>
+                                            <label for="button" class="col-md-6 col-form-label"></label>
                                             <div class="col-md-5">
-                                                <button type="button" class="btn btn-success btn-sm" id="search"></i>Filter</button>
+                                                <button class="btn btn-success btn-sm" ></i>Filter</button>
                                                 <button type="reset" class="btn btn-danger btn-sm"><i class="fa fa-undo"></i> Reset</button>
                                             </div>
                                         </div>
@@ -105,7 +106,13 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-
+                                        @foreach ($data as $row)
+                                        <tr>
+                                            <td>{{ $row->kd_tarif_l }}</td>
+                                            <td>{{ $row->kd_tarif_b }}</td>
+                                            <td>{{ $row->jumlah }}</td>
+                                        </tr>
+                                        @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -147,93 +154,6 @@
             });
         });
 
-        function deletePanggilanDinas(id) {
-            console.log(id)
-            swal.fire({
-                title: "Hapus Data?",
-                icon: 'question',
-                text: "Apakah Anda Yakin Ingin Menghapus",
-                type: "warning",
-                showCancelButton: !0,
-                confirmButtonColor: "#e74c3c",
-                confirmButtonText: "Iya",
-                cancelButtonText: "Tidak",
-                reverseButtons: !0
-            }).then(function(e) {
-                if (e.value === true) {
-                    let token = "{{ csrf_token() }}"
-                    let _url = `/master/deletePanggilanDinas/${id}`
-                    console.log(_url)
-
-                    $.ajax({
-                        type: 'DELETE',
-                        url: _url,
-                        data: {
-                            _token: token
-                        },
-                        success: function(resp) {
-                            if (resp.success) {
-                                swal.fire("Selesai!", resp.message, "success");
-                                location.reload();
-                            } else {
-                                swal.fire("Gagal!", "Terjadi Anjayy.", "error");
-                            }
-                        },
-                        error: function(resp) {
-                            swal.fire("Gagal!", "Terjadi Kesalahan.", "error")
-                        }
-                    })
-                } else {
-                    e.dismiss;
-                }
-            }, function(dismiss) {
-                return false;
-            });
-        }
-
-        $(document).on('click', '.filter', function(e){
-            e.preventDefault()
-            let periode = $('#periode').is(':checked')
-            let periode1 = $('#periode1').val()
-            let nama_c = $('#nama_C').is(':checked')
-            let nama = $('#nama').val()
-            let no_pa_c = $('#no_pa_c').is(':checked')
-            let no_pa = $('#no_pa').val()
-            let alamat_c = $('#alamat_c').is(':checked')
-            let jalan = $('#jalan').val()
-            let gang = $('#gang').val()
-            let no = $('#no').val()
-            let no_tambahan = $('#no_tambahan').val()
-
-            $.ajax({
-                type: "POST",
-                dataType: "JSON",
-                url: `{{ url('pengaduan/cariPelanggan') }}`,
-                data: {
-                    _token: '{{ csrf_token() }}',
-                    _method: "POST",
-                    periode: periode,
-                    periode1: periode1,
-                    nama_c: nama_c,
-                    nama: nama,
-                    no_pa_c: no_pa_c,
-                    no_pa: no_pa,
-                    alamat_c: alamat_c,
-                    jalan: jalan,
-                    gang: gang,
-                    no: no,
-                    no_tambahan: no_tambahan,
-                },
-                beforeSend: function() {
-                    showLoading()
-                },
-                success: function(response) {
-                    $('').each(response, function(i, data) {
-                        console.log(data.no_bonc)
-                    })
-                    swal.close();
-                }
-            })
-        })
+        
     </script>
 @endpush

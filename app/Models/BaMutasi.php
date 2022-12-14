@@ -24,7 +24,7 @@ class BaMutasi extends Model
     // RekapNaikTurun Checkbox pengesahan 11/11/2000
     public static function getPengesahan($BlnAwal, $BlnAkhir, $dasar)
     {
-        return DB::select("SELECT a.kd_tarif_l,a.kd_tarif_b, COUNT(a.no_bamutasi) JUMLAH FROM ba_mutasi a, dil b, pengaduan c, bonc d, ptgkontrol e Where a.no_plg = b.no_plg AND a.no_bonc = d.no_bonc(+) AND d.no_pengaduan = c.no_pengaduan(+) AND d.kd_ptgktrl = e.kd_ptgktrl(+) AND a.no_bamutasi LIKE 'T%' AND a.jns_mutasi LIKE '%D%' AND a.flag_ubahtarif = '".$dasar."' AND a.tgl_kabag between to_date('".$BlnAwal."','dd/mm/yyyy') and to_date('".$BlnAkhir."','dd/mm/yyyy') AND a.tgl_batal IS NULL GROUP BY a.kd_tarif_l, a.kd_tarif_b Union ALL SELECT b.kd_tarif_l,b.kd_tarif_b, COUNT(a.no_bamutkol) jumlah FROM ba_mutasikol a, dba_mutasikol b, dil c, pengaduan d, bonc e, ptgkontrol f Where a.no_bamutkol = b.no_bamutkol AND b.no_plg = c.no_plg AND a.no_bonc = e.no_bonc(+)AND e.no_pengaduan = d.no_pengaduan(+) AND e.kd_ptgktrl = f.kd_ptgktrl(+) AND a.no_bamutkol LIKE 'T%' AND a.jns_mutasi LIKE '%D%' AND b.flag_ubahtarif = '".$dasar."' AND a.batal = 0 AND a.tgl_batal IS NULL AND a.tgl_kabag between to_date('".$BlnAwal."','dd/mm/yyyy') and to_date('".$BlnAkhir."','dd/mm/yyyy') GROUP BY b.kd_tarif_l, b.kd_tarif_b ");
+        return DB::select("SELECT a.kd_tarif_l,a.kd_tarif_b, COUNT(a.no_bamutasi) JUMLAH FROM ba_mutasi a, dil b, pengaduan c, bonc d, ptgkontrol e Where a.no_plg = b.no_plg AND a.no_bonc = d.no_bonc(+) AND d.no_pengaduan = c.no_pengaduan(+) AND d.kd_ptgktrl = e.kd_ptgktrl(+) AND a.no_bamutasi LIKE 'T%' AND a.jns_mutasi LIKE '%D%' AND a.flag_ubahtarif = '".$dasar."' AND a.tgl_kabag between CAST('".$BlnAwal."' AS DATE) and CAST('".$BlnAkhir."' AS DATE) AND a.tgl_batal IS NULL GROUP BY a.kd_tarif_l, a.kd_tarif_b Union ALL SELECT b.kd_tarif_l,b.kd_tarif_b, COUNT(a.no_bamutkol) jumlah FROM ba_mutasikol a, dba_mutasikol b, dil c, pengaduan d, bonc e, ptgkontrol f Where a.no_bamutkol = b.no_bamutkol AND b.no_plg = c.no_plg AND a.no_bonc = e.no_bonc(+)AND e.no_pengaduan = d.no_pengaduan(+) AND e.kd_ptgktrl = f.kd_ptgktrl(+) AND a.no_bamutkol LIKE 'T%' AND a.jns_mutasi LIKE '%D%' AND b.flag_ubahtarif = '".$dasar."' AND a.batal = 0 AND a.tgl_batal IS NULL AND a.tgl_kabag between CAST('".$BlnAwal."' AS DATE) and CAST('".$BlnAkhir."' AS DATE) GROUP BY b.kd_tarif_l, b.kd_tarif_b ");
     }
 
     // Mutasi tarif naik turun checkbox sah 200211
@@ -42,5 +42,16 @@ class BaMutasi extends Model
     public static function getFilter()
     {
         return DB::select("SELECT dil.NAMA,dil.JALAN,dil.GANG,dil.NOMOR,dil.NOTAMB,wilayah_dist.KD_WILAYAH,wilayah_dist.NAMA AS NAMA_WILAYAH,ba_mutasi.*,bonc.tgl_bonc,bonc.tgl_realisasi,dil.da,ba_mutasi.da_b ,merk_meter.merk AS merkl, tmerk.merk AS merkb,ZONA_PERIODE.PERIODE FROM bonc,dil, ba_mutasi,zona,wilayah_dist, merk_meter, merk_meter tmerk,ZONA_PERIODE WHERE bonc.no_bonc(+)=ba_mutasi.no_bonc AND dil.NO_PLG = ba_mutasi.NO_PLG AND dil.zona=zona.zona AND DIL.ZONA=ZONA_PERIODE.ZONA AND zona.kd_wilayah=wilayah_dist.kd_wilayah");
+    }
+
+    public function getData() {
+        return DB::table($this->table)
+                ->select('BA_MUTASI.kd_tarif_l,BA_MUTASI.kd_tarif_b, COUNT(BA_MUTASI.no_bamutasi) JUMLAH')
+                ->where('BA_MUTASI', 'BA_MUTASI.no_plg', '=', 'DIL.no_plg')
+                ->join('BONC', 'BONC.no_pengaduan', '=', 'DIL.no_pengaduan')
+                ->join('BA_MUTASI', 'BA_MUTASI.no_bonc', '=', 'BON_c.no_bon')
+                ->join('BONC', 'BONC.kd_ptgktrl', '=', 'PTGKONTROL .kd_ptgktrl')
+                ->get();
+
     }
 }
