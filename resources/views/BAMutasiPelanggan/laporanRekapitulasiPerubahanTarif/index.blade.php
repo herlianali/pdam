@@ -25,10 +25,11 @@
                             <h3 class="card-title">Laporan Rekapitulasi Perubahan Tarif</h3>
                         </div>
                         <div class="card-body">
-                            <form action="">
-            
-                                <div class="form-group row ">
-                                    <label for="wilayah" class="col-md-1 col-form-label">  </label>
+                        <div class="row mb-4">
+                            <div class="col-md-8">
+                            <form action="form-horizontal">
+                                <div class="form-group row mt-2">
+                                    <label for="wilayah" class="col-md-2 col-form-label">  </label>
                                     <div class="form-check">
                                         <input type="radio" name="cek" id="pembuatan" value="pembuatan">
                                         <label for="">Pembuatan</label>
@@ -39,7 +40,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group row ">
-                                    <label for="periode" class="col-md-1 col-form-label">Periode </label>
+                                    <label for="periode" class="col-md-2 col-form-label">Periode </label>
                                     <div class="col-md-2">
                                         <input type="date" class="form-control" name="periode" id="periode"
                                             onkeyup="valueing()">
@@ -50,7 +51,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group row ">
-                                    <label for="wilayah" class="col-md-1 col-form-label"> Wilayah </label>
+                                    <label for="wilayah" class="col-md-2 col-form-label"> Wilayah </label>
                                     <div class="col-md-4">
                                         <select class="form-control" disabled id="wilayah" onkeyup="valueing()">
                                             <option value="wilayah T">T - Timur </option>
@@ -58,20 +59,49 @@
                                         </select>
                                     </div>
                                 </div>
-                                <button type="submit" class=" btn-info btn-sm float-right">Preview</button>
-                                <button type="reset" class=" btn-danger btn-sm float-right">Batal</button>
+                                <button type="submit" class=" btn-info btn-sm">Preview</button>
+                                <button type="reset" class=" btn-danger btn-sm">Batal</button>
                             </form>
+                            </div>
+                        </div>
+                        <table id="table" class="table table-bordered table-responsive-md table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th width="30%">JNS_TARIF</th>
+                                        <th width="30%">KD_TARIF</th>
+                                        <th width="20%">TRA1</th>
+                                        <th width="20%">TR2A</th>
+                                        <th width="20%">TR2B</th>
+                                        <th width="20%">TR3A</th>
+                                        <th width="20%">TR3B</th>
+                                        <th width="20%">TR3C</th>
+                                        <th width="20%">TR4A</th>
+                                        <th width="20%">TR4B</th>
+                                        <th width="20%">TR4C</th>
+                                        <th width="20%">TR4D</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
-                <!-- <div class="col-md-7 col-sm-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Print preview Laporan Rekapitulasi Perubahan Tarif</h3>
-                            <a href="" class="btn btn-xs btn-success float-right"><i class="fas fa-print"></i>Cetak</a>
-                        </div>
-                    </div>
-                </div> -->
             </div>
         </div>
     </section>
@@ -82,5 +112,5 @@
     <script src="{{ asset('assets/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
-    
+
 @endpush

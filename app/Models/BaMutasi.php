@@ -43,4 +43,15 @@ class BaMutasi extends Model
     {
         return DB::select("SELECT dil.NAMA,dil.JALAN,dil.GANG,dil.NOMOR,dil.NOTAMB,wilayah_dist.KD_WILAYAH,wilayah_dist.NAMA AS NAMA_WILAYAH,ba_mutasi.*,bonc.tgl_bonc,bonc.tgl_realisasi,dil.da,ba_mutasi.da_b ,merk_meter.merk AS merkl, tmerk.merk AS merkb,ZONA_PERIODE.PERIODE FROM bonc,dil, ba_mutasi,zona,wilayah_dist, merk_meter, merk_meter tmerk,ZONA_PERIODE WHERE bonc.no_bonc(+)=ba_mutasi.no_bonc AND dil.NO_PLG = ba_mutasi.NO_PLG AND dil.zona=zona.zona AND DIL.ZONA=ZONA_PERIODE.ZONA AND zona.kd_wilayah=wilayah_dist.kd_wilayah");
     }
+
+    public function getData() {
+        return DB::table($this->table)
+                ->select('BA_MUTASI.kd_tarif_l,BA_MUTASI.kd_tarif_b, COUNT(BA_MUTASI.no_bamutasi) JUMLAH')
+                ->where('BA_MUTASI', 'BA_MUTASI.no_plg', '=', 'DIL.no_plg')
+                ->join('BONC', 'BONC.no_pengaduan', '=', 'DIL.no_pengaduan')
+                ->join('BA_MUTASI', 'BA_MUTASI.no_bonc', '=', 'BON_c.no_bon')
+                ->join('BONC', 'BONC.kd_ptgktrl', '=', 'PTGKONTROL .kd_ptgktrl')
+                ->get();
+
+    }
 }

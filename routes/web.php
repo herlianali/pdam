@@ -260,13 +260,14 @@ Route::prefix('mutasipelanggan')->group(function() {
     Route::post('cetakLampiran', [MutasiKolektifController::class, 'cetakLampiran'])->name('cetakLampiran');
 
     Route::get('laporanRekapitulasiPerubahanTarif', [LaporanRekapitulasiPerubahanTarifController::class, 'index'])->name('laporanRekapitulasiPerubahanTarif');
+    Route::post('preview', [LaporanRekapitulasiPerubahanTarifController::class, 'preview'])->name('preview');
 
     Route::get('laporanPerubahanTNTperBulan', [LaporanPerubahanTNTperBulanController::class, 'index'])->name('laporanPerubahanTNTperBulan');
     Route::post('laporanPerubahanTNTperBulan', [LaporanPerubahanTNTperBulanController::class, 'show'])->name('laporanPerubahanTNTperBulan');
     Route::get('previewBulan', [LaporanPerubahanTNTperBulanController::class, 'preview'])->name('previewBulan');
 
     Route::get('laporanRekapitulasiNaikTurun', [LaporanRekapitulasiNaikTurunController::class, 'index'])->name('laporanRekapitulasiNaikTurun');
-    Route::post('laporanRekapitulasiNaikTurun', [LaporanRekapitulasiNaikTurunController::class, 'show'])->name('laporanRekapitulasiNaikTurun');
+    Route::post('laporanRekapitulasiNaikTurun', [LaporanRekapitulasiNaikTurunController::class, 'filter'])->name('laporanRekapitulasiNaikTurun');
     Route::get('print', [LaporanRekapitulasiNaikTurunController::class, 'print'])->name('print');
     Route::post('cetak',[LaporanRekapitulasiNaikTurunController::class, 'cetak'])->name('cetak');
 

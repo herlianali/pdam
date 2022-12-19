@@ -71,7 +71,8 @@
                                         <div class="form-group row">
                                             <label for="periode" class="col-md-1 col-form-label">Periode</label>
                                             <div class="col-md-4">
-                                                <input type="text" class="form-control" name="periode" id="periode" value=" ">
+                                            <input type="text" class="form-control" name="periode" id="periode"
+                                                    onkeyup="valueing()" value="" placeholder="102020">
                                             </div>
                                         </div>
 
