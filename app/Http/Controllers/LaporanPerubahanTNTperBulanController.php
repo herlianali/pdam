@@ -12,16 +12,57 @@ class LaporanPerubahanTNTperBulanController extends Controller
         return view('BAMutasiPelanggan.laporanPerubahanTNTperBulan.index');
     }
 
-    public function show(Request $request)
+    public function preview(Request $request)
     {
-        if($request->daasar == "sah"){
-            
+        // dd($request->post());
+        $periodeAwal = explode("/",$request->periode);
+        if($request->dasar == "sah"){
+            $periode  = $periodeAwal[1].$periodeAwal[0];
+            $data = array(
+                'filter'    => BaMutasi::getSah($periode, $request->level),
+                'periode'   => $request->periode,
+                'dasar'     => $request->dasar,
+                'level'     => $request->level,
+            );
+        }else{
+            $periode  = $periodeAwal[0].$periodeAwal[1];
+            $data = array(
+                'filter'    => BaMutasi::getTerbit($periode, $request->level),
+                'periode'   => $request->periode,
+                'dasar'     => $request->dasar,
+                'level'     => $request->level,
+            );
         }
-        return response()->json($request->post());
+
+        //dd($data);
+        // return response()->json($request->post());
+        return view('BAMutasiPelanggan.laporanPerubahanTNTperBulan.preview', compact('data'))->with('i');
     }
 
-    public function preview()
+    public function cetak(Request $request)
     {
-        return view('BAMutasiPelanggan.laporanPerubahanTNTperBulan.preview');
+        // dd($request->post());
+        $periodeAwal = explode("/",$request->periode);
+        if($request->dasar == "sah"){
+            $periode  = $periodeAwal[1].$periodeAwal[0];
+            $data = array(
+                'filter'    => BaMutasi::getSah($periode, $request->level),
+                'periode'   => $request->periode,
+                'dasar'     => $request->dasar,
+                'level'     => $request->level,
+            );
+        }else{
+            $periode  = $periodeAwal[0].$periodeAwal[1];
+            $data = array(
+                'filter'    => BaMutasi::getTerbit($periode, $request->level),
+                'periode'   => $request->periode,
+                'dasar'     => $request->dasar,
+                'level'     => $request->level,
+            );
+        }
+
+        //dd($data);
+        // return response()->json($request->post());
+        return view('BAMutasiPelanggan.laporanPerubahanTNTperBulan.cetak', compact('data'))->with('i');
     }
 }
