@@ -33,7 +33,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Preview Laporan Rekapitulasi Mutasi Tarif Naik/Turun</h3>
-                            <a href="" class="btn btn-sm btn-success float-right">Print</a>
+                            <a href="{{ route('cetakBulan') }}" class="btn btn-xs float-right btn-success print">Print</a>
                         </div>
                         <div class="card-body priview">
 
@@ -43,9 +43,21 @@
                             </div>
 
                             <div style="text-align: center">
-                                <div style="font-size:15px">LAPORAN MUTASI TARIF {{-- sesuai filter --}}</div>
+                                <div style="font-size:15px">LAPORAN MUTASI TARIF 
+                                    @if($data['level'] == 'N')
+                                        TARIF NAIK
+                                    @else
+                                        TARIF TURUN
+                                    @endif
+                                </div>
                                 <div style="font-size:15px">BAGIAN HUBUNGAN LANGGANAN TIMUR</div>
-                                <div style="font-size:15px">Periode Pengesahan : {{-- sesuai filter --}}</div>
+                                <div style="font-size:15px">PERIODE
+                                    @if($data['dasar'] == 'sah')
+                                        PENGESAHAN
+                                    @else
+                                        PENERBITAN REKENING
+                                    @endif
+                                    : {{$data['periode']}}</div>
                             </div>
                             <div class="mx-auto mb-3" style="width: 250px;">
                                 <span></span> <br>
@@ -69,54 +81,26 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                        @foreach ($data['filter'] as $row)
                                         <tr>
-                                            <td>1</td>
-                                            <td>10</td>
-                                            <td>10107</td>
-                                            <td>Drs. SUHARTO (RW.2)</td>
-                                            <td>KARANGREJO 10/9 AFT</td>
-                                            <td>4B</td>
-                                            <td>3B</td>
-                                            <td>TD21002</td>
-                                            <td>04/01/20</td>
-                                            <td>ALFIAN MALAKA</td>
-                                            <td>48</td>
-                                            <td>AGUS PRIYANTO</td>
-                                            <td>Lain-lain</td>
-                                            
+                                            <td>{{ ++$i }}</td>
+                                            <td>{{ $row->zona }}</td>
+                                            <td>{{ $row->no_plg }}</td>
+                                            <td>{{ $row->nama }}</td>
+                                            <td>{{ $row->jalan }} {{ $row->gang }} {{ $row->nomor }} {{ $row->notamb }}</td>
+                                            <td>{{ $row->kd_tarif_l }}</td>
+                                            <td>{{ $row->kd_tarif_b }}</td>
+                                            <td>{{ $row->no_ba }}</td>
+                                            <td>{{ $row->tgl_bamutasi }}</td>
+                                            <td>{{ $row->nama_pengadu }}</td>
+                                            <td>{{ $row->no_bundel }}</td>
+                                            <td>{{ $row->namapetugas }}</td>
+                                            <td>@if(trim($row->asal_pengaduan) == "L")
+                                                Lain-lain
+                                                @endif
+                                            </td>
                                         </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>10</td>
-                                            <td>10117</td>
-                                            <td>NV KUNARTO</td>
-                                            <td>KENTINTANG BARU 3/20 22</td>
-                                            <td>4B</td>
-                                            <td>3C</td>
-                                            <td>TD21009</td>
-                                            <td>03/01/20</td>
-                                            <td>SUCI KURNIAWAN</td>
-                                            <td>23</td>
-                                            <td>BAGIJO WINARDI</td>
-                                            <td>Lain-lain</td>
-                                            
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>10</td>
-                                            <td>10117</td>
-                                            <td>DJORO AWIE SOEBANDH</td>
-                                            <td>KENTINTANG BARU 6/5</td>
-                                            <td>4B</td>
-                                            <td>3C</td>
-                                            <td>TD21009</td>
-                                            <td>03/01/20</td>
-                                            <td>SUCI KURNIAWAN</td>
-                                            <td>23</td>
-                                            <td>BAGIJO WINARDI</td>
-                                            <td>Lain-lain</td>
-                                            
-                                        </tr>
+                                        @endforeach
 
                                 </tbody>
                             </table>
@@ -127,3 +111,51 @@
         </div>
     </section>
 @endsection
+
+@push('js')
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript">
+
+        var loadingPrint = function() {
+            swal.fire({
+                title: "Mohon Tunggu !",
+                html: "Sedang Menyiapkan Data...",
+                allowOutsideClick: false,
+                showConfirmButton: false,
+                willOpen: () => {
+                    swal.showLoading()
+                },
+            })
+        }
+
+        $(document).on('click', '.print', function(e) {
+            e.preventDefault();
+            var level = `{{ $data['level'] }}`
+            var dasar = `{{ $data['dasar'] }}`
+            var periode = `{{ $data['periode'] }}`
+            $.ajax({
+                type: "POST",
+                url: `{{ url('mutasipelanggan/cetakBulan') }}`,
+                dataType: 'html',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    level: level,
+                    dasar: dasar,
+                    periode: periode
+                },
+                beforeSend: function() {
+                    loadingPrint()
+                },
+                success: function(res){
+                    var w = window.open(`{{ url('mutasipelanggan/cetakBulan') }}`,'_blank');
+                    w.document.open();
+                    w.document.write(res);
+                    w.document.close();
+                    w.window.print();
+                    w.window.close();
+                    swal.close();
+                }
+            })
+        })
+        </script>
+@endpush

@@ -9,7 +9,7 @@
     <section class="content">
         <ul class="nav nav-tabs">
             <li class="nav-item">
-                <a class="nav-link " href="{{ route('petugasKorektor') }}">Master Petugas</a>
+                <a class="nav-link " href="{{ route('petugasKorektor.index') }}">Master Petugas</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('laporanpetugasKorektor') }}">Laporan</a>
