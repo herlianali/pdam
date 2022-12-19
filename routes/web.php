@@ -227,6 +227,7 @@ Route::prefix('pengaduan')->group(function() {
 Route::prefix('mutasipelanggan')->group(function() {
     Route::get('monitoringGunaPersil', [MonitoringGunaPersilController::class, 'index'])->name('monitoringGunaPersil');
     Route::post('monitoringGunaPersil', [MonitoringGunaPersilController::class, 'filter'])->name('monitoringGunaPersil');
+    // Route::get('previewmonitoring', [MonitoringGunaPersilController::class, 'showPrev'])->name('previewmonitoring');
     Route::post('previewmonitoring', [MonitoringGunaPersilController::class, 'preview'])->name('previewmonitoring');
     Route::post('cetakmonitoring', [MonitoringGunaPersilController::class, 'cetak'])->name('cetakmonitoring');
 

@@ -1,7 +1,7 @@
 @extends('layout.app')
 
 @push('css')
-    <link href="http://fonts.cdnfonts.com/css/dot-matrix" rel="stylesheet">
+    <link href="{{ asset('assets/plugins/font/dot-matrix.css') }}" rel="stylesheet">
     <style>
         .priview {
             font-family: 'Dot Matrix', sans-serif;
@@ -30,7 +30,14 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Print preview Monitoring Guna Persil</h3>
-                            <a href="{{ route('cetakmonitoring') }}" class="btn btn-sm btn-success float-right print"> Print</a>
+                            {{-- <form action="{{ route('cetakmonitoring') }}" method="POST">
+                                @csrf
+                                <input type="text" name="thbl" value="{{ $formData['thbl'] }}" style="display:none">
+                                <input type="text" name="periode" value="{{ $formData['periode'] }}" style="display:none">
+                                <input type="text" name="stan_persil" value="{{ $formData['stan_persil'] }}" style="display:none">
+                                <button type="submit" id="cetak" class="btn btn-sm btn-success float-right print"><i class="fas fa-print"></i> Print</button>
+                            </form> --}}
+                            <button class="btn btn-sm btn-success float-right print"> Print</button>
                         </div>
                         <div class="card-body priview">
                             <h4>
@@ -38,7 +45,7 @@
                             </h4>
                             <div class="col">
                             <span>Stan Sesuai;
-                                
+
                             </span>
                             </div>
                             <br>
@@ -86,29 +93,6 @@
 @push('js')
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="text/javascript">
-        $(function() {
-            $('#table').DataTable({
-
-                //  "lengthChange": false,
-                //   "autoWidth": false,
-                //   "responsive": true,
-                "oLanguage": {
-                    "sSearch": "No Pelanggan : "
-                },
-                "pageLength": 5
-            }).buttons().container().appendTo('#table_wrapper .col-md-6:eq(0)');
-            $('#table1').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": false,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false,
-                "responsive": true,
-                "pageLength": 5
-
-            });
-        });
 
         var loadingPrint = function() {
             swal.fire({
@@ -130,6 +114,9 @@
                 dataType: 'html',
                 data: {
                     _token: '{{ csrf_token() }}',
+                    thbl: "{{ $formData['thbl'] }}",
+                    periode: "{{ $formData['periode'] }}",
+                    stan_persil: "{{ $formData['stan_persil'] }}"
                 },
                 beforeSend: function() {
                     loadingPrint()

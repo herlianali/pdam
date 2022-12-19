@@ -23,10 +23,13 @@ class LaporanRekapitulasiNaikTurunController extends Controller
             $pAkhir = $akhir[1].$akhir[2];
             $data = BaMutasi::getPenerbit($pAwal, $pAkhir, $request->level);
             // $hasil = "penerbit";
-        }else{
-            // $pAwal  = date("d/m/Y", strtotime($request->pAwal));
-            // $pAkhir = date("d/m/Y", strtotime($request->pAkhir));
-            $data = BaMutasi::getPengesahan($request->pAwal, $request->Akhir, $request->level);
+        }elseif($request->dasar == "pengesahan"){
+            // $pAwal  = date("d-m-Y", strtotime($request->pAwal));
+            // $pAkhir = date("d-m-Y", strtotime($request->pAkhir));
+            $pAwal  = $awal[2]."-".$awal[0]."-".$awal[1];
+            $pAkhir = $akhir[2]."-".$akhir[0]."-".$akhir[1];
+            // dd($pAkhir);
+            $data = BaMutasi::getPengesahan($pAwal, $pAkhir, $request->level);
             // $hasil = "pengesahan";
         }
 
