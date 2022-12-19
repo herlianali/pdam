@@ -26,7 +26,7 @@
                             <h3 class="card-title"> Laporan Mutasi Tarif Naik/Turun</h3>
                         </div>
                         <div class="card-body">
-                          
+
                                 <div class="col-md-12">
                                     <form class="form-horizontal" action="{{ route('previewBulan') }}" method="POST">
                                         @csrf
@@ -99,7 +99,6 @@
     <script>
         $(function() {
             $('#table').DataTable({
-
                 //  "lengthChange": false,
                 //   "autoWidth": false,
                 //   "responsive": true,

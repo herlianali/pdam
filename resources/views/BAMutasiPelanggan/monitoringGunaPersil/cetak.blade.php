@@ -35,7 +35,7 @@
             <center><p> Laporan Monitoring Guna Persil </p></center>
         </h4>
         <div class="col">
-            <span>{{$apa}},{{$apa}}</span>
+            <span></span>
         </div>
         <table class="table table-border">
             <thead>
@@ -51,19 +51,19 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($monitoring as $mgunapersil)
+                @foreach ($data as $mgunapersil)
                 <tr>
                     <td>{{ $mgunapersil->no_plg }}</td>
                     <td>{{ $mgunapersil->nama }}</td>
                     <td>{{ $mgunapersil->jalan }}</td>
                     <td>{{ $mgunapersil->gang }}</td>
-                    <td>{{ $mgunapersil->no }}</td>
-                    <td>{{ $mgunapersil->no_tambahan }}</td>
-                    <td>{{ $mgunapersil->no_tambahan }}</td>
+                    <td>{{ $mgunapersil->nomor }}</td>
+                    <td>{{ $mgunapersil->notamb }}</td>
+                    <td>{{ $mgunapersil->da }}</td>
                     <td>{{ $mgunapersil->kd_tarif }}</td>
                 </tr>
                 @endforeach
-            
+
             </tbody>
         </table>
 </body>

@@ -19,7 +19,7 @@ class LaporanRekapitulasiNaikTurunController extends Controller
         //dd($request->post());
         $awal = explode("-",$request->periode);
         $akhir = explode("-",$request->periode1);
-        
+
         if($request->dasar == "penerbitan"){
             $pAwal  = $awal[1].$awal[0];
             $pAkhir = $akhir[1].$akhir[0];
@@ -32,7 +32,7 @@ class LaporanRekapitulasiNaikTurunController extends Controller
             // $hasil = "pengesahan";
         }
         // dd($data);
-        
+
         // return response()->json($data);
         return view('BAMutasiPelanggan.laporanRekapitulasiNaikTurun.index', compact('data'));
     }

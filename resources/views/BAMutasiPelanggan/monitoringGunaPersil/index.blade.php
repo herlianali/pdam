@@ -15,7 +15,6 @@
     </ol>
 @endsection
 
-
 @section('content')
     <section class="content">
         <div class="container-fluid">
@@ -24,37 +23,31 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Monitoring Guna Persil</h3>
-                            <button id="cetak" class="btn btn-xs btn-info float-right"><i
-                                    class="fas fa-print"></i> Cetak</button>
-                            <input type="hidden" class="form-control" name="thbl" id="thbl"
-                                onkeyup="valueing()" value="" placeholder="202010">
-                            <select hidden class="form-control" id="periode" name="periode"
-                                onkeyup="valueing()">
-                                <option value="1"> 1</option>
-                                <option value="2"> 2 </option>
-                            </select>
-                            <input type="hidden" name="stan_persil" id="stan_persil_sesuai" value="1">
-                            <input type="hidden" name="stan_persil" id="stan_persil_tidak_sesuai" value="2">
+                            @if (count($formData) > 0)
+                            <form action="{{ route('previewmonitoring') }}" method="POST">
+                                @csrf
+                                <input type="text" name="thbl" value="{{ $formData['thbl'] }}" style="display:none">
+                                <input type="text" name="periode" value="{{ $formData['periode'] }}" style="display:none">
+                                <input type="text" name="stan_persil" value="{{ $formData['stan_persil'] }}" style="display:none">
+                                <button type="submit" id="cetak" class="btn btn-xs btn-info float-right"><i class="fas fa-print"></i> Cetak</button>
+                            </form>
+                            @endif
                         </div>
                         <div class="card-body">
                             <div class="row mb-4">
                                 <div class="col-md-12">
-                                    <form class="form-horizontal" action="" method="post">
+                                    <form class="form-horizontal" method="post">
                                         @csrf
-
                                         <div class="form-group row ">
                                             <label for="thbl" class="col-md-2 col-form-label">THBL</label>
                                             <div class="col-md-4">
-                                                <input type="text" class="form-control" name="thbl" id="thbl"
-                                                    onkeyup="valueing()" value="" placeholder="202010">
+                                                <input type="text" class="form-control" name="thbl" id="thbl" placeholder="202010">
                                             </div>
                                         </div>
                                         <div class="form-group row ">
                                             <label for="periode" class="col-md-2 col-form-label">Periode</label>
                                             <div class="col-md-4">
-
-                                                <select class="form-control" id="periode" name="periode"
-                                                    onkeyup="valueing()">
+                                                <select class="form-control" id="periode" name="periode">
                                                     <option value="1"> 1</option>
                                                     <option value="2"> 2 </option>
                                                 </select>
@@ -67,34 +60,26 @@
                                                 <div class="form-check">
                                                     <div class="row">
                                                         <div class="col-ml-1">
-                                                            <input type="radio" name="stan_persil"
-                                                                id="stan_persil_sesuai" value="1">
+                                                            <input type="radio" name="stan_persil" id="stan_persil_sesuai" value="1">
                                                             <label for="">STAN Sesuai GUNA PERSIL Sesuai</label>
                                                         </div>
                                                         <div class="col-ml-1">
-                                                            <input type="radio" name="stan_persil"
-                                                                id="stan_persil_tidak_sesuai" value="2">
-                                                            <label for="">STAN Sesuai GUNA PERSIL Tidak
-                                                                Sesuai</label>
+                                                            <input type="radio" name="stan_persil" id="stan_persil_tidak_sesuai" value="2">
+                                                            <label for="">STAN Sesuai GUNA PERSIL Tidak Sesuai</label>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-group row ">
-                                            <label for="button" class="col-md-2 col-form-label"></label>
+                                        <div class="form-group row">
                                             <div class="col-md-4">
-
-                                                <button class="btn btn-success btn-sm float-right">
-                                                    Filter</button>
-
+                                                <button class="btn btn-success btn-sm float-right">Filter</button>
                                             </div>
                                         </div>
-                                     
                                     </form>
                                 </div>
                             </div>
-                            <table class="table table-bordered table-responsive-md table-condensed">
+                            <table id="table" class="table table-bordered table-responsive-md table-condensed">
                                 <thead>
                                     <tr>
                                         <th>No Pelanggan</th>
@@ -135,6 +120,7 @@
 @endsection
 
 @push('js')
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
@@ -143,10 +129,6 @@
     <script>
         $(function() {
             $('#table').DataTable({
-
-                //  "lengthChange": false,
-                //   "autoWidth": false,
-                //   "responsive": true,
                 "oLanguage": {
                     "sSearch": "No Pelanggan : "
                 },
@@ -165,30 +147,39 @@
             });
         });
 
-        $(document).on('click', '#cetak', function(e) {
-            e.preventDefault();
-            var thbl = $('#thbl').val();
-            var periode = $('#periode').val();
-            var stan_persil = $('#stan_persil').val();
-            $.ajax({
-                type: "POST",
-                dataType: "JSON",
-                url: `{{ url('mutasipelanggan/previewmonitoring') }}`,
-                data: {
-                    _token: '{{ csrf_token() }}',
-                    thbl: thbl,
-                    periode: periode,
-                    stan_persil: stan_persil,
+        var showLoading = function() {
+            swal.fire({
+                title: "Mohon Tunggu !",
+                html: "Sedang Menyiapkan Data...",
+                allowOutsideClick: false,
+                showConfirmButton: false,
+                willOpen: () => {
+                    swal.showLoading()
                 },
-                beforeSend: function() {
-                    showLoading()
-                },
-                success: function(response) {
-                    console.log(response);
-                    swal.close();
-                }
             })
-        })
+        }
+
+        // $(document).on('click', '#cetak', function(e){
+        //     e.preventDefault();
+        //     let thbl = `<?php echo (isset($formData['thbl'])) ? $formData['thbl'] : '' ?>`
+        //     let periode = `<?php echo (isset($formData['periode'])) ? $formData['periode'] : '' ?>`
+        //     let stan_persil = `<?php echo (isset($formData['stan_persil'])) ? $formData['stan_persil'] : '' ?>`
+        //     $.ajax({
+        //         type: "POST",
+        //         dataType: "JSON",
+        //         url: `{{ url('mutasipelanggan/previewmonitoring') }}`,
+        //         data: {
+        //             _token: "{{ csrf_token() }}",
+        //             thbl: thbl,
+        //             periode: periode,
+        //             stan_persil: stan_persil
+        //         },
+        //         success: function(response) {
+        //             console.log(response);
+        //             // window.location = "{{ route('previewmonitoring') }}"
+        //         }
+        //     })
+        // })
 
     </script>
 @endpush

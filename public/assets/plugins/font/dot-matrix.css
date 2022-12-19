@@ -1,0 +1,12 @@
+@font-face {
+    font-family: 'Dot Matrix';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Dot Matrix'), url('DOTMATRI.woff') format('woff');
+}
+@font-face {
+    font-family: 'Dot Matrix';
+    font-style: normal;
+    font-weight: 700;
+    src: local('Dot Matrix'), url('DOTMBold.woff') format('woff');
+}
