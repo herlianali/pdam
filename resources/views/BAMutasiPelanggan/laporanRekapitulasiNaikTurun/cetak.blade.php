@@ -27,30 +27,38 @@
         <div class="row">
             <div class="col" style="text-align: left;">
                 <div style="font-size:15px">PDAM Kota Surabaya</div>
-                <div style="font-size:15px">Rekapitulasi Perubahan Tarif .... Wilayah Timur</div><br>
+                <div style="font-size:15px">Rekapitulasi Perubahan Tarif 
+                @if($formData['level'] == 'N')
+                    Naik
+                @else
+                    Turun
+                @endif
+                Wilayah Timur</div><br>
                 <div style="font-size:15px">Periode : </div>
             </div>
         </div>
-        <table class="table">
-        <thead>
-            <tr>
-                <th>No</th>
-                <th>Tarif Lama</th>
-                <th>Tarif Baru</th>
-                <th>Jumlah</th>
-            </tr>
-        </thead>
-    </table>
-    <table>
-        <tbody>
-            <tr>
-                <td>1</td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-        </tbody>
-    </table>
+        <table id="table" class="table table-bordered table-responsive-md table-condensed">
+            <thead>
+                <tr>
+                    <th width="20%">No</th>
+                    <th width="20%">Kode Tarif L </th>
+                    <th width="20%">Kode Tarif B</th>
+                    <th width="30%">Jumlah</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (count($data) > 0)
+                    @foreach ($data as $row)
+                    <tr>
+                        <td>{{ ++$i }}</td>
+                        <td>{{ $row->kd_tarif_l }}</td>
+                        <td>{{ $row->kd_tarif_b }}</td>
+                        <td>{{ $row->jumlah }}</td>
+                    </tr>
+                    @endforeach
+                @endif
+            </tbody>
+        </table>
 </body>
 </html>
 

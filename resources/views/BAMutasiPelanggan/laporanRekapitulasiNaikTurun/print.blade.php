@@ -6,11 +6,6 @@
         .priview {
             font-family: 'Dot Matrix', sans-serif;
         }
-
-        table thead tr {
-            border-bottom: 3px dashed rgb(102, 102, 102);
-            border-top: 3px dashed rgb(102, 102, 102);
-        }
     </style>
 @endpush
 
@@ -33,29 +28,44 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Laporan Rekapitulasi Naik Turun</h3>
-                            <a href="{{ route('cetak') }}" class="btn btn-sm btn-success float-right print"> Print</a>
+                            <button class="btn btn-sm btn-success float-right print"> Print</button>
                         </div>
                         <div class="card-body priview">
+                        <div class="row">
+                            <div class="col" style="text-align: left;">
+                                <div style="font-size:15px">PDAM Kota Surabaya</div>
+                                <div style="font-size:15px">Rekapitulasi Perubahan Tarif 
+                                @if($formData['level'] == 'N')
+                                    Naik
+                                @else
+                                    Turun
+                                @endif
+                                Wilayah Timur</div><br>
+                                <div style="font-size:15px">Periode : </div>
+                            </div>
+                        </div>
                         <form class="form-horizontal">
                             <br>
-                            <table class="table">
+                            <table class="table table-bordered table-responsive-md table-condensed">
                                 <thead>
                                     <tr>
-                                        <th>No</th>
-                                        <th>Tarif Lama</th>
-                                        <th>Tarif Baru</th>
-                                        <th>Jumlah</th>
+                                        <th width="20%">No</th>
+                                        <th width="20%">Kode Tarif L </th>
+                                        <th width="20%">Kode Tarif B</th>
+                                        <th width="30%">Jumlah</th>
                                     </tr>
                                 </thead>
-                            </table>
-                            <table>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
+                                    @if (count($data) > 0)
+                                        @foreach ($data as $row)
+                                        <tr>
+                                            <td>{{ ++$i }}</td>
+                                            <td>{{ $row->kd_tarif_l }}</td>
+                                            <td>{{ $row->kd_tarif_b }}</td>
+                                            <td>{{ $row->jumlah }}</td>
+                                        </tr>
+                                        @endforeach
+                                    @endif
                                 </tbody>
                             </table>
                         </div>
@@ -87,16 +97,20 @@
             e.preventDefault();
             $.ajax({
                 type: "POST",
-                url: `{{ url('mutasipelanggan/laporanRekapitulasiNaikTurun') }}`,
+                url: `{{ url('mutasipelanggan/cetakRekapitulasiNaikTurun') }}`,
                 dataType: 'html',
                 data: {
                     _token: '{{ csrf_token() }}',
+                    periode: "{{ $formData['periode'] }}",
+                    periode1: "{{ $formData['periode1'] }}",
+                    dasar: "{{ $formData['dasar'] }}",
+                    level: "{{ $formData['level'] }}"
                 },
                 beforeSend: function() {
                     loadingPrint()
                 },
                 success: function(res){
-                    var w = window.open(`{{ url('mutasipelanggan/laporanRekapitulasiNaikTurun') }}`,'_blank');
+                    var w = window.open(`{{ url('mutasipelanggan/cetakRekapitulasiNaikTurun') }}`,'_blank');
                     w.document.open();
                     w.document.write(res);
                     w.document.close();

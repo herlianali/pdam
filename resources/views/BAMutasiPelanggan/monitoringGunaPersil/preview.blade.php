@@ -30,13 +30,6 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Print preview Monitoring Guna Persil</h3>
-                            {{-- <form action="{{ route('cetakmonitoring') }}" method="POST">
-                                @csrf
-                                <input type="text" name="thbl" value="{{ $formData['thbl'] }}" style="display:none">
-                                <input type="text" name="periode" value="{{ $formData['periode'] }}" style="display:none">
-                                <input type="text" name="stan_persil" value="{{ $formData['stan_persil'] }}" style="display:none">
-                                <button type="submit" id="cetak" class="btn btn-sm btn-success float-right print"><i class="fas fa-print"></i> Print</button>
-                            </form> --}}
                             <button class="btn btn-sm btn-success float-right print"> Print</button>
                         </div>
                         <div class="card-body priview">
@@ -44,9 +37,15 @@
                                 <center> Laporan Monitoring Guna Persil</center>
                             </h4>
                             <div class="col">
-                            <span>Stan Sesuai;
-
-                            </span>
+                            <div style="text-align: left">
+                                <div style="font-size:15px">STAN SESUAI; GUNA PERSIL
+                                    @if($formData['stan_persil'] == '1')
+                                        SESUAI
+                                    @else
+                                        TIDAK SESUAI
+                                    @endif
+                                </div>
+                            </div>
                             </div>
                             <br>
                             <div class="container">
@@ -68,6 +67,7 @@
                                         @if (count($data) > 0)
                                         @foreach ($data as $row)
                                         <tr>
+                                            <td>{{ ++$i }}</td>
                                             <td>{{ $row->no_plg }}</td>
                                             <td>{{ $row->nama }}</td>
                                             <td>{{ $row->jalan }}</td>

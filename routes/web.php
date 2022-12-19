@@ -269,8 +269,8 @@ Route::prefix('mutasipelanggan')->group(function() {
 
     Route::get('laporanRekapitulasiNaikTurun', [LaporanRekapitulasiNaikTurunController::class, 'index'])->name('laporanRekapitulasiNaikTurun');
     Route::post('laporanRekapitulasiNaikTurun', [LaporanRekapitulasiNaikTurunController::class, 'filter'])->name('laporanRekapitulasiNaikTurun');
-    Route::get('print', [LaporanRekapitulasiNaikTurunController::class, 'print'])->name('print');
-    Route::post('cetak',[LaporanRekapitulasiNaikTurunController::class, 'cetak'])->name('cetak');
+    Route::post('printRekapitulasiNaikTurun', [LaporanRekapitulasiNaikTurunController::class, 'print'])->name('printRekapitulasiNaikTurun');
+    Route::post('cetakRekapitulasiNaikTurun',[LaporanRekapitulasiNaikTurunController::class, 'cetak'])->name('cetakRekapitulasiNaikTurun');
 
     Route::get('laporanTarifPerBendel', [LaporanTarifPerBendelController::class, 'index'])->name('laporanTarifPerBendel');
     // Route::post('laporanTarifPerBendel', [LaporanTarifPerBendelController::class, 'showLaporanBendel'])->name('laporanTarifPerBendel');
