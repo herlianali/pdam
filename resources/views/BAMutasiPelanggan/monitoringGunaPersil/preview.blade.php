@@ -37,9 +37,15 @@
                                 <center> Laporan Monitoring Guna Persil</center>
                             </h4>
                             <div class="col">
-                            <span>Stan Sesuai;
-
-                            </span>
+                            <div style="text-align: left">
+                                <div style="font-size:15px">STAN SESUAI; GUNA PERSIL
+                                    @if($formData['stan_persil'] == '1')
+                                        SESUAI
+                                    @else
+                                        TIDAK SESUAI
+                                    @endif
+                                </div>
+                            </div>
                             </div>
                             <br>
                             <div class="container">
@@ -61,6 +67,7 @@
                                         @if (count($data) > 0)
                                         @foreach ($data as $row)
                                         <tr>
+                                            <td>{{ ++$i }}</td>
                                             <td>{{ $row->no_plg }}</td>
                                             <td>{{ $row->nama }}</td>
                                             <td>{{ $row->jalan }}</td>

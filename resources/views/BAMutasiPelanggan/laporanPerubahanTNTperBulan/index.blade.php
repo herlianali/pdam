@@ -28,7 +28,8 @@
                         <div class="card-body">
 
                                 <div class="col-md-12">
-                                    <form class="form-horizontal">
+                                    <form class="form-horizontal" action="{{ route('previewBulan') }}" method="POST">
+                                        @csrf
                                         <div class="form-group row">
                                             <label for="" class="col-md-1 col-form-label"></label>
                                             <div class="col-md-8">
@@ -72,7 +73,7 @@
                                             <label for="periode" class="col-md-1 col-form-label">Periode</label>
                                             <div class="col-md-4">
                                             <input type="text" class="form-control" name="periode" id="periode"
-                                                    onkeyup="valueing()" value="" placeholder="102020">
+                                                    onkeyup="valueing()" value="" placeholder="10/2020">
                                             </div>
                                         </div>
 

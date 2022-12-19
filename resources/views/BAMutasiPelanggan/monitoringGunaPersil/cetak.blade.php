@@ -40,6 +40,7 @@
         <table class="table table-border">
             <thead>
                 <tr>
+                    <th>NO</th>
                     <th>No PLG</th>
                     <th>NAMA</th>
                     <th>JALAN</th>
@@ -51,19 +52,21 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($data as $mgunapersil)
+                @if (count($data) > 0)
+                @foreach ($data as $row)
                 <tr>
-                    <td>{{ $mgunapersil->no_plg }}</td>
-                    <td>{{ $mgunapersil->nama }}</td>
-                    <td>{{ $mgunapersil->jalan }}</td>
-                    <td>{{ $mgunapersil->gang }}</td>
-                    <td>{{ $mgunapersil->nomor }}</td>
-                    <td>{{ $mgunapersil->notamb }}</td>
-                    <td>{{ $mgunapersil->da }}</td>
-                    <td>{{ $mgunapersil->kd_tarif }}</td>
+                    <td>{{ ++$i }}</td>
+                    <td>{{ $row->no_plg }}</td>
+                    <td>{{ $row->nama }}</td>
+                    <td>{{ $row->jalan }}</td>
+                    <td>{{ $row->gang}}</td>
+                    <td>{{ $row->nomor}}</td>
+                    <td>{{ $row->notamb}}</td>
+                    <td>{{ $row->da}}</td>
+                    <td>{{ $row->kd_tarif}}</td>
                 </tr>
                 @endforeach
-
+            @endif
             </tbody>
         </table>
 </body>

@@ -44,12 +44,11 @@ class MonitoringGunaPersilController extends Controller
         ];
 
         $data = Rekening::filter($request->thbl, $param);
-        $formData = [
+        $formData = array(
             'thbl'         => $request->thbl,
             'periode'      => $request->periode,
             'stan_persil'  => $request->stan_persil
-        ];
-
+        );
         // return response()->json($data);
         return view('BAMutasiPelanggan.monitoringGunaPersil.preview', compact('data', 'formData'))->with('i');
     }

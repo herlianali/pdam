@@ -31,9 +31,21 @@
         </div>
 
         <div style="text-align: center">
-            <div style="font-size:15px">LAPORAN MUTASI TARIF {{-- sesuai filter --}}</div>
+            <div style="font-size:15px">LAPORAN MUTASI TARIF 
+                @if($data['level'] == 'N')
+                    TARIF NAIK
+                @else
+                    TARIF TURUN
+                @endif
+            </div>
             <div style="font-size:15px">BAGIAN HUBUNGAN LANGGANAN TIMUR</div>
-            <div style="font-size:15px">Periode Pengesahan : {{-- sesuai filter --}}</div>
+            <div style="font-size:15px">PERIODE
+                @if($data['dasar'] == 'sah')
+                    PENGESAHAN
+                @else
+                    PENERBITAN REKENING
+                @endif
+                : {{$data['periode']}}</div>
         </div>
         <div class="mx-auto mb-3" style="width: 250px;">
             <span></span> <br>
@@ -54,10 +66,29 @@
                     <th>Bundel</th>
                     <th>Nama Con</th>
                     <th>Asal Pen</th>
-
                 </tr>
             </thead>
             <tbody>
+                    @foreach ($data['filter'] as $row)
+                    <tr>
+                        <td>{{ ++$i }}</td>
+                        <td>{{ $row->zona }}</td>
+                        <td>{{ $row->no_plg }}</td>
+                        <td>{{ $row->nama }}</td>
+                        <td>{{ $row->jalan }} {{ $row->gang }} {{ $row->nomor }} {{ $row->notamb }}</td>
+                        <td>{{ $row->kd_tarif_l }}</td>
+                        <td>{{ $row->kd_tarif_b }}</td>
+                        <td>{{ $row->no_ba }}</td>
+                        <td>{{ $row->tgl_bamutasi }}</td>
+                        <td>{{ $row->nama_pengadu }}</td>
+                        <td>{{ $row->no_bundel }}</td>
+                        <td>{{ $row->namapetugas }}</td>
+                        <td>@if(trim($row->asal_pengaduan) == "L")
+                            Lain-lain
+                            @endif
+                        </td>
+                    </tr>
+                    @endforeach
 
             </tbody>
         </table>
@@ -65,3 +96,12 @@
 
 </body>
 </html>
+
+@push('js')
+    <script src="{{ asset('assets/jquery.printPage.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(".print").printPage();
+        });
+    </script>
+@endpush

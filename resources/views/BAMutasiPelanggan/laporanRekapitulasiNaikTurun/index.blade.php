@@ -23,12 +23,21 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Laporan Rekapitulasi Naik Turun</h3>
-                            <a href="{{ route('cetak') }}"class="btn btn-xs btn-success float-right"><i class="fas fa-print"></i> Cetak</a>
+                            @if (count($formData) > 0)
+                            <form action="{{ route('printRekapitulasiNaikTurun') }}" method="POST">
+                                @csrf
+                                <input type="text" name="periode" value="{{ $formData['periode'] }}" style="display:none">
+                                <input type="text" name="periode1" value="{{ $formData['periode1'] }}" style="display:none">
+                                <input type="text" name="dasar" value="{{ $formData['dasar'] }}" style="display:none">
+                                <input type="text" name="level" value="{{ $formData['level'] }}" style="display:none">
+                                <button type="submit" id="cetak" class="btn btn-xs btn-info float-right"><i class="fas fa-print"></i> Cetak</button>
+                            </form>
+                            @endif
                         </div>
                         <div class="card-body">
                             <div class="row mb-4">
                                 <div class="col-md-8">
-                                    <form action="{{ route('laporanRekapitulasiNaikTurun') }}" class="form-horizontal" method="POST">
+                                    <form class="form-horizontal" method="POST">
                                         @csrf
                                         <div class="form-group row mt-2 ">
                                             <label for="periode" class="col-md-2 col-form-label">Periode
@@ -54,13 +63,13 @@
                                                 </div>
                                                 <div class="form-group row">
                                                     <div class="form-check">
-                                                        <input type="radio" class="form-check-input" id="penerbitan" name="dasar" value="penerbitan">
-                                                        <label class="form-check-label">Penerbitan</label>
+                                                        <input type="radio" class="form-check-input" id="pengesahan" name="dasar" value="pengesahan">
+                                                        <label class="form-check-label">Pengesahan</label>
                                                     </div>
                                                     &nbsp;
                                                     <div class="form-check">
-                                                        <input type="radio" class="form-check-input" id="pengesahan" name="dasar" value="pengesahan">
-                                                        <label class="form-check-label">Pengesahan</label>
+                                                        <input type="radio" class="form-check-input" id="penerbitan" name="dasar" value="penerbitan">
+                                                        <label class="form-check-label">Penerbitan</label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -106,6 +115,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @if (count($data) > 0)
                                         @foreach ($data as $row)
                                         <tr>
                                             <td>{{ $row->kd_tarif_l }}</td>
@@ -113,6 +123,7 @@
                                             <td>{{ $row->jumlah }}</td>
                                         </tr>
                                         @endforeach
+                                    @endif
                                 </tbody>
                             </table>
                         </div>
