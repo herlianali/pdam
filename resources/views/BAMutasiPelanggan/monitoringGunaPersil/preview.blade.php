@@ -30,13 +30,6 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Print preview Monitoring Guna Persil</h3>
-                            {{-- <form action="{{ route('cetakmonitoring') }}" method="POST">
-                                @csrf
-                                <input type="text" name="thbl" value="{{ $formData['thbl'] }}" style="display:none">
-                                <input type="text" name="periode" value="{{ $formData['periode'] }}" style="display:none">
-                                <input type="text" name="stan_persil" value="{{ $formData['stan_persil'] }}" style="display:none">
-                                <button type="submit" id="cetak" class="btn btn-sm btn-success float-right print"><i class="fas fa-print"></i> Print</button>
-                            </form> --}}
                             <button class="btn btn-sm btn-success float-right print"> Print</button>
                         </div>
                         <div class="card-body priview">
