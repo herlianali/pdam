@@ -1,7 +1,7 @@
 @extends('layout.app')
 
 @push('css')
-    <link href="http://fonts.cdnfonts.com/css/dot-matrix" rel="stylesheet">
+    <link href="{{ asset('assets/plugins/font/dot-matrix.css') }}" rel="stylesheet">
     <style>
         .priview {
             font-family: 'Dot Matrix', sans-serif;
@@ -41,7 +41,7 @@
                                     Turun
                                 @endif
                                 Wilayah Timur</div><br>
-                                <div style="font-size:15px">Periode : </div>
+                                <div style="font-size:15px">Periode : {{ $periode }}</div>
                             </div>
                         </div>
                         <form class="form-horizontal">
@@ -57,17 +57,48 @@
                                 </thead>
                                 <tbody>
                                     @if (count($data) > 0)
+                                    <div style="display: none">{{ $total = 0 }}</div>
                                         @foreach ($data as $row)
                                         <tr>
                                             <td>{{ ++$i }}</td>
                                             <td>{{ $row->kd_tarif_l }}</td>
                                             <td>{{ $row->kd_tarif_b }}</td>
                                             <td>{{ $row->jumlah }}</td>
+                                            <div style="display: none">{{$total += $row->jumlah }}</div>
                                         </tr>
                                         @endforeach
                                     @endif
+                                    <tr>
+                                        <th></th>
+                                        <th></th>
+                                        <th>Total</th>
+                                        <th>{{ $total }}</th>
+                                    </tr>
                                 </tbody>
-                            </table>
+                            </table><br>
+                            <div class="row text-center">
+                                <div class="col justify-content-between">
+                                    <p>MENGETAHUI</p>
+                                    <p class="mb-5">Ms Pemakaian Air</p><br>
+                                    <p>Ari Bimo Sakti S.Kom</p>
+                                    <hr style="width: 50%">
+                                    <p>1.05.01322</p>
+                                </div>
+                                <div class="col">
+                                    <p>DITELITI OLEH :</p>
+                                    <p class="mb-5">Manager Data Kepelanggan</p><br>
+                                    <p>Nurlillah Satria P.</p>
+                                    <hr style="width: 50%">
+                                    <p>1.08.01499</p>
+                                </div>
+                                <div class="col">
+                                    <p>DIBUAT OLEH :</p>
+                                    <p class="mb-5">SPV. Data Kepelanggan</p><br>
+                                    <p>Oliv Oktavera. S.E</p>
+                                    <hr style="width: 50%">
+                                    <p>1.05.01307</p>
+                                </div>
+                            </div>
                         </div>
                         </form>
                     </div>

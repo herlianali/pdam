@@ -52,12 +52,12 @@ class DilM extends Model
                 ->join ('RETRIBUSI', 'DIL.kd_retribusi', '=','RETRIBUSI.kd_retribusi');
     }
 
-    public static function getFilter()
-    {
-        return DB::table("DIL")
-                ->select('dil.NAMA','dil.JALAN','dil.GANG','dil.NOMOR','dil.NOTAMB','wilayah_dist.KD_WILAYAH','wilayah_dist.NAMA as NAMA_WILAYAH','ba_mutasi.*','bonc.tgl_bonc','bonc.tgl_realisasi','dil.da','ba_mutasi.da_b','merk_meter.merk AS merkl','tmerk.merk AS merkb','ZONA_PERIODE.PERIODE')
-                ->first();
+    // public static function getFilter()
+    // {
+    //     return DB::table("DIL")
+    //             ->select('dil.NAMA','dil.JALAN','dil.GANG','dil.NOMOR','dil.NOTAMB','wilayah_dist.KD_WILAYAH','wilayah_dist.NAMA as NAMA_WILAYAH','ba_mutasi.*','bonc.tgl_bonc','bonc.tgl_realisasi','dil.da','ba_mutasi.da_b','merk_meter.merk AS merkl','tmerk.merk AS merkb','ZONA_PERIODE.PERIODE')
+    //             ->first();
 
-    }
+    // }
 
 }

@@ -2,7 +2,7 @@
 @section('title', 'BA Mutasi Pelanggan')
 
 @push('css')
-    <link href="http://fonts.cdnfonts.com/css/dot-matrix" rel="stylesheet">
+    <link href="{{ asset('assets/plugins/font/dot-matrix.css') }}" rel="stylesheet">
     <style>
         .priview {
             font-family: 'Dot Matrix', sans-serif;

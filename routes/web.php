@@ -286,7 +286,7 @@ Route::prefix('mutasipelanggan')->group(function() {
 
     Route::get('cetakBAPerorangan', [CetakBAPeroranganController::class, 'index'])->name('cetakBAPerorangan');
     Route::post('preview', [CetakBAPeroranganController::class, 'preview'])->name('preview');
-    Route::post('cetak', [CetakBAPeroranganController::class, 'cetak'])->name('cetak');
+    Route::post('cetakBA', [CetakBAPeroranganController::class, 'cetak'])->name('cetakBA');
 
 });
 
