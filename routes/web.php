@@ -221,7 +221,9 @@ Route::prefix('pengaduan')->group(function() {
 
 
     Route::get('informasiPelunasanRekening', [InformasiPelunasanRekeningController::class, 'index'])->name('informasiPelunasanRekening');
-    Route::get('printinformasiPelunasanRekening', [InformasiPelunasanRekeningController::class, 'print'])->name('printinformasiPelunasanRekening');
+    Route::post('/informasiPelunasanRekening', [InformasiPelunasanRekeningController::class,'show'])->name('informasiPelunasanRekening.show');
+    Route::post('printinformasiPelunasanRekening', [InformasiPelunasanRekeningController::class, 'print'])->name('printinformasiPelunasanRekening');
+    Route::post('cetakinformasiPelunasanRekening', [InformasiPelunasanRekeningController::class, 'cetak'])->name('cetakinformasiPelunasanRekening');
 });
 
 Route::prefix('mutasipelanggan')->group(function() {

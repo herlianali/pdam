@@ -35,7 +35,7 @@
                                             <label for="total_tunggakan" class="col-md-3 col-form-label">Total Tunggakan</label>
                                             <div class="col-md-4">
                                                 <input type="text" class="form-control" name="total_tunggakan" id="total_tunggakan"
-                                                    onkeyup="valueing()">
+                                                    onkeyup="valueing()" disabled>
                                             </div>
                                         </div>
                                         <div class="form-group row ">
@@ -43,7 +43,7 @@
                                             </label>
                                             <div class="col-md-4">
                                                 <input type="text" class="form-control" name="biaya_adm_tutupan_tetap" id="biaya_adm_tutupan_tetap"
-                                                    onkeyup="valueing()">
+                                                    onkeyup="valueing()" disabled>
                                             </div>
                                         </div>
 
@@ -51,7 +51,7 @@
                                             <label for="grand_total" class="col-md-3 col-form-label">Grand Total</label>
                                             <div class="col-md-4">
                                                 <input type="text" class="form-control" name="grand_total" id="grand_total"
-                                                    onkeyup="valueing()">
+                                                    onkeyup="valueing()" disabled>
                                             </div>
                                         </div>
 
@@ -70,56 +70,62 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Informasi Pelunasan Rekening</h3>
-                            
-                            <a href="{{ route('printinformasiPelunasanRekening') }}"
-                            class="btn btn-xs btn-success float-right"><i class="fas fa-print"></i> Cetak</a>
+                            @if (count($data) > 0)
+                            <form action="{{ route('printinformasiPelunasanRekening') }}" method="POST">
+                                @csrf
+                                <input type="text" name="periode" value="{{ $data['formHistory']['periode'] }}" style="display:none">
+                                <input type="text" name="periode1" value="{{ $data['formHistory']['periode1'] }}" style="display:none">
+                                <input type="text" name="no_plg" value="{{ $data['formHistory']['no_plg'] }}" style="display:none">
+                                <button type="submit" id="cetak" class="btn btn-xs btn-info float-right"><i class="fas fa-print"></i> Cetak</button>
+                            </form>
+                            @endif
 
                         </div>
                         <div class="card-body">
                             <div class="row mb-4">
                                 <div class="col-md-1"></div>
                                 <div class="col-md-12">
-                                    <form class="form-horizontal" action="" method="post">
+                                    <form class="form-horizontal" action="{{ route('informasiPelunasanRekening.show') }}" method="post">
                                         @csrf
                                         <div class="form-group row mt-2 ">
                                             <label for="periode" class="col-md-3 col-form-label"> Dari Periode </label>
                                             <div class="col-md-2">
-                                                <input type="year" class="form-control" id="periode" name="periode" 
-                                                    onkeyup="valueing()">
+                                                <input type="text" class="form-control" id="periode" name="periode" placeholder="2020/10">
                                             </div>
                                             <label for="s.d" class="col-form-label"> s.d. </label>
                                             <div class="col-md-2">
-                                                <input type="year" class="form-control" id="s.d" name="periode"
-                                                    onkeyup="valueing()">
+                                                <input type="text" class="form-control" id="periode1" name="periode1" placeholder="2021/10">
                                             </div>
                                         </div>
                                         <div class="form-group row ">
-                                            <label for="no_pelanggan" class="col-md-3 col-form-label">No Pelanggan </label>
+                                            <label for="no_plg" class="col-md-3 col-form-label">No Pelanggan </label>
                                             <div class="col-md-4">
-                                                <input type="text" class="form-control" id="nopelanggan" value="2072678"
-                                                    onkeyup="valueing()"
-                                                    placeholder="Masukkan No Pelanggan Lalu Tekan Enter">
+                                                <input type="text" class="form-control" id="no_plg" name="no_plg"
+                                                    placeholder="Masukkan No Pelanggan Lalu Tekan Enter" >
                                             </div>
+                                            <button class="btn btn-info btn-mt-2" id="cari" type="submit">
+                                                <i class="fa fa-search"></i>
+                                            </button>
                                         </div>
 
                                         <div class="form-group row ">
                                             <label for="nama" class="col-md-3 col-form-label">Nama</label>
                                             <div class="col-md-4">
-                                                <input type="text" class="form-control" id="nama" name="nama" value="HALAIM PRANATA"
-                                                    onkeyup="valueing()" readonly value="">
+                                                <input type="text" class="form-control" id="nama" name="nama"
+                                                    onkeyup="valueing()" readonly value="@if (count($data) > 0){{ $data['formHistory']['nama'] }} @endif">
                                             </div>
                                         </div>
                                         <div class="form-group row ">
                                             <label for="alamat" class="col-md-3 col-form-label">Alamat</label>
                                             <div class="col-md-4">
-                                                <textarea class="form-control" id="alamat"  onkeyup="valueing()" name="alamat"  value =" " readonly value="">MANYAR KERTOARJO 5/4</textarea>
+                                                <textarea class="form-control" id="alamat"  onkeyup="valueing()" name="alamat"  readonly >@if (count($data) > 0){{ $data['formHistory']['alamat'] }} @endif</textarea>
                                             </div>
                                         </div>
                                         <div class="form-group row ">
-                                            <label for="kondisi" class="col-md-3 col-form-label">Kondisi</label>
+                                            <label for="jenis" class="col-md-3 col-form-label">Kondisi</label>
                                             <div class="col-md-4">
-                                                <input type="text" class="form-control" name="kondisi" id="kondisi" value =" 05 - Rumah Kosong"
-                                                    onkeyup="valueing()" readonly value="">
+                                                <input type="text" class="form-control" name="kd_tarif" id="kd_tarif"
+                                                    onkeyup="valueing()" readonly value="@if (count($data) > 0){{ $data['tablePlg'][0]->kondisi }} @endif">
                                             </div>
                                         </div>
                                         <div class="form-group row mt-2 ">
@@ -149,28 +155,23 @@
 
                                             </tr>
                                         </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>LUNAS</td>
-                                                        <td>21/01/2020</td>
-                                                        <td>01-2020</td>
-                                                        <td>N</td>
-                                                        <td>3.956.900</td>
-                                                        <td>0</td>
-                                                        <td>0</td>
-                                                        <td>3.956.900</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>LUNAS</td>
-                                                        <td>02/03ph/2020</td>
-                                                        <td>02-2020</td>
-                                                        <td>N</td>
-                                                        <td>1.439.400</td>
-                                                        <td>0</td>
-                                                        <td>202.000</td>
-                                                        <td>1.642.000</td>
-                                                    </tr>
-                                                </tbody>
+                                        <tbody>
+                                        @if (count($data) > 0)
+                                        @foreach ($data['tableHistory'] as $item)
+                                            <tr>
+                                                <td>{{$item->status}}</td>
+                                                <td>{{$item->tgl_lunas}}</td>
+                                                <td>{{$item->periode}}</td>
+                                                <td>{{$item->jenis}}</td>
+                                                <td>{{$item->rp_rekening}}</td>
+                                                <td>{{$item->rp_restitusi}}</td>
+                                                <td>{{$item->rp_denda}}</td>
+                                                <td>{{$item->rp_bayar}}</td>
+                                            </tr>
+                                        @endforeach
+                                        @endif
+                                        </tbody>
+                                            
                                     </table>
 
                                 </div>
@@ -183,6 +184,7 @@
 @endsection
 
 @push('js')
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
@@ -213,47 +215,52 @@
             });
         });
 
-        function deletepanggilanDinas(id) {
-            swal.fire({
-                title: "Hapus Data?",
-                icon: 'question',
-                text: "Apakah Anda Yakin Ingin Menghapus",
-                type: "warning",
-                showCancelButton: !0,
-                confirmButtonColor: "#e74c3c",
-                confirmButtonText: "Iya",
-                cancelButtonText: "Tidak",
-                reverseButtons: !0
-            }).then(function(e) {
-                if (e.value === true) {
-                    let token = "{{ csrf_token() }}"
-                    let _url = `/pDinas/${id}`
-                    console.log(_url)
-
-                    $.ajax({
-                        type: 'DELETE',
-                        url: _url,
-                        data: {
-                            _token: token
-                        },
-                        success: function(resp) {
-                            if (resp.success) {
-                                swal.fire("Selesai!", resp.message, "Berhasil");
-                                location.reload();
-                            } else {
-                                swal.fire("Gagal!", "Terjadi Kesalahan.", "error");
-                            }
-                        },
-                        error: function(resp) {
-                            swal.fire("Gagal!", "Terjadi Kesalahan.", "error")
-                        }
-                    })
-                } else {
-                    e.dismiss;
-                }
-            }, function(dismiss) {
-                return false;
-            });
+        $('body').keypress(function(e){
+        if (e.keyCode == 13)
+        {
+            $('#formHistori').submit();
         }
+        });
+
+        var showLoading = function() {
+            swal.fire({
+                title: "Mohon Tunggu !",
+                html: "Sedang Memproses...",
+                allowOutsideClick: false,
+                showConfirmButton: false,
+                willOpen: () => {
+                    swal.showLoading()
+                },
+            })
+        }
+
+        // $(document).on('click', '#cari', function(e) {
+        //     e.preventDefault();
+        //     let periode = $('#periode').val();
+        //     let periode1 = $('#periode1').val();
+        //     let no_plg = $('#no_plg').val();
+        //     $.ajax({
+        //         type: "POST",
+        //         dataType: "JSON",
+        //         url: `{{ url('pengaduan/informasiPelunasanRekening') }}`,
+        //         data: {
+        //             _token: '{{ csrf_token() }}',
+        //             _method: "POST",
+        //             periode: periode,
+        //             periode1: periode1,
+        //             no_plg: no_plg,
+        //         },
+        //         beforeSend: function() {
+        //             showLoading()
+        //         },
+        //         success: function(response) {
+        //             console.log(response);
+        //             $('#nama').val(response.nama)
+        //             $('#alamat').val(response.alamat)
+        //             $('#kd_tarif').val(response.kd_tarif)
+        //             swal.close();
+        //         }
+        //     })
+        // })
     </script>
 @endpush

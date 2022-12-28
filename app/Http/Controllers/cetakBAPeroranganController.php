@@ -21,7 +21,7 @@ class CetakBAPeroranganController extends Controller
             'start'         => $request->start,
             'end'           => $request->end,
         );
-        dd($formFilter['filter'][0]);
+        // dd($formFilter['filter'][0]);
         return view('BAMutasiPelanggan.cetakBAPerorangan.preview', compact('formFilter'))->with('i');
     }
 
