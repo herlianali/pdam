@@ -36,239 +36,119 @@
                 <div class="row mb-4">
                     <div class="col-md-1"></div>
                     <div class="col-md-12">
-                        <form class="form-horizontal">
+                        <form class="form-horizontal" action="{{ route('monitoringpetugasKorektor') }}" method="POST">
+                            @csrf
                             <div class="form-group row mt-2">
                                 <label for="periode" class="col-md-2 col-form-label">Periode</label>
-                                <div class="col-md-3">
-                                    <input type="text" class="form-control" id="periode" name="periode"
-                                        onkeyup="valueing()"placeholder="/" value="2016/10">
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control" id="periode" name="periode" placeholder="/" value="2016/10">
                                 </div>
                             </div>
                             <div class="form-group row ">
                                 <label for="zona" class="col-md-2 col-form-label">Zona</label>
-                                <div class="col-md-3">
-                                    <input type="text" class="form-control" id="zona" name="zona"
-                                        onkeyup="valueing()" value="000">
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control" id="zona" name="zona" value="000">
                                 </div>
                             </div>
                             <div class="form-group row ">
                                 <label for="no_bundel" class="col-md-2 col-form-label">No Bundel</label>
-                                <div class="col-md-3">
-                                    <input type="text" class="form-control" id="no_bundel" name="no_bundel"
-                                        onkeyup="valueing()" value="02">
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control" id="no_bundel" name="no_bundel" value="02">
                                 </div>
                             </div>
                             <div class="form-group row ">
                                 <label for="" class="col-md-2 col-form-label"></label>
+                                <div class="col-md-7" id="chkBoxAll">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <input type="checkbox" name="chkMonitoring[]" id="chkMonitoring1" value="and potensial = '0'">
+                                            <label class="form-check-label">Rumah Tangga</label> &nbsp;<br>
+                                            <input type="checkbox" name="chkMonitoring[]" id="chkMonitoring3" value="and potensial = '2'">
+                                            <label class="form-check-label">Potensial Khusus/Luar Kota</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="checkbox" name="chkMonitoring[]" id="chkMonitoring2" value="and potensial = '1'">
+                                            <label class="form-check-label">Potensial</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="" class="col-md-2 col-form-label"></label>
                                 <div class="col-md-7">
-                                    <input type="checkbox">
-                                    <label class="form-check-label">Rumah Tangga</label> &nbsp;
-                                    <input type="checkbox">
-                                    <label class="form-check-label">Potensial</label> &nbsp; <br>
-                                    <input type="checkbox">
-                                    <label class="form-check-label">Potensial Khusus/Luar Kota</label>
-                                    &nbsp;
-                                    <input type="checkbox">
-                                    <label class="form-check-label">Data Blm Penugasan</label>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <input type="checkbox" name="chkPenugasan" id="chkPenugasan">
+                                            <label class="form-check-label">Data Blm Penugasan</label>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group row ">
                                 <label for="" class="col-md-2 col-form-label"></label>
                                 <div class="col-md-4">
-                                    <button type="submit" class="btn btn-info btn-sm mt-6  " id="simpan"><i
-                                            class=""></i> Tampil</button> &nbsp;
+                                    <button type="submit" class="btn btn-info btn-sm mt-6  " id="simpan"><i class=""></i> Tampil</button> &nbsp;
                                 </div>
                             </div>
                         </form>
                     </div>
-                    <div class="col-md-12">
+                    @if ($tView == "1")
+                        <div class="col-md">
+                            <table id="example2" class="table table-bordered table-responsive-md table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th > NO PELANGGAN </th>
+                                        <th > PREVPAKAI </th>
+                                        <th > CURRPAKAI </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($tampil as $row)
+                                    <tr>
+                                        <td>{{ $row->no_plg }}</td>
+                                        <td>{{ $row->prevpakai }}</td>
+                                        <td>{{ $row->currpakai }}</td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    @else
+                    <div class="col-md">
                         <table id="example2" class="table table-bordered table-responsive-md table-condensed">
                             <thead>
                                 <tr>
-                                    <th >THBL </th>
-                                    <th >ZONA</th>
-                                    <th >NO BUNDEL</th>
-                                    <th >TGL CATAT</th>
-                                    <th >TGL UPLOAD</th>
-                                    <th >TGL RANDOM</th>
-                                    <th >TGL ASSIGN</th>
-                                    <th >USER AKSES</th>
-                                    <th >POTENSIAL</th>
-                                    <th >NAMA</th>
+                                    <th > THBL </th>
+                                    <th > ZONA </th>
+                                    <th > NO BUNDEL </th>
+                                    <th > TGL CATAT </th>
+                                    <th > TGL UPLOAD </th>
+                                    <th > TGL RANDOM </th>
+                                    <th > TGL ASSIGN </th>
+                                    <th > USER AKSES </th>
+                                    <th > POTENSIAL </th>
+                                    <th > NAMA </th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach ($tampil as $row)
                                 <tr>
-                                    <td>201610</td>
-                                    <td>000</td>
-                                    <td>02</td>
-                                    <td>14/09/2016</td>
-                                    <td>14/09/2016</td>
-                                    <td>14/09/2016 2:50:22 PM</td>
-                                    <td>14/09/2016</td>
-                                    <td>10701467</td>
-                                    <td>02</td>
-                                    <td>Bhirowo Agung Subroto</td>
+                                    <td>{{ $row->thbl }}</td>
+                                    <td>{{ $row->zona }}</td>
+                                    <td>{{ $row->no_bundel }}</td>
+                                    <td>{{ $row->tgl_catat }}</td>
+                                    <td>{{ $row->tgl_upload }}</td>
+                                    <td>{{ $row->tgl_random }}</td>
+                                    <td>{{ $row->tglassign }}</td>
+                                    <td>{{ $row->userakses }}</td>
+                                    <td>{{ $row->potensial }}</td>
+                                    <td>{{ $row->nama }}</td>
                                 </tr>
-                                <tr>
-                                    <td>201610</td>
-                                    <td>000</td>
-                                    <td>02</td>
-                                    <td>14/09/2016</td>
-                                    <td>14/09/2016</td>
-                                    <td>14/09/2016 2:50:22 PM</td>
-                                    <td>14/09/2016</td>
-                                    <td>19500849</td>
-                                    <td>01</td>
-                                    <td>Sururi</td>
-                                </tr>
-                                <tr>
-                                    <td>201610</td>
-                                    <td>000</td>
-                                    <td>03</td>
-                                    <td>14/09/2016</td>
-                                    <td>14/09/2016</td>
-                                    <td>14/09/2016 2:50:22 PM</td>
-                                    <td>14/09/2016</td>
-                                    <td>10601407</td>
-                                    <td>02</td>
-                                    <td>Bambang Budiono</td>
-                                </tr>
-                                <tr>
-                                    <td>201610</td>
-                                    <td>000</td>
-                                    <td>03</td>
-                                    <td>14/09/2016</td>
-                                    <td>14/09/2016</td>
-                                    <td>14/09/2016 2:50:22 PM</td>
-                                    <td>14/09/2016</td>
-                                    <td>10701467</td>
-                                    <td>01</td>
-                                    <td>Bhirowo Agung Subroto</td>
-                                </tr>
-                                <tr>
-                                    <td>201610</td>
-                                    <td>000</td>
-                                    <td>04</td>
-                                    <td>14/09/2016</td>
-                                    <td>14/09/2016</td>
-                                    <td>14/09/2016 2:50:22 PM</td>
-                                    <td>14/09/2016</td>
-                                    <td>10601407</td>
-                                    <td>02</td>
-                                    <td>Bambang Budiono</td>
-                                </tr>
-                                <tr>
-                                    <td>201610</td>
-                                    <td>000</td>
-                                    <td>05</td>
-                                    <td>14/09/2016</td>
-                                    <td>14/09/2016</td>
-                                    <td>14/09/2016 2:50:22 PM</td>
-                                    <td>14/09/2016</td>
-                                    <td>10701467</td>
-                                    <td>01</td>
-                                    <td>Bhirowo Agung Subroto</td>
-                                </tr>
-                                <tr>
-                                    <td>201610</td>
-                                    <td>000</td>
-                                    <td>05</td>
-                                    <td>14/09/2016</td>
-                                    <td>14/09/2016</td>
-                                    <td>14/09/2016 2:50:22 PM</td>
-                                    <td>14/09/2016</td>
-                                    <td>19500849</td>
-                                    <td>02</td>
-                                    <td>Sururi</td>
-                                </tr>
-                                <tr>
-                                    <td>201610</td>
-                                    <td>000</td>
-                                    <td>06</td>
-                                    <td>14/09/2016</td>
-                                    <td>14/09/2016</td>
-                                    <td>14/09/2016 2:50:22 PM</td>
-                                    <td>14/09/2016</td>
-                                    <td>01812</td>
-                                    <td>01</td>
-                                    <td>Noval Yudha Baruna</td>
-                                </tr>
-                                <tr>
-                                    <td>201610</td>
-                                    <td>000</td>
-                                    <td>06</td>
-                                    <td>14/09/2016</td>
-                                    <td>14/09/2016</td>
-                                    <td>14/09/2016 2:50:22 PM</td>
-                                    <td>14/09/2016</td>
-                                    <td>10601411</td>
-                                    <td>02</td>
-                                    <td>Dadang Ariyanto</td>
-                                </tr>
-                                <tr>
-                                    <td>201610</td>
-                                    <td>000</td>
-                                    <td>07</td>
-                                    <td>14/09/2016</td>
-                                    <td>14/09/2016</td>
-                                    <td>14/09/2016 2:50:22 PM</td>
-                                    <td>14/09/2016</td>
-                                    <td>10601426</td>
-                                    <td>01</td>
-                                    <td>Khoirul Anwar</td>
-                                </tr>
-                                <tr>
-                                    <td>201610</td>
-                                    <td>000</td>
-                                    <td>07</td>
-                                    <td>14/09/2016</td>
-                                    <td>14/09/2016</td>
-                                    <td>14/09/2016 2:50:22 PM</td>
-                                    <td>14/09/2016</td>
-                                    <td>10601411</td>
-                                    <td>02</td>
-                                    <td>Dadang Ariyanto</td>
-                                </tr>
-                                <tr>
-                                    <td>201610</td>
-                                    <td>000</td>
-                                    <td>08</td>
-                                    <td>14/09/2016</td>
-                                    <td>14/09/2016</td>
-                                    <td>14/09/2016 2:50:22 PM</td>
-                                    <td>14/09/2016</td>
-                                    <td>01704</td>
-                                    <td>01</td>
-                                    <td>Agus Sofyan</td>
-                                </tr>
-                                <tr>
-                                    <td>201610</td>
-                                    <td>000</td>
-                                    <td>08</td>
-                                    <td>14/09/2016</td>
-                                    <td>14/09/2016</td>
-                                    <td>14/09/2016 2:50:22 PM</td>
-                                    <td>14/09/2016</td>
-                                    <td>10701467</td>
-                                    <td>02</td>
-                                    <td>Bhirowo Agung Subroto</td>
-                                </tr>
-                                <tr>
-                                    <td>201610</td>
-                                    <td>000</td>
-                                    <td>09</td>
-                                    <td>14/09/2016</td>
-                                    <td>14/09/2016</td>
-                                    <td>14/09/2016 2:50:22 PM</td>
-                                    <td>14/09/2016</td>
-                                    <td>19500849</td>
-                                    <td>01</td>
-                                    <td>Sururi</td>
-                                </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -300,15 +180,17 @@
             });
         });
 
-        function valueing() {
-            // if(document.getElementById('kode').value==="" || document.getElementById('keterangan').value==="") {
-            //     document.getElementById('batal').disabled = true
-            //     document.getElementById('simpan').disabled = true
-            // }else{
-            //     document.getElementById('batal').disabled = false
-            //     document.getElementById('simpan').disabled = false
-            // }
-        }
+        $(document).on('click', '#chkPenugasan', function(){
+            if($(this).is(':checked')){
+                $('#chkMonitoring1').attr("disabled", true);
+                $('#chkMonitoring2').attr("disabled", true);
+                $('#chkMonitoring3').attr("disabled", true);
+            }else{
+                $('#chkMonitoring1').removeAttr("disabled");
+                $('#chkMonitoring2').removeAttr("disabled");
+                $('#chkMonitoring3').removeAttr("disabled");
+            }
+        })
 
         function clear() {
             document.getElementById('noPelanggan').value = ''

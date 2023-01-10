@@ -212,6 +212,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
+        'FastExcel' => Rap2hpoutre\FastExcel\Facades\FastExcel::class,
         'PDF'   => Barryvdh\DomPDF\Facade::class,
     ])->toArray(),
 

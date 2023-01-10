@@ -44,7 +44,8 @@
             <div class="card-body">
                 <div class="row mb-4">
                     <div class="col-md-12">
-                        <form class="form-horizontal">
+                        <form class="form-horizontal" action="{{ route('showLaporan') }}" method="POST">
+                            @csrf
                             <div class="form-group row mt-2">
                                 <label for="date" class="col-md-2 col-form-label">Tanggal </label>
                                 <div class="col-md-2">
@@ -62,7 +63,7 @@
                                     <select class="form-control" name="nip" id="nip">
                                         <option value=""> </option>
                                         @foreach ($nip as $data)
-                                            <option value="{{ $data->nip }}"> {{ $data->userakses }} - {{ $data->nama }} </option>
+                                            <option value="{{ $data->userakses }}|{{ $data->nama }}"> {{ $data->userakses }} - {{ $data->nama }} </option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -91,38 +92,33 @@
                                     <div class="form-group row">
                                         <label for="" class="col-md-3 col-form-label"></label>
                                         <div class="col-md-3">
-                                        <a href="{{ route('tampillaporanpetugasKorektor') }}" class="btn btn-sm btn-success"> Tampil </a>
-                                        <button class="btn btn-danger btn-sm" disabled>Pantau</button>
+                                            <button class="btn btn-sm btn-success" id="tampil" name="submit" value="tampil"> Tampil </button>
+                                            <button class="btn btn-danger btn-sm" id="pantau" disabled> Pantau</button>
                                         </div>
                                     </div>
                                     <div class="form-check">
-                                        <input type="radio" class="form-check-input" id="laporan_bulanan_per_pertugas"
-                                            name="pilih">
+                                        <input type="radio" class="form-check-input" id="lb_per_pertugas" name="pilih" value="lb_per_pertugas">
                                         <label class="form-check-label">Laporan Bulanan per Petugas Korektor
                                         </label>
                                         <br>
-                                        <input type="radio" class="form-check-input" id="laporan_bulanan_semua_petugas"
-                                            name="pilih">
+                                        <input type="radio" class="form-check-input" id="lb_semua_petugas" name="pilih" value="lb_semua_petugas">
                                         <label class="form-check-label">Laporan Bulanan semua Petugas
                                             Korektor</label>
                                         <br>
-                                        <input type="radio" class="form-check-input"
-                                            id="laporan_honorium_kelebihan_beban_petugas_korektor" name="pilih">
+                                        <input type="radio" class="form-check-input" id="nonDireksi" name="pilih" value="nonDireksi">
                                         <label class="form-check-label">Laporan Honorium Kelebihan Beban
                                             Petugas Korektor</label>
                                         <br>
-                                        <input type="radio" class="form-check-input"
-                                            id="laporan_honorium_kelebihan_beban_petugas_korektor_direksi" name="pilih">
+                                        <input type="radio" class="form-check-input" id="direksi" name="pilih" value="direksi">
                                         <label class="form-check-label">Laporan Honorium Kelebihan Beban Petugas
                                             Korektor(Direksi)</label>
                                         <br>
                                         <div class="form-group row">
-                                        <label for="" class="col-md-3 col-form-label"></label>
-                                        <div class="col-md-3">
-                                            <a href="{{ route('laporanhonoriumdireksi') }}" class="btn btn-success btn-sm">
-                                                Cetak</a>
+                                            <label for="" class="col-md-3 col-form-label"></label>
+                                            <div class="col-md-3">
+                                                <button class="btn btn-success btn-sm" id="cetak" name="submit" value="cetak"> Cetak </button>
+                                            </div>
                                         </div>
-                                    </div>
                                     </div>
                                 </div>
                             </div>
@@ -176,37 +172,5 @@
             }
         })
 
-        $(document).on('click', '#tampil', function(e) {
-            e.preventDefault();
-            var tgl = $('#date').val();
-            var thbl = $('#thbl').val();
-            var nip = $('#nip').val();
-            var pTagih = $('#periode_tagih').val();
-            var potensial = $('#potensial').val();
-            var pKhusus = $('#pKhusus').val();
-            var waktu = $('#waktu').val();
-            $.ajax({
-                type: "POST",
-                dataType: "JSON",
-                url: `{{ url('master/laporanpetugasKorektor') }}`,
-                data: {
-                    _token: '{{ csrf_token() }}',
-                    tgl: tgl,
-                    thbl: thbl,
-                    nip: nip,
-                    pTagih: pTagih,
-                    potensial: potensial,
-                    pKhusus: pKhusus,
-                    waktu: waktu,
-                },
-                beforeSend: function() {
-                    showLoading()
-                },
-                success: function(res) {
-                    console.log(res);
-                    swal.close();
-                }
-            })
-        })
     </script>
 @endpush

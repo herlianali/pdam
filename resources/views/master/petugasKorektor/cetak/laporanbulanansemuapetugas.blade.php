@@ -14,7 +14,7 @@
             border-bottom: 2px dashed rgb(102, 102, 102);
             border-top: 2px dashed rgb(102, 102, 102);
         }
-      
+
     </style>
 @endpush
 
@@ -50,7 +50,7 @@
                             <div class="row">
                                 <div class="col" style="text-align: center;">
                                     <div style="font-size:15px">LAPORAN BULANAN SEMUA PETUGAS KOREKTOR</div>
-                                    <div style="font-size:15px">PERIODE : </div>
+                                    <div style="font-size:15px">PERIODE : {{ $data['thbl'] }}</div>
                                 </div>
                             </div>
                             <br>
@@ -66,38 +66,36 @@
                                         <th>KETERANGAN</th>
                                     </tr>
                                 </thead>
-                            </table>
-                            <table>
                                 <tbody>
+                                    @foreach ($tampil as $row)
+                                        <tr>
+                                            <td>{{ $i++ }}</td>
+                                            <td>{{ $row->userakses." ".$row->nama }}</td>
+                                            <td>{{ $row->jml_no_plg }}</td>
+                                            <td>{{ $row->anomali }}</td>
+                                            <td>{{ $row->koreksi }}</td>
+                                            <td>{{ $row->anomali - $row->koreksi }}</td>
+                                            <td></td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                                <tfoot class="atasan">
                                     <tr>
-                                        <td>1</td>
                                         <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td>TOTAL</td>
+                                        <td>{{ $total->tpelanggan }}</td>
+                                        <td>{{ $total->tanomali }}</td>
+                                        <td>{{ $total->tkoreksi }}</td>
+                                        <td>{{ $total->tanomali - $total->tkoreksi }}</td>
                                         <td></td>
                                     </tr>
-                                </tbody>
+                                </tfoot>
                             </table>
-                            <div class="atasan" >
-                            <table class="table" >
-                                <tr>
-                                    <td></td>
-                                    <td>TOTAL</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                            </table>
-                            </div>
                             <br>
                             <div class="ttd">
                                 <div class="row text-right">
                                     <div class="col justify-content-between">
-                                        <p>Surabaya, {{ $date }}</p>
+                                        <p>Surabaya, {{ $dateNow }}</p>
                                     </div>
                                 </div>
                             </div>

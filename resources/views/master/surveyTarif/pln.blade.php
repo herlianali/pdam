@@ -8,7 +8,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="" class="form-horizontal">
+                {{-- <form action="" class="form-horizontal"> --}}
                 <div class="form-group row mt-2">
                     <label for="zona" class="col-md-2 col-form-label">Zona </label>
                     <div class="col-md-3">
@@ -27,7 +27,7 @@
                     <div class="form-group row mt-2">
                         <label for="no_plg" class="col-md-2 col-form-label">Nopel</label>
                         <div class="col-md-5">
-                            <input type="text" class="form-control" id="no_plg" name="no_plg" onkeyup="valueing()" value="">
+                            <input type="text" class="form-control" id="no_plg" name="no_plg" value="">
                         </div>
                     </div>
                     <div class="form-group row mt-2">
@@ -39,16 +39,16 @@
                     <div class="form-group row mt-2">
                         <label for="text" class="col-md-2 col-form-label">PLN</label>
                         <div class="col-md-3">
-                            <input type="text" class="form-control" id="pln" name="pln" onkeyup="valueing()">
+                            <input type="text" class="form-control amper" id="amper" name="amper">
                         </div>
                         <div class="col-md-3">
-                            <input type="text" class="form-control" id="pln" onkeyup="valueing()">
+                            <input type="text" class="form-control" id="kwh" name="kwh">
                         </div>
                     </div>
                     <div class="form-group row mt-2">
                         <label for="text" class="col-md-2 col-form-label">Jalan</label>
                         <div class="col-md-3">
-                            <input type="text" class="form-control" id="jalan" name="jalan" onkeyup="valueing()">
+                            <input type="text" class="form-control" id="jalan" name="jalan">
                         </div>
                     </div>
                     <div class="form-group row mt-2">
@@ -57,8 +57,8 @@
                     <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-undo"></i> Batal</button>
                         </div>
                     </div>
-                  
-                </form>
+
+                {{-- </form> --}}
             </div>
         </div>
     </div>

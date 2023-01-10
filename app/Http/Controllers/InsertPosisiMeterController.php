@@ -32,8 +32,14 @@ class InsertPosisiMeterController extends Controller
     // }
     public function import(Request $request)
     {
-        dd($request->post());
-        // $dataExcel = (new FastExcel)->import('');
+        // $request->validate([
+        //     'dokumen' => 'required|mimes:xlsx,xlx|max:8192',
+        // ]);
+        $rename = time().".".$request->dokumen->extension();
+        $location = $request->dokumen->move(public_path('fileexcel'), $rename);
+        $dataExcel = fastexcel()->import($location, function($line){
+            return $line;
+        });
     }
 
     public function model(array $row)

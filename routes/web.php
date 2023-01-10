@@ -107,13 +107,13 @@ Route::prefix('master')->group(function () {
     Route::get('/laporansemuapetugas',[PetugasKorektorController::class,'laporansemuapetugas'])->name('laporansemuapetugas');
     Route::get('/laporanhonorium',[PetugasKorektorController::class,'laporanhonorium'])->name('laporanhonorium');
     Route::get('/laporanhonoriumdireksi',[PetugasKorektorController::class,'laporanhonoriumdireksi'])->name('laporanhonoriumdireksi');
-    Route::get('/showLaporan',[PetugasKorektorController::class,'showLaporan'])->name('showLaporan');
-    Route::get('/cLapBundel',[PetugasKorektorController::class,'cLapBundel'])->name('cLapBundel');
+    Route::post('/showLaporan',[PetugasKorektorController::class,'showLaporan'])->name('showLaporan');
 
     Route::get('/viewsisapetugasKorektor', [PetugasKorektorController::class, 'viewsisa'])->name('viewsisapetugasKorektor');
     Route::get('/randompetugasKorektor', [PetugasKorektorController::class, 'random'])->name('randompetugasKorektor');
     Route::get('/viewptspetugasKorektor', [PetugasKorektorController::class, 'viewpts'])->name('viewptspetugasKorektor');
     Route::get('/monitoringpetugasKorektor', [PetugasKorektorController::class, 'monitoring'])->name('monitoringpetugasKorektor');
+    Route::post('/monitoringpetugasKorektor', [PetugasKorektorController::class, 'showMonitoring'])->name('monitoringpetugasKorektor');
     Route::get('/koreksipetugasKorektor', [PetugasKorektorController::class, 'koreksi'])->name('koreksipetugasKorektor');
 
     Route::resource('petugasEntry', PetugasEntryController::class)->parameters(['petugasEntry' => 'kd_ptgentry'])->except(['create','edit']);
@@ -170,9 +170,10 @@ Route::prefix('master')->group(function () {
     Route::resource('/telponPelanggan', TelponPelangganController::class)->parameters(['telponPelanggan' => 'no_plg'])->except(['create','destroy', 'store']);
 
     Route::get('/monitoringPelanggan', [MonitoringPelangganController::class, 'index'])->name('monitoringPelanggan');
-    Route::get('/monitoringPelanggan.{id}', [MonitoringPelangganController::class, 'show']);
+    Route::get('/monitoringPelanggan/{id}', [MonitoringPelangganController::class, 'show']);
     Route::delete('/deletemonitoringPelanggan/{id}', [MonitoringPelangganController::class, 'destroy']);
     Route::post('/monitoringPelanggan/filter', [MonitoringPelangganController::class, 'filter']);
+    Route::post('/monitoringPelanggan/cari_plg', [MonitoringPelangganController::class, 'cariPlg']);
 
     Route::resource('/penetapanTeraMeter', PenetapanTeraMeterController::class)->parameters(['penetapanTeraMeter' => 'no_bonc'])->except(['create', 'edit']);
     Route::get('/penetapanTeraMeter', [PenetapanTeraMeterController::class, 'index'])->name('penetapanTeraMeter');

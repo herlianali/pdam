@@ -8,26 +8,26 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="">
+                {{-- <form action=""> --}}
                     <div class="form-group">
                         <label for="no_pelanggan">No Pelanggan</label>
-                        <input type="text" class="form-control" id="no_pelanggan" name="no_pelanggan" disabled value="0000771">
+                        <input type="text" class="form-control" id="no_pelanggan" name="no_pelanggan" disabled >
                     </div>
                     <div class="form-group">
                         <label for="nama">Nama</label>
-                        <input type="text" class="form-control" id="nama" name="nama" value="DIDIK KRISTANTO">
+                        <input type="text" class="form-control" id="name" name="nama">
                     </div>
                     <div class="form-group">
                         <label for="jalan">Jalan</label>
-                        <input type="datetime" class="form-control" id="jln" name="jln" value="SLAMET JUANDA">
+                        <input type="datetime" class="form-control" id="jln" name="jln">
                     </div>
                     <div class="form-group">
                         <label for="gang">Gang</label>
-                        <input type="text" class="form-control" id="gang" name="gang" value="">
+                        <input type="text" class="form-control" id="gg" name="gang">
                     </div>
                     <div class="form-group">
                         <label for="nomor">Nomor</label>
-                        <input type="text" class="form-control" id="nomor" name="nomor" value="15">
+                        <input type="text" class="form-control" id="no" name="nomor">
                     </div>
                     <div class="form-group">
                         <label for="no_tmbhn">Nomor Tambahan</label>
@@ -35,10 +35,10 @@
                     </div>
                     <div class="form-group">
                         <label for="kd_tarif">KD Tarif</label>
-                        <input type="text" class="form-control" id="kd_tarif" name="kd_tarif" value="4B.2">
+                        <input type="text" class="form-control" id="kd_tf" name="kd_tarif">
                     </div>
-                   
-                </form>
+
+                {{-- </form> --}}
             </div>
         </div>
     </div>
