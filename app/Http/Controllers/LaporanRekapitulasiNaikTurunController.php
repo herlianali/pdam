@@ -59,7 +59,9 @@ class LaporanRekapitulasiNaikTurunController extends Controller
         if($request->dasar == "penerbitan"){
             $pAwal  = $awal[1].$awal[0];
             $pAkhir = $akhir[1].$akhir[0];
+            $periode  = $awal[1].$awal[0];
             $data = BaMutasi::getPenerbit($pAwal, $pAkhir, $request->level);
+            // $countData = $data['jumlah']->count();
             $formData = [
                 'periode'   => $request->periode,
                 'periode1'  => $request->periode1,
@@ -70,7 +72,9 @@ class LaporanRekapitulasiNaikTurunController extends Controller
         }else{
             $pAwal  = $awal[0]."-".$awal[1]."-".$awal[2];
             $pAkhir = $akhir[0]."-".$akhir[1]."-".$akhir[2];
+            $periode  = $awal[1].$awal[0];
             $data = BaMutasi::getPengesahan($pAwal, $pAkhir, $request->level);
+            // $countData = $data['jumlah']->count();
             $formData = [
                 'periode'   => $request->periode,
                 'periode1'  => $request->periode1,
@@ -80,7 +84,7 @@ class LaporanRekapitulasiNaikTurunController extends Controller
             // $hasil = "pengesahan";
         }
 
-        return view('BAMutasiPelanggan.laporanRekapitulasiNaikTurun.print', compact('data', 'formData'))->with('i');;
+        return view('BAMutasiPelanggan.laporanRekapitulasiNaikTurun.print', compact('data', 'formData', 'periode'))->with('i');;
     }
 
     public function cetak(Request $request)
@@ -92,6 +96,7 @@ class LaporanRekapitulasiNaikTurunController extends Controller
         if($request->dasar == "penerbitan"){
             $pAwal  = $awal[1].$awal[0];
             $pAkhir = $akhir[1].$akhir[0];
+            $periode  = $awal[1].$awal[0];
             $data = BaMutasi::getPenerbit($pAwal, $pAkhir, $request->level);
             $formData = [
                 'periode'   => $request->periode,
@@ -103,6 +108,7 @@ class LaporanRekapitulasiNaikTurunController extends Controller
         }else{
             $pAwal  = $awal[0]."-".$awal[1]."-".$awal[2];
             $pAkhir = $akhir[0]."-".$akhir[1]."-".$akhir[2];
+            $periode  = $awal[1].$awal[0];
             $data = BaMutasi::getPengesahan($pAwal, $pAkhir, $request->level);
             $formData = [
                 'periode'   => $request->periode,
@@ -114,6 +120,6 @@ class LaporanRekapitulasiNaikTurunController extends Controller
         }
 
 
-        return view('BAMutasiPelanggan.laporanRekapitulasiNaikTurun.cetak', compact('data', 'formData'))->with('i');;
+        return view('BAMutasiPelanggan.laporanRekapitulasiNaikTurun.cetak', compact('data', 'formData', 'periode'))->with('i');;
     }
 }

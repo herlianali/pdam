@@ -222,7 +222,9 @@ Route::prefix('pengaduan')->group(function() {
 
 
     Route::get('informasiPelunasanRekening', [InformasiPelunasanRekeningController::class, 'index'])->name('informasiPelunasanRekening');
-    Route::get('printinformasiPelunasanRekening', [InformasiPelunasanRekeningController::class, 'print'])->name('printinformasiPelunasanRekening');
+    Route::post('/informasiPelunasanRekening', [InformasiPelunasanRekeningController::class,'show'])->name('informasiPelunasanRekening.show');
+    Route::post('printinformasiPelunasanRekening', [InformasiPelunasanRekeningController::class, 'print'])->name('printinformasiPelunasanRekening');
+    Route::post('cetakinformasiPelunasanRekening', [InformasiPelunasanRekeningController::class, 'cetak'])->name('cetakinformasiPelunasanRekening');
 });
 
 Route::prefix('mutasipelanggan')->group(function() {
@@ -287,7 +289,7 @@ Route::prefix('mutasipelanggan')->group(function() {
 
     Route::get('cetakBAPerorangan', [CetakBAPeroranganController::class, 'index'])->name('cetakBAPerorangan');
     Route::post('preview', [CetakBAPeroranganController::class, 'preview'])->name('preview');
-    Route::post('cetak', [CetakBAPeroranganController::class, 'cetak'])->name('cetak');
+    Route::post('cetakBA', [CetakBAPeroranganController::class, 'cetak'])->name('cetakBA');
 
 });
 

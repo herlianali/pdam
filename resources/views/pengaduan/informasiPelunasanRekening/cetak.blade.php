@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link href="http://fonts.cdnfonts.com/css/dot-matrix" rel="stylesheet">
+    <link href="{{ asset('assets/plugins/font/dot-matrix.css') }}" rel="stylesheet">
     <style type="text/css">
         p  {
             font-family: 'Dot Matrix', sans-serif;
@@ -24,14 +24,16 @@
 </head>
 <body>
     <div class="card-body priview">
-        <p> Pemerintah Kota <br>
-            Surabaya <br>
-            PERUSAHAAN DAERAH AIR <br>
-        </p>
-        <div class="mx-auto mb-3" style="width: 250px;">
-            <p>Table Master Informasi Pelunasan Rekening</p> <br>
+        <div style="margin-left: 5px">
+            <div style="font-size:15px">PEMERINTAH KOTA SURABAYA</div>
+            <div style="font-size:15px">PERUSAHAAN DAERAH AIR MINUM</div>
+            <div style="font-size:15px">#Wilayah</div>
         </div>
-        <table class="table">
+        <table>
+            <p align="center">Daftar Rekening Pelanggan</p>
+            <p align="center">BULAN : {{$data['monthName']}} {{$awal[0]}} S/D {{$data['monthName1']}} {{$akhir[0]}}</p>
+        </table>
+        <table>
             <tr>
                 <div class="container">
                     <div class="row">
@@ -39,7 +41,7 @@
                             <p>No Langganan </p>
                         </div>
                         <div class="col">
-                            <p>: 1011101</p>
+                            <p>: {{ $data['formHistory']['no_plg'] }}</p>
                         </div>
                         <div class="col"></div>
                         <div class="col"></div>
@@ -53,7 +55,7 @@
                             <p>Nama </p>
                         </div>
                         <div class="col">
-                            <p>: Rahma</p>
+                            <p>: {{ $data['tablePlg'][0]->nama }}</p>
                         </div>
                         <div class="col"></div>
                         <div class="col"></div>
@@ -67,7 +69,7 @@
                             <p>Alamat </p>
                         </div>
                         <div class="col">
-                            <p>: Jl Kenangan 2/ 25</p>
+                            <p>: {{ $data['tablePlg'][0]->jalan }} {{ $data['tablePlg'][0]->gang }} {{ $data['tablePlg'][0]->nomor }} {{ $data['tablePlg'][0]->notamb }}</p>
                         </div>
                         <div class="col">
                             <p></p>
@@ -83,7 +85,7 @@
                             <p>Periode Tagih </p>
                         </div>
                         <div class="col">
-                            <p>: 2</p>
+                            <p>: Periode Tagih : {{ $data['tablePlg'][0]->periode }}</p>
                         </div>
                         <div class="col"></div>
                         <div class="col"></div>
@@ -97,11 +99,11 @@
                             <p>Tanggal Tutu </p>
                         </div>
                         <div class="col">
-                            <p>: 07-11-2020</p>
+                            <p>: {{ $data['tablePlg'][0]->tgl_tutup }}</p>
                         </div>
                         <div class="col"></div>
                         <div class="col">
-                            <p>Tanggal Cetak : 17 September 2022 </p>
+                            <p>Tanggal Cetak : {{ $date }} </p>
                         </div>
                     </div>
                 </div>
@@ -125,8 +127,83 @@
                 </tr>
             </thead>
             <tbody>
+                @if (count($data) > 0)
+                <div style="display: none">{{ $totalrekening = 0 }}</div>
+                <div style="display: none">{{ $totalrestitusi = 0 }}</div>
+                <div style="display: none">{{ $totaldenda = 0 }}</div>
+                <div style="display: none">{{ $totalbayar = 0 }}</div>
+                @foreach ($data['tableHistory'] as $item)
+                    <tr>
+                        <td>{{ ++$i }}</td>
+                        <td>{{$item->status}}</td>
+                        <td>{{$item->tgl_lunas}}</td>
+                        <td>{{$item->periode}}</td>
+                        <td>{{$item->kd_tarif}}</td>
+                        <td>{{$item->jenis}}</td>
+                        <td>{{$item->rp_rekening}}</td>
+                        <td>{{$item->rp_restitusi}}</td>
+                        <td>{{$item->rp_denda}}</td>
+                        <td>{{$item->rp_bayar}}</td>
+                        <div style="display: none">{{$totalrekening += $item->rp_rekening }}</div>
+                        <div style="display: none">{{$totalrestitusi += $item->rp_restitusi }}</div>
+                        <div style="display: none">{{$totaldenda += $item->rp_denda }}</div>
+                        <div style="display: none">{{$totalbayar += $item->rp_bayar }}</div>
+                    </tr>
+                @endforeach
+                @endif
+                <thead>
+                <tr>
+                    <td>Jumlah Total</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>{{$totalrekening}}</td>
+                    <td>{{$totalrestitusi}}</td>
+                    <td>{{$totaldenda}}</td>
+                    <td>{{$totalbayar}}</td>
+                </tr>
+                </thead>
+                <thead>
+                    <tr>
+                        <td>Total rekening yang belum</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>{{$totalbayar}}</td>
+                    </tr>
+                </thead>
+                <thead>
+                    <tr>
+                        <td>Total rekening yang telah t</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>{{$totalbayar}}</td>
+                    </tr>
+                </thead>
             </tbody>
         </table>
     </div>
 </body>
 </html>
+
+@push('js')
+    <script src="{{ asset('assets/jquery.printPage.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(".print").printPage();
+        });
+    </script>
+@endpush

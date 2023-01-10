@@ -54,4 +54,9 @@ class BaMutasi extends Model
                 ->get();
 
     }
+
+    public static function getRange($BAAwal, $BAAkhir) 
+    {
+        return DB::select("SELECT  B.* ,c.nama, c.jalan, c.gang, c.nomor, c.notamb,c.jns_pelanggan,e.nama AS nama_wilayah FROM DIL C, zona D, wilayah_dist e, (SELECT A.NO_PLG, a.no_bamutasi, a.tgl_bamutasi, a.no_bonc, a.kd_tarif_b, a.kd_tarif_l,b.*,f.keterangan, g.tgl_bonc ,g.tgl_realisasi, a.ukuran_mtr_b, a.ukuran_mtr_l, a.blnterbit,a.terhitung_tgl, a.dasar, a.rp_retribusi_l, a.rp_retribusi_b FROM   ba_mutasi a ,jenis_tarif b,guna_persil f,bonc g WHERE  a.kd_tarif_b = b.kd_tarif(+) AND a.kd_gunapersil_b = f.kd_gunapersil AND g.no_bonc(+) = a.no_bonc AND a.no_bamutasi between '".$BAAwal."' and '".$BAAkhir."') B WHERE C.NO_PLG=B.NO_PLG AND C.ZONA=D.ZONA AND d.kd_wilayah = e.kd_wilayah");
+    }
 }

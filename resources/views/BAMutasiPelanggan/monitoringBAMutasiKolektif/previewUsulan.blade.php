@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+    <link href="{{ asset('assets/plugins/font/dot-matrix.css') }}" rel="stylesheet">
     <style>
         .table {
             border: 3px solid rgb(102, 102, 102);
