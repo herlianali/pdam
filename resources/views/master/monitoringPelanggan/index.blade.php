@@ -44,11 +44,11 @@
                                             <label for="status" class="col-md-3 col-form-label"> Status </label>
                                             <div class="col-md-7">
                                                 <div class="form-check">
-                                                    <input type="radio" class="form-check-input" id="Buka" name="buka">
+                                                    <input type="radio" class="form-check-input" id="status" name="buka">
                                                     <label class="form-check-label">Buka</label>
                                                 </div>
                                                 <div class="form-check">
-                                                    <input type="radio" class="form-check-input" id="tutup_dinas" name="tutup_dinas">
+                                                    <input type="radio" class="form-check-input" id="status" name="tutup_dinas">
                                                     <label class="form-check-label">Telah Tutup Dinas</label>
                                                 </div>
                                             </div>
@@ -75,47 +75,65 @@
                             <div class="row mb-3">
 
                                 <div class="col-md-12">
-                                    <form class="form-horizontal" id="fFilter">
-                                        <div class="form-group row ">
-                                            <div class="col-md-1"></div>
-                                            &nbsp; <input type="checkbox" id="cekNama" value="true" name="cekNama">
-                                            &nbsp;
-                                            <label for="nama" class="col-form-label"> Nama </label>
-                                            <div class="col-md-3">
-                                                <input type="text" class="form-control" id="nama" name="nama">
+                                    <form class="form-horizontal" id="filter">
+                                    <div class="form-group row">
+                                        <div class="col-md-1">
+                                            <label class="col-form-label col-form-label-sm"></label>
+                                        </div>
+                                        <div class="card col-md-7">
+                                            <div class="card-body">
+                                                <div class="col-md-1">
+                                                <label class="col-form-label col-form-label-sm" for="nama">Filter</label>
+                                                </div>
+                                                <div class="form-group row ">
+                                                    <div class="col-md-1"></div>
+                                                    &nbsp; <input type="checkbox" id="cekNama" value="true" name="cekNama">
+                                                    &nbsp;
+                                                    <label for="nama" class="col-form-label"> Nama </label>
+                                                    <div class="col-md-5">
+                                                        <input type="text" class="form-control" id="nama" name="nama">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row ">
+                                                    <div class="col-md-1"></div>
+                                                    &nbsp; <input type="checkbox" id="cekAlamat" value="true" name="cekAlamat">
+                                                    &nbsp;
+                                                    <label for="alamat" class="col-form-label"> Alamat </label>
+                                                    <div class="col-md-2">
+                                                        <input type="text" class="form-control" id="jalan" name="jalan"
+                                                            placeholder="Jalan">
+                                                    </div>
+
+                                                    <div class="col-md-2">
+                                                        <input type="text" class="form-control" id="gang" name="gang"
+                                                            placeholder="Gang">
+                                                    </div>
+
+                                                    <div class="col-md-2">
+                                                        <input type="text" class="form-control" id="nomor" name="nomor"
+                                                            placeholder="Nomor">
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <input type="text" class="form-control" id="noTambahan"
+                                                            name="no_tambahan" placeholder="No Tambahan">
+                                                    </div>
+                                                    <button type="submit" class="btn btn-success float-right" id="search"><i
+                                                    class="fa fa-filter"></i>Filter</button>
+                                                </div>
                                             </div>
                                         </div>
-
+                                    </div>
                                         <div class="form-group row ">
-                                            <div class="col-md-1"></div>
-                                            &nbsp; <input type="checkbox" id="cekAlamat" value="true" name="cekAlamat">
-                                            &nbsp;
-                                            <label for="alamat" class="col-form-label"> Alamat </label>
+                                        <div class="col-md-1"></div>
+                                            <label for="no_plg" class="col-form-label"> No Pelanggan</label>
                                             <div class="col-md-2">
-                                                <input type="text" class="form-control" id="jalan" name="jalan"
-                                                    placeholder="Jalan">
+                                                <input type="text" class="form-control" id="no_plg"
+                                                    name="no_plg">
                                             </div>
-
-                                            <div class="col-md-2">
-                                                <input type="text" class="form-control" id="gang" name="gang"
-                                                    placeholder="Gang">
-                                            </div>
-
-                                            <div class="col-md-1">
-                                                <input type="text" class="form-control" id="nomor" name="nomor"
-                                                    placeholder="Nomor">
-                                            </div>
-                                            <label for="notambahan" class="col-form-label"> No Tambahan</label>
-                                            <div class="col-md-2">
-                                                <input type="text" class="form-control" id="noTambahan"
-                                                    name="no_tambahan">
-                                            </div>
-                                            <button type="submit" class="btn btn-success float-right" id="search"><i
-                                                    class=" fa-filter"></i>Filter</button>
+                                            <button class="btn btn-success float-right"><i
+                                                    class="fa fa-search"></i>Cari Pelanggan</button>
                                         </div>
                                         &nbsp;
-
-
                                     &nbsp;
                                     <br>
                                         <table id="table"
@@ -135,25 +153,29 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                            @if (count($data) > 0)
+                                            @foreach ($data as $row)
                                                 <tr>
-                                                    <td>0000771 </td>
-                                                    <td>DIDIK KRISTANTO               </td>
-                                                    <td>SLAMET JUANDA                                     </td>
-                                                    <td></td>
-                                                    <td>15</td>
-                                                    <td> </td>
-                                                    <td>4B.2</td>
+                                                    <td>{{ $row->no_plg }}</td>
+                                                    <td>{{ $row->nama }}</td>
+                                                    <td>{{ $row->jalan }}</td>
+                                                    <td>{{ $row->gang }}</td>
+                                                    <td>{{ $row->nomor }}</td>
+                                                    <td>{{ $row->notamb }}</td>
+                                                    <td>{{ $row->kd_tarif }}</td>
                                                     <td>
-                                                        <button type="button"
-                                                        class="btn btn-xs btn-danger hapus"
+                                                    <button type="button"
+                                                        class="btn btn-xs btn-success detail"
+                                                        data-id="{{ $row->no_plg }}"
                                                         data-toggle="modal"
                                                         data-target="#form">
                                                         <i class="fas fa-eye"></i>
                                                         Detail
-                                                </button>
-                                              
+                                                    </button>
                                                     </td>
                                                 </tr>
+                                            @endforeach
+                                            @endif
 
                                                 {{-- @foreach ($filter as $mPelanggan)
                                                     <tr>
@@ -192,7 +214,7 @@
                         </div>
                     </div>
     </section>
-    @include('master.monitoringPelanggan.edit')
+    @include('master.monitoringPelanggan.detail')
  
 @endsection
 
@@ -227,6 +249,41 @@
 
             });
         });
+        
+        var showLoading = function() {
+            swal.fire({
+                title: "Mohon Tunggu !",
+                html: "Sedang Memproses...",
+                allowOutsideClick: false,
+                showConfirmButton: false,
+                willOpen: () => {
+                    swal.showLoading()
+                },
+            })
+        }
+
+       
+        $(document).on('click', '.detail', function(e) {
+            e.preventDefault();
+            let no_plg = $(this).data('id')
+            $.ajax({
+                type: "GET",
+                url: `{{ url('master/monitoringPelanggan') }}/`+no_plg,
+                data: {
+                    id: no_plg,
+                    _token: '{{ csrf_token() }}'
+                },
+                beforeSend: function() {
+                    showLoading()
+                },
+                success: function(response) {
+                    $('#form-detail').attr('action', "{{ url('master/monitoringPelanggan') }}/"+no_plg)
+                    $('#no_plg').val(response.no_plg)
+                    $('#zona').val(response.zona)
+                    swal.close();
+                }
+            })
+        })
 
 
         $(document).on('click', '.hapus', function(e) {
@@ -262,36 +319,6 @@
                 }
             });
         });
-
-
-        $(document).on('click', '#search', function(e) {
-            e.preventDefault()
-            let cname      = $('#cekNama').is(":checked")
-            let nama       = $('#nama').val()
-            let cekAlamat  = $('#cekAlamat').is(":checked")
-            let jalan      = $('#jalan').val()
-            let gang       = $('#gang').val()
-            let nomor      = $('#nomor').val()
-            let noTambahan = $('#noTambahan').val()
-            $.ajax({
-                type: "POST",
-                url: `{{ url('master/monitoringPelanggan/filter') }}`,
-                data: {
-                    _token: '{{ csrf_token() }}',
-                    _method: 'POST',
-                    cname: cname,
-                    name: name,
-                    cekAlamat: cekAlamat,
-                    jalan: jalan,
-                    gang: gang,
-                    nomor: nomor,
-                    noTambahan: noTambahan,
-                },
-                success: function(response){
-                    console.log(response)
-                }
-            })
-        })
 
         // Kalo pake API
         // function filter() {

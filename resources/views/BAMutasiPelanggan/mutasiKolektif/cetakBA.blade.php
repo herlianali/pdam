@@ -99,33 +99,33 @@
             <tbody>
                 <tr>
                     <td>Nama </td>
-                    <td>test </td>
-                    <td>halo </td>
+                    <td> </td>
+                    <td> </td>
                 </tr>
                 <tr>
                     <td>Alamat </td>
-                    <td>test </td>
-                    <td>halo </td>
+                    <td> </td>
+                    <td> </td>
                 </tr>
                 <tr>
                     <td>No Pelanggan </td>
-                    <td>test </td>
-                    <td>halo </td>
+                    <td> </td>
+                    <td>Tetap </td>
                 </tr>
                 <tr>
                     <td>Ukuran Meter</td>
-                    <td>test </td>
-                    <td>halo </td>
+                    <td> </td>
+                    <td>Tetap </td>
                 </tr>
                 <tr>
                     <td>Kode Tarif Air</td>
-                    <td>test </td>
-                    <td>halo </td>
+                    <td> </td>
+                    <td>Tetap </td>
                 </tr>
                 <tr>
                     <td>Kode Tarif Retribusi</td>
-                    <td>test </td>
-                    <td>halo </td>
+                    <td> </td>
+                    <td>Tetap </td>
                 </tr>
             </tbody>
         </table>

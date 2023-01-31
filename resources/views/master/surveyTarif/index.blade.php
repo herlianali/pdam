@@ -17,8 +17,9 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title"> Survey Tarif</h3>
-                            <button type="button" class="btn-xs btn-success float-right " data-toggle="modal"
-                                data-target="#pln"><i class=""></i> Jalan PLN</button>
+                            <!-- <button type="button" class="btn-xs btn-success float-right " data-toggle="modal"
+                                data-target="#pln"><i class=""></i> Jalan PLN</button> -->
+                            <a href="{{ route('editpln') }}" class="btn btn-xs btn-success float-right"> Jalan PLN</a>
                         </div>
                         <div class="card-body">
                         <button type="button"

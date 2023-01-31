@@ -13,13 +13,27 @@
                     <div class="form-group row mt-2">
                         <label for="subzona" class="col-md-3 col-form-label">Sub Zona </label>
                         <div class="col-md-4">
-                            <input type="date" class="form-control" id="subzona" name="subzona" onkeyup="valueing()">
+                        <select class="form-control" onkeyup="valueing()" name="zonas">
+                            @foreach ($zona as $zona)
+                                <option value="{{ $zona->zona }}">{{ $zona->zona }}</option>
+                            @endforeach
+                        </select>
                         </div>
                     </div>
                     <div class="form-group row ">
                         <label for="bundel" class="col-md-3 col-form-label">Bundel</label>
                         <div class="col-md-4">
-                            <input type="text" class="form-control" id="bundel" name="bundel" onkeyup="valueing()">
+                        <select class="form-control" onkeyup="valueing()" name="bundel">
+                                <option value="2">02</option>
+                                <option value="4">04</option>
+                                <option value="8">08</option>
+                                <option value="0"></option>
+                                <option value="6">06</option>
+                                <option value="3">03</option>
+                                <option value="5">05</option>
+                                <option value="7">07</option>
+                                <option value="9">09</option>
+                        </select>
                         </div>
                     </div>
                     <div class="form-group row ">

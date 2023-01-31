@@ -41,18 +41,18 @@
                                 </div>
                                 <div class="form-group row ">
                                     <label for="periode" class="col-md-2 col-form-label">Periode </label>
-                                    <div class="col-md-2">
+                                    <div class="col-md-3">
                                         <input type="date" class="form-control" name="periode" id="periode"
                                             onkeyup="valueing()">
                                     </div>
                                     <label for="s.d" class=" col-form-label">S.D </label>
-                                    <div class="col-md-2">
+                                    <div class="col-md-3">
                                         <input type="date" class="form-control" name="periode1" id="periode1" onkeyup="valueing()">
                                     </div>
                                 </div>
                                 <div class="form-group row ">
                                     <label for="wilayah" class="col-md-2 col-form-label"> Wilayah </label>
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <select class="form-control" disabled id="wilayah" onkeyup="valueing()">
                                             <option value="wilayah T">T - Timur </option>
                                             <option value="wilayah B" disabled> B - Barat</option>

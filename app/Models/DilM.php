@@ -50,14 +50,47 @@ class DilM extends Model
         return DB::table("DIL")
                 ->select('DIL.no_plg','DIL.nama','DIL.jalan','DIL.gang','DIL.nomor','DIL.notamb', 'DIL.zona', 'DIL.no_bundel', 'DIL.kd_tarif', 'RETRIBUSI.rp_retribusi')
                 ->join ('RETRIBUSI', 'DIL.kd_retribusi', '=','RETRIBUSI.kd_retribusi');
-    }
+        }
 
-    // public static function getFilter()
+    // public static function getByNoPlg($no_plg)
     // {
-    //     return DB::table("DIL")
-    //             ->select('dil.NAMA','dil.JALAN','dil.GANG','dil.NOMOR','dil.NOTAMB','wilayah_dist.KD_WILAYAH','wilayah_dist.NAMA as NAMA_WILAYAH','ba_mutasi.*','bonc.tgl_bonc','bonc.tgl_realisasi','dil.da','ba_mutasi.da_b','merk_meter.merk AS merkl','tmerk.merk AS merkb','ZONA_PERIODE.PERIODE')
-    //             ->first();
-
+    //     return DB::select("SELECT a.no_plg,a.zona,a.jns_pelanggan,a.no_bundel,a.nama,trim(a.jalan) || ' ' || decode(trim(a.gang),'','' || decode(trim(a.nomor),'','',trim(a.nomor)) || decode(trim(a.notamb),'','', trim(a.notamb)),  trim(a.gang) || '/' || decode(trim(a.nomor),'','',trim(a.nomor)) || decode(trim(a.notamb),'','',trim(a.notamb))) as alamat_pemohon from dil a where a.no_plg= '" .$no_plg. "' ORDER BY a.NO_PLG DESC FETCH FIRST 1 ROWS ONLY");
     // }
 
+    public static function getNoPlg($param){
+        return DB::table('DIL')
+                ->select('DIL.no_plg', 'DIL.zona', 'DIL.jns_pelanggan', 'DIL.no_bundel', 'DIL.nama', 'DIL.jalan', 'DIL.gang', 'DIL.nomor', 'DIL.notamb', 'DIL.rp_retribusi')
+                ->whereRaw("DIL.no_plg = '".$param."            '")
+                ->first();
+    }
+
+    public static function getPln($no_bundel, $zona)
+    {
+        return DB::table("DIL")
+                    ->select('zona', 'no_bundel', 'no_plg', 'listrik', 'jalan', 'jns_pelanggan', 'gang', 'nomor', 'notamb', 'genap')
+                    ->whereRaw("ZONA = '$zona'")
+                    ->whereRaw("NO_BUNDEL = '$no_bundel'")
+                    ->orderByRaw('no_bundel, jalan, gang, genap, to_number(nomor), notamb, no_plg')
+                    ->first();
+    }
+
+    public static function getJalanPln($zona, $no_bundel)
+    {
+        return DB::select("SELECT a.ZONA, a.no_bundel, a.no_plg, b.listrik, b.jalan, a.jns_pelanggan,a.jalan jalanku, a.gang, a.nomor, a.notamb, a.genap FROM DIL a,( SELECT no_plg, listrik, jalan FROM SURVEY_TARIF WHERE listrik='0' OR jalan='0') b Where a.no_plg = b.no_plg and a.zona='".$zona."' and a.no_bundel='".$no_bundel."' ORDER BY a.no_bundel, a.jalan, a.gang, a.genap, to_number(a.nomor), a.notamb, a.no_plg FETCH FIRST 1 ROWS ONLY");
+    }
+
+    public static function getBundel($param)
+    {
+        return DB::select("SELECT Distinct no_bundel from dil where zona='".$param."'");
+    }
+
+    public static function getPelanggan($no_plg)
+    {
+        return DB::select("SELECT a.no_plg,a.nama,a.jalan,a.gang,a.nomor,a.notamb,a.kd_tarif from dil a,zona b where a.zona=b.zona and a.no_plg='".$no_plg."'");
+    }
+
+    public static function getInfo($no_plg)
+    {
+        return DB::select("SELECT * from dil where no_plg='".$no_plg."'");
+    }
 }

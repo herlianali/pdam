@@ -62,12 +62,12 @@
                 <tbody>
                     <tr>
                         <td>1</td>
-                        <td>10111</td>
-                        <td>Jl Kenangan</td>
-                        <td>1</td>
-                        <td>14</td>
-                        <td>Status</td>
-                        <td>Aktif</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                     </tr>
                 </tbody>
             </table>

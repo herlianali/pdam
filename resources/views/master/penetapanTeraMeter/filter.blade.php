@@ -13,31 +13,17 @@
                     <div class="form-group">
                         <label for="nopenetapan" class="col-form-label">Nomor Penetapan :</label>
                         <div class="col-md-10">
-                            <input type="text" class="form-control" id="nomor" onkeyup="valueing()">
-                        </div>
-                    </div>
-<<<<<<< HEAD
-                    <div class="form-group row mt-2 ">
-                        <label for="petcs" class="col-md-2 col-form-label">Petugas Tera</label>
-                        <div class="col-md-6">
-                            <select class="custom-select" name="petcs" id="petcs">
-
-                            </select>
+                            <input type="text" class="form-control" id="no_tera" name="no_tera" onkeyup="valueing()">
                         </div>
                     </div>
                     <div class="form-group">
                     <label for="petcs" class="col-form-label">Petugas Tera</label>
                         <div class="col-md-10">
                             <select class="custom-select" id="petcs" name="petcs" onkeyup="valueing()">
-                                {{-- @foreach ($petcs as $petugas) --}}
-                                    {{-- <option value="{{ $petugas->petcs }}">{{ $petugas->kd_ptgcs }} - {{ $petugas->nama }}</option> --}}
-                                {{-- @endforeach --}}
+                                @foreach ($petcs as $petugas)
+                                    <option value="{{ $petugas->kd_ptgcs }}">{{ $petugas->kd_ptgcs }} - {{ $petugas->nama }}</option>
+                                @endforeach
                             </select>
-=======
-                    <div class="form-group">
-                    <label for="petcs" class="col-form-label">Petugas Tera</label>
-                        <div class="col-md-10">
->>>>>>> dev-nifil
                         </div>
                     </div><br>
                     <button type="submit" class="btn btn-info btn-sm">Preview</button>

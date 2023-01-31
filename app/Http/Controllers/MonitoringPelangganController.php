@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DilM;
 use Illuminate\Http\Request;
 use App\Models\MonitoringPelanggan;
 
@@ -11,13 +12,30 @@ class MonitoringPelangganController extends Controller
     {
         // $mPelanggan = new MonitoringPelanggan;
         // $monPelanggan = $mPelanggan->getData();
-        return view('master.monitoringPelanggan.index')->with('i');
+        $data = [];
+        $formFilter = [];
+        return view('master.monitoringPelanggan.index', compact('data', 'formFilter'))->with('i');
     }
 
-    public function show($no_plg)
+    public function show(Request $request)
     {
-        $monPelanggan = MonitoringPelanggan::where('no_plg', $no_plg)->first();
-        return response()->json($monPelanggan);
+        //$monPelanggan = MonitoringPelanggan::where('no_plg', $no_plg)->first();
+        $data = DilM::getPelanggan($request->no_plg);
+        $info = DilM::getInfo($request->no_plg);
+        $formFilter = array(
+            'info'      => DilM::getInfo($request->no_plg),
+            'no_plg'    => $request->no_plg,
+            'zona'      => $request->zona
+        );
+        return view('master.monitoringPelanggan.index', compact('data', 'info', 'formFilter'))->with('i');
+    }
+
+    public function info(Request $request, $no_plg)
+    {
+        DilM::where('no_plg', $no_plg)->first([
+            'no_plg' => $request->no_plg
+        ]);
+        return redirect()->route('jenisPekerjaan.index');
     }
 
 

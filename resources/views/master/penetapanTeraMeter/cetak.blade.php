@@ -1,46 +1,29 @@
-@extends('layout.app')
-
-@push('css')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="{{ asset('assets/plugins/font/dot-matrix.css') }}" rel="stylesheet">
-    <style>
-        .priview {
+    <style type="text/css">
+        p  {
             font-family: 'Dot Matrix', sans-serif;
         }
-        .atasan{
-            border-top: 2px dashed gray;
+
+        table{
+            font-family: 'Dot Matrix', sans-serif;
         }
+
         table thead tr {
-            border-bottom: 2px dashed rgb(102, 102, 102);
-            border-top: 2px dashed rgb(102, 102, 102);
+            border-bottom: 3px dotted rgb(102, 102, 102);
+            border-top: 3px dotted rgb(102, 102, 102);
         }
-      
     </style>
-@endpush
-
-@section('title', 'Print Penetapan Tera Meter')
-
-@section('namaHal', 'Master')
-
-@section('breadcrumb')
-    <ol class="breadcrumb float-sm-right">
-        <li class="breadcrumb-item"><a href="#">Master</a></li>
-        <li class="breadcrumb-item active">Penetapan Tera Meter</li>
-        <li class="breadcrumb-item active">Print Penetapan Tera Meter</li>
-    </ol>
-    <br>
-@endsection
-
-@section('content')
-    <section class="content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12 col-sm-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Print preview Penetapan Tera Meter</h3>
-                            <a href="{{ route('cetakpenetapanTeraMeter') }}" class="btn btn-xs float-right btn-success print">Print</a>
-                        </div>
-                        <div class="card-body priview">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penetapan Tera Meter</title>
+</head>
+<body>
+<div class="card-body priview">
                             <div class="row">
                                 <div class="col">
                                     <div style="font-size:15px">Pemerintah Kota Surabaya</div>
@@ -49,11 +32,11 @@
                             </div>
                             <div class="row">
                                 <div class="col"></div>
-                                <div class="col">
+                                <div class="col"> 
+                                    <table >
                                         <tr>
                                             <td><b>Bagian Langganan Wilayah Timur</b></td>
                                         </tr>
-                                    <table >
                                         <tr>
                                             <td>Nomor</td>
                                             <td>: {{ $data['cetak'][0]->no_tera }}</td>
@@ -66,7 +49,10 @@
                                             <td>Nomor Bon</td>
                                             <td>: {{ $data['cetak'][0]->no_bonc }}</td>
                                         </tr>
+                                        <tr></tr>
+                                        
                                     </table>
+
                                 </div>
                             </div>
                             <br>
@@ -123,13 +109,12 @@
                                 </div>
                             </div>
                         </div>
-                        <table class="table" style="text-align: center;">
+                        <table class="table">
                             <thead>
                                 <tr>
                                     <th width="15%">Ukuran Meter Ai (Inci)</th>
                                     <th width="15%">Biaya Tera (Rp)</th>
-                                    <th width="15%">Jumlah yang harus dibayar 
-                                        + Ppn 10% (Rp)</th>
+                                    <th width="15%">Jumlah yang harus dibayar + Ppn 10% (Rp)</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -171,7 +156,7 @@
                         </div>
                         <div class="atasan">
                         <table class="table">
-                        <div class="mx-auto mb-3" style="width: 300px;"><br>
+                        <div class="mx-auto mb-3" style="width: 300px;">
                                 <span>
                                     <center><b>SURAT PERNYATAAN</b></center>
                                 </span>
@@ -256,53 +241,15 @@
 </div>
 </div>
 </div>
-            </div>
-        </div>
-    </section>
-@endsection
+</div>
+</body>
+</html>
 
 @push('js')
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{ asset('assets/jquery.printPage.js') }}"></script>
     <script type="text/javascript">
-
-        var loadingPrint = function() {
-            swal.fire({
-                title: "Mohon Tunggu !",
-                html: "Sedang Menyiapkan Data...",
-                allowOutsideClick: false,
-                showConfirmButton: false,
-                willOpen: () => {
-                    swal.showLoading()
-                },
-            })
-        }
-
-        $(document).on('click', '.print', function(e) {
-            e.preventDefault();
-            var no_tera = `{{ $data['no_tera'] }}`
-            var petcs = `{{ $data['petcs'] }}`
-            $.ajax({
-                type: "POST",
-                url: `{{ url('master/cetakpenetapanTeraMeter') }}`,
-                dataType: 'html',
-                data: {
-                    _token: '{{ csrf_token() }}',
-                    no_tera: no_tera,
-                    petcs: petcs
-                },
-                beforeSend: function() {
-                    loadingPrint()
-                },
-                success: function(res){
-                    var w = window.open(`{{ url('master/cetakpenetapanTeraMeter') }}`,'_blank');
-                    w.document.open();
-                    w.document.write(res);
-                    w.document.close();
-                    w.window.print();
-                    w.window.close();
-                    swal.close();
-                }
-            })
-        })
+        $(document).ready(function() {
+            $(".print").printPage();
+        });
     </script>
 @endpush

@@ -168,15 +168,15 @@ Route::prefix('master')->group(function () {
 
 
     Route::resource('/telponPelanggan', TelponPelangganController::class)->parameters(['telponPelanggan' => 'no_plg'])->except(['create','destroy', 'store']);
-
-    Route::get('/monitoringPelanggan', [MonitoringPelangganController::class, 'index'])->name('monitoringPelanggan');
-    Route::get('/monitoringPelanggan.{id}', [MonitoringPelangganController::class, 'show']);
+    Route::get('/monitoringPelanggan', [MonitoringPelangganController::class, 'show'])->name('monitoringPelanggan');
     Route::delete('/deletemonitoringPelanggan/{id}', [MonitoringPelangganController::class, 'destroy']);
     Route::post('/monitoringPelanggan/filter', [MonitoringPelangganController::class, 'filter']);
 
     Route::resource('/penetapanTeraMeter', PenetapanTeraMeterController::class)->parameters(['penetapanTeraMeter' => 'no_bonc'])->except(['create', 'edit']);
     Route::get('/penetapanTeraMeter', [PenetapanTeraMeterController::class, 'index'])->name('penetapanTeraMeter');
     Route::get('/penetapanTeraMeter/{no_bonc}', [PenetapanTeraMeterController::class, 'show'])->name('penetapanTeraMeter.show');
+    Route::post('/printpenetapanTeraMeter', [PenetapanTeraMeterController::class, 'printPreview'])->name('printpenetapanTeraMeter');
+    Route::post('/cetakpenetapanTeraMeter', [PenetapanTeraMeterController::class, 'cetak'])->name('cetakpenetapanTeraMeter');
     //Route::get('/penetapanTeraMeter/{no_bonc}', [PenetapanTeraMeterController::class, 'getData']);
 
     Route::get('/printpenetapanTeraMeter', [PenetapanTeraMeterController::class, 'print'])->name('printpenetapanTeraMeter');
@@ -190,6 +190,8 @@ Route::prefix('master')->group(function () {
     Route::get('/dataKosong', [SurveyTarifController::class, 'datakosong'])->name('dataKosong');
     Route::get('/cetakdk', [SurveyTarifController::class, 'cetakdk'])->name('cetakdk');
     Route::get('/editpln', [SurveyTarifController::class, 'editpln'])->name('editpln');
+    Route::patch('/editJalan', [SurveyTarifController::class, 'editJalan'])->name('editJalan');
+    Route::post('/editpln', [SurveyTarifController::class, 'showeditpln'])->name('editpln.showeditpln');
     Route::get('/lebihentri', [SurveyTarifController::class, 'lebihentri'])->name('lebihentri');
     Route::get('/cetaklebihentri', [SurveyTarifController::class, 'cetaklebihentri'])->name('cetaklebihentri');
 
@@ -236,18 +238,24 @@ Route::prefix('mutasipelanggan')->group(function() {
     Route::get('historiMutasi', [HistoriMutasiController::class, 'index'])->name('historiMutasi');
     Route::post('historiMutasi', [HistoriMutasiController::class,'show'])->name('historiMutasi.show');
 
+    Route::resource('/monitoringBAMutasiKolektif', MonitoringBAMutasiKolektifController::class)->parameters(['monitoringBAMutasiKolektif' => 'no_bamutkol'])->except(['create', 'edit', 'store']);
     Route::get('monitoringBAMutasiKolektif', [MonitoringBAMutasiKolektifController::class, 'index'])->name('monitoringBAMutasiKolektif');
     Route::get('createmonitoringBAMutasiKolektif', [MonitoringBAMutasiKolektifController::class, 'create'])->name('createmonitoringBAMutasiKolektif');
+    Route::get('/monitoringBAMutasiKolektif', [MonitoringBAMutasiKolektifController::class, 'show'])->name('monitoringBAMutasiKolektif');
     Route::get('preview', [MonitoringBAMutasiKolektifController::class, 'preview'])->name('preview');
     Route::get('previewLampiran', [MonitoringBAMutasiKolektifController::class, 'preview'])->name('preview');
     Route::get('previewPdinas', [MonitoringBAMutasiKolektifController::class, 'previewPdinas'])->name('previewPdinas');
     Route::get('previewUsulan', [MonitoringBAMutasiKolektifController::class, 'previewLampiran'])->name('previewLampiran');
     Route::get('persetujuan', [MonitoringBAMutasiKolektifController::class, 'persetujuan'])->name('persetujuan');
 
+    Route::resource('/monitoringBAMutasiPerorangan', MonitoringBAMutasiPeroranganController::class)->parameters(['monitoringBAMutasiPerorangan' => 'no_bamutasi'])->except(['create', 'edit']);
     Route::get('monitoringBAMutasiPerorangan', [MonitoringBAMutasiPeroranganController::class, 'index'])->name('monitoringBAMutasiPerorangan');
+    Route::get('/monitoringBAMutasiPerorangan', [MonitoringBAMutasiPeroranganController::class, 'show'])->name('monitoringBAMutasiPerorangan');
     Route::get('createmonitoringBAMutasiPerorangan', [MonitoringBAMutasiPeroranganController::class, 'create'])->name('createmonitoringBAMutasiPerorangan');
     Route::get('editmonitoringBAMutasiPerorangan', [MonitoringBAMutasiPeroranganController::class, 'edit'])->name('editmonitoringBAMutasiPerorangan');
     Route::get('persetujuanmonitoringBAMutasiPerorangan', [MonitoringBAMutasiPeroranganController::class, 'persetujuan'])->name('persetujuanmonitoringBAMutasiPerorangan');
+    Route::post('previewBAMutasiPerorangan', [MonitoringBAMutasiPeroranganController::class, 'preview'])->name('previewBAMutasiPerorangan');
+    Route::post('cetakBAMutasiPerorangan', [MonitoringBAMutasiPeroranganController::class, 'cetak'])->name('cetakBAMutasiPerorangan');
     Route::get('previewBA', [MonitoringBAMutasiPeroranganController::class, 'previewBA'])->name('previewBA');
     Route::get('previewBATarif', [MonitoringBAMutasiPeroranganController::class, 'previewBATarif'])->name('previewBATarif');
     Route::get('previewPanggilan', [MonitoringBAMutasiPeroranganController::class, 'previewPanggilan'])->name('previewPanggilan');
@@ -256,10 +264,11 @@ Route::prefix('mutasipelanggan')->group(function() {
 
     Route::resource('/mutasiKolektif', MutasiKolektifController::class)->parameters(['mutasiKolektif' => 'no_plg'])->except(['create', 'edit']);
     Route::get('mutasiKolektif', [MutasiKolektifController::class, 'index'])->name('mutasiKolektif');
-    Route::get('previewBA', [MutasiKolektifController::class, 'previewBA'])->name('previewBA');
-    Route::get('previewLampiran', [MutasiKolektifController::class, 'previewLampiran'])->name('previewLampiran');
-    Route::post('cetakBA', [MutasiKolektifController::class, 'cetakBA'])->name('cetakBA');
-    Route::post('cetakLampiran', [MutasiKolektifController::class, 'cetakLampiran'])->name('cetakLampiran');
+    Route::get('/mutasiKolektif/{no_plg}', [MutasiKolektifController::class, 'show'])->name('mutasiKolektif.show');
+    Route::get('/previewBAMutasiKolektif', [MutasiKolektifController::class, 'previewBAMutasiKolektif'])->name('previewBAMutasiKolektif');
+    Route::get('/previewLampiranMutasiKolektif', [MutasiKolektifController::class, 'previewLampiranMutasiKolektif'])->name('previewLampiranMutasiKolektif');
+    Route::post('/cetakBAMutasiKolektif', [MutasiKolektifController::class, 'cetakBAMutasiKolektif'])->name('cetakBAMutasiKolektif');
+    Route::post('/cetakLampiranMutasiKolektif', [MutasiKolektifController::class, 'cetakLampiranMutasiKolektif'])->name('cetakLampiranMutasiKolektif');
 
     Route::get('laporanRekapitulasiPerubahanTarif', [LaporanRekapitulasiPerubahanTarifController::class, 'index'])->name('laporanRekapitulasiPerubahanTarif');
     Route::post('preview', [LaporanRekapitulasiPerubahanTarifController::class, 'preview'])->name('preview');

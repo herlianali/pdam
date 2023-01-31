@@ -51,4 +51,9 @@ class SurveyTarif extends Model
                     ->where('nopel', 'LIKE', $nopel)
                     ->first();
     }
+
+    public static function updateJalanPln($amper, $jalan, $no_plg)
+    {
+        return DB::update("UPDATE survey_tarif set listrik = '".$amper."',jalan = '".$jalan."' where no_plg='".$no_plg."'");
+    }
 }

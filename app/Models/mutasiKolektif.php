@@ -14,7 +14,7 @@ class MutasiKolektif extends Model
 
     public function getLast() {
         return DB::table($this->table)
-                ->select(DB::raw("substr(no_bamutasi, 3) as id"))
+                ->select(DB::raw("substr(no_bamutasi, 4) as id"))
                 ->orderBy('no_bamutasi', 'desc')->first()->{'id'};
     }
 
@@ -25,5 +25,9 @@ class MutasiKolektif extends Model
                 ->join('DIL', 'DIL.NO_PLG', '=', 'PENGADUAN.NO_PLG')
                 ->whereRaw("BONC.no_bonc = '".$param."            '")
                 ->first();
+    }
+
+    public static function getRet(){
+        return DB::select("SELECT rp_retribusi from RETRIBUSI");
     }
 }

@@ -55,21 +55,34 @@ class PenetapanTeraMeterController extends Controller
         return response()->json($getByBonc);
     }
 
-    public function filter()
+    public function printPreview(Request $request)
     {
-        $petcs  = PetugasCS::getData();
-        //dd($petcs);
-        return view('master.penetapanTeraMeter.filter', compact(['petcs']))->with('i');
+        $date = Carbon::now()->format('d-m-Y');
+        $query  = PetugasCS::getData();
+        $cetak = PenetapanTeraMeter::getCetak($request->no_tera);
+        $data = array(
+            'no_tera'   => $request->no_tera,
+            'petcs'     => $request->petcs,
+            'query'     => $query,
+            'cetak'     => $cetak
+        );
+        //dd($data['cetak'][0]);
+        return view('master.penetapanTeraMeter.print', compact('data', 'date'))->with('i');
     }
 
-    public function print()
+    public function cetak(Request $request)
     {
+        $date = Carbon::now()->format('d-M-Y');
+        $query  = PetugasCS::getData();
+        $cetak = PenetapanTeraMeter::getCetak($request->no_tera);
+        $data = array(
+            'no_tera'   => $request->no_tera,
+            'petcs'     => $request->petcs,
+            'query'     => $query,
+            'cetak'     => $cetak
+        );
         // $petcs  = PetugasCS::getData();
-        return view('master.penetapanTeraMeter.print');
-    }
-    public function create()
-    {
-        return view('master.penetapanTeraMeter.create');
+        return view('master.penetapanTeraMeter.cetak', compact('data', 'date'))->with('i');
     }
 
 }

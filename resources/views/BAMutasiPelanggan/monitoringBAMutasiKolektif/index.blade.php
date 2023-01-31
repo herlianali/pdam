@@ -28,8 +28,7 @@
                         <div class="card-body">
                             <div class="row mb-4">
                                 <div class="col-md-12">
-                                    <form class="form-horizontal" action="" method="post">
-                                        @csrf
+                                    <form class="form-horizontal">
                                         <div class="form-group">
                                             <div class="form-check">
                                                 <div class="row">
@@ -37,20 +36,19 @@
                                                         <div class="row">
                                                             <div class="col">
                                                                 <input type="radio" name="pilihan" id="belumdisahkan" value="">
-                                                                <label for="">Belum disahkan sampai tanggal</label>
+                                                                <label for="belumdisahkan">Belum disahkan sampai tanggal</label>
                                                             </div>
-                                                            <div class="col">
-                                                                {{-- <input class="ml-3" type="date" name="pilihan" id="belumdisahkan" value="" disabled> --}}
-                                                                <label class="ml-3" for="">09/11/2022</label>
+                                                            <div class="col-md-4">
+                                                                <input type="date" class="form-control" id="belumdisahkan" name="pilihan" value="{{ $date }}" readonly>
                                                             </div>
                                                         </div>
                                                         <div class="row">
                                                             <div class="col">
                                                                 <input type="radio" name="pilihan" id="telahdisahkan" value="">
-                                                                <label for="">Telah disahkan tanggal</label>
+                                                                <label for="telahdisahkan">Telah disahkan tanggal</label>
                                                             </div>
-                                                            <div class="col">
-                                                                <input class="ml-3" type="text" name="pilihan" id="telahdisahkan" value="22/06/2005">
+                                                            <div class="col-md-4">
+                                                                <input type="date" class="form-control" id="telahdisahkan" name="pilihan" value="">
                                                             </div>
                                                         </div>
                                                         <hr>
@@ -59,21 +57,18 @@
                                                                 <input type="radio" name="pilihan" id="belumdikirimkebagrek"value="">
                                                                 <label for="">Belum dikirim ke Bag.Rekening tgl</label>
                                                             </div>
-                                                            <div class="col">
-                                                                <label class="ml-3" for="">09/11/2022</label>
-                                                                {{-- <input class="ml-3" type="date" name="pilihan" id="belumdikirimkebagrek" value="">
-                                                                 --}}
+                                                            <div class="col-md-4">
+                                                                <input type="date" class="form-control" id="belumdikirimkebagrek" name="pilihan" value="{{ $date }}" readonly>
                                                             </div>
                                                         </div>
-                                                        <div class="col ml-n2">
+                                                        <div class="row">
+                                                        <div class="col">
                                                             <input type="radio" name="pilihan" id="telahdikirimkebagrek"value="">
                                                             <label for=""> Telah dikirim ke Bag.Rekening tgl</label>
-                                                            <input class="ml-5" type="date" name="pilihan"id="telahdikirimkebagrek" value="">
                                                         </div>
-                                                        <div class="col ml-n2">
-                                                            <label for="">No. BA</label>
-                                                            <input style="margin-left: 15.8rem; width: 10rem" type="text"name="no_ba" id="no_ba" value="">
-                                                            <button>cari BA</button>
+                                                            <div class="col-md-4">
+                                                            <input class="form-control" type="date" name="pilihan"id="telahdikirimkebagrek" value="">
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <div class="col">
@@ -83,9 +78,8 @@
                                                                     value="">
                                                                 <label for="">Belum diremajakan sampai tgl</label>
                                                             </div>
-                                                            <div class="col">
-                                                                {{-- <input class="ml-3" type="date" name="pilihan" id="belumdiremajakan" value=""> --}}
-                                                                <label class="ml-3" for="">09/11/2022</label>
+                                                            <div class="col-md-4">
+                                                                <input type="date" class="form-control" id="belumdiremajakan" name="pilihan" value="{{ $date }}" readonly>
                                                             </div>
                                                         </div>
                                                         <div class="row">
@@ -94,8 +88,8 @@
                                                                     value="">
                                                                 <label for="">Telah diremajakan tgl</label>
                                                             </div>
-                                                            <div class="col">
-                                                                <input class="ml-3" type="date" name="pilihan" id="telahdiremajakan" value="">
+                                                            <div class="col-md-4">
+                                                                <input class="form-control" type="date" name="pilihan" id="telahdiremajakan" value="">
                                                             </div>
                                                         </div>
                                                         <div class="row">
@@ -104,8 +98,8 @@
                                                                     value="">
                                                                 <label for="">Telah diremajakan bulan</label>
                                                             </div>
-                                                            <div class="col">
-                                                                <input class="ml-3" type="date" name="pilihan"id="telahdiremajakanbulan" value="">
+                                                            <div class="col-md-4">
+                                                                <input class="form-control" type="text" name="pilihan"id="telahdiremajakanbulan" value="">
                                                             </div>
                                                         </div>
                                                         <hr>
@@ -114,8 +108,8 @@
                                                                 <input type="radio" name="pilihan" id="dibuat_tgl"value="">
                                                                 <label for="">Dibuat tanggal</label>
                                                             </div>
-                                                            <div class="col">
-                                                                <input class="ml-3" type="text" name="pilihan"id="dibuat_tgl" value="09/11/2022">
+                                                            <div class="col-md-4">
+                                                                <input class="form-control" type="date" name="pilihan"id="dibuat_tgl" value="09/11/2022">
                                                             </div>
                                                         </div>
                                                         <div class="row">
@@ -123,129 +117,76 @@
                                                                 <input type="radio" name="pilihan" id="dibuat_bln"value="">
                                                                 <label for="">Dibuat bulan</label>
                                                             </div>
-                                                            <div class="col">
-                                                                <input class="ml-3" type="date" name="pilihan" id="dibuat_bln" value="">
+                                                            <div class="col-md-4">
+                                                                <input class="form-control" type="text" name="pilihan" id="dibuat_bln" value="">
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
+                                                
                                             </div>
-                                            <button type="submit" class="btn btn-success btn-sm float-right"><i class="fa fa-filter"></i> Filter</button> <br>
+                                            <div class="form-group row">
+                                                <label for="no_bamutkol" class="col-md-2 col-form-label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; No. BA </label>
+                                                <div class="col-md-2">
+                                                    <input type="text" class="form-control" id="no_bamutkol" name="no_bamutkol">
+                                                </div>
+                                                <button class="btn btn-success float-right"><i
+                                                    class="fa fa-search"></i>Cari BA</button>&nbsp;
+                                                <button type="submit" class="btn btn-success btn-sm float-right"><i class="fa fa-filter"></i> Filter</button>
+                                            </div>
                                             <br>
                                             <a href="{{ route('preview') }}"class="btn btn-sm btn-info float-right"><i class="fas fa-print"></i> Preview</a>
+                                        </div>
                                     </form>
+                                    
                                     <table id="table" class="table table-bordered table-responsive table-condensed">
                                         <thead>
                                             <tr>
-                                                <th>No Bamutkol</th>
-                                                <th>Tgl Bamutasi</th>
-                                                <th>Jenis Mutasi</th>
-                                                <th>No Mutasi</th>
-                                                <th>Rp Retribusi</th>
-                                                <th>Terhitung Tgl</th>
-                                                <th>Bln Terbit</th>
-                                                <th>Dasar</th>
-                                                <th>Tgl Kasi</th>
-                                                <th>Tgl Kabag</th>
-                                                <th>Tgl Kirim Rekening</th>
-                                                <th>Tgl Peremajaan</th>
-                                                <th>Kd Retribusi</th>
-                                                <th>Batal</th>
-                                                <th>Tgl Batal</th>
-                                                <th>No Pengaduan</th>
+                                                <th>NO_BAMUTKOL</th>
+                                                <th>TGL_BAMUTASI</th>
+                                                <th>JNS_MUTASI</th>
+                                                <th>NO_BONC</th>
+                                                <th>RP_RETRIBUSI_L</th>
+                                                <th>RP_RETRIBUSI_B</th>
+                                                <th>TERHITUNG_TGL</th>
+                                                <th>BLN_TERBIT</th>
+                                                <th>DASAR</th>
+                                                <th>TGL_KASI</th>
+                                                <th>TGL_KABAG</th>
+                                                <th>TGL_KIRIMREKENING</th>
+                                                <th>TGL_PEREMAJAAN</th>
+                                                <th>KD_RETRIBUSIL</th>
+                                                <th>KD_RETRIBUSIB</th>
+                                                <th>BATAL</th>
+                                                <th>TGL_BATAL</th>
+                                                <th>NO_PENGADUAN</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                        @if (count($data) > 0)
+                                        @foreach ($data as $row)
                                             <tr>
-                                                <td>TD050766</td>
-                                                <td>21/06/2005</td>
-                                                <td>DEFI</td>
-                                                <td>TCP</td>
-                                                <td></td>
-                                                <td></td>
-                                                <td>112005</td>
-                                                <td>Lebar Jalan 10 M. Mempunyai Nilai Ekonomi Tinggi</td>
-                                                <td>22/06/2005</td>
-                                                <td>22/06/2005</td>
-                                                <td>28/09/2005</td>
-                                                <td>18/10/2005</td>
-                                                <td></td>
-                                                <td>0</td>
-                                                <td></td>
-                                                <td>T20050013989</td>
+                                                <td>{{ $row->no_bamutkol }}</td>
+                                                <td>{{ $row->tgl_bamutasi }}</td>
+                                                <td>{{ $row->jns_mutasi }}</td>
+                                                <td>{{ $row->no_bonc }}</td>
+                                                <td>{{ $row->rp_retribusi_l }}</td>
+                                                <td>{{ $row->rp_retribusi_b }}</td>
+                                                <td>{{ $row->terhitung_tgl }}</td>
+                                                <td>{{ $row->blnterbit }}</td>
+                                                <td>{{ $row->dasar }}</td>
+                                                <td>{{ $row->tgl_kasi }}</td>
+                                                <td>{{ $row->tgl_kabag }}</td>
+                                                <td>{{ $row->tgl_kirimrekening }}</td>
+                                                <td>{{ $row->tgl_peremajaan }}</td>
+                                                <td>{{ $row->kd_retribusil }}</td>
+                                                <td>{{ $row->kd_retribusib }}</td>
+                                                <td>{{ $row->batal }}</td>
+                                                <td>{{ $row->tgl_batal }}</td>
+                                                <td>{{ $row->no_pengaduan }}</td>
                                             </tr>
-                                            <tr>
-                                                <td>TD050769</td>
-                                                <td>21/06/2005</td>
-                                                <td>DEFI</td>
-                                                <td>TCP</td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td>Lebar Jalan 9 M.</td>
-                                                <td>22/06/2005</td>
-                                                <td>22/06/2005</td>
-                                                <td>21/06/2005</td>
-                                                <td></td>
-                                                <td></td>
-                                                <td>0</td>
-                                                <td></td>
-                                                <td>T20050013264</td>
-                                            </tr>
-                                            <tr>
-                                                <td>TD050770</td>
-                                                <td>21/06/2005</td>
-                                                <td>DEFI</td>
-                                                <td>TCP</td>
-                                                <td></td>
-                                                <td></td>
-                                                <td>112005</td>
-                                                <td>Lebar Jalan 8 M.</td>
-                                                <td>22/06/2005</td>
-                                                <td>22/06/2005</td>
-                                                <td>28/09/2005</td>
-                                                <td>14/10/2005</td>
-                                                <td></td>
-                                                <td>0</td>
-                                                <td></td>
-                                                <td>T20050013985</td>
-                                            </tr>
-                                            <tr>
-                                                <td>TD050771</td>
-                                                <td>21/06/2005</td>
-                                                <td>DEFI</td>
-                                                <td>TCP</td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td>Lebar Jalan 6 M.</td>
-                                                <td>22/06/2005</td>
-                                                <td>22/06/2005</td>
-                                                <td>21/06/2005</td>
-                                                <td></td>
-                                                <td></td>
-                                                <td>0</td>
-                                                <td></td>
-                                                <td>T20050013294</td>
-                                            </tr>
-                                            <tr>
-                                                <td>TD050775</td>
-                                                <td>21/06/2005</td>
-                                                <td>DEFI</td>
-                                                <td>TCP</td>
-                                                <td></td>
-                                                <td></td>
-                                                <td>112005</td>
-                                                <td>Lebar Jalan 10 M.</td>
-                                                <td>22/06/2005</td>
-                                                <td>22/06/2005</td>
-                                                <td>18/10/2005</td>
-                                                <td>18/10/2005</td>
-                                                <td></td>
-                                                <td>0</td>
-                                                <td></td>
-                                                <td>T20050013537</td>
-                                            </tr>
+                                        @endforeach
+                                        @endif
                                         </tbody>
                                     </table>
                                     <table id="table2" class="table table-bordered table-responsive table-condensed">
@@ -279,134 +220,30 @@
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td>2112812</td>
-                                                <td>Eko Purwanto</td>
-                                                <td>Pacar Kembang</td>
-                                                <td>T</td>
-                                                <td>01</td>
-                                                <td>02</td>
-                                                <td>SSS</td>
-                                                <td>211</td>
-                                                <td>41</td>
-                                                <td>4B.2</td>
-                                                <td>21206512</td>
-                                                <td>0.5</td>
-                                                <td>057</td>
-                                                <td>11500</td>
-                                                <td>260873</td>
-                                                <td>13</td>
                                                 <td></td>
-                                                <td>31/08/2022</td>
-                                                <td>06/06/2018</td>
-                                                <td>09/06/2018</td>
-                                                <td>102019</td>
-                                                <td>BK</td>
-                                                <td>102022</td>
-                                                <td>43</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2111351</td>
-                                                <td>Junedi Poerbianto</td>
-                                                <td>Pacar Kembang</td>
-                                                <td>T</td>
-                                                <td>01</td>
-                                                <td>02</td>
-                                                <td>SSS</td>
-                                                <td>211</td>
-                                                <td>41</td>
-                                                <td>4B.2</td>
-                                                <td>21206512</td>
-                                                <td>0.5</td>
-                                                <td>057</td>
-                                                <td>11500</td>
-                                                <td>260873</td>
-                                                <td>13</td>
                                                 <td></td>
-                                                <td>31/08/2022</td>
-                                                <td>06/06/2018</td>
-                                                <td>09/06/2018</td>
-                                                <td>102019</td>
-                                                <td>BK</td>
-                                                <td>102022</td>
-                                                <td>43</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2112445</td>
-                                                <td>Sardi</td>
-                                                <td>Pacar Kembang</td>
-                                                <td>T</td>
-                                                <td>01</td>
-                                                <td>02</td>
-                                                <td>SSS</td>
-                                                <td>211</td>
-                                                <td>41</td>
-                                                <td>4B.2</td>
-                                                <td>21206512</td>
-                                                <td>0.5</td>
-                                                <td>057</td>
-                                                <td>11500</td>
-                                                <td>260873</td>
-                                                <td>13</td>
                                                 <td></td>
-                                                <td>31/08/2022</td>
-                                                <td>06/06/2018</td>
-                                                <td>09/06/2018</td>
-                                                <td>102019</td>
-                                                <td>BK</td>
-                                                <td>102022</td>
-                                                <td>43</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2111340</td>
-                                                <td>Kastari</td>
-                                                <td>Pacar Kembang</td>
-                                                <td>T</td>
-                                                <td>01</td>
-                                                <td>02</td>
-                                                <td>SSS</td>
-                                                <td>211</td>
-                                                <td>41</td>
-                                                <td>4B.2</td>
-                                                <td>21206512</td>
-                                                <td>0.5</td>
-                                                <td>057</td>
-                                                <td>11500</td>
-                                                <td>260873</td>
-                                                <td>13</td>
                                                 <td></td>
-                                                <td>31/08/2022</td>
-                                                <td>06/06/2018</td>
-                                                <td>09/06/2018</td>
-                                                <td>102019</td>
-                                                <td>BK</td>
-                                                <td>102022</td>
-                                                <td>43</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2111766</td>
-                                                <td>Sutarno</td>
-                                                <td>Pacar Kembang</td>
-                                                <td>T</td>
-                                                <td>01</td>
-                                                <td>02</td>
-                                                <td>SSS</td>
-                                                <td>211</td>
-                                                <td>41</td>
-                                                <td>4B.2</td>
-                                                <td>21206512</td>
-                                                <td>0.5</td>
-                                                <td>057</td>
-                                                <td>11500</td>
-                                                <td>260873</td>
-                                                <td>13</td>
                                                 <td></td>
-                                                <td>31/08/2022</td>
-                                                <td>06/06/2018</td>
-                                                <td>09/06/2018</td>
-                                                <td>102019</td>
-                                                <td>BK</td>
-                                                <td>102022</td>
-                                                <td>43</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -426,6 +263,7 @@
 @endsection
 
 @push('js')
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>

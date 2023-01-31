@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\DilM;
 use App\Models\Zona;
 use App\Models\Rekening;
 use App\Models\SurveyTarif;
@@ -13,10 +14,9 @@ class SurveyTarifController extends Controller
     public function index()
     {
         $date = Carbon::now()->format('m/Y');
-        return view('master.surveyTarif.index', compact('date'))->with('i');
+        $zona = Zona::all();
+        return view('master.surveyTarif.index', compact('date', 'zona'))->with('i');
     }
-
-
 
     public function show(Request $request)
     {
@@ -86,6 +86,18 @@ class SurveyTarifController extends Controller
     //     return response()->json($survey);
     // }
 
+    public function printPreview(Request $request)
+    {
+        
+        $bundel = DilM::getBundel($request->zona);
+        $data = array(
+            'zona'      => $request->zona,
+            'no_bundel' => $bundel
+        );
+        dd($bundel);
+        return view('master.surveytarif.previewsurvey', compact('data', 'zona'))->with('i');
+    }
+
     public function cetakdk()
     {
         return view('master.surveyTarif.cetakdk');
@@ -93,12 +105,44 @@ class SurveyTarifController extends Controller
 
     public function editPln()
     {
-        
-        return view('master.surveyTarif.editpln');
+        return view('master.surveyTarif.editPln');
+    }
+
+    // public function editPln(Request $request, $no_plg)
+    // {
+    //     SurveyTarif::where('no_plg', $no_plg)->update([
+    //         'no_plg'    => $request->no_plg,
+    //         'alamat'    => $request->alamat,
+    //         'amper'     => $request->amper,
+    //         'jalan'     => $request->jalan
+    //     ]);
+    //     return redirect()->route('surveyTarif.editpln');
+    // }
+
+    public function editJalan(Request $request, $no_plg)
+    {
+        SurveyTarif::where('no_plg', $no_plg)->update([
+            'no_plg'    => $request->id,
+            'listrik'   => $request->amper,
+            'jalan'     => $request->jalan
+        ]);
+        return redirect()->route('editJalan');
     }
 
     public function showEditPln(Request $request)
     {
-        return response()->json($request->post());
+        $jalanpln   = DilM::getJalanPln($request->zona, $request->no_bundel);
+        $no_plg     = $jalanpln[0]->no_plg;
+        $alamat     = trim($jalanpln[0]->jalanku, ' ').' '.trim($jalanpln[0]->gang, ' ').' '.trim($jalanpln[0]->nomor, ' ').' '.trim($jalanpln[0]->notamb, ' ');
+        $listrik    = $jalanpln[0]->listrik;
+        $jalan      = $jalanpln[0]->jalan;
+        $data = array(
+            "no_plg"    => $no_plg,
+            "alamat"    => $alamat,
+            "listrik"   => $listrik,
+            "jalan"     => $jalan
+        );
+        
+        return response()->json($data);
     }
 }

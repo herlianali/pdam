@@ -32,8 +32,6 @@
         <li class="breadcrumb-item active">Cetak BA</li>
     </ol>
     <br>
-    <br>
-    <a href="" class="btn btn-sm btn-success float-right print"><i class="fas fa-download"></i>Print</a>
 @endsection
 
 @section('content')
@@ -44,6 +42,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Print preview Cetak BA</h3>
+                            <a href="{{ route('cetakBAMutasiKolektif') }}" class="btn btn-md float-right btn-success print">Print</a>
                         </div>
                         <div class="card-body priview">
                             <div class="row">
@@ -253,7 +252,7 @@
             e.preventDefault();
             $.ajax({
                 type: "POST",
-                url: `{{ url('mutasiKolektif/previewBA') }}`,
+                url: `{{ url('mutasipelanggan/cetakBAMutasiKolektif') }}`,
                 dataType: 'html',
                 data: {
                     _token: '{{ csrf_token() }}',
@@ -262,7 +261,7 @@
                     loadingPrint()
                 },
                 success: function(res){
-                    var w = window.open(`{{ url('mutasiKolektif/previewBA') }}`,'_blank');
+                    var w = window.open(`{{ url('mutasipelanggan/cetakBAMutasiKolektif') }}`,'_blank');
                     w.document.open();
                     w.document.write(res);
                     w.document.close();

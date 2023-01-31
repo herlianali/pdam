@@ -24,8 +24,6 @@
         <li class="breadcrumb-item active">Cetak Lampiran</li>
     </ol>
     <br>
-    <br>
-    <a href="{{ route('cetakLampiran') }}" class="btn btn-sm btn-success float-right print"> Print</a>
 @endsection
 
 @section('content')
@@ -36,6 +34,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Print Cetak Lampiran</h3>
+                            <a href="{{ route('cetakLampiranMutasiKolektif') }}" class="btn btn-md float-right btn-success print">Print</a>
                         </div>
                         <div class="card-body priview">
                             <div class="row">
@@ -76,12 +75,12 @@
                                     <tbody>
                                         <tr>
                                             <td>1</td>
-                                            <td>10111</td>
-                                            <td>Jl Kenangan</td>
-                                            <td>1</td>
-                                            <td>14</td>
-                                            <td>Status</td>
-                                            <td>Aktif</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -155,8 +154,8 @@
         $(document).on('click', '.print', function(e) {
             e.preventDefault();
             $.ajax({
-                type: "GET",
-                url: `{{ url('mutasiKolektif/previewLampiran') }}`,
+                type: "POST",
+                url: `{{ url('mutasipelanggan/cetakLampiranMutasiKolektif') }}`,
                 dataType: 'html',
                 data: {
                     _token: '{{ csrf_token() }}',
@@ -165,7 +164,7 @@
                     loadingPrint()
                 },
                 success: function(res){
-                    var w = window.open(`{{ url('mutasiKolektif/previewLampiran') }}`,'_blank');
+                    var w = window.open(`{{ url('mutasipelanggan/cetakLampiranMutasiKolektif') }}`,'_blank');
                     w.document.open();
                     w.document.write(res);
                     w.document.close();
