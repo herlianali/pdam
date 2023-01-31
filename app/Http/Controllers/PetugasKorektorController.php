@@ -181,7 +181,8 @@ class PetugasKorektorController extends Controller
 
     public function viewsisa()
     {
-        return view('master.petugasKorektor.viewsisa');
+        $date = Carbon::now()->format('d-M-Y');
+        return view('master.petugasKorektor.viewsisa', compact('date'));
     }
 
     public function random()

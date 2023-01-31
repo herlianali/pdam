@@ -43,6 +43,7 @@ use App\Http\Controllers\PengaduanController;
 use App\Http\Controllers\RiwayatPemakaianController;
 use App\Http\Controllers\SuratPemberitahuanController;
 use App\Http\Controllers\UsulanMutasiTarifController;
+use App\Http\Controllers\DipController;
 use App\Models\HistoriMutasi;
 use App\Models\LaporanTarifPerBendel;
 use Illuminate\Support\Facades\Route;
@@ -62,7 +63,7 @@ Route::get('/', [LoginController::class, 'index']);
 Route::post('/login', [LoginController::class, 'loginUser'])->name('login');
 Route::get('/csrf', function (){echo csrf_token();});
 Route::get('/logout', [LoginController::class, 'logoutUser'])->name('logout');
-
+Route::get('dip/{nip}', [DipController::class, 'show']);
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 Route::prefix('master')->group(function () {

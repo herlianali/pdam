@@ -98,6 +98,7 @@ class SurveyTarifController extends Controller
 
     public function showEditPln(Request $request)
     {
+        // $survey = SurveyTarif::where('no_plg', $no_plg)->first();
         return response()->json($request->post());
     }
 }

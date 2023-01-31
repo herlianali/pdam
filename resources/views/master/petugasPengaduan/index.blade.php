@@ -140,7 +140,7 @@
             });
         });
 
-   
+
 
         var showLoading = function() {
             swal.fire({
@@ -159,7 +159,7 @@
             let nip = $(this).data('id');
             $.ajax({
                 type: "GET",
-                url: `{{ url('api/dip') }}/`+nip,
+                url: `{{ url('dip') }}/`+nip,
                 data: {
                     id: nip,
                     _token: '{{ csrf_token() }}'
