@@ -17,18 +17,14 @@ class PenetapanTeraMeterController extends Controller
         $getlast = new PenetapanTeraMeter;
         $no = (int)$getlast->getLast()+1;
         $getByBonc = new Bonc;
-        // $ptg = new PetugasCS;
-        // $petcs  = $ptg->getData();
         $petcs = PetugasCS::getData();
         $bonc = $getByBonc->getByBonc('BCL-95');
-        // dd($petcs);
         $getUkuran = new PenetapanTeraMeter;
         return view('master.penetapanTeraMeter.index', compact('date', 'getlast', 'no', 'petcs'))->with('i');
     }
 
     public function store(Request $request)
     {
-        //dd($request->post());
         PenetapanTeraMeter::insert([
             'no_tera'           => $request->no_tera,
             'tgl_tera'          => $request->date,

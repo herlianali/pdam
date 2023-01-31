@@ -14,7 +14,7 @@
             border-bottom: 2px dashed rgb(102, 102, 102);
             border-top: 2px dashed rgb(102, 102, 102);
         }
-      
+
     </style>
 @endpush
 
@@ -56,7 +56,7 @@
                             </div>
                             <br>
                             <div class="row">
-                                <div class="col" style="text-align: left;"> 
+                                <div class="col" style="text-align: left;">
                                     <table>
                                         <tr>
                                             <td>PETUGAS</td>
@@ -78,19 +78,19 @@
                                         <th>Keterangan</th>
                                     </tr>
                                 </thead>
-                            </table>
-                            <table>
                                 <tbody>
+                                    @foreach ($tampil as $data)
                                     <tr>
-                                        <td>1</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td>{{ $i++ }}</td>
+                                        <td>{{ $data->zona }}</td>
+                                        <td>{{ $data->no_bundel }}</td>
+                                        <td>{{ $data->jml_no_plg }}</td>
+                                        <td>{{ $data->potensial }}</td>
+                                        <td>{{ $data->koreksi }}</td>
+                                        <td>{{ $data->potensial - $data->koreksi }}</td>
                                         <td></td>
                                     </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                             <div class="atasan" >
@@ -109,7 +109,7 @@
                             <div class="ttd">
                                 <div class="row text-right">
                                     <div class="col justify-content-between">
-                                        <p>Surabaya, {{ $date }}</p>
+                                        <p>Surabaya, {{ $dateNow }}</p>
                                     </div>
                                 </div>
                             </div>

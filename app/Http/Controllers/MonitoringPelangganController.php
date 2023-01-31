@@ -17,6 +17,7 @@ class MonitoringPelangganController extends Controller
         return view('master.monitoringPelanggan.index', compact('data', 'formFilter'))->with('i');
     }
 
+<<<<<<< HEAD
     public function show(Request $request)
     {
         //$monPelanggan = MonitoringPelanggan::where('no_plg', $no_plg)->first();
@@ -36,56 +37,92 @@ class MonitoringPelangganController extends Controller
             'no_plg' => $request->no_plg
         ]);
         return redirect()->route('jenisPekerjaan.index');
+=======
+    public function cariPlg(Request $request)
+    {
+        $no_plg = $request->no_plg;
+        $pelanggan = MonitoringPelanggan::getPelanggan($no_plg);
+        return response()->json($pelanggan);
+    }
+
+    public function show($no_plg)
+    {
+        $pelanggan = MonitoringPelanggan::getPelanggan($no_plg);
+        return response()->json($pelanggan);
+>>>>>>> 9c8b61fdb2292dbf93f27ce238b92f323d69a067
     }
 
 
     public function filter(Request $request)
     {
+        if($request->cname == "true" && $request->cekAlamat == "false") {
+            $query = "AND UPPER(nama) = '".$request->nama."'";
+        }elseif($request->cname == "false" && $request->cekAlamat == "true") {
+            if (!empty($request->jalan)) {
+                $jalan = "AND UPPER(TRIM(jalan)) = '".$request->jalan."'";
+            }else{
+                $jalan = "";
+            }
 
-        if($request->cname == true && $request->cekAlamat == false) {
-            $data = "cekName True";
+            if (!empty($request->gang)) {
+                $gang = "AND UPPER(TRIM(gang)) = '".$request->gang."'";
+            }else{
+                $gang = "";
+            }
+
+            if (!empty($request->nomor)) {
+                $nomor = "AND nomor = '".$request->nomor."'";
+            }else{
+                $nomor = "";
+            }
+
+            if (!empty($request->noTambahan)) {
+                $noTambahan = "AND UPPER(TRIM(notamb)) = UPPER('".$request->noTambahan."')";
+            }else{
+                $noTambahan = "";
+            }
+
+            $query = $jalan." ".$gang." ".$nomor." ".$noTambahan;
+        }elseif($request->cname === "true" && $request->cekAlamat === "true") {
+            $name = "UPPER(nama) = '".$request->nama."'";
+            if (!empty($request->jalan)) {
+                $jalan = "AND UPPER(TRIM(jalan)) = '".$request->jalan."'";
+            }else{
+                $jalan = "";
+            }
+
+            if (!empty($request->gang)) {
+                $gang = "AND UPPER(TRIM(gang)) = '".$request->gang."'";
+            }else{
+                $gang = "";
+            }
+
+            if (!empty($request->nomor)) {
+                $nomor = "AND nomor = '".$request->nomor."'";
+            }else{
+                $nomor = "";
+            }
+
+            if (!empty($request->noTambahan)) {
+                $noTambahan = "AND UPPER(TRIM(notamb)) = UPPER('".$request->noTambahan."')";
+            }else{
+                $noTambahan = "";
+            }
+
+            $query = $name." ".$jalan." ".$gang." ".$nomor." ".$noTambahan;
+        }else{
+            $query = "";
         }
-        if($request->cekAlamat == true && $request->cname == false) {
-            $data = "cekAlamat True";
-        }
 
-        return response()->json($data);
-        // $result = [];
+        $data = [
+            'wilayah' => $request->wilayah,
+            'status'  => $request->status,
+            'query'   => $query
+        ];
 
-        // if ($request->cekNama == true) {
-        //     if (!is_null($request->nama)) {
-        //         $data = MonitoringPelanggan::where('nama', 'LIKE', "%{$request->nama}%")
-        //             ->get()
-        //             ->except('created_at', 'updated_at');
-        //             $result =array_push($result, $data);
-        //     }
-        // } else if ($request->cekAlamat == true) {
-        //     if (!is_null($request->jalan)) {
-        //         $data = MonitoringPelanggan::where('jalan', 'LIKE', "%{$request->jalan}%")
-        //             ->get()
-        //             ->except('created_at', 'updated_at');
-        //             $result =array_push($result, $data);
-        //     } else if (!is_null($request->gang)) {
-        //         $data = MonitoringPelanggan::where('gang', 'LIKE', "%{$request->gang}%")
-        //             ->get()
-        //             ->except('created_at', 'updated_at');
-        //         array_push($result, $data);
-        //     } else if (!is_null($request->nomor)) {
-        //         $data = MonitoringPelanggan::where('nomor', 'LIKE', "%{$request->nomor}%")
-        //             ->get()
-        //             ->except('created_at', 'updated_at');
-        //             $result =array_push($result, $data);
-        //     } else {
-        //         $data = MonitoringPelanggan::where('no_tambahan', 'LIKE', "%{$request->no_tambahan}%")
-        //             ->get()
-        //             ->except('created_at', 'updated_at');
-        //             $result =array_push($result, $data);
-        //     }
-        // } else {
-        //     return $this->index();
-        // }
+        $tampil = MonitoringPelanggan::getData($data);
 
-        // $monPelanggan = array_shift($result);
-        // return view('master.monitoringPelanggan.index', compact(['monPelanggan','filter']))->with('i');
+        return response()->json($tampil);
+
     }
 }

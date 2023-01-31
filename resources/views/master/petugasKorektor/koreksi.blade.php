@@ -49,15 +49,13 @@
                             <div class="form-group row mt-2">
                                 <label for="nip" class="col-md-2 col-form-label">NIP </label>
                                 <div class="col-md-3">
-                                    <input type="text" class="form-control" id="nip" name="nip"
-                                        onkeyup="valueing()">
+                                    <input type="text" class="form-control" id="nip" name="nip">
                                 </div>
                             </div>
                             <div class="form-group row mt-2">
                                 <label for="nama" class="col-md-2 col-form-label">Nama </label>
                                 <div class="col-md-3">
-                                    <input type="text" class="form-control" id="nama"
-                                        name="nama"onkeyup="valueing()">
+                                    <input type="text" class="form-control" id="nama" name="nama">
                                 </div>
                                 <div class="col-md-3">
                                     <button class="btn btn-default btn-mt-2" type="button"
@@ -68,14 +66,12 @@
                             <div class="form-group row mt-2">
                                 <label for="periode" class="col-md-2 col-form-label">Periode </label>
                                 <div class="col-md-3">
-                                    <input type="month" class="form-control" id="periode" name="periode"
-                                        onkeyup="valueing()">
+                                    <input type="month" class="form-control" id="periode" name="periode">
                                 </div>
                                 <label for="date" class="col-md-2 col-form-label">Tanggal Penugasan
                                 </label>
                                 <div class="col-md-3">
-                                    <input type="date" class="form-control" id="date"
-                                        name="date" onkeyup="valueing()" value="">
+                                    <input type="date" class="form-control" id="date" name="date" value="">
                                 </div>
                             </div>
                             <div class="form-group row mt-2">
@@ -89,7 +85,6 @@
                                 <label for="" class="col-md-6 col-form-label"></label>
                                 <div class="col-md-6">
                                     <button class="btn btn-success btn-sm float-right" type="submit">Tampil</button>
-
                                 </div>
                             </div>
                         </form>
@@ -107,32 +102,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($koreksi as $koreksiKorektor)
-                            <tr>
-                                <td>{{ $koreksiKorektor->nip }}</td>
-                                <td>{{ $koreksiKorektor->nama }}</td>
-                                <td>{{ $koreksiKorektor->recid }}</td>
-                                <td>{{ $koreksiKorektor->zona }}</td>
-                                <td>{{ $koreksiKorektor->no_bundel }}</td>
-                                <td>
-                                    <button type="submit"
-                                    class="btn btn-danger btn-sm hapus"
-                                    data-id="{{ $koreksiKorektor->recid }}">
-                                    <i class="fas fa-trash-alt"></i>
-                                    Hapus
-                                    </button>
 
-                                    <button type="button"
-                                    class="btn btn-success btn-sm edit"
-                                    data-id="{{ $koreksiKorektor->recid }}"
-                                    data-toggle="modal"
-                                    data-target="#form">
-                                    <i class="fas fa-edit"></i>
-                                    Edit
-                                    </button>
-                                </td>
-                            </tr>
-                        @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -141,7 +111,7 @@
             </div>
     </section>
 
-    @include('master.petugasKorektor.form')
+    {{-- @include('master.petugasKorektor.form') --}}
 @endsection
 
 @push('js')
@@ -191,7 +161,6 @@
                     showLoading()
                 },
                 success: function(response) {
-                    console.log('respon');
                     $('#form-edit').attr('action', "{{ url('master/koreksipetugasKorektor') }}/"+recid)
                     $('#nip1').val(response.nip)
                     $('#nama1').val(response.nama)
@@ -239,65 +208,6 @@
         });
 
 
-
-
-        // $(document).on('click', '.hapus', function(e) {
-        //     e.preventDefault();
-        //      //console.log();
-        //     let kd_ptgentry = $(this).data('id').trim().replace(/\s/g, '');
-        //     let token = "{{ csrf_token() }}";
-        //     swal.fire({
-        //         title: "Apakah Anda Yakin ?",
-        //         icon: 'warning',
-        //         text: "Anda Tidak Akan Bisa Mengembalikan Data Ini",
-        //         showCancelButton: true,
-        //         confirmButtonColor: "#3085d6",
-        //         cancelButtonColor: "#d33",
-        //         confirmButtonText: "Iya, Hapus!"
-        //     }).then((result) => {
-        //         if (result.isConfirmed) {
-        //             $.ajax({
-        //                 type: "DELETE",
-        //                 url: `{{ url('master/petugasEntry') }}/`+kd_ptgentry,
-        //                 data: {
-        //                         _token: token
-        //                     },
-        //                     success: function(resp) {
-        //                         swal.fire(
-        //                             'Deleted!',
-        //                             'Your file has been deleted.',
-        //                             'success'
-        //                         )
-        //                         location.reload();
-        //                     }
-        //             });
-        //         }
-        //     });
-        // });
-
-        $(document).on('click', '#pilih', function(e) {
-            e.preventDefault();
-            let nip = $(this).data('id');
-            $.ajax({
-                type: "GET",
-                url: `{{ url('api/dip') }}/`+nip,
-                data: {
-                    id: nip,
-                    _token: '{{ csrf_token() }}'
-                },
-                beforeSend: function() {
-                    showLoading()
-                },
-                success: function(res) {
-                    $('#nip').val(res.nip)
-                    $('#nama').val(res.nama)
-                    $("#pegawai").modal('hide');
-                    swal.close();
-                }
-            })
-        })
-
-
         var showLoading = function() {
             swal.fire({
                 title: "Mohon Tunggu !",
@@ -309,15 +219,5 @@
                 },
             })
         }
-
-        // function valueing() {
-        //     if (document.getElementById('rp_retribusi').value === "") {
-        //         document.getElementById('batal').disabled = true
-        //         document.getElementById('simpan').disabled = true
-        //     } else {
-        //         document.getElementById('batal').disabled = false
-        //         document.getElementById('simpan').disabled = false
-        //     }
-        // }
     </script>
 @endpush

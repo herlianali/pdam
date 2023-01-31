@@ -15,7 +15,7 @@ class PetugasKorektorController extends Controller
 {
     public function index()
     {
-        $cS    = Dip::getData();
+        $cS = Dip::getData();
         $pKorektor = new PetugasKorektor();
         $korektor = $pKorektor->showKorektor();
         return view('master.petugasKorektor.index', compact('cS', 'korektor'))->with('i');
@@ -32,7 +32,6 @@ class PetugasKorektorController extends Controller
             'userakses'     => Session::get('username'),
             'aktif'         => $aktif,
             'recid'         => $no
-
         ]);
 
         return redirect()->route('petugasKorektor.index');
@@ -75,25 +74,87 @@ class PetugasKorektorController extends Controller
 
     public function showLaporan(Request $request)
     {
-        $tgl = date("d-m-Y", strtotime($request->tgl));
+        $namaNip = explode('|',$request->nip);
+        $i       = 1;
+        $dateNow = Carbon::now()->format('d-M-Y');
+        $tgl     = date("d-m-Y", strtotime($request->date));
+        $nip     = $namaNip[0];
+        $nama    = $namaNip[1];
+
+        if($request->potensial == "on"){
+            if($request->pKhusus == "on"){
+                $potensial = 2;
+                $kd_tarif  = "and trim(kd_tarif) not in ('3B.1','3B.2','3C.1','4C','4D','4B.1','5','53a','53b','53c','53f','53g','53h')";
+            }else{
+                $potensial = 1;
+                $kd_tarif  = "AND TRIM (kd_tarif) IN ('3B.1', '3B.2', '3C.1', '4C', '4D', '4B.1', '5', '53a','53b', '53c', '53f', '53g', '53h')";
+            }
+        }else{
+            $potensial = 0;
+            $kd_tarif  = "and trim(kd_tarif) not in ('3B.1','3B.2','3C.1','4C','4D','4B.1','5','53a','53b','53c','53f','53g','53h')";
+        }
+
         $data = [
-            'tgl' => $tgl,
-            'thbl' => $request->thbl,
-            'nip' => $request->nip,
-            'pTagih' => $request->pTagih,
-            'potensial' => $request->potensial,
-            'pKhusus' => $request->pKhusus,
-            'waktu' => $request->waktu,
+            'tgl'       => $tgl,
+            'thbl'      => $request->thbl,
+            'nip'       => $nip,
+            'namaPtg'   => $nama,
+            'pTagih'    => $request->periode_tagih,
+            'potensial' => $potensial,
+            'kd_tarif'  => $kd_tarif,
+            'waktu'     => $request->waktu,
         ];
 
-        $tampil = PetugasKorektor::getLaporanWaktuNc($data);
-        return redirect()->route('cLapBundel')->with(['tampil' => $tampil]);
+        if ($request->submit == "tampil") {
+            if($request->waktu == "on"){
+                $tampil = PetugasKorektor::getLaporanWaktuC($data);
+                return view('master.petugasKorektor.cetak.tampillaporanwaktu', compact('dateNow','tampil', 'i'));
+            }else{
+                $tampil = PetugasKorektor::getLaporanWaktuNc($data);
+                return view('master.petugasKorektor.cetak.tampillaporan', compact('dateNow','tampil','i'));
+            }
+        }elseif ($request->submit == "cetak"){
+
+            if ($request->pilih == "lb_per_pertugas") {
+
+                $tampil = PetugasKorektor::getLapBulPerPtg();
+                $total  = PetugasKorektor::getTotalLapBulPerPtg()[0];
+
+                return view('master.petugasKorektor.cetak.laporanbulananperpetugas', compact('dateNow','tampil', 'i', 'data', 'total'));
+
+            }elseif ($request->pilih == "lb_semua_petugas"){
+
+                $tampil = PetugasKorektor::getLapBulAllPtg();
+                $total = PetugasKorektor::getTotalLapBulAllPtg()[0];
+
+                return view('master.petugasKorektor.cetak.laporanbulanansemuapetugas', compact('dateNow','tampil', 'i', 'data', 'total'));
+
+            }elseif ($request->pilih == "nonDireksi"){
+
+                $tampil = PetugasKorektor::getLaporanHonorium();
+                $total = PetugasKorektor::getTotalLaporanHonorium();
+
+                return view('master.petugasKorektor.cetak.laporanbulanansemuapetugas', compact('dateNow','tampil', 'i', 'data', 'total'));
+
+            }elseif ($request->pilih == "direksi"){
+
+                $tampil = PetugasKorektor::getLaporanHonorium();
+                $total = PetugasKorektor::getTotalLaporanHonorium();
+
+                return view('master.petugasKorektor.cetak.laporanbulanansemuapetugas', compact('dateNow','tampil', 'i', 'data', 'total'));
+
+            }else{
+                return "no selected option";
+            }
+        }
+
     }
 
-    public function tampillaporan()
+    public function tampillaporan($tampil)
     {
         $date = Carbon::now()->format('d-M-Y');
-        return view('master.petugasKorektor.cetak.tampillaporan', compact('date'))->with('i');
+        dd($tampil);
+        return view('master.petugasKorektor.cetak.tampillaporan', compact('date','tampil'))->with('i');
     }
 
     public function laporanperpetugas()
@@ -117,20 +178,17 @@ class PetugasKorektorController extends Controller
         return view('master.petugasKorektor.cetak.laporanhonoriumdireksi');
     }
 
-    // public function cLapBundel()
-    // {
-    //     return view('master.petugasKorektor.cetak.lapBundelPetugas')->with('tampil');
-    // }
 
     public function viewsisa()
     {
-        return view('master.petugasKorektor.viewsisa');
+        $date = Carbon::now()->format('d-M-Y');
+        return view('master.petugasKorektor.viewsisa', compact('date'));
     }
 
     public function random()
     {
         $date   = Carbon::now()->format('Y-m-d');
-        $random = RandomPetugas::all();
+        $random = PetugasKorektor::getNipAndName();
         return view('master.petugasKorektor.random', compact('date','random'))->with('i');
     }
 
@@ -165,6 +223,61 @@ class PetugasKorektorController extends Controller
 
     public function monitoring()
     {
-        return view('master.petugasKorektor.monitoring');
+        $data = [];
+        $tView = [];
+        $tampil = [];
+        return view('master.petugasKorektor.monitoring', compact('data', 'tView', 'tampil'));
+    }
+
+    public function showMonitoring(Request $request)
+    {
+        $periodeAwal = explode('/',$request->periode);
+        $currthn = $periodeAwal[0];
+        $currbln = $periodeAwal[1] - 1;
+        if ((string)$currbln == "00") {
+            $currbln = "12";
+            $currthn = $currthn - 1;
+            $periodeprev = $currthn.$currbln;
+        }else{
+            $currbln = $currbln - 1;
+            if ($currbln < 10) {
+                $currbln = "0".$currbln;
+                $periodeprev = $currthn.$currbln;
+            }else{
+                $periodeprev = $currthn.$currbln;
+            }
+        }
+
+        if ($request->chkPenugasan) {
+            $tView = "1";
+            $data = [
+                'periodeprev' => $periodeprev,
+                'periode'     => $periodeAwal[0].$periodeAwal[1],
+                'zona'        => $request->zona,
+                'no_bundel'   => $request->no_bundel,
+            ];
+
+            $tampil = PetugasKorektor::getMonitoringBlmPenugasan($data);
+            return view('master.petugasKorektor.monitoring', compact('tampil', 'tView'));
+        }else{
+            $tView = "2";
+            $zona = "";
+            $chkMonitoring = implode(' ',$request->chkMonitoring);
+
+            if ($request->zona <> null) {
+                $zona = "and c.zona = '$request->zona'";
+            }
+
+            $data = [
+                'periode'       => $periodeAwal[0].$periodeAwal[1],
+                'zona'          => $zona,
+                'chkMonitoring' => $chkMonitoring,
+            ];
+
+            $tampil = PetugasKorektor::getMonitoring($data);
+            return view('master.petugasKorektor.monitoring', compact('tampil', 'tView'));
+        }
+
+
     }
 }

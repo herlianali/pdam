@@ -35,6 +35,7 @@
                             <h3 class="card-title"> Jalan PLN </h3>
                         </div>
                         <div class="card-body">
+<<<<<<< HEAD
                             <div class="row mb-4">
                                 <div class="col-md-12">
                                     <div class="form-group row mt-2">
@@ -97,6 +98,60 @@
                                     </button>
                                 </div>
                             </div>
+=======
+                            <div class="form-group row mt-2">
+                                <label for="nomor" class="col-md-2 col-form-label">Zona </label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control" id="zona" name="zona">
+                                </div>
+                            </div>
+                            <div class="form-group row mt-2">
+                                <label for="nomor" class="col-md-2 col-form-label">No Bundel </label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control" id="no_bundel" name="no_bundel">
+                                </div>
+                            </div>
+                            <div class="form-group row ">
+                                <label for="nama" class="col-md-2 col-form-label">Nama</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control" id="nama" name="nama" readonly>
+                                </div>
+                            </div>
+                            <div class="form-group row ">
+                                <label for="alamat" class="col-md-2 col-form-label">Alamat</label>
+                                <div class="col-md-8">
+                                    <textarea class="form-control" id="alamat" name="alamat" readonly></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group row ">
+                                <label for="nomor" class="col-md-2 col-form-label">PLN</label>
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control" id="amper" name="amper">
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control" id="kwh" name="kwh">
+                                </div>
+                            </div>
+                            <div class="form-group row ">
+                                <label for="nomor" class="col-md-2 col-form-label">Jalan</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control" id="jalan" name="jalan">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-8 text-right">
+                                    <button class="btn btn-success btn-mt-2" id="edit">
+                                        <i class="fas fa-edit"></i>
+                                        Edit
+                                    </button>
+                                    <button class="btn btn-danger btn-mt-2" id="clear">
+                                        <i class="fa fa-trash"></i>
+                                        Bersihkan
+                                    </button>
+                                </div>
+                            </div>
+>>>>>>> 9c8b61fdb2292dbf93f27ce238b92f323d69a067
                         </div>
                     </div>
                 </div>
@@ -105,24 +160,7 @@
 
 @push('js')
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
-    <script src="{{ asset('assets/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
-    <script src="{{ asset('assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
-    <script src="{{ asset('assets/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
     <script>
-        $(function() {
-            $('#example2').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": false,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false,
-                "responsive": true,
-                "pageLength": 5
-            });
-        });
 
         var showLoading = function() {
             swal.fire({
@@ -140,6 +178,25 @@
             var key = e.which
             if(key == 13){
                 console.log("enter")
+                $.ajax({
+                type: "post",
+                url: `{{ url('master/') }}/` + no_plg,
+                data: {
+                    id: no_plg,
+                    _token: '{{ csrf_token() }}'
+                },
+                beforeSend: function() {
+                    showLoading()
+                },
+                success: function(response) {
+                    console.log('resp');
+                    $('#nama').val(response.nama)
+                    $('#alamat').val(response.alamat)
+                    $('#jalan').val(response.jalan)
+                    $('#pln').val(response.pln)
+                    swal.close();
+                }
+            })
             }
         })
 
@@ -237,10 +294,54 @@
             })
         })
 
+        $('#amper').keypress(function(e){
+            var key = e.which
+            if(key == 13){
+                let amp = $(this).val()
+                let kwh = $('#kwh').val()
+                if (amp == '0' || amp == '') {
+                    $('#kwh').prop('disabled', false)
+                }else{
+                    $('#kwh').prop('disabled', true)
+                    if (amp > 20) {
+                        $('#kwh').val("5000")
+                    }else{
+                        switch (amp) {
+                            case "2":
+                                $('#kwh').val("450")
+                                break;
+                            case "4":
+                                $('#kwh').val("900")
+                                break;
+                            case "6":
+                                $('#kwh').val("1300")
+                                break;
+                            case "10":
+                                $('#kwh').val("2200")
+                                break;
+                            case "16":
+                                $('#kwh').val("3500")
+                                break;
+                            case "20":
+                                $('#kwh').val("4400")
+                                break;
+                            default:
+                                alert("Data Ampere Tersebut Tidak Ada")
+                                break;
+                        }
+                    }
+                }
+            }
+        })
+
         function clear() {
             document.getElementById('zona').value = ''
             document.getElementById('no_bundel').value = ''
+<<<<<<< HEAD
             document.getElementById('no_plg').value = ''
+=======
+            document.getElementById('nama').value = ''
+>>>>>>> 9c8b61fdb2292dbf93f27ce238b92f323d69a067
             document.getElementById('alamat').value = ''
             document.getElementById('amper').value = ''
             document.getElementById('kwh').value = ''

@@ -105,6 +105,7 @@ class SurveyTarifController extends Controller
 
     public function editPln()
     {
+<<<<<<< HEAD
         return view('master.surveyTarif.editPln');
     }
 
@@ -127,10 +128,14 @@ class SurveyTarifController extends Controller
             'jalan'     => $request->jalan
         ]);
         return redirect()->route('editJalan');
+=======
+        return view('master.surveyTarif.editpln');
+>>>>>>> 9c8b61fdb2292dbf93f27ce238b92f323d69a067
     }
 
     public function showEditPln(Request $request)
     {
+<<<<<<< HEAD
         $jalanpln   = DilM::getJalanPln($request->zona, $request->no_bundel);
         $no_plg     = $jalanpln[0]->no_plg;
         $alamat     = trim($jalanpln[0]->jalanku, ' ').' '.trim($jalanpln[0]->gang, ' ').' '.trim($jalanpln[0]->nomor, ' ').' '.trim($jalanpln[0]->notamb, ' ');
@@ -144,5 +149,9 @@ class SurveyTarifController extends Controller
         );
         
         return response()->json($data);
+=======
+        // $survey = SurveyTarif::where('no_plg', $no_plg)->first();
+        return response()->json($request->post());
+>>>>>>> 9c8b61fdb2292dbf93f27ce238b92f323d69a067
     }
 }

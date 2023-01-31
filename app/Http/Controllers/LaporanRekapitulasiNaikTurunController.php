@@ -42,9 +42,8 @@ class LaporanRekapitulasiNaikTurunController extends Controller
                 'dasar'     => $request->dasar,
                 'level'     => $request->level
             ];
-            // $hasil = "pengesahan";
         }
-        
+
         // dd($data);
 
         // return response()->json($data);
@@ -84,7 +83,7 @@ class LaporanRekapitulasiNaikTurunController extends Controller
             ];
             // $hasil = "pengesahan";
         }
-        
+
         return view('BAMutasiPelanggan.laporanRekapitulasiNaikTurun.print', compact('data', 'formData', 'periode'))->with('i');;
     }
 
@@ -93,7 +92,7 @@ class LaporanRekapitulasiNaikTurunController extends Controller
         // dd($request->post());
         $awal = explode("-",$request->periode);
         $akhir = explode("-",$request->periode1);
-        
+
         if($request->dasar == "penerbitan"){
             $pAwal  = $awal[1].$awal[0];
             $pAkhir = $akhir[1].$akhir[0];
@@ -119,8 +118,8 @@ class LaporanRekapitulasiNaikTurunController extends Controller
             ];
             // $hasil = "pengesahan";
         }
-        
-        
+
+
         return view('BAMutasiPelanggan.laporanRekapitulasiNaikTurun.cetak', compact('data', 'formData', 'periode'))->with('i');;
     }
 }
